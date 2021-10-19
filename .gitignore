@@ -1,2 +1,5 @@
 # ignore all files in any directory named videos
 videos/
+
+# ignore all mp4 files
+*.mp4
