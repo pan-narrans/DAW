@@ -86,6 +86,40 @@ public class ValidateInput {
     }
   } // End inputType ( int )
 
+  public byte inputType(byte returnValue) {
+    for (int retries = 0;; retries++) {
+      try {
+        returnValue = sc.nextByte();
+        return returnValue;
+      } catch (java.util.InputMismatchException e) {
+        if (retries < maxTries) {
+          message(retries, "byte");
+          sc.next();
+        } else {
+          System.out.println("  Max number of retries reached.");
+          throw e;
+        }
+      }
+    }
+  } // End inputType ( byte )
+
+  public short inputType(short returnValue) {
+    for (int retries = 0;; retries++) {
+      try {
+        returnValue = sc.nextShort();
+        return returnValue;
+      } catch (java.util.InputMismatchException e) {
+        if (retries < maxTries) {
+          message(retries, "short");
+          sc.next();
+        } else {
+          System.out.println("  Max number of retries reached.");
+          throw e;
+        }
+      }
+    }
+  } // End inputType ( short )
+
   public String inputType(String returnValue) {
     returnValue = sc.nextLine();
     return returnValue;
