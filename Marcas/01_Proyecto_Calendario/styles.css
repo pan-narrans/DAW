@@ -1,0 +1,95 @@
+@import "calendar.css";
+
+/* CSS */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100%;
+}
+
+body>* {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+header {
+  background-color: #428cc9;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+header>* {
+  flex: 1;
+}
+
+header h1 {
+  flex-grow: 8;
+}
+
+header img {
+  width: 100%;
+}
+
+nav {
+  background-color: #dfc329;
+  justify-content: flex-start;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  flex: 1;
+}
+
+nav li {
+  margin-left: 2%;
+}
+
+nav a {
+  text-decoration: none;
+  color: #818181;
+}
+
+nav a:hover {
+  color: #4d4d4d;
+}
+
+nav a:active {
+  color: #272727;
+}
+
+main {
+  flex-direction: row;
+  align-items: stretch;
+  flex-grow: 20;
+  max-height: 90vh;
+}
+
+main>section:first-child {
+  flex-grow: 4;
+  overflow: auto;
+}
+
+main aside {
+  background-color: #818181;
+  flex-grow: 1;
+}
+
+footer {
+  background-color: #814c21;
+}

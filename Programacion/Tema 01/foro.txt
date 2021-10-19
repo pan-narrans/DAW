@@ -1,0 +1,18 @@
+
+C++ 3ªGeneración
+
+Cobol 3ªGeneración
+
+Mercury 5ªGeneración ->
+
+Intel-microcode 1ªGeneración -> darle ordenes directas al procesador
+
+Unix shell 4ªGeneración -> permite interactuar con sistemas unix a traves de una consola, actúa de intermediario
+
+Prolog 5ªGeneración -> programar ias
+
+RISC-V ASM 2ªGeneración -> lenguaje de ensamblador de código libre, permite comunicarse con el hardware
+
+Java 3ªGeneración -> crear aplicaciones destinadas a correr en un solo equipo
+
+PL/SQL 4ªGeneración -> extensión procedural de sql, usado para tratar con bases de datos

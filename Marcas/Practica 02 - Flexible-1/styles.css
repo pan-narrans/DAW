@@ -1,0 +1,44 @@
+html, body{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body > *{
+  flex: .5;
+
+  display: flex;
+  margin: 0.5% 1%;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+header{
+  justify-content: space-between;
+  background-color: #65722d;
+  color: white;
+  padding: 1%;
+}
+
+main{
+  flex-grow: 6;
+}
+
+main > * {
+  margin: 0 2.5%;
+}
+
+main h2{
+  color: rgb(136, 46, 106);
+}
+main a{
+  text-decoration: none;
+  color: rgb(49, 79, 211);
+}
