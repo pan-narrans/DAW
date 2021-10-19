@@ -1,2 +1,2 @@
 # DAW
-Ejercicios y archivos de grado de DAW
+Ejercicios y archivos del grado de DAW
