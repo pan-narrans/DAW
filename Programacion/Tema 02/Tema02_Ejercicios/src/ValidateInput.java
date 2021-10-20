@@ -93,7 +93,7 @@ public class ValidateInput {
         return returnValue;
       } catch (java.util.InputMismatchException e) {
         if (retries < maxTries) {
-          message(retries, "byte");
+          message(retries, "byte, maybe try a number closer to 0");
           sc.next();
         } else {
           System.out.println("  Max number of retries reached.");
@@ -110,7 +110,7 @@ public class ValidateInput {
         return returnValue;
       } catch (java.util.InputMismatchException e) {
         if (retries < maxTries) {
-          message(retries, "short");
+          message(retries, "short, maybe try a number closer to 0");
           sc.next();
         } else {
           System.out.println("  Max number of retries reached.");
