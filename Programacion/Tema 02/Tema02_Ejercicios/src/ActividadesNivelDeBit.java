@@ -22,10 +22,10 @@ public class ActividadesNivelDeBit {
     System.out.println(" Ejercicio 01: comprobar si el último bit está inicializado o no.");
     System.out.println(" Ejercicio 02: comprobar si el primer bit está inicializado o no.");
     System.out.println(" Ejercicio 03: comprobar si el enésimo bit está inicializado o no.");
-    System.out.println(" Ejercicio 04: 'TO DO' establecer el enésimo bit de un short.");
+    System.out.println(" Ejercicio 04: establecer el enésimo bit de un short.");
     System.out.println(" Ejercicio 05: cambiar los unos por ceros y todos los ceros por unos de un short.");
-    System.out.println(" Ejercicio 06: 'TO DO'  intercambiar el valor de a y b utilizando solo dos variables.");
-    System.out.println(" Ejercicio 07: 'TO DO' verificar si un número es par o impar.");
+    System.out.println(" Ejercicio 06: intercambiar el valor de a y b utilizando solo dos variables.");
+    System.out.println(" Ejercicio 07: verificar si un número es par o impar.");
     System.out.println("");
     ejercicio = validate.inputRange(1, 1, N_EJERCICIOS);
 
@@ -87,12 +87,12 @@ public class ActividadesNivelDeBit {
     /*
      * He introducido dentro de los mensajes un par de if shorthand por acotar el
      * código y no tener que escribir el mensaje dos veces.
-     */
-    /*
+     * 
      * Usaba Integer.toBinaryString() para traducir un int a binario. Si el nº era
-     * negativo daba todo muchos problemas. Para mostrar los nº en binario estoy
-     * usando un método encontrado en internet (leer documentación) que permite
-     * mostrarlos.
+     * negativo daba todo muchos problemas.
+     * 
+     * Para mostrar los nº en binario estoy usando un método encontrado en internet
+     * (leer documentación) que permite mostrarlos.
      */
     System.out.println("El número introducido corresponde a \"" + intToString(number, 8, 4) + "\" en binario");
     System.out.println("El último bit del número es un \"" + lastBit + "\" por lo que " + ((lastBit == 1) ? "" : "no ")
@@ -154,7 +154,6 @@ public class ActividadesNivelDeBit {
     bitFound = (byte) ((number >> bitToSearch - 1) & 1);
 
     System.out.println("El bit nº " + bitToSearch + "del nº " + intToString(number, 16, 4) + " es: " + bitFound + ".");
-
   }
 
   /**
@@ -170,6 +169,33 @@ public class ActividadesNivelDeBit {
     // Intro
     System.out.println("\n EJERCICIO 04:");
     System.out.println(" Programa para establecer el n-ésimo bit de un número short. \n ");
+
+    // Variables
+    byte bitToChange;
+    short number, changedNumber;
+
+    // Entrada de datos
+    System.out.println("Introduce un número:");
+    number = validate.inputType((short) 1);
+    System.out.println("Introduce el bit a cambiar de ese número:");
+    bitToChange = (byte) validate.inputRange(1, 1, 16);
+
+    /*
+     * Desplazamos el nº 1 hasta la posición del bit a cambiar.
+     * 
+     * Realizamos el XOR del nº introducido con el nº resultante anterior, lo cual
+     * cambia el valor del bit.
+     * 
+     * La operación devuelve un int por lo que hacemos la conversión a short.
+     * 
+     */
+    changedNumber = (short) (number ^ (1 << (bitToChange - 1)));
+
+    // Salidas
+    System.out.println("El número introducido corresponde a \"" + intToString(number, 16, 4) + "\" en binario y a \""
+        + number + "\" en decimal.");
+    System.out.println("El número cambiado corresponde a \"" + intToString(changedNumber, 16, 4)
+        + "\" en binario y a \"" + changedNumber + "\" en decimal.");
   }
 
   /**
@@ -201,7 +227,6 @@ public class ActividadesNivelDeBit {
         + number + "\" en decimal.");
     System.out.println("El número cambiado corresponde a \"" + intToString(changed, 16, 4) + "\" en binario y a \""
         + changed + "\" en decimal.");
-
   }
 
   /**
@@ -209,6 +234,37 @@ public class ActividadesNivelDeBit {
    * a y b utilizando <b>solo dos variables</b> y el operador bit a bit XOR .
    */
   private static void ejercicio06() {
+    // Intro
+    System.out.println("\n EJERCICIO 06:");
+    System.out.println(" Intercambiar el valor de a y b utilizando solo dos variables. \n ");
+
+    int num1, num2;
+
+    // Entrada de datos
+    System.out.println("Introduce dos número:");
+    num1 = validate.inputType(1);
+    num2 = validate.inputType(1);
+
+    System.out.println("\nLos números escogidos son:");
+    System.out.println("num 1 = " + num1);
+    System.out.println("num 2 = " + num2);
+
+    // num1 = A
+    // num2 = B
+    System.out.println("\nAplicamos la magia de los bit...");
+
+    // num2 = A^B
+    num2 = num1 ^ num2;
+
+    // num1 = A^(A^B) = B
+    num1 = num1 ^ num2;
+
+    // num2 = B^(A^B) = A
+    num2 = num1 ^ num2;
+
+    // Salida de datos
+    System.out.println("num 1 = " + num1);
+    System.out.println("num 2 = " + num2);
   }
 
   /**
@@ -222,11 +278,19 @@ public class ActividadesNivelDeBit {
         .println(" Programa para verificar si un número es par o impar utilizando una operación a nivel de bit. \n ");
 
     // Variables
-    int number, changed;
+    int number;
+    byte lastBit;
 
     // Entrada de datos
     System.out.println("Introduce un número:");
-    number = validate.inputType((short) 1);
+    number = validate.inputType(1);
+    // Comparar el último bit a 1
+    lastBit = (byte) (number & 0b1);
+
+    // Salidas
+    System.out.println("El número introducido corresponde a \"" + intToString(number, 32, 4) + "\" en binario");
+    System.out.println("El último bit del número es un \"" + lastBit + "\" por lo que "
+        + ((lastBit == 1) ? "es impar" : "es par") + ".");
   }
 
   /**
@@ -256,4 +320,4 @@ public class ActividadesNivelDeBit {
     return result.toString();
   }
 
-}
+} // Fin clase

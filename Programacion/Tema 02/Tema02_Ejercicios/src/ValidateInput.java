@@ -4,7 +4,7 @@
  * The program ValidateInput is used to avoid a program breakup 
  * in case the user input doesn't match the espected type.
  * 
- * The program re-asks the user for a variable a set number of times
+ * The class re-asks the user for a variable a set number of times
  * in case of missmatch.
  * 
  * @author Alejandro Pérez
