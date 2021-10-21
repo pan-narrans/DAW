@@ -1,5 +1,9 @@
 # DAW
 Ejercicios y archivos del grado de DAW
+|Table of Contents|
+| --- |
+| Commit Rules |
+| Git Commands |
 
 
 ## Commit rules
