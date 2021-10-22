@@ -2,8 +2,9 @@
 Ejercicios y archivos del grado de DAW
 |Table of Contents|
 | --- |
-| Commit Rules |
-| Git Commands |
+| [Commit Rules](https://github.com/pan-narrans/DAW#commit-rules) |
+| [Git Commands](https://github.com/pan-narrans/DAW#git-commands) |
+
 
 
 ## Commit rules
