@@ -12,6 +12,8 @@
  * @since 2021-10-07
  */
 
+package alexRessources;
+
 import java.util.Scanner;
 import java.lang.Math.*;
 
@@ -196,7 +198,7 @@ public class ValidateInput {
     return value;
   }
 
-  public float alwaysPositive(float value){
+  public float alwaysPositive(float value) {
     return Math.abs(value);
   }
 

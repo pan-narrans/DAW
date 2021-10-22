@@ -1,3 +1,4 @@
+package Alex_Ressources;
 
 /**
  * <h1>Validate Input</h1>
@@ -196,7 +197,7 @@ public class ValidateInput {
     return value;
   }
 
-  public float alwaysPositive(float value){
+  public float alwaysPositive(float value) {
     return Math.abs(value);
   }
 

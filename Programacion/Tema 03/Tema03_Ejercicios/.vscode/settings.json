@@ -1,0 +1,9 @@
+{
+  "java.project.sourcePaths": [
+    "src"
+  ],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [
+    "E:\\00 - DAW\\Programacion\\Recursos_Alex\\Recursos_Alex.jar",
+  ]
+}

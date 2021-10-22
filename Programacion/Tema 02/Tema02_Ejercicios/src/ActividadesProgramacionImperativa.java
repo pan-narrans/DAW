@@ -1,6 +1,11 @@
 import java.text.DecimalFormat;
 import static java.lang.Math.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class ActividadesProgramacionImperativa {
 
   // Clase propia para validar las entradas por teclado
@@ -10,6 +15,7 @@ public class ActividadesProgramacionImperativa {
    * al ususario
    */
   static DecimalFormat df = new DecimalFormat();
+  static SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
 
   public static void main(String[] args) {
     // Declaración de variables para escojer ejercicio
@@ -22,8 +28,8 @@ public class ActividadesProgramacionImperativa {
 
     // Le pide al usuario que ejercicio quiere ejecutar
     System.out.println("Hay " + N_EJERCICIOS + " ejercicios, escoje uno:");
-    System.out.println(" Ejercicio 01: ");
-    System.out.println(" Ejercicio 02: ");
+    System.out.println(" Ejercicio 01: calcular la diferencia en días entre dos fechas.");
+    System.out.println(" Ejercicio 02: calcular la edad de una persona en años a partir de su fecha de nacimiento.");
     System.out.println(" Ejercicio 03: calcular los coeficientes de una ecuación de segundo grado.");
     System.out.println(" Ejercicio 04: calcular el área de un círculo a partir de su radio");
     System.out.println(" Ejercicio 05: calcular el perímetro de un círculo a partir de su radio.");
@@ -35,10 +41,20 @@ public class ActividadesProgramacionImperativa {
     // Escoger el ejercicio
     switch (ejercicio) {
     case 1:
-      ejercicio01();
+      try {
+        ejercicio01();
+      } catch (Exception e) {
+        // TODO: handle exception
+        // ...yeah sure
+      }
       break;
     case 2:
-      ejercicio02();
+      try {
+        ejercicio02();
+      } catch (Exception e) {
+        // TODO: handle exception
+        // didn't do it above, won't do it below
+      }
       break;
     case 3:
       ejercicio03();
@@ -63,29 +79,56 @@ public class ActividadesProgramacionImperativa {
   /*
    * Pedir dos fechas e indicar la diferencia de días entre ellas *
    */
-  private static void ejercicio01() {
+  private static void ejercicio01() throws ParseException {
     // Intro
     System.out.println("\n EJERCICIO 01:");
-    System.out.println("  \n ");
+    System.out.println(" Calcular la diferencia en días entre dos fechas. \n ");
 
     // Variables
+    long millisecondDifference;
+    int daysDifference;
+    String fechaInicioTexto = "23/01/1997";
+    String fechaFinTexto = "27/04/1998";
 
-    // Entrada de datos
+    // Transformar la string en fecha
+    Date fechaInicio = myFormat.parse(fechaInicioTexto);
+    Date fechaFin = myFormat.parse(fechaFinTexto);
+
+    // Calcular la diferencia en milisegundos entre las dos fechas
+    millisecondDifference = fechaFin.getTime() - fechaInicio.getTime();
+    // Convertir de milisegundos a días
+    // milisegundo / 1000 -> segundo
+    // segundo / 60 -> minuto
+    // minuto / 60 -> hora
+    // hora / 24 -> día
+    daysDifference = (int) (millisecondDifference / 1000 / 60 / 60 / 24);
+    daysDifference = (int) validate.alwaysPositive((float) daysDifference);
 
     // Salida:
+    System.out.println("La diferencia en dias es de : " + daysDifference);
   }
 
   /*
-   * Pedir dos fechas e indicar la diferencia de días entre ellas *
+   * Programa para calcula la edad de una persona, en años, a partir de su fecha
+   * de nacimiento y la fecha de hoy.
    */
-  private static void ejercicio02() {
+  private static void ejercicio02() throws ParseException {
     // Intro
     System.out.println("\n EJERCICIO 02:");
-    System.out.println("  \n ");
-
-    // Variables
+    System.out.println(
+        " Calcular la edad de una persona, en años, a partir de su fecha de nacimiento y la fecha de hoy. \n ");
 
     // Entrada de datos
+    String birthdayText = "09/06/1996";
+    Date birthday = myFormat.parse(birthdayText);
+    Date now = new Date();
+
+    int age;
+    double millisecondDifference;
+
+    millisecondDifference = now.getTime() - birthday.getTime();
+    age = (int) (millisecondDifference / 1000 / 60 / 60 / 24 / 365);
+    System.out.println("Tiene " + age + " años.");
 
     // Salida:
   }
