@@ -4,7 +4,7 @@ import static java.lang.Math.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.TimeUnit;
 
 public class ActividadesProgramacionImperativa {
 
@@ -126,11 +126,19 @@ public class ActividadesProgramacionImperativa {
     int age;
     double millisecondDifference;
 
+    // Convertir de milisegundos a años
+    // milisegundo / 1000 -> segundo
+    // segundo / 60 -> minuto
+    // minuto / 60 -> hora
+    // hora / 24 -> día
+    // día / 365 -> año
+    // Al ser una división entera y estar trabajando con fechas tan cercanas no
+    // deberíamos tener problemas con los años bisiestos y la precisión del cálculo.
     millisecondDifference = now.getTime() - birthday.getTime();
     age = (int) (millisecondDifference / 1000 / 60 / 60 / 24 / 365);
-    System.out.println("Tiene " + age + " años.");
 
     // Salida:
+    System.out.println("Tiene " + age + " años.");
   }
 
   /*
@@ -152,9 +160,10 @@ public class ActividadesProgramacionImperativa {
     b = validate.inputType(1f);
     c = validate.inputType(1f);
 
-    // Calcular y salidas
+    // Calcular el discriminante para saber cuantos resultados tiene la ecuación
     discriminante = pow(b, 2) - 4 * a * c;
 
+    // Salidas
     if (discriminante == 0) {
       raiz1 = -b + sqrt(discriminante) / 2 * a;
       System.out.println("La ecuación tiene como solución: " + raiz1);

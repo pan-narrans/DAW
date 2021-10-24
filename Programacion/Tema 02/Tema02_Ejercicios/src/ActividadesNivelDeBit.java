@@ -81,6 +81,8 @@ public class ActividadesNivelDeBit {
     // Entrada de datos
     System.out.println("Introduce un número:");
     number = validate.inputType((byte) 1);
+
+    // Aplicamos una máscara ~01
     lastBit = (byte) (number & comparator);
 
     // Salida:
