@@ -1,41 +1,67 @@
 import Alex_Ressources.*;
 
-public class Ejercicios_Tema03 {
+public class Ejercicios_Tema03 extends Ejercicios {
 
-  static ValidateInput validate = new ValidateInput();
+  public String info;
 
-  public static void main(String[] args) throws Exception {
+  public void setSelfInfo(String info) {
+    this.info = info;
+  }
 
-    //
-    E01_funciones bloque01 = new E01_funciones();
+  public void showSelfInfo() {
+    System.out.println(info);
+  }
 
+  public void main() {
+
+  }
+
+}
+
+class Ejercicios {
+  public static ValidateInput validate = new ValidateInput();
+
+  public static void main(String[] args) {
     // Declaración de variables para escojer ejercicio
-    int ejercicio;
-    final int N_EJERCICIOS = 7;
+    final int N_BLOQUES = 1;
+    int bloque;
     boolean exitApp = false;
 
-    // Le pide al usuario que ejercicio quiere ejecutar
-    System.out.println("Hay " + N_EJERCICIOS + " ejercicios, escoje uno:");
-    System.out.println(" Ejercicio 01: ");
-    System.out.println("");
-    ejercicio = validate.inputRange(1, 1, N_EJERCICIOS);
+    Ejercicios_Tema03[] bloques = new Ejercicios_Tema03[N_BLOQUES];
 
+    // Preparando las variable
+    bloques[0] = new E01_funciones();
+    bloques[0].setSelfInfo(" Bloque 01: Ejercicios de funciones");
 
     // Escoger Bloque
     while (!exitApp) {
-      switch (ejercicio) {
-      case -1:
-        exitApp = true;
-        break;
+      showInfo(bloques, N_BLOQUES);
+      // Le pide al usuario que bloque quiere ejecutar
+      bloque = validate.inputRange(1, 1, N_BLOQUES);
+
+      switch (bloque) {
       case 1:
-        bloque01.mainE01();
+        bloques[0].main();
         break;
       default:
         break;
       }
+
+      System.out.println("¿Quieres salir de la aplicación?");
+      exitApp = validate.inputType(true);
     }
 
     // Cerrar el validar
     validate.close();
+  }
+
+  static public void showInfo(Ejercicios_Tema03[] objetos, int nObjetos) {
+    System.out.println("Hay " + nObjetos + " bloques de ejercicios, escoje uno:");
+
+    for (Ejercicios_Tema03 objeto : objetos) {
+      objeto.showSelfInfo();
+    }
+
+    System.out.println("");
   }
 }
