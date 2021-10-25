@@ -1,0 +1,71 @@
+CREATE TABLE TITULAR(
+	dni VARCHAR(9) PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    address VARCHAR(50)
+);
+
+CREATE TABLE EMPLEADO(
+	dni VARCHAR(9) PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    address VARCHAR(50)
+);
+
+CREATE TABLE LOCALIDAD(
+	cd_localidad INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE ARTICULO(
+	cd_articulo INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE PUB(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    license VARCHAR(11) NOT NULL,
+    openingDate DATE NOT NULL,
+    horario ENUM ("Hor1","Hor2","Hor3") NOT NULL,
+    cd_titular VARCHAR(9) NOT NULL,
+    cd_localidad INT NOT NULL,
+    
+    CONSTRAINT fk_TITULAR_cd_titular 
+        FOREIGN KEY (cd_titular) REFERENCES TITULAR(dni) 
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_LOCALIDAD_cd_localidad 
+        FOREIGN KEY (cd_localidad) REFERENCES LOCALIDAD(cd_localidad) 
+        ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE TRABAJAR(
+	cd_pub INT,
+    dni_empleado VARCHAR(9),
+    funcion ENUM ("Limpieza", "Seguridad", "Camarero") NOT NULL,  
+    
+    PRIMARY KEY (cd_pub, dni_empleado),    
+
+    CONSTRAINT fk_PUB_cd_pub 
+        FOREIGN KEY (cd_pub) REFERENCES PUB(id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_EMPLEADO_cd_pub 
+        FOREIGN KEY (dni_empleado) REFERENCES EMPLEADO(dni) 
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+--el check da error--
+
+CREATE TABLE VENDER(
+	cd_pub INT,
+    cd_articulo INT,
+    existencias INT NOT NULL DEFAULT 0, 
+    pvp NUMERIC(5,2) NOT NULL CHECK (pvp > 0),
+    
+    PRIMARY KEY (cd_pub, cd_articulo),  
+    
+    CONSTRAINT fk_PUB_cd_pub 
+        FOREIGN KEY (cd_pub) REFERENCES PUB(id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_ARTICULO_cd_pub 
+        FOREIGN KEY (cd_articulo) REFERENCES ARTICULO(cd_articulo)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
