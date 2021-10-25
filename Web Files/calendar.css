@@ -1,7 +1,37 @@
 #calendar {
   display: flex;
+  flex-direction: column;
+  margin: 0% 1% 1% 1%;
+}
+
+#calendar-header {
+  height: 50px;
+  display: flex;
   flex-direction: row;
-  margin: 1%;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+}
+
+
+/* #calendar-header :not(:last-child) {
+  border-right: 1px solid var(--grey-1)
+} */
+
+#calendar-header div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+#calendar-header p {
+  align-self: center;
+}
+
+#calendar-hours {
+  display: flex;
+  flex-direction: row;
 }
 
 .day {
@@ -16,7 +46,8 @@
   border-right: 1px solid var(--grey-1)
 }
 
-.day header {
+
+/* .day header {
   background-color: rgb(255, 255, 255);
   border-bottom: solid var(--grey-2) 2px;
   padding: 5% 0;
@@ -24,12 +55,14 @@
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-}
+} */
 
 .hour {
   display: flex;
   flex-direction: row;
   padding: 5%;
+  min-height: 45px;
+  height: 5vh;
   --hour-border-style: solid var(--grey-1) 1px;
   font-size: 90%;
 }

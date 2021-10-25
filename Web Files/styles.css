@@ -3,8 +3,20 @@
 /* CSS */
 
 :root {
+  --background-color: #fff;
   --grey-1: #c2c2c2;
   --grey-2: #888888;
+}
+
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 
 * {

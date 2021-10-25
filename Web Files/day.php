@@ -1,5 +1,5 @@
 <section class="day">
-  <header>
+  <header class="visuallyhidden">
     <h2>
       <?php echo $days[$dayNumber]; ?>
     </h2>
@@ -14,7 +14,7 @@
         <div>
           <?php echo $hour . " - "; ?>
         </div>
-        <div> day event or something </div>
+        <div> day event </div>
       </section>
     <?php } ?>
   </div>

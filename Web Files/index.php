@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
   <title>Title</title>
 </head>
 
@@ -13,6 +14,7 @@
 
   <header>
     <img src="" alt="logo">
+    <span class="icon-home"></span>
     <h2>Name</h2>
   </header>
 
@@ -30,6 +32,7 @@
       <?php include_once('calendar.php') ?>
     </section>
     <aside>
+      <?php //include_once('controlBar.php') ?>
       <p>Próximos eventos >_< </p>
     </aside>
   </main>
