@@ -1,6 +1,6 @@
 import Alex_Ressources.*;
 
-public class Ejercicios_Tema03 extends Ejercicios {
+class Bloque extends Ejercicios_Tema03 {
 
   public String info;
 
@@ -18,35 +18,49 @@ public class Ejercicios_Tema03 extends Ejercicios {
 
 }
 
-class Ejercicios {
+class Ejercicio extends Bloque {
+
+  General_Functions funtion = new General_Functions();
+
+  public void main() {
+
+  }
+
+}
+
+public class Ejercicios_Tema03 {
   public static ValidateInput validate = new ValidateInput();
 
   public static void main(String[] args) {
-    // Declaración de variables para escojer ejercicio
-    final int N_BLOQUES = 1;
-    int bloque;
+    // VARIABLES
+    // Número total de bloques
+    final int N_BLOQUES = 2;
+    // Número de bloque escogido
+    int n_bloque;
+    // Array de bloques
+    Bloque[] bloques = new Bloque[N_BLOQUES];
+    // Condición del while
     boolean exitApp = false;
 
-    Ejercicios_Tema03[] bloques = new Ejercicios_Tema03[N_BLOQUES];
-
-    // Preparando las variable
+    // INICIALIZACIÓN
     bloques[0] = new E01_funciones();
     bloques[0].setSelfInfo(" Bloque 01: Ejercicios de funciones");
+    bloques[1] = new E02_estructuras_if();
+    // bloques[1].setSelfInfo(" Bloque 02: Ejercicios de if's");
 
-    // Escoger Bloque
+    // ESCOGER BLOQUE
     while (!exitApp) {
+      // Display info general
+      System.out.println("Hay " + N_BLOQUES + " bloques, escoje uno:");
       showInfo(bloques, N_BLOQUES);
+
       // Le pide al usuario que bloque quiere ejecutar
-      bloque = validate.inputRange(1, 1, N_BLOQUES);
+      n_bloque = validate.inputRange(1, 1, N_BLOQUES) - 1;
 
-      switch (bloque) {
-      case 1:
-        bloques[0].main();
-        break;
-      default:
-        break;
-      }
+      // Ejecuta el main del bloque escogido
+      bloques[n_bloque].main();
 
+      // Continuar ejecución o no
       System.out.println("¿Quieres salir de la aplicación?");
       exitApp = validate.inputType(true);
     }
@@ -55,10 +69,10 @@ class Ejercicios {
     validate.close();
   }
 
-  static public void showInfo(Ejercicios_Tema03[] objetos, int nObjetos) {
+  public static void showInfo(Bloque[] objetos, int nObjetos) {
     System.out.println("Hay " + nObjetos + " bloques de ejercicios, escoje uno:");
 
-    for (Ejercicios_Tema03 objeto : objetos) {
+    for (Bloque objeto : objetos) {
       objeto.showSelfInfo();
     }
 
