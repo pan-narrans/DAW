@@ -149,7 +149,22 @@ main {
   margin: 0%;
 }
 
+#detalles>* {
+  margin-bottom: 4%;
+}
+
+#detalles strong {
+  color: #3f3f3f;
+}
+
+#detalles ul {
+  margin-left: 5%;
+}
+
 #receta h2 {
+  font-size: 200%;
+  padding-bottom: 2%;
+  margin-bottom: 2%;
   border-bottom: 3px solid rgba(177, 18, 18, 1);
 }
 
@@ -188,6 +203,10 @@ main {
   padding: 10px 20px;
   background-color: rgba(136, 17, 17, 1);
   border-radius: 20px;
+}
+
+#receta-footer-movil {
+  display: none;
 }
 
 @media (max-width: 600px) {
@@ -274,5 +293,19 @@ main {
   }
   #mainFooter a {
     margin: 5% auto;
+  }
+  #receta-footer-movil {
+    display: flex;
+    order: 4;
+  }
+  #receta-footer-movil>* {
+    align-self: center;
+  }
+  #receta-footer-movil :first-child {
+    max-width: 40% !important;
+    margin-bottom: -5%;
+  }
+  .hideOnMobile {
+    display: none;
   }
 }
