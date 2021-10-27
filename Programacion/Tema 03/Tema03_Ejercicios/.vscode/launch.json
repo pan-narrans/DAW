@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch ActividadesEntradaUsuario",
+      "request": "launch",
+      "mainClass": "ActividadesEntradaUsuario",
+      "projectName": ""
+    },
+    {
+      "type": "java",
       "name": "Launch Ejercicios_Tema03",
       "request": "launch",
       "mainClass": "Ejercicios_Tema03",

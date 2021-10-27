@@ -2,7 +2,7 @@ import Alex_Ressources.*;
 
 class Bloque extends Ejercicios_Tema03 {
 
-  public String info;
+  public String info = "placeholder info";
 
   public void setSelfInfo(String info) {
     this.info = info;
@@ -70,7 +70,7 @@ public class Ejercicios_Tema03 {
   }
 
   public static void showInfo(Bloque[] objetos, int nObjetos) {
-    System.out.println("Hay " + nObjetos + " bloques de ejercicios, escoje uno:");
+    System.out.println("Hay " + nObjetos + " opciones, escoje una:");
 
     for (Bloque objeto : objetos) {
       objeto.showSelfInfo();

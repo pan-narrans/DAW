@@ -10,6 +10,7 @@ public class E02_estructuras_if extends Bloque {
 
     Ejercicio[] ejercicios = new Ejercicio[N_EJERCICIOS];
     ejercicios[0] = new B02_E01();
+    ejercicios[0].setSelfInfo("\t Ejercicio 01: comprobar si dos nº son iguales.");
     ejercicios[1] = new B02_E02();
     ejercicios[2] = new B02_E03();
 
@@ -20,6 +21,7 @@ public class E02_estructuras_if extends Bloque {
       System.out.println("\t Ejercicio 01: comprobar si dos nº son iguales.");
       System.out.println("\t Ejercicio 02: comprobar si un nº es positivo.");
       System.out.println("\t Ejercicio 03: comprobar si un nº par o impar.");
+      showInfo(ejercicios, N_EJERCICIOS);
       n_ejercicio = validate.inputRange(1, 1, N_EJERCICIOS) - 1;
 
       ejercicios[n_ejercicio].main();
