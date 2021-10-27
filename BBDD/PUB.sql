@@ -29,10 +29,10 @@ CREATE TABLE PUB(
     cd_titular VARCHAR(9) NOT NULL,
     cd_localidad INT NOT NULL,
     
-    CONSTRAINT fk_TITULAR_cd_titular 
+    CONSTRAINT fk_PUB_TITULAR_cd_titular 
         FOREIGN KEY (cd_titular) REFERENCES TITULAR(dni) 
         ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_LOCALIDAD_cd_localidad 
+    CONSTRAINT fk_PUB_LOCALIDAD_cd_localidad 
         FOREIGN KEY (cd_localidad) REFERENCES LOCALIDAD(cd_localidad) 
         ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -44,28 +44,27 @@ CREATE TABLE TRABAJAR(
     
     PRIMARY KEY (cd_pub, dni_empleado),    
 
-    CONSTRAINT fk_PUB_cd_pub 
+    CONSTRAINT fk_TRB_PUB_cd_pub 
         FOREIGN KEY (cd_pub) REFERENCES PUB(id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_EMPLEADO_cd_pub 
+    CONSTRAINT fk_TRB_EMPLEADO_cd_pub 
         FOREIGN KEY (dni_empleado) REFERENCES EMPLEADO(dni) 
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
---el check da error--
 
 CREATE TABLE VENDER(
 	cd_pub INT,
     cd_articulo INT,
-    existencias INT NOT NULL DEFAULT 0, 
-    pvp NUMERIC(5,2) NOT NULL CHECK (pvp > 0),
+    existencias INT NOT NULL DEFAULT 0,
+    pvp NUMERIC(5,2) NOT NULL CHECK (pvp > 0), /* --el check da error-- */
     
     PRIMARY KEY (cd_pub, cd_articulo),  
     
-    CONSTRAINT fk_PUB_cd_pub 
+    CONSTRAINT fk_VND_PUB_cd_pub 
         FOREIGN KEY (cd_pub) REFERENCES PUB(id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_ARTICULO_cd_pub 
+    CONSTRAINT fk_VND_ARTICULO_cd_pub 
         FOREIGN KEY (cd_articulo) REFERENCES ARTICULO(cd_articulo)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
