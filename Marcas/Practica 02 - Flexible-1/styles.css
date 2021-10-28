@@ -1,4 +1,5 @@
-html, body{
+html,
+body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -7,38 +8,80 @@ html, body{
   width: 100%;
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-body > *{
-  flex: .5;
+.grey {
+  color: grey;
+}
 
+body>* {
+  flex: .5;
   display: flex;
   margin: 0.5% 1%;
-
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  text-align: center;
 }
 
-header{
+header {
   justify-content: space-between;
   background-color: #65722d;
   color: white;
   padding: 1%;
 }
 
-main{
+header img {
+  max-height: 50px;
+  ;
+}
+
+main {
   flex-grow: 6;
 }
 
-main > * {
+main>* {
   margin: 0 2.5%;
+  flex: 5;
 }
 
-main h2{
-  color: rgb(136, 46, 106);
+main> :nth-child(2n) {
+  align-self: flex-end;
+  width: 20%;
+  margin: 0 5%;
+  flex: 3;
 }
-main a{
+
+main h2 {
+  color: rgb(136, 46, 106);
+  text-align: center;
+}
+
+main a {
   text-decoration: none;
   color: rgb(49, 79, 211);
+}
+
+p {
+  text-align: justify;
+  text-justify: distribute;
+  margin-bottom: 0;
+}
+
+footer {
+  border-top: solid black 7px;
+  min-height: 120px;
+}
+
+footer>* {
+  width: 30%;
+}
+
+footer section>* {
+  text-align: center;
+  display: block;
+  margin: 0;
+}
+
+img {
+  width: 100%;
 }
