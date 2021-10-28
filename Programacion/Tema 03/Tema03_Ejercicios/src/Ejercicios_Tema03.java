@@ -46,7 +46,7 @@ public class Ejercicios_Tema03 {
     bloques[0] = new E01_funciones();
     bloques[0].setSelfInfo(" Bloque 01: Ejercicios de funciones");
     bloques[1] = new E02_estructuras_if();
-    // bloques[1].setSelfInfo(" Bloque 02: Ejercicios de if's");
+    bloques[1].setSelfInfo(" Bloque 02: Ejercicios de if's");
 
     // ESCOGER BLOQUE
     while (!exitApp) {
