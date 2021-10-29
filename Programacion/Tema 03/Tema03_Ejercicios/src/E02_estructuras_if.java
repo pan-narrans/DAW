@@ -5,28 +5,26 @@ public class E02_estructuras_if extends Bloque {
 
     // Declaración de variables para escojer ejercicio
     int n_ejercicio;
-    final int N_EJERCICIOS = 9;
+    final int N_EJERCICIOS = 16;
     boolean exitApp = false;
 
     Ejercicio[] ejercicios = new Ejercicio[N_EJERCICIOS];
-    ejercicios[0] = new B02_E01();
-    ejercicios[0].setSelfInfo("\t Ejercicio 01: comprobar si dos nº son iguales.");
-    ejercicios[1] = new B02_E02();
-    ejercicios[1].setSelfInfo("\t Ejercicio 02: comprobar si un nº es positivo.");
-    ejercicios[2] = new B02_E03();
-    ejercicios[2].setSelfInfo("\t Ejercicio 03: comprobar si un nº par o impar.");
-    ejercicios[3] = new B02_E04();
-    ejercicios[3].setSelfInfo("\t Ejercicio 04: comprobar si dos nº múltiplos o no.");
-    ejercicios[4] = new B02_E05();
-    ejercicios[4].setSelfInfo("\t Ejercicio 05: devolver el más grande de dos nº.");
-    ejercicios[5] = new B02_E06();
-    ejercicios[5].setSelfInfo("\t Ejercicio 06: ordenar nº del mayor a menor.");
-    ejercicios[6] = new B02_E07();
-    ejercicios[6].setSelfInfo("\t Ejercicio 07: devuelve el nº de cifras de un short.");
-    ejercicios[7] = new B02_E08();
-    ejercicios[7].setSelfInfo("\t Ejercicio 08: devuelve el nº con las cifras en orden ivnerso.");
-    ejercicios[8] = new B02_E09();
-    ejercicios[8].setSelfInfo("\t Ejercicio 09: ");
+    ejercicios[0] = new B02_E01("\t Ejercicio 01: comprobar si dos nº son iguales.");
+    ejercicios[1] = new B02_E02("\t Ejercicio 02: comprobar si un nº es positivo.");
+    ejercicios[2] = new B02_E03("\t Ejercicio 03: comprobar si un nº par o impar.");
+    ejercicios[3] = new B02_E04("\t Ejercicio 04: comprobar si dos nº múltiplos o no.");
+    ejercicios[4] = new B02_E05("\t Ejercicio 05: devolver el más grande de dos nº.");
+    ejercicios[5] = new B02_E06("\t Ejercicio 06: ordenar nº del mayor a menor.");
+    ejercicios[6] = new B02_E07("\t Ejercicio 07: devuelve el nº de cifras de un short.");
+    ejercicios[7] = new B02_E08("\t Ejercicio 08: devuelve el nº con las cifras en orden ivnerso.");
+    ejercicios[8] = new B02_E09("\t Ejercicio 09: dice si un nº es capicúa o no.");
+    ejercicios[9] = new B02_E10("\t Ejercicio 10: ");
+    ejercicios[10] = new B02_E11("\t Ejercicio 11: ");
+    ejercicios[11] = new B02_E12("\t Ejercicio 12: ");
+    ejercicios[12] = new B02_E13("\t Ejercicio 13: ");
+    ejercicios[13] = new B02_E14("\t Ejercicio 14: ");
+    ejercicios[14] = new B02_E15("\t Ejercicio 15: ");
+    ejercicios[15] = new B02_E16("\t Ejercicio 16: ");
 
     // ESCOGER EJERCICIO
     while (!exitApp) {
@@ -50,6 +48,17 @@ public class E02_estructuras_if extends Bloque {
  * devuelva true si son iguales o false en caso contrario.
  */
 class B02_E01 extends Ejercicio {
+
+  /**
+   * Crear una función llamada sonIguales que reciba dos números por parámetro y
+   * devuelva true si son iguales o false en caso contrario.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
+  public B02_E01(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     float num1, num2;
 
@@ -66,6 +75,11 @@ class B02_E01 extends Ejercicio {
  * devuelva true si es positivo o false en caso contrario.
  */
 class B02_E02 extends Ejercicio {
+
+  public B02_E02(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     float num;
 
@@ -80,6 +94,11 @@ class B02_E02 extends Ejercicio {
  * Crear una función llamada parOimpar que reciba un número por
  */
 class B02_E03 extends Ejercicio {
+
+  public B02_E03(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     int num;
 
@@ -95,6 +114,11 @@ class B02_E03 extends Ejercicio {
  * devuelva true si uno es multiplo del otro o false en caso contrario.
  */
 class B02_E04 extends Ejercicio {
+
+  public B02_E04(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     float num1, num2;
 
@@ -112,6 +136,11 @@ class B02_E04 extends Ejercicio {
  * parámetro y devuelva el número mayor.
  */
 class B02_E05 extends Ejercicio {
+
+  public B02_E05(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     float num1, num2;
 
@@ -129,6 +158,11 @@ class B02_E05 extends Ejercicio {
  * ordenarNumeros(5,23,7) devolvería “23 7 5”.
  */
 class B02_E06 extends Ejercicio {
+
+  public B02_E06(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     int n_numbers = 3;
     float[] nums = new float[n_numbers];
@@ -148,6 +182,11 @@ class B02_E06 extends Ejercicio {
  * 9999 devolverá -1.
  */
 class B02_E07 extends Ejercicio {
+
+  public B02_E07(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     short num, nCifras;
 
@@ -155,8 +194,8 @@ class B02_E07 extends Ejercicio {
     num = validate.inputType((short) 1);
     nCifras = (short) funtion.nDigits(num);
 
-    System.out
-        .println((nCifras != -1) ? "El número tiene " + nCifras + " cifras." : "El número introducido no era válido.");
+    System.out.println(
+        (nCifras > 4 | num < 0) ? "El número tiene " + nCifras + " cifras." : "El número introducido no era válido.");
 
   }
 }
@@ -167,15 +206,21 @@ class B02_E07 extends Ejercicio {
  * mayor a 9999 devolverá -1.
  */
 class B02_E08 extends Ejercicio {
+
+  public B02_E08(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
-    short num, reversed;
+    short num, reversed, nCifras;
 
     System.out.println("Introduce un número:");
     num = validate.inputType((short) 1);
     reversed = (short) funtion.reverseDigits(num);
+    nCifras = (short) funtion.nDigits(num);
 
-    System.out.println(
-        (reversed != -1) ? "El número invertido es " + reversed + " cifras." : "El número introducido no era válido.");
+    System.out.println((nCifras > 4 | num < 0) ? "El número invertido es " + reversed + " cifras."
+        : "El número introducido no era válido.");
   }
 }
 
@@ -185,6 +230,11 @@ class B02_E08 extends Ejercicio {
  * un número menor a 0 o mayor a 9999 devolverá también false.
  */
 class B02_E09 extends Ejercicio {
+
+  public B02_E09(String info) {
+    setSelfInfo(info);
+  }
+
   public void main() {
     short num;
 
@@ -192,6 +242,122 @@ class B02_E09 extends Ejercicio {
     num = validate.inputType((short) 1);
 
     System.out.println("El número " + (funtion.isPalindromic(num) ? "" : "no ") + "es capicúa.");
+
+  }
+}
+
+/**
+ * Crear una función llamada obtenerNota que reciba nota del 0 al 10 y devuelva
+ * un enum Notas con los valores Insuficiente, Suficiente, Bien, Notable
+ * Sobresaliente. En caso de que la nota sea menor que 0 o mayor que 10
+ * devolverá error.
+ */
+class B02_E10 extends Ejercicio {
+
+  public B02_E10(String info) {
+    setSelfInfo(info);
+  }
+
+  public void main() {
+
+  }
+}
+
+/**
+ * Crear una función llamada esFechaCorrecta que reciba por parámetro el día, el
+ * mes y el año de una fecha y devuelva true si es correcto o false en caso
+ * contrario. Suponer que todos los meses son de 30 días.
+ */
+class B02_E11 extends Ejercicio {
+
+  /**
+   * Crear una función llamada esFechaCorrecta que reciba por parámetro el día, el
+   * mes y el año de una fecha y devuelva true si es correcto o false en caso
+   * contrario. Suponer que todos los meses son de 30 días.
+   * 
+   * Refactorizar la función anterior, pero teniendo en cuenta meses de 28, 30 y
+   * 31 días y años bisiestos.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
+  public B02_E11(String info) {
+    setSelfInfo(info);
+  }
+
+  public void main() {
+    int day, month, year;
+
+    System.out.println("Introduce D/M/Y:");
+    day = validate.inputType(1);
+    month = validate.inputType(1);
+    year = validate.inputType(1);
+
+    System.out.println("La fecha introducida " + (funtion.validateDate(day, month, year) ? "" : "no ") + "es válida.");
+
+  }
+}
+
+/**
+ */
+class B02_E12 extends Ejercicio {
+
+  public B02_E12(String info) {
+    setSelfInfo(info);
+  }
+
+  public void main() {
+
+  }
+}
+
+/**
+ */
+class B02_E13 extends Ejercicio {
+
+  public B02_E13(String info) {
+    setSelfInfo(info);
+  }
+
+  public void main() {
+
+  }
+}
+
+/**
+ */
+class B02_E14 extends Ejercicio {
+
+  public B02_E14(String info) {
+    setSelfInfo(info);
+  }
+
+  public void main() {
+
+  }
+}
+
+/**
+ */
+class B02_E15 extends Ejercicio {
+
+  public B02_E15(String info) {
+    setSelfInfo(info);
+  }
+
+  public void main() {
+
+  }
+}
+
+/**
+ */
+class B02_E16 extends Ejercicio {
+
+  public B02_E16(String info) {
+    setSelfInfo(info);
+  }
+
+  public void main() {
 
   }
 }

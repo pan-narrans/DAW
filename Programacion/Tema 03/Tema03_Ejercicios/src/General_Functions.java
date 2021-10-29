@@ -40,48 +40,88 @@ public class General_Functions {
     return Arrays.toString(nums);
   }
 
-  public int nDigits(short num) {
+  public int nDigits(int num) {
     int cifras = 0;
 
-    if (0 > num | num > 9999) {
-      cifras = -1;
-    } else {
-      while (num != 0) {
-        num /= 10;
-        cifras++;
-      }
+    while (num != 0) {
+      num /= 10;
+      cifras++;
     }
 
     return cifras;
   }
 
-  public int reverseDigits(short num) {
+  public int reverseDigits(int num) {
     int reversed = 0, nDigits = nDigits(num);
 
-    if (0 > num | num > 9999) {
-      reversed = -1;
-    } else {
-      for (int i = 0; i < nDigits; i++) {
-        reversed = reversed * 10 + num % 10;
-        num /= 10;
-      }
+    for (int i = 0; i < nDigits; i++) {
+      reversed = reversed * 10 + num % 10;
+      num /= 10;
     }
 
     return reversed;
   }
 
-  public boolean isPalindromic(short num) {
-    int nDigits = nDigits(num);
+  public boolean isPalindromic(int num) {
+    int nDigits, fstDigit, lstDigit;
     boolean palindromic = true;
+
+    nDigits = nDigits(num);
 
     for (int i = 0; i < (nDigits + 1) / 2; i++) {
       nDigits = nDigits(num);
-      if (num % 10 != num / Math.pow(10, nDigits - 1)) {
+
+      lstDigit = num % 10;
+      fstDigit = num / (int) (Math.pow(10, nDigits - 1));
+
+      if (lstDigit != fstDigit) {
         palindromic = false;
+        break;
       }
-      //num = num - (num / (short) (Math.pow(10, nDigits - 1)));
+
+      num = (int) (num - fstDigit * Math.pow(10, nDigits - 1)) / 10;
     }
 
     return palindromic;
+  }
+
+  enum Apreciaciones {
+    Insuficiente, Suficiente, Bien, Notable, Sobresaliente, Inválido
+  }
+
+  public Apreciaciones getScore(int score) {
+    Apreciaciones appreciation = Apreciaciones.Inválido;
+    if(score < 0 | score > 10){
+      appreciation = Apreciaciones.Inválido;
+    }
+    return appreciation;
+  }
+
+  public boolean isLeapYear(int year) {
+    return (year % 4 == 0 & year % 100 != 0 | year % 400 == 0) ? true : false;
+  }
+
+  public boolean validateDate(int day, int month, int year) {
+    boolean isValid = true;
+    boolean leap = isLeapYear(year);
+
+    // comprobar que tengamos entre 1 y 31 días
+    // y entre 1 y 12 meses
+    if (day < 1 | day > 31 | month < 1 | month > 12) {
+      isValid = false;
+    }
+    // comprobar que los meses de 30 días no tengan 31
+    else if (day == 31 & (month == 4 | month == 6 | month == 9 | month == 11) & day == 31) {
+      isValid = false;
+    }
+    // febrero
+    else if (month == 2 & day > 28) {
+      isValid = false;
+      if (leap & day == 29) {
+        isValid = true;
+      }
+    }
+
+    return isValid;
   }
 }
