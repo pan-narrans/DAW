@@ -16,4 +16,5 @@ Ejercicios y archivos del grado de DAW
 
 |Objective|Command|Why|
 | :--- | :--- | :--- |
+|Clone Repo|`$ git clone https://github.com/pan-narrans/DAW.git`|Clones the repository in the current folder.
 |Set upstream branch|`$ git push -u <remote> <branch>`|The easiest way to set the upstream branch is to use the “git push” command with the “-u” option for upstream branch.|
