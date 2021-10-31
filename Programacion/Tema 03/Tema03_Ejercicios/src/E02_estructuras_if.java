@@ -19,11 +19,11 @@ public class E02_estructuras_if extends Bloque {
     ejercicios[7] = new B02_E08("\t Ejercicio 08: devuelve el nº con las cifras en orden ivnerso.");
     ejercicios[8] = new B02_E09("\t Ejercicio 09: dice si un nº es capicúa o no.");
     ejercicios[9] = new B02_E10("\t Ejercicio 10: ");
-    ejercicios[10] = new B02_E11("\t Ejercicio 11: ");
-    ejercicios[11] = new B02_E12("\t Ejercicio 12: ");
-    ejercicios[12] = new B02_E13("\t Ejercicio 13: ");
-    ejercicios[13] = new B02_E14("\t Ejercicio 14: ");
-    ejercicios[14] = new B02_E15("\t Ejercicio 15: ");
+    ejercicios[10] = new B02_E11("\t Ejercicio 11: validar si una fecha es plausible o no.");
+    ejercicios[11] = new B02_E12("\t Ejercicio 12: igual que el 11.");
+    ejercicios[12] = new B02_E13("\t Ejercicio 13: devuelve el día siguiente al introducido.");
+    ejercicios[13] = new B02_E14("\t Ejercicio 14: igual que el 13.");
+    ejercicios[14] = new B02_E15("\t Ejercicio 15: comprobar si alguien es mayor de edad.");
     ejercicios[15] = new B02_E16("\t Ejercicio 16: ");
 
     // ESCOGER EJERCICIO
@@ -259,14 +259,12 @@ class B02_E10 extends Ejercicio {
   }
 
   public void main() {
-
+    // TODO:
   }
 }
 
 /**
- * Crear una función llamada esFechaCorrecta que reciba por parámetro el día, el
- * mes y el año de una fecha y devuelva true si es correcto o false en caso
- * contrario. Suponer que todos los meses son de 30 días.
+ * Bloque 02 - Ejercicio 11
  */
 class B02_E11 extends Ejercicio {
 
@@ -274,7 +272,7 @@ class B02_E11 extends Ejercicio {
    * Crear una función llamada esFechaCorrecta que reciba por parámetro el día, el
    * mes y el año de una fecha y devuelva true si es correcto o false en caso
    * contrario. Suponer que todos los meses son de 30 días.
-   * 
+   * <p>
    * Refactorizar la función anterior, pero teniendo en cuenta meses de 28, 30 y
    * 31 días y años bisiestos.
    * 
@@ -293,11 +291,12 @@ class B02_E11 extends Ejercicio {
     year = validate.inputType(1);
 
     System.out.println("La fecha introducida " + (funtion.validateDate(day, month, year) ? "" : "no ") + "es válida.");
-
   }
 }
 
 /**
+ * Refactorizar la función anterior, pero teniendo en cuenta meses de 28, 30 y
+ * 31 días y años bisiestos.
  */
 class B02_E12 extends Ejercicio {
 
@@ -306,46 +305,89 @@ class B02_E12 extends Ejercicio {
   }
 
   public void main() {
+    int day, month, year;
 
+    System.out.println("Introduce D/M/Y:");
+    day = validate.inputType(1);
+    month = validate.inputType(1);
+    year = validate.inputType(1);
+
+    System.out.println("La fecha introducida " + (funtion.validateDate(day, month, year) ? "" : "no ") + "es válida.");
   }
 }
 
 /**
+ * Bloque 02 - Ejercicio 13
  */
 class B02_E13 extends Ejercicio {
 
+  /**
+   * Crear una función llamada obtenerSiguienteDía que reciba por parámetro el
+   * día, el mes y el año de una fecha y si es la fecha correcta, devuelva el
+   * siguiente String con el formato dd-mm-yyyy. Suponer que todos los meses son
+   * de 30 días.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E13(String info) {
     setSelfInfo(info);
   }
 
   public void main() {
+    int day, month, year;
 
+    System.out.println("Introduce D/M/Y:");
+    day = validate.inputType(1);
+    month = validate.inputType(1);
+    year = validate.inputType(1);
+
+    System.out.println(funtion.nextDay(day, month, year));
   }
 }
 
 /**
+ * Bloque 02 - Ejercicio 14
  */
 class B02_E14 extends Ejercicio {
 
+  /**
+   * Mismo programa que el anterior.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E14(String info) {
     setSelfInfo(info);
   }
 
   public void main() {
+    int day, month, year;
 
+    System.out.println("Introduce D/M/Y:");
+    day = validate.inputType(1);
+    month = validate.inputType(1);
+    year = validate.inputType(1);
+
+    System.out.println(funtion.nextDay(day, month, year));
   }
 }
 
 /**
+ * Bloque 02 - Ejercicio 15
  */
 class B02_E15 extends Ejercicio {
 
+  /**
+   * Crear una función llamada esMayorEdad que reciba por parámetro el día, el mes
+   * y el año de nacimiento e indicar si es mayor de edad en la fecha de hoy.
+   * 
+   * @param info
+   */
   public B02_E15(String info) {
     setSelfInfo(info);
   }
 
   public void main() {
-
+    // TODO:
   }
 }
 
@@ -353,11 +395,19 @@ class B02_E15 extends Ejercicio {
  */
 class B02_E16 extends Ejercicio {
 
+  /**
+   * Escriba una función llamada cambioEnMonedas, que reciba por parámetro un
+   * valor real que indica la cantidad de dinero en euros. El método imprime por
+   * pantalla la cantidad de monedas de cada tipo, en que se debe devolver la
+   * cantidad de dinero indicada.
+   * 
+   * @param info
+   */
   public B02_E16(String info) {
     setSelfInfo(info);
   }
 
   public void main() {
-
+    // TODO:
   }
 }
