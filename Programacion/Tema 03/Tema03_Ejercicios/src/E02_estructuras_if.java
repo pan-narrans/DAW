@@ -24,7 +24,7 @@ public class E02_estructuras_if extends Bloque {
     ejercicios[12] = new B02_E13("\t Ejercicio 13: devuelve el día siguiente al introducido.");
     ejercicios[13] = new B02_E14("\t Ejercicio 14: igual que el 13.");
     ejercicios[14] = new B02_E15("\t Ejercicio 15: comprobar si alguien es mayor de edad.");
-    ejercicios[15] = new B02_E16("\t Ejercicio 16: ");
+    ejercicios[15] = new B02_E16("\t Ejercicio 16: calcular la conversión a monedas.");
 
     // ESCOGER EJERCICIO
     while (!exitApp) {
@@ -388,10 +388,20 @@ class B02_E15 extends Ejercicio {
 
   public void main() {
     // TODO:
+    int day, month, year;
+
+    System.out.println("Introduce D/M/Y:");
+    day = validate.inputType(1);
+    month = validate.inputType(1);
+    year = validate.inputType(1);
+
+    System.out.println(funtion.nextDay(day, month, year));
+
   }
 }
 
 /**
+ * Bloque 02 - Ejercicio 16
  */
 class B02_E16 extends Ejercicio {
 
@@ -408,6 +418,14 @@ class B02_E16 extends Ejercicio {
   }
 
   public void main() {
-    // TODO:
+    float money;
+    int[] coins;
+
+    System.out.println("¿Cuanto dinero quieres pasar a monedas?");
+    money = validate.inputType(1f);
+    coins = funtion.changeMoney(money);
+
+    System.out.println("\nEso equivale a :");
+    funtion.printMoney(coins);
   }
 }
