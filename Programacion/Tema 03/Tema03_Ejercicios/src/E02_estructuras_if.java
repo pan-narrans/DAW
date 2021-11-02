@@ -1,13 +1,16 @@
+import java.util.Arrays;
+
 public class E02_estructuras_if extends Bloque {
 
   public void main() {
-    System.out.println("bloque 1 de ejercicios");
+    System.out.println("Bloque 02 de ejercicios.\n");
 
     // Declaración de variables para escojer ejercicio
     int n_ejercicio;
     final int N_EJERCICIOS = 16;
-    boolean exitApp = false;
+    boolean continueExecution = true;
 
+    // Inicialización de ejercicios
     Ejercicio[] ejercicios = new Ejercicio[N_EJERCICIOS];
     ejercicios[0] = new B02_E01("\t Ejercicio 01: comprobar si dos nº son iguales.");
     ejercicios[1] = new B02_E02("\t Ejercicio 02: comprobar si un nº es positivo.");
@@ -18,7 +21,7 @@ public class E02_estructuras_if extends Bloque {
     ejercicios[6] = new B02_E07("\t Ejercicio 07: devuelve el nº de cifras de un short.");
     ejercicios[7] = new B02_E08("\t Ejercicio 08: devuelve el nº con las cifras en orden ivnerso.");
     ejercicios[8] = new B02_E09("\t Ejercicio 09: dice si un nº es capicúa o no.");
-    ejercicios[9] = new B02_E10("\t Ejercicio 10: ");
+    ejercicios[9] = new B02_E10("\t Ejercicio 10: devuelve la apreciación de una nota.");
     ejercicios[10] = new B02_E11("\t Ejercicio 11: validar si una fecha es plausible o no.");
     ejercicios[11] = new B02_E12("\t Ejercicio 12: igual que el 11.");
     ejercicios[12] = new B02_E13("\t Ejercicio 13: devuelve el día siguiente al introducido.");
@@ -27,31 +30,32 @@ public class E02_estructuras_if extends Bloque {
     ejercicios[15] = new B02_E16("\t Ejercicio 16: calcular la conversión a monedas.");
 
     // ESCOGER EJERCICIO
-    while (!exitApp) {
+    while (continueExecution) {
       // Le pide al usuario que ejercicio quiere ejecutar
       System.out.println("Hay " + N_EJERCICIOS + " ejercicios, escoje uno:");
-      showInfo(ejercicios, N_EJERCICIOS);
+      showInfo(ejercicios);
       n_ejercicio = validate.inputRange(1, 1, N_EJERCICIOS) - 1;
 
       ejercicios[n_ejercicio].main();
 
       // Continuar ejecución o no
-      System.out.println("¿Quieres volver a la selección de bloque?");
-      exitApp = validate.inputType(true);
-    }
+      System.out.println("¿Quieres ejecutar otro ejercicio?");
+      continueExecution = validate.inputType(true);
+    } // Fin escoger ejercicio.
 
-  }// fin main
-}
+  }// Fin main.
+
+}// Fin clase Bloque 02.
 
 /**
- * Crear una función llamada sonIguales que reciba dos números por parámetro y
- * devuelva true si son iguales o false en caso contrario.
+ * Bloque 02 - Ejercicio 01
  */
 class B02_E01 extends Ejercicio {
 
   /**
-   * Crear una función llamada sonIguales que reciba dos números por parámetro y
-   * devuelva true si son iguales o false en caso contrario.
+   * Crear una función llamada boolean sonIguales (int a, int b) que reciba dos
+   * números por parámetro y devuelva true si son iguales o false en caso
+   * contrario.
    * 
    * @param info pequeña descripción del ejercicio
    */
@@ -66,16 +70,22 @@ class B02_E01 extends Ejercicio {
     num1 = validate.inputType(1f);
     num2 = validate.inputType(1f);
 
-    System.out.println("Los números son " + (funtion.testEqual(num1, num2) ? "iguales." : "difentes."));
+    System.out.println("Los números son " + (function.testEqual(num1, num2) ? "iguales." : "difentes."));
   }
 }
 
 /**
- * Crear una función llamada esPositivo que reciba un número por parámetro y
- * devuelva true si es positivo o false en caso contrario.
+ * Bloque 02 - Ejercicio 02
  */
 class B02_E02 extends Ejercicio {
 
+  /**
+   * Crear una función llamada boolean esPositivo (int numero) que reciba un
+   * número por parámetro y devuelva true si es positivo o false en caso
+   * contrario.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E02(String info) {
     setSelfInfo(info);
   }
@@ -86,15 +96,20 @@ class B02_E02 extends Ejercicio {
     System.out.println("Introduce un número:");
     num = validate.inputType(1f);
 
-    System.out.println("El número " + (funtion.isPositive(num) ? "" : "no ") + "es positivo.");
+    System.out.println("El número " + (function.isPositive(num) ? "" : "no ") + "es positivo.");
   }
 }
 
 /**
- * Crear una función llamada parOimpar que reciba un número por
+ * Bloque 02 - Ejercicio 03
  */
 class B02_E03 extends Ejercicio {
-
+  /**
+   * Crear una función llamada String parOimpar (int numero)que reciba un número
+   * por parámetro y devuelva “Par” si es par e “Impar” en caso contrario.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E03(String info) {
     setSelfInfo(info);
   }
@@ -105,16 +120,21 @@ class B02_E03 extends Ejercicio {
     System.out.println("Introduce un número:");
     num = validate.inputType(1);
 
-    System.out.println("El número es " + (funtion.isEven(num) ? "par." : "impar."));
+    System.out.println("El número es " + (function.isEven(num) ? "par." : "impar."));
   }
 }
 
 /**
- * Crear una función llamada sonMultiplos que reciba dos números por parámetro y
- * devuelva true si uno es multiplo del otro o false en caso contrario.
+ * Bloque 02 - Ejercicio 04
  */
 class B02_E04 extends Ejercicio {
-
+  /**
+   * Crear una función llamada boolean sonMultiplos (int a, int b) que reciba dos
+   * números por parámetro y devuelva true si uno es multiplo del otro o false en
+   * caso contrario.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E04(String info) {
     setSelfInfo(info);
   }
@@ -127,16 +147,21 @@ class B02_E04 extends Ejercicio {
     num2 = validate.inputType(1f);
 
     System.out.println(
-        "Los dos números " + (funtion.areMultiple(num1, num2) ? "SI " : "NO ") + "son múltiplos el uno del otro.");
+        "Los dos números " + (function.areMultiple(num1, num2) ? "SI " : "NO ") + "son múltiplos el uno del otro.");
   }
 }
 
 /**
- * Crear una función llamada mayorNumero que reciba dos números reales por
- * parámetro y devuelva el número mayor.
+ * Bloque 02 - Ejercicio 05
  */
 class B02_E05 extends Ejercicio {
 
+  /**
+   * Crear una función llamada int mayorNumero (int a, int b) que reciba dos
+   * números reales por parámetro y devuelva el número mayor.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E05(String info) {
     setSelfInfo(info);
   }
@@ -148,17 +173,22 @@ class B02_E05 extends Ejercicio {
     num1 = validate.inputType(1f);
     num2 = validate.inputType(1f);
 
-    System.out.println("El número más grande es: " + funtion.biggerOfTwo(num1, num2) + ".");
+    System.out.println("El número más grande es: " + function.biggerOfTwo(num1, num2) + ".");
   }
 }
 
 /**
- * Crear un procedimiento llamado ordenarNumeros que reciba tres números por
- * parámetro ydevuelva un String con los números ordenados de mayor a menor Ej
- * ordenarNumeros(5,23,7) devolvería “23 7 5”.
+ * Bloque 02 - Ejercicio 06
  */
 class B02_E06 extends Ejercicio {
 
+  /**
+   * Crear un procedimiento llamado String ordenarNumeros (int a, int b, int c)
+   * que reciba tres números por parámetro y devuelva un String con los números
+   * ordenados de mayor a menor Ej ordenarNumeros(5,23,7) devolvería “23 7 5”.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E06(String info) {
     setSelfInfo(info);
   }
@@ -172,17 +202,22 @@ class B02_E06 extends Ejercicio {
       nums[i] = validate.inputType(1f);
     }
 
-    System.out.println("La lista ordenada de nº es: " + funtion.orderNumbersBigToSmall(nums));
+    System.out.println("La lista ordenada de nº es: " + Arrays.toString(function.orderNumbersBigToSmall(nums)));
   }
 }
 
 /**
- * Crear una función llamada contarCifras que reciba un número short y devuelva
- * el número de cifras tiene, en caso de recibir un número menor a 0 o mayor a
- * 9999 devolverá -1.
+ * Bloque 02 - Ejercicio 07
  */
 class B02_E07 extends Ejercicio {
 
+  /**
+   * Crear una función llamada short contarCifras (short numero) que reciba un
+   * número short y devuelva el número de cifras tiene, en caso de recibir un
+   * número menor a 0 o mayor a 9999 devolverá -1.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E07(String info) {
     setSelfInfo(info);
   }
@@ -192,7 +227,7 @@ class B02_E07 extends Ejercicio {
 
     System.out.println("Introduce un número:");
     num = validate.inputType((short) 1);
-    nCifras = (short) funtion.nDigits(num);
+    nCifras = (short) function.nDigits(num);
 
     System.out.println(
         (nCifras > 4 | num < 0) ? "El número tiene " + nCifras + " cifras." : "El número introducido no era válido.");
@@ -201,12 +236,16 @@ class B02_E07 extends Ejercicio {
 }
 
 /**
- * Crear una función llamada invertirCifras que reciba un número short entre 0 y
- * 9999 y devuelva el número al revés, en caso de recibir un número menor a 0 o
- * mayor a 9999 devolverá -1.
+ * Bloque 02 - Ejercicio 08
  */
 class B02_E08 extends Ejercicio {
-
+  /**
+   * Crear una función llamada short invertirCifras (short numero) que reciba un
+   * número short entre 0 y 9999 y devuelva el número al revés, en caso de recibir
+   * un número menor a 0 o mayor a 9999 devolverá -1.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E08(String info) {
     setSelfInfo(info);
   }
@@ -216,8 +255,8 @@ class B02_E08 extends Ejercicio {
 
     System.out.println("Introduce un número:");
     num = validate.inputType((short) 1);
-    reversed = (short) funtion.reverseDigits(num);
-    nCifras = (short) funtion.nDigits(num);
+    reversed = (short) function.reverseDigits(num);
+    nCifras = (short) function.nDigits(num);
 
     System.out.println((nCifras > 4 | num < 0) ? "El número invertido es " + reversed + " cifras."
         : "El número introducido no era válido.");
@@ -225,12 +264,18 @@ class B02_E08 extends Ejercicio {
 }
 
 /**
- * Crear una función llamada esCapicua que reciba un número short entre 0 y 9999
- * y devuelva true si es capicua y false en caso contrario, en caso de recibir
- * un número menor a 0 o mayor a 9999 devolverá también false.
+ * Bloque 02 - Ejercicio 09
  */
 class B02_E09 extends Ejercicio {
 
+  /**
+   * Crear una función llamada boolean esCapicua (short numero) que reciba un
+   * número short entre 0 y 9999 y devuelva true si es capicua y false en caso
+   * contrario, en caso de recibir un número menor a 0 o mayor a 9999 devolverá
+   * también false.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E09(String info) {
     setSelfInfo(info);
   }
@@ -241,26 +286,37 @@ class B02_E09 extends Ejercicio {
     System.out.println("Introduce un número:");
     num = validate.inputType((short) 1);
 
-    System.out.println("El número " + (funtion.isPalindromic(num) ? "" : "no ") + "es capicúa.");
+    System.out.println("El número " + (function.isPalindromic(num) ? "" : "no ") + "es capicúa.");
 
   }
 }
 
 /**
- * Crear una función llamada obtenerNota que reciba nota del 0 al 10 y devuelva
- * un enum Notas con los valores Insuficiente, Suficiente, Bien, Notable
- * Sobresaliente. En caso de que la nota sea menor que 0 o mayor que 10
- * devolverá error.
+ * Bloque 02 - Ejercicio 10
  */
 class B02_E10 extends Ejercicio {
 
+  /**
+   * Crear una función llamada enum Notas obtenerNota (int nota) que reciba nota
+   * del 0 al 10 y devuelva un enum Notas con los valores {@code INSUFICIENTE,
+   * SUFICIENTE, BIEN, NOTABLE, SOBRESALIENTE y ERROR}. En caso de que la nota sea
+   * menor que 0 o mayor que 10 devolverá ERROR.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E10(String info) {
     setSelfInfo(info);
   }
 
   public void main() {
-    // TODO:
+    float score;
+
+    System.out.println("Introduce la nota recibida:");
+    score = validate.inputType(1f);
+
+    System.out.println("La nota es " + function.getScore((int) score) + ".");
   }
+  
 }
 
 /**
@@ -269,12 +325,10 @@ class B02_E10 extends Ejercicio {
 class B02_E11 extends Ejercicio {
 
   /**
-   * Crear una función llamada esFechaCorrecta que reciba por parámetro el día, el
-   * mes y el año de una fecha y devuelva true si es correcto o false en caso
-   * contrario. Suponer que todos los meses son de 30 días.
-   * <p>
-   * Refactorizar la función anterior, pero teniendo en cuenta meses de 28, 30 y
-   * 31 días y años bisiestos.
+   * Crear una función llamada boolean esFechaCorrecta(int dia, int mes, int año)
+   * que reciba por parámetro el día, el mes y el año de una fecha y devuelva true
+   * si es correcto o false en caso contrario. Suponer que todos los meses son de
+   * 30 días.
    * 
    * @param info pequeña descripción del ejercicio
    */
@@ -290,16 +344,21 @@ class B02_E11 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println("La fecha introducida " + (funtion.validateDate(day, month, year) ? "" : "no ") + "es válida.");
+    System.out.println("La fecha introducida " + (function.validateDate(day, month, year) ? "" : "no ") + "es válida.");
   }
 }
 
 /**
- * Refactorizar la función anterior, pero teniendo en cuenta meses de 28, 30 y
- * 31 días y años bisiestos.
+ * Bloque 02 - Ejercicio 12
  */
 class B02_E12 extends Ejercicio {
 
+  /**
+   * Refactorizar la función anterior, pero teniendo en cuenta meses de 28, 30 y
+   * 31 días y años bisiestos.
+   * 
+   * @param info pequeña descripción del ejercicio
+   */
   public B02_E12(String info) {
     setSelfInfo(info);
   }
@@ -312,7 +371,7 @@ class B02_E12 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println("La fecha introducida " + (funtion.validateDate(day, month, year) ? "" : "no ") + "es válida.");
+    System.out.println("La fecha introducida " + (function.validateDate(day, month, year) ? "" : "no ") + "es válida.");
   }
 }
 
@@ -322,10 +381,10 @@ class B02_E12 extends Ejercicio {
 class B02_E13 extends Ejercicio {
 
   /**
-   * Crear una función llamada obtenerSiguienteDía que reciba por parámetro el
-   * día, el mes y el año de una fecha y si es la fecha correcta, devuelva el
-   * siguiente String con el formato dd-mm-yyyy. Suponer que todos los meses son
-   * de 30 días.
+   * Crear una función llamada String obtenerSiguienteDía (int dia, int mes, int
+   * año) que reciba por parámetro el día, el mes y el año de una fecha y si es la
+   * fecha correcta, devuelva el siguiente String con el formato dd-mm-yyyy.
+   * Suponer que todos los meses son de 30 días.
    * 
    * @param info pequeña descripción del ejercicio
    */
@@ -341,7 +400,7 @@ class B02_E13 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println(funtion.nextDay(day, month, year));
+    System.out.println(function.nextDay(day, month, year));
   }
 }
 
@@ -351,7 +410,8 @@ class B02_E13 extends Ejercicio {
 class B02_E14 extends Ejercicio {
 
   /**
-   * Mismo programa que el anterior.
+   * Refactorizar la función anterior, pero teniendo en cuenta meses de 28, 30 y
+   * 31 días y años bisiestos.
    * 
    * @param info pequeña descripción del ejercicio
    */
@@ -367,7 +427,7 @@ class B02_E14 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println(funtion.nextDay(day, month, year));
+    System.out.println(function.nextDay(day, month, year));
   }
 }
 
@@ -377,8 +437,9 @@ class B02_E14 extends Ejercicio {
 class B02_E15 extends Ejercicio {
 
   /**
-   * Crear una función llamada esMayorEdad que reciba por parámetro el día, el mes
-   * y el año de nacimiento e indicar si es mayor de edad en la fecha de hoy.
+   * Crear una función llamada boolean esMayorEdad que reciba por parámetro el
+   * día, el mes y el año de nacimiento e indicar si es mayor de edad en la fecha
+   * de hoy.
    * 
    * @param info
    */
@@ -395,7 +456,7 @@ class B02_E15 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println(funtion.nextDay(day, month, year));
+    System.out.println(function.nextDay(day, month, year));
 
   }
 }
@@ -423,9 +484,9 @@ class B02_E16 extends Ejercicio {
 
     System.out.println("¿Cuanto dinero quieres pasar a monedas?");
     money = validate.inputType(1f);
-    coins = funtion.changeMoney(money);
+    coins = function.changeMoney(money);
 
     System.out.println("\nEso equivale a :");
-    funtion.printMoney(coins);
+    function.printMoney(coins);
   }
 }
