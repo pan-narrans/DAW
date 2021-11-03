@@ -89,3 +89,9 @@ CREATE TABLE CONVENCIONAL(
 );
 
 
+ALTER TABLE WEB
+	ADD autor_principal VARCHAR(9),
+  ADD CONSTRAINT fk_WEB_CRE_autor_principal
+    FOREIGN KEY (autor_principal) REFERENCES CREAR(cd_usuario)
+    ON DELETE CASCADE ON UPDATE CASCADE;
+
