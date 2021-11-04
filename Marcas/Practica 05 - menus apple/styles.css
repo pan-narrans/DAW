@@ -28,16 +28,13 @@ nav {
   padding: 0 1%;
 }
 
-nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  list-style: none;
-  width: 80%;
+.dropdown-content {
+  display: none;
+  position: absolute;
 }
 
-nav li {
-  margin-left: 2%;
+#mac:target {
+  display: blocK;
 }
 
 nav a {
