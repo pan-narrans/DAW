@@ -3,3 +3,6 @@ videos/
 
 # ignore all mp4 files
 *.mp4
+
+# ignore all class files
+*.class
