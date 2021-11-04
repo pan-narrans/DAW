@@ -1,6 +1,6 @@
 import Alex_Ressources.*;
 
-class Bloque extends Ejercicios_Tema03 {
+class Bloque extends Tema_03 {
 
   public String info = "placeholder info";
 
@@ -16,11 +16,35 @@ class Bloque extends Ejercicios_Tema03 {
 
   }
 
+  /**
+   * Given an array of {@code Ejercicios} it lets the user choose from one of
+   * them.
+   * 
+   * @param ejercicios
+   */
+  public void chooseExercise(Ejercicio[] ejercicios) {
+    int n_ejercicio;
+    boolean continueExecution = true;
+    while (continueExecution) {
+      // Le pide al usuario que ejercicio quiere ejecutar
+      System.out.println("Hay " + ejercicios.length + " ejercicios, escoje uno:");
+      showInfo(ejercicios);
+      n_ejercicio = validate.inputRange(1, 1, ejercicios.length) - 1;
+
+      ejercicios[n_ejercicio].main();
+
+      // Continuar ejecución o no
+      System.out.println("¿Quieres ejecutar otro ejercicio?");
+      continueExecution = validate.inputType(true);
+    }
+  }
+
 }
 
 class Ejercicio extends Bloque {
 
-  General_Functions function = new General_Functions();
+  Functions_General func = new Functions_General();
+  Functions_B02 functionsB02 = new Functions_B02();
 
   public void main() {
 
@@ -28,7 +52,7 @@ class Ejercicio extends Bloque {
 
 }
 
-public class Ejercicios_Tema03 {
+public class Tema_03 {
   public static ValidateInput validate = new ValidateInput();
 
   public static String[] mainArgs;
@@ -36,7 +60,7 @@ public class Ejercicios_Tema03 {
   public static void main(String[] args) {
     // VARIABLES
     // Número total de bloques
-    final int N_BLOQUES = 2;
+    final int N_BLOQUES = 3;
     // Número de bloque escogido
     int n_bloque;
     // Array de bloques
@@ -47,10 +71,12 @@ public class Ejercicios_Tema03 {
     setArgs(args);
 
     // INICIALIZACIÓN
-    bloques[0] = new E01_funciones();
+    bloques[0] = new B01_funciones();
     bloques[0].setSelfInfo(" Bloque 01: Ejercicios de funciones");
-    bloques[1] = new E02_estructuras_if();
+    bloques[1] = new B02_estructuras_if();
     bloques[1].setSelfInfo(" Bloque 02: Ejercicios de if's");
+    bloques[2] = new B02_estructuras_if();
+    bloques[2].setSelfInfo(" Bloque 03: Ejercicios de switch's");
 
     // ESCOGER BLOQUE
     while (!exitApp) {

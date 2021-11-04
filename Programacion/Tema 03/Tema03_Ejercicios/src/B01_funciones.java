@@ -1,14 +1,11 @@
 import java.util.*;
 
-public class E01_funciones extends Bloque {
+public class B01_funciones extends Bloque {
 
   public void main() {
     System.out.println("Bloque 01 de ejercicios.\n");
 
-    // Declaración de variables para escojer ejercicio
-    int n_ejercicio;
     final int N_EJERCICIOS = 6;
-    boolean continueExecution = true;
 
     // Inicialización de ejercicios
     Ejercicio[] ejercicios = new Ejercicio[N_EJERCICIOS];
@@ -20,18 +17,7 @@ public class E01_funciones extends Bloque {
     ejercicios[5] = new B01_E06("\t Ejercicio 06: devuelve solo los nº impares.");
 
     // ESCOGER EJERCICIO
-    while (continueExecution) {
-      // Le pide al usuario que ejercicio quiere ejecutar
-      System.out.println("Hay " + N_EJERCICIOS + " ejercicios, escoje uno:");
-      showInfo(ejercicios);
-      n_ejercicio = validate.inputRange(1, 1, N_EJERCICIOS) - 1;
-
-      ejercicios[n_ejercicio].main();
-
-      // Continuar ejecución o no
-      System.out.println("¿Quieres ejecutar otro ejercicio?");
-      continueExecution = validate.inputType(true);
-    } // Fin escoger ejercicio.
+    chooseExercise(ejercicios);
 
   }// Fin main.
 
@@ -101,7 +87,7 @@ class B01_E02 extends Ejercicio {
       } // Fin bucle for.
     }
 
-    nums = function.orderNumbersBigToSmall(nums);
+    nums = functionsB02.orderNumbersBigToSmall(nums);
 
     System.out.println("El nº mayor de los recibidos es: " + nums[0]);
 

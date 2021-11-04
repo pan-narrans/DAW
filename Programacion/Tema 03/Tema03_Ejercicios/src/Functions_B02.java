@@ -1,24 +1,14 @@
-/* import java.util.Arrays;
-import java.math.*; */
 
 // DATE
-import java.time.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-/* 
-import java.util.Calendar;
-import java.sql.Time;
-import java.time.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime; */
 
-public class General_Functions {
+// TESTING
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class Functions_B02 {
   // SimpleDateFormat myDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-  /*
-   * public General_Functions() { //dateFormat = new
-   * SimpleDateFormat("dd/MM/yyyy"); }
-   */
 
   // ==== BLOQUE DE IF'S ====//
 
@@ -50,7 +40,7 @@ public class General_Functions {
    * @return True if even, false if odd.
    */
   public boolean isEven(int num) {
-    return ((num & 1) == 0) ? true : false;
+    return (num % 2 == 0) ? true : false;
   }
 
   /**
@@ -250,41 +240,44 @@ public class General_Functions {
     return date;
   }
 
-  /*
-   * public long compareDates(Date date1, Date date2) { return date1.getTime() -
-   * date2.getTime(); }
+  /**
+   * If possible, converts three integers into a date.
+   * 
+   * @param day
+   * @param month
+   * @param year
+   * @return If the date is valid, it returns the date corresponding to the given
+   *         input.
+   *         <p>
+   *         If the date is invalid, it returns the current date.
    */
+  public Date dayMonthYear_ToDate(int day, int month, int year) {
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    Date date = new Date();
+    String text = "";
 
-  public LocalDate dateToLocaDate(Date date) {
-    return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-  }
+    text = Integer.toString(day) + "/" + Integer.toString(month) + "/" + Integer.toString(year);
 
-  public Date convertToDate(LocalDate locaDate) {
-    return Date.from(locaDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    try {
+      date = formatter.parse(text);
+    } catch (Exception e) {
+      return new Date();
+    }
+
+    return date;
   }
 
   public boolean isAdult(int day, int month, int year) {
-    boolean isAdult = false;
-    // Date date = new Date();
     int age;
-    Date asdasd = new Date();
+    double millisecondDifference;
+    Date now = new Date();
 
-    String dateInString = "27/02/2016";
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-    try {
-      asdasd = formatter.parse(dateInString);
-    } catch (Exception e) {
-      ;
-    }
-    // Time now = Instant.now();
-    // Calendar today = Calendar.getInstance();
-    // today.set(Calendar.HOUR_OF_DAY, 0);
+    Date birthday = dayMonthYear_ToDate(day, month, year);
 
-    if (validateDate(day, month, year)) {
+    millisecondDifference = now.getTime() - birthday.getTime();
+    age = (int) (millisecondDifference / 1000 / 60 / 60 / 24 / 365);
 
-    }
-
-    return isAdult;
+    return (age > 17) ? true : false;
   }
 
   /**
@@ -341,4 +334,23 @@ public class General_Functions {
     }
   }
 
-}
+  @Test
+  public void test_testEqual() {
+    assertEquals(true, testEqual(1, 1));
+    assertEquals(false, testEqual(5, 4));
+    assertEquals(false, testEqual(6, 234));
+    assertEquals(true, testEqual(Integer.MAX_VALUE, Integer.MAX_VALUE));
+    assertEquals(true, testEqual(Integer.MIN_VALUE, Integer.MIN_VALUE));
+    assertEquals(false, testEqual(Integer.MIN_VALUE, Integer.MAX_VALUE));
+  }
+
+  @Test
+  public void test_isPositive() {
+    assertEquals(true, isPositive(1));
+    assertEquals(false, isPositive(-234));
+    assertEquals(false, isPositive(0));
+    assertEquals(true, isPositive(Integer.MAX_VALUE));
+    assertEquals(false, isPositive(Integer.MIN_VALUE));
+  }
+
+}// Fin clase

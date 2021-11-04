@@ -1,14 +1,11 @@
 import java.util.Arrays;
 
-public class E02_estructuras_if extends Bloque {
+public class B02_estructuras_if extends Bloque {
 
   public void main() {
     System.out.println("Bloque 02 de ejercicios.\n");
 
-    // Declaración de variables para escojer ejercicio
-    int n_ejercicio;
     final int N_EJERCICIOS = 16;
-    boolean continueExecution = true;
 
     // Inicialización de ejercicios
     Ejercicio[] ejercicios = new Ejercicio[N_EJERCICIOS];
@@ -30,18 +27,7 @@ public class E02_estructuras_if extends Bloque {
     ejercicios[15] = new B02_E16("\t Ejercicio 16: calcular la conversión a monedas.");
 
     // ESCOGER EJERCICIO
-    while (continueExecution) {
-      // Le pide al usuario que ejercicio quiere ejecutar
-      System.out.println("Hay " + N_EJERCICIOS + " ejercicios, escoje uno:");
-      showInfo(ejercicios);
-      n_ejercicio = validate.inputRange(1, 1, N_EJERCICIOS) - 1;
-
-      ejercicios[n_ejercicio].main();
-
-      // Continuar ejecución o no
-      System.out.println("¿Quieres ejecutar otro ejercicio?");
-      continueExecution = validate.inputType(true);
-    } // Fin escoger ejercicio.
+    chooseExercise(ejercicios);
 
   }// Fin main.
 
@@ -70,7 +56,7 @@ class B02_E01 extends Ejercicio {
     num1 = validate.inputType(1f);
     num2 = validate.inputType(1f);
 
-    System.out.println("Los números son " + (function.testEqual(num1, num2) ? "iguales." : "difentes."));
+    System.out.println("Los números son " + (functionsB02.testEqual(num1, num2) ? "iguales." : "difentes."));
   }
 }
 
@@ -96,7 +82,7 @@ class B02_E02 extends Ejercicio {
     System.out.println("Introduce un número:");
     num = validate.inputType(1f);
 
-    System.out.println("El número " + (function.isPositive(num) ? "" : "no ") + "es positivo.");
+    System.out.println("El número " + (functionsB02.isPositive(num) ? "" : "no ") + "es positivo.");
   }
 }
 
@@ -120,7 +106,7 @@ class B02_E03 extends Ejercicio {
     System.out.println("Introduce un número:");
     num = validate.inputType(1);
 
-    System.out.println("El número es " + (function.isEven(num) ? "par." : "impar."));
+    System.out.println("El número es " + (functionsB02.isEven(num) ? "par." : "impar."));
   }
 }
 
@@ -147,7 +133,7 @@ class B02_E04 extends Ejercicio {
     num2 = validate.inputType(1f);
 
     System.out.println(
-        "Los dos números " + (function.areMultiple(num1, num2) ? "SI " : "NO ") + "son múltiplos el uno del otro.");
+        "Los dos números " + (functionsB02.areMultiple(num1, num2) ? "SI " : "NO ") + "son múltiplos el uno del otro.");
   }
 }
 
@@ -173,7 +159,7 @@ class B02_E05 extends Ejercicio {
     num1 = validate.inputType(1f);
     num2 = validate.inputType(1f);
 
-    System.out.println("El número más grande es: " + function.biggerOfTwo(num1, num2) + ".");
+    System.out.println("El número más grande es: " + functionsB02.biggerOfTwo(num1, num2) + ".");
   }
 }
 
@@ -202,7 +188,7 @@ class B02_E06 extends Ejercicio {
       nums[i] = validate.inputType(1f);
     }
 
-    System.out.println("La lista ordenada de nº es: " + Arrays.toString(function.orderNumbersBigToSmall(nums)));
+    System.out.println("La lista ordenada de nº es: " + Arrays.toString(functionsB02.orderNumbersBigToSmall(nums)));
   }
 }
 
@@ -227,7 +213,7 @@ class B02_E07 extends Ejercicio {
 
     System.out.println("Introduce un número:");
     num = validate.inputType((short) 1);
-    nCifras = (short) function.nDigits(num);
+    nCifras = (short) functionsB02.nDigits(num);
 
     System.out.println(
         (nCifras > 4 | num < 0) ? "El número tiene " + nCifras + " cifras." : "El número introducido no era válido.");
@@ -255,8 +241,8 @@ class B02_E08 extends Ejercicio {
 
     System.out.println("Introduce un número:");
     num = validate.inputType((short) 1);
-    reversed = (short) function.reverseDigits(num);
-    nCifras = (short) function.nDigits(num);
+    reversed = (short) functionsB02.reverseDigits(num);
+    nCifras = (short) functionsB02.nDigits(num);
 
     System.out.println((nCifras > 4 | num < 0) ? "El número invertido es " + reversed + " cifras."
         : "El número introducido no era válido.");
@@ -286,7 +272,7 @@ class B02_E09 extends Ejercicio {
     System.out.println("Introduce un número:");
     num = validate.inputType((short) 1);
 
-    System.out.println("El número " + (function.isPalindromic(num) ? "" : "no ") + "es capicúa.");
+    System.out.println("El número " + (functionsB02.isPalindromic(num) ? "" : "no ") + "es capicúa.");
 
   }
 }
@@ -314,9 +300,9 @@ class B02_E10 extends Ejercicio {
     System.out.println("Introduce la nota recibida:");
     score = validate.inputType(1f);
 
-    System.out.println("La nota es " + function.getScore((int) score) + ".");
+    System.out.println("La nota es " + functionsB02.getScore((int) score) + ".");
   }
-  
+
 }
 
 /**
@@ -344,7 +330,7 @@ class B02_E11 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println("La fecha introducida " + (function.validateDate(day, month, year) ? "" : "no ") + "es válida.");
+    System.out.println("La fecha introducida " + (functionsB02.validateDate(day, month, year) ? "" : "no ") + "es válida.");
   }
 }
 
@@ -371,7 +357,7 @@ class B02_E12 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println("La fecha introducida " + (function.validateDate(day, month, year) ? "" : "no ") + "es válida.");
+    System.out.println("La fecha introducida " + (functionsB02.validateDate(day, month, year) ? "" : "no ") + "es válida.");
   }
 }
 
@@ -400,7 +386,7 @@ class B02_E13 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println(function.nextDay(day, month, year));
+    System.out.println(functionsB02.nextDay(day, month, year));
   }
 }
 
@@ -427,7 +413,7 @@ class B02_E14 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println(function.nextDay(day, month, year));
+    System.out.println(functionsB02.nextDay(day, month, year));
   }
 }
 
@@ -448,7 +434,6 @@ class B02_E15 extends Ejercicio {
   }
 
   public void main() {
-    // TODO:
     int day, month, year;
 
     System.out.println("Introduce D/M/Y:");
@@ -456,7 +441,7 @@ class B02_E15 extends Ejercicio {
     month = validate.inputType(1);
     year = validate.inputType(1);
 
-    System.out.println(function.nextDay(day, month, year));
+    functionsB02.isAdult(day, month, year);
 
   }
 }
@@ -484,9 +469,9 @@ class B02_E16 extends Ejercicio {
 
     System.out.println("¿Cuanto dinero quieres pasar a monedas?");
     money = validate.inputType(1f);
-    coins = function.changeMoney(money);
+    coins = functionsB02.changeMoney(money);
 
     System.out.println("\nEso equivale a :");
-    function.printMoney(coins);
+    functionsB02.printMoney(coins);
   }
 }

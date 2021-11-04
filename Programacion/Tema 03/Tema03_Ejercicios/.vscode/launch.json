@@ -6,11 +6,10 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Launch Ejercicios_Tema03",
+      "name": "Launch Tema_03",
       "request": "launch",
-      "mainClass": "Ejercicios_Tema03",
-      "args": "1 3 4 1 5 10 5 7 8 4",
+      "mainClass": "Tema_03",
       "projectName": "Tema03_Ejercicios_eb47b8c9"
-    }
+    },
   ]
 }
