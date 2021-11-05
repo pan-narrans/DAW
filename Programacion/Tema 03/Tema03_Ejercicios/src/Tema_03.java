@@ -75,7 +75,7 @@ public class Tema_03 {
     bloques[0].setSelfInfo(" Bloque 01: Ejercicios de funciones");
     bloques[1] = new B02_estructuras_if();
     bloques[1].setSelfInfo(" Bloque 02: Ejercicios de if's");
-    bloques[2] = new B02_estructuras_if();
+    bloques[2] = new B03_switchs();
     bloques[2].setSelfInfo(" Bloque 03: Ejercicios de switch's");
 
     // ESCOGER BLOQUE

@@ -23,6 +23,26 @@ public class B03_switchs extends Bloque {
 
   }// Fin main.
 
+  @Test
+  public void test_diasDelMes() {
+    assertEquals(31, B03_E02.diasDelMes(1));
+    assertEquals(31, B03_E02.diasDelMes(3));
+    assertEquals(31, B03_E02.diasDelMes(5));
+    assertEquals(31, B03_E02.diasDelMes(7));
+    assertEquals(31, B03_E02.diasDelMes(8));
+    assertEquals(31, B03_E02.diasDelMes(10));
+    assertEquals(31, B03_E02.diasDelMes(12));
+    assertEquals(30, B03_E02.diasDelMes(4));
+    assertEquals(30, B03_E02.diasDelMes(6));
+    assertEquals(30, B03_E02.diasDelMes(9));
+    assertEquals(30, B03_E02.diasDelMes(11));
+    assertEquals(28, B03_E02.diasDelMes(2));
+    assertEquals(-1, B03_E02.diasDelMes(0));
+    assertEquals(-1, B03_E02.diasDelMes(13));
+    assertEquals(-1, B03_E02.diasDelMes(Integer.MAX_VALUE));
+    assertEquals(-1, B03_E02.diasDelMes(Integer.MIN_VALUE));
+  }
+
 }// Fin Clase
 
 /**
@@ -79,7 +99,7 @@ class B03_E02 extends Ejercicio {
     System.out.println("El mes tiene " + diasDelMes(month) + " días.");
   }
 
-  private int diasDelMes(int n) {
+  static public int diasDelMes(int n) {
     int days;
     switch (n) {
     case 1, 3, 5, 7, 8, 10, 12:
@@ -87,33 +107,16 @@ class B03_E02 extends Ejercicio {
       break;
     case 4, 6, 9, 11:
       days = 30;
+      break;
     case 2:
       days = 28;
+      break;
     default:
       days = -1;
     }
     return days;
   }
 
-  @Test
-  public void test_diasDelMes() {
-    assertEquals(31, 1);
-    assertEquals(31, 3);
-    assertEquals(31, 5);
-    assertEquals(31, 7);
-    assertEquals(31, 8);
-    assertEquals(31, 10);
-    assertEquals(31, 12);
-    assertEquals(30, 4);
-    assertEquals(30, 6);
-    assertEquals(30, 9);
-    assertEquals(30, 11);
-    assertEquals(28, 2);
-    assertEquals(-1, 0);
-    assertEquals(-1, 13);
-    assertEquals(-1, Integer.MAX_VALUE);
-    assertEquals(-1, Integer.MIN_VALUE);
-  }
 }
 
 /**
@@ -135,7 +138,37 @@ class B03_E03 extends Ejercicio {
   }
 
   public void main() {
-    // TODO: ejercicio
+    int day;
+
+    System.out.println("Introduce nº del día de la semana:");
+    day = validate.inputType(1);
+
+    System.out.println("El día introducido es el " + diaSemana(day));
+  }
+
+  enum DIAS {
+    LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SÁBADO, DOMINGO, ERROR
+  }
+
+  public DIAS diaSemana(int day) {
+    switch (day) {
+    case 1:
+      return DIAS.LUNES;
+    case 2:
+      return DIAS.MARTES;
+    case 3:
+      return DIAS.MIERCOLES;
+    case 4:
+      return DIAS.JUEVES;
+    case 5:
+      return DIAS.VIERNES;
+    case 6:
+      return DIAS.SÁBADO;
+    case 7:
+      return DIAS.DOMINGO;
+    default:
+      return DIAS.ERROR;
+    }
   }
 }
 
@@ -157,7 +190,22 @@ class B03_E04 extends Ejercicio {
   }
 
   public void main() {
-    // TODO: ejercicio
+    int day;
+
+    System.out.println("Introduce nº del día de la semana:");
+    day = validate.inputType(1);
+
+    System.out.println("El día introducido " + (esLaborable(day) ? "" : "no ") + "es laborable.");
+  }
+
+  boolean esLaborable(int day) {
+    switch (day) {
+    case 1, 2, 3, 4, 5:
+      return true;
+    case 6, 7:
+    default:
+      return false;
+    }
   }
 }
 
@@ -178,7 +226,60 @@ class B03_E05 extends Ejercicio {
   }
 
   public void main() {
-    // TODO: ejercicio
+    int month;
+    String textMonth;
+
+    System.out.println("Introduce nº del mes:");
+    month = validate.inputType(1);
+    textMonth = mesDelAño(month);
+
+    System.out.println((textMonth != "Inconcievable!") ? textMonth : "Mes no válido.");
+  }
+
+  public String mesDelAño(int month) {
+    String value;
+    switch (month) {
+    case 1:
+      value = "Enero: Invierno";
+      break;
+    case 2:
+      value = "Febrero: Invierno";
+      break;
+    case 3:
+      value = "Marzo: Primavera";
+      break;
+    case 4:
+      value = "Abril: Primavera";
+      break;
+    case 5:
+      value = "Mayo: Primavera";
+      break;
+    case 6:
+      value = "Junio: Verano";
+      break;
+    case 7:
+      value = "Julio: Verano";
+      break;
+    case 8:
+      value = "Agosto: Verano";
+      break;
+    case 9:
+      value = "Septiembre: Otoño";
+      break;
+    case 10:
+      value = "Octubre: Otoño";
+      break;
+    case 11:
+      value = "Noviembre: Otoño";
+      break;
+    case 12:
+      value = "Diciembre: Invierno";
+      break;
+    default:
+      value = "Inconcievable!";
+      break;
+    }
+    return value;
   }
 }
 
@@ -208,6 +309,15 @@ class B03_E06 extends Ejercicio {
   public void main() {
     // TODO: ejercicio
   }
+
+  public float calcularIMC(float weight, float height) {
+    float IMC;
+
+    // Si la altura o el peso son
+    IMC = (height > 0) ? weight / (float) Math.pow(height, 2) : 0;
+
+    return IMC;
+  }
 }
 
 /**
@@ -228,6 +338,40 @@ class B03_E07 extends Ejercicio {
   }
 
   public void main() {
-    // TODO: ejercicio
+    double num1, num2;
+    char op;
+
+    System.out.println("Introduce la operación que quieres realizar:");
+    System.out.println("ej: 4 * 2,5");
+
+    System.out.println("Número 1:");
+    num1 = validate.inputType(1f);
+
+    System.out.println("Operación:");
+    op = validate.inputType('c');
+
+    System.out.println("Número 2:");
+    num2 = validate.inputType(1f);
+
+    System.out.println("El resultado es:");
+    System.out.println(calculadora(num1, op, num2));
+  }
+
+  double calculadora(double num1, char op, double num2) {
+
+    switch (op) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      return num1 / num2;
+    case '%':
+      return num1 % num2;
+    default:
+      return 8008.7172;
+    }
   }
 }
