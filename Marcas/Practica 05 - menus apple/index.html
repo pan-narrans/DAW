@@ -12,24 +12,123 @@
 
 <body>
 
-  <nav>
-    <span class="icon-appleinc"></span>
+  <nav id="main_nav">
+    <a href="index.html"><span class="icon-appleinc"></span></a>
     <a href="#mac">Mac</a>
+    <a href="#ipad">iPad</a>
+    <a href="#iphone">iPhone</a>
+    <a href="#watch">Watch</a>
+    <a href="#tv">TV</a>
+    <a href="#music">Music</a>
+    <a href="#support">Soporte</a>
+    <span class="icon-search"></span>
+    <span class="icon-cart"></span>
+  </nav>
+  <nav class="dropdown">
     <article id="mac" class="dropdown-content">
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis, facilis doloribus, saepe dicta, provident itaque soluta ullam consequuntur laboriosam ratione earum voluptates tenetur cumque! Explicabo ea veritatis nam eius ad perferendis, odio, quo
-        ipsam mollitia quos, laborum sint amet. Nobis iusto nam asperiores sed aliquam provident nihil facilis delectus earum.
-      </p>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>MacBook Air</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbook_pro__b9krsy4o6z5y_large.svg" alt="">
+        <p>MacBook Pro</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/imac__7zx8uhaubma6_large.svg" alt="">
+        <p>iMac</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/mac_pro_large_.svg" alt="">
+        <p>Mac Pro</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/mac_mini_large_.svg" alt="">
+        <p>Mac Mini</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/mac_compare__ggkplbypx5yu_large.svg" alt="">
+        <p>Compare</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/mac_pro_display_light__e7nex6o52poy_large.svg" alt="">
+        <p>Pro Display XDR</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/mac_accessories_large_.svg" alt="">
+        <p>Accesories</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/mac_os__udjqv4ogm8ii_large.svg" alt="">
+        <p>Monterey</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/mac_shop__dhr2i9erzhsi_large.svg" alt="">
+        <p>Shop Mac</p>
+      </a>
     </article>
+    <article id="ipad" class="dropdown-content">
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>iPad Pro</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>iPad air</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>iPad</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>iPad mini</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>Compare</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>Apple Pencil</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>Keyboards</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>AirPods</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>Accessories</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>iPadOs</p>
+      </a>
+      <a href="#">
+        <img src="img/mac/macbookair_large_.svg" alt="">
+        <p>Shop iPad</p>
+      </a>
+    </article>
+  </nav>
+
+  <header>
+    <a href="#main_nav_mobile"><span onclick="myFunction(this)"class="icon-menu"></span></a>
+    <a href="index.html"><span class="icon-appleinc"></span></a>
+    <p></p>
+  </header>
+
+  <nav id="main_nav_mobile" class="dropdown">
+    <a href="#">Mac</a>
     <a href="#">iPad</a>
     <a href="#">iPhone</a>
     <a href="#">Watch</a>
     <a href="#">TV</a>
     <a href="#">Music</a>
-    <a href="#">Soporte</a>
-    <span class="icon-search"></span>
-    <span class="icon-cart"></span>
-  </nav>
+    <a href="#">Soporte</a></nav>
 
   <main>
     <section>
@@ -39,6 +138,12 @@
       <p>Barra Lateral</p>
     </aside>
   </main>
+
+  <script>
+    function myFunction(x) {
+      x.classList.toggle("icon-cross");
+    }
+  </script>
 
   <footer>
     <p>Footer</p>
