@@ -115,20 +115,24 @@
     </article>
   </nav>
 
-  <header>
-    <a href="#main_nav_mobile"><span onclick="myFunction(this)"class="icon-menu"></span></a>
-    <a href="index.html"><span class="icon-appleinc"></span></a>
-    <p></p>
-  </header>
+  <header id="main_nav_mobile">
+    <div>
+      <a href="#main_nav_mobile" class="open"><span class="icon-menu"></span></a>
+      <a href="#" class="close"><span class="icon-cross"></span></a>
+      <a href="index.html"><span class="icon-appleinc"></span></a>
+      <p></p>
+    </div>
 
-  <nav id="main_nav_mobile" class="dropdown">
-    <a href="#">Mac</a>
-    <a href="#">iPad</a>
-    <a href="#">iPhone</a>
-    <a href="#">Watch</a>
-    <a href="#">TV</a>
-    <a href="#">Music</a>
-    <a href="#">Soporte</a></nav>
+    <nav class="dropdown">
+      <a href="#">Mac</a>
+      <a href="#">iPad</a>
+      <a href="#">iPhone</a>
+      <a href="#">Watch</a>
+      <a href="#">TV</a>
+      <a href="#">Music</a>
+      <a href="#">Soporte</a>
+    </nav>
+  </header>
 
   <main>
     <section>
@@ -138,12 +142,6 @@
       <p>Barra Lateral</p>
     </aside>
   </main>
-
-  <script>
-    function myFunction(x) {
-      x.classList.toggle("icon-cross");
-    }
-  </script>
 
   <footer>
     <p>Footer</p>
