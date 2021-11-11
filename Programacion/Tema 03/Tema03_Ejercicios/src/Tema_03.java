@@ -60,7 +60,7 @@ public class Tema_03 {
   public static void main(String[] args) {
     // VARIABLES
     // Número total de bloques
-    final int N_BLOQUES = 4;
+    final int N_BLOQUES = 5;
     // Número de bloque escogido
     int n_bloque;
     // Array de bloques
@@ -77,8 +77,10 @@ public class Tema_03 {
     bloques[1].setSelfInfo(" Bloque 02: Ejercicios de if's");
     bloques[2] = new B03_switchs();
     bloques[2].setSelfInfo(" Bloque 03: Ejercicios de switch's");
-    bloques[2] = new B04_condicionales();
-    bloques[2].setSelfInfo(" Bloque 04: Ejercicios de condicionales");
+    bloques[3] = new B04_condicionales();
+    bloques[3].setSelfInfo(" Bloque 04: Ejercicios de condicionales");
+    bloques[4] = new B05_while();
+    bloques[4].setSelfInfo(" Bloque 05: Ejercicios de bucles while");
 
     // ESCOGER BLOQUE
     while (!exitApp) {

@@ -2,8 +2,6 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import java.time.Period;
-
 public class B03_switchs extends Bloque {
   public void main() {
     System.out.println("Bloque 03 de ejercicios.\n");

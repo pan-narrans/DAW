@@ -60,7 +60,7 @@ public class Functions_B02 {
    * @return The biggest of the two numbers.
    */
   public float biggerOfTwo(float num1, float num2) {
-    return (num1 - num2 > 0) ? num1 : num2;
+    return (num1 > num2) ? num1 : num2;
   }
 
   /**
