@@ -6,3 +6,6 @@ videos/
 
 # ignore all class files
 *.class
+
+# ignore all rar files
+*.rar
