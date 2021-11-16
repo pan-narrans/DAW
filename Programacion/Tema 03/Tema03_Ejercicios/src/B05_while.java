@@ -135,10 +135,6 @@ public class B05_while extends Bloque {
     }
 
     public void main() {
-      // TODO
-      // int num;
-      // System.out.println("Introduce el número:");
-      // num = validate.inputType(1);
       adivinarNumero();
     }
 
@@ -179,6 +175,22 @@ public class B05_while extends Bloque {
   private class B05_E04 extends Ejercicio {
 
     /**
+     * Escribir el procedimiento void menuCalculadora() para simular una calculadora
+     * utilizando la función calculadora.
+     * <p>
+     * Introduzca una opción:
+     * 
+     * 1) Sumar 2) Restar 3) Dividir 4) Multiplicar 5) salir
+     * <p>
+     * Al seleccionar un número del 1 al 4, preguntará al usuario mediante scanner
+     * por el primer y segundo operando y devolverá el resultado de la operación.
+     * <p>
+     * <i> Ejemplo: Ingresa el primer número: 5 Ingresa el segundo número: 10 La
+     * suma de 5 y 10 es 15</i>
+     * <p>
+     * Otra opción distinta del 1 al 5 mostrará “orden desconocida” y vuelve a
+     * mostrar el menú.
+     * 
      * @param info pequeña descripción del ejercicio
      */
     public B05_E04(String info) {
@@ -186,10 +198,44 @@ public class B05_while extends Bloque {
     }
 
     public void main() {
-      // TODO
-      // int num;
-      // System.out.println("Introduce el número:");
-      // num = validate.inputType(1);
+      menuCalculadora();
+    }
+
+    void menuCalculadora() {
+      boolean useCalculator = true;
+      int userInput;
+
+      do {
+        System.out.println("Menú Calculadora:");
+        System.out.println("  1) Sumar");
+        System.out.println("  2) Restar");
+        System.out.println("  3) Dividir");
+        System.out.println("  4) Multiplicar");
+        System.out.println("  5) salir");
+
+        userInput = validate.inputType(1);
+
+        switch (userInput) {
+        case 1:
+          System.out.println("Has escogido la suma.");
+          break;
+        case 2:
+          System.out.println("Has escogido la resta.");
+          break;
+        case 3:
+          System.out.println("Has escogido la división.");
+          break;
+        case 4:
+          System.out.println("Has escogido la multiplicación.");
+          break;
+        case 5:
+          useCalculator = false;
+          break;
+        default:
+          System.out.println("Orden desconocida.");
+          break;
+        }
+      } while (useCalculator);
     }
 
   } // Fin Ejercicio 04
