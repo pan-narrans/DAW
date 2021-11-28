@@ -1,0 +1,70 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+/*=========== HEADER ===========*/
+
+header nav ul {
+  display: flex;
+  justify-content: space-around;
+  margin: 1% 20%;
+  list-style: none;
+}
+
+header a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #7a7073;
+}
+
+header a:hover {
+  color: #504a4c;
+}
+
+header div {
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+  background-color: #f5f5f5;
+}
+
+/*=========== MAIN CONTENT ===========*/
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: 0% 15%;
+}
+
+main h1, main h2 {
+  text-transform: uppercase;
+  text-align: center;
+  color: #2f2a2c;
+  margin-top: 5%;
+}
+
+main h1 {
+  font-size: 1.5em;
+}
+
+main div:first-of-type {
+  display: flex;
+}
+
+main div:first-of-type>* {
+  flex: 1;
+  margin: 2.5%;
+}
+
+main img {
+  width: 100%;
+  height: auto;
+}
