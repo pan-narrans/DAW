@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h3>Rellena tu CV, anda</h3>
+  <form action="form.php" method="post">
+    Nombre <br>
+    <input type="text" name="nombre" value="" size="20" maxlength="30">
+    <br>Apellidos<br>
+    <input type="text" name="apellidos" value="" size="50" maxlength="80">
+    <br>Contraseña<br>
+    <input type="password" name="contrasena" value="" maxlength="10">
+    <br>DNI<br>
+    <input type="text" name="DNI" value="" size="10" max="9">
+    <br>Sexo<br>
+    <input type="radio" name="sexo" value="H" checked="checked"> Hombre <br>
+    <input type="radio" name="sexo" value="M"> Mujer <br>
+    <br>
+    <input type="submit" name="enviar" value="Almacenar">
+    <input type="reset" name="limpiar" value="Borrar los datos introducidos">
+  </form>
+
+</body>
+
+</html>
