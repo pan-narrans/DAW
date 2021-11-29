@@ -1,0 +1,80 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+body {
+  margin: 0 20%;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row>* {
+  flex: 1;
+}
+
+.azul {
+  color: rgb(31, 94, 212);
+}
+
+.rojo {
+  color: rgb(212, 31, 31);
+}
+
+.plata {
+  color: rgb(116, 116, 116);
+}
+
+.negro {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+main section {
+  flex: 2;
+}
+
+main section h2 {
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+main img {
+  width: 100%;
+  height: auto;
+}
+
+main aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+}
+
+main aside img:first-of-type {
+  width: auto;
+  height: 90%;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0 5%;
+  }
+}
