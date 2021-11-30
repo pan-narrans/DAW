@@ -9,3 +9,4 @@ videos/
 
 # ignore all rar files
 *.rar
+*.zip
