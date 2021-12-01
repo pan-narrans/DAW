@@ -1,0 +1,20 @@
+
+
+SELECT persona.nombre FROM persona
+	WHERE persona.tipo LIKE "alumno" AND persona.apellido1 LIKE "sánchez";
+
+SELECT persona.nombre FROM persona 
+	WHERE persona.tipo LIKE "alumno" AND persona.apellido1 LIKE "s%";
+
+#  Primero ordena y luego concatena
+SELECT concat_ws(' ',persona.nombre, persona.apellido1, persona.apellido2) as "Nombre y Apellidos" 	
+	FROM persona 
+	WHERE persona.tipo = "Alumno"
+	ORDER BY persona.apellido1;	# ORDER BY 1 -> ordena en base a la 1ra columna
+	LIMIT 5				# nº de elementos a mostrar
+
+# Saca la persona más mayor de la tabla
+SELECT concat_ws(' ',persona.nombre, persona.apellido1, persona.apellido2) as "Nombre y Apellidos" 	
+	FROM persona 
+	ORDER BY persona.fecha_nacimiento ASC
+	LIMIT 1
