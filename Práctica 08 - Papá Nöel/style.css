@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: sans-serif;
 }
 
 html,
@@ -11,17 +12,37 @@ body {
 }
 
 body {
-  margin: 0 20%;
+  margin: 0 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+
+/* FLEX */
 
 .flex-row {
   display: flex;
   flex-direction: row;
 }
 
-.flex-row>* {
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row>*,
+.flex-column>* {
   flex: 1;
 }
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* COLORES */
 
 .azul {
   color: rgb(31, 94, 212);
@@ -40,6 +61,17 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+.blacked {
+  filter: contrast(140%);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+/* MAIN */
+
 main {
   display: flex;
   flex-direction: row;
@@ -53,6 +85,7 @@ main section h2 {
   padding: 10px;
   text-transform: uppercase;
   font-size: 1.3em;
+  text-align: center;
 }
 
 main img {
@@ -74,10 +107,103 @@ main aside img:first-of-type {
   height: 90%;
 }
 
+
+/* FORM */
+
+form>* {
+  margin-top: 10px;
+}
+
 form img {
   width: 100%;
   height: auto;
 }
+
+
+/* OPCIONES */
+
+#opciones {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#opciones label {
+  margin-top: 10px;
+  width: 30%;
+  display: block;
+  text-align: center;
+  align-self: center;
+}
+
+#opciones input {
+  margin-top: 10px;
+  width: 70%;
+}
+
+input[type=text] {
+  padding: 0;
+  background: white;
+  border: 0 none;
+  border-radius: 0px;
+  font-size: 150%;
+  color: black;
+}
+
+
+/* DINERO */
+
+#dinero {
+  overflow: hidden;
+  max-height: 50px;
+  padding: 2%;
+}
+
+#dinero fieldset {
+  flex: 2;
+}
+
+#dinero h3 {
+  width: fit-content;
+  padding: 5px 10px;
+  margin: -15px 0 0 5px;
+  background-color: black;
+}
+
+#dinero img {
+  align-self: center;
+}
+
+
+/* COLORES */
+
+#colores span {
+  font-weight: bold;
+}
+
+input[type=submit] {
+  padding: 3%;
+  background: #ccc;
+  border: 0 none;
+  border-radius: 0px;
+  font-size: 150%;
+  color: white;
+  cursor: pointer;
+}
+
+
+/* FOOTER */
+
+footer {
+  background-color: white;
+  color: black;
+}
+
+footer h3 {
+  text-align: center;
+}
+
+
+/* PHONES */
 
 @media (max-width: 600px) {
   body {
