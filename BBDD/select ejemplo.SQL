@@ -18,3 +18,13 @@ SELECT concat_ws(' ',persona.nombre, persona.apellido1, persona.apellido2) as "N
 	FROM persona 
 	ORDER BY persona.fecha_nacimiento ASC
 	LIMIT 1
+
+# Fancy stuff
+SELECT 
+  producto.nombre AS "Nombre",
+  ROUND( producto.precio, 2) AS "Precio", 
+  ROUND( producto.beneficio, 2) AS " Benecifio", 
+  ROUND( producto.precio + producto.beneficio, 2) AS "Precio de Venta", 
+  ROUND( ( producto.precio + producto.beneficio) * 1.21) AS "Precio Final" 
+  FROM producto
+  ORDER BY 5 ASC
