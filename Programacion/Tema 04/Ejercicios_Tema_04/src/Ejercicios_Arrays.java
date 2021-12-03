@@ -5,6 +5,86 @@ public class Ejercicios_Arrays {
   static Scanner sc = new Scanner(System.in);
 
   /* ========================================================================== */
+  /* ============================== EJERCICIO 10 ============================== */
+  /* ========================================================================== */
+  /**
+   * <h5>EJERCICIO 10</h5>
+   * Escriba la función void imprimirArraySinRepetir(int [] numeros) que imprima
+   * en la consola los números del array, los números que estuvieran repetidos
+   * solo se deben mostrar una vez.
+   * 
+   * @param numeros
+   */
+  void imprimirArraySinRepetir(int[] numeros) {
+    int[] numerosImpresos = new int[numeros.length];
+    boolean imprimirNumero;
+    int contador = 0;
+
+    for (int numero : numeros) {
+      imprimirNumero = true;
+      for (int i = 0; i < numerosImpresos.length; i++) {
+        if (numero == numerosImpresos[i]) {
+          imprimirNumero = false;
+        }
+      }
+      // Añadirle el nº al array que se imprime
+      if (imprimirNumero)
+        numerosImpresos[contador++] = numero;
+    }
+    numerosImpresos = recortarArray(numerosImpresos, contador);
+    System.out.println("Array = " + Arrays.toString(numerosImpresos));
+  }
+
+  /* ========================================================================== */
+  /* ============================== EJERCICIO 09 ============================== */
+  /* ========================================================================== */
+  /**
+   * <h5>EJERCICIO 09</h5>
+   * Escriba la función void rellenarArraySinRepetir(int [] numeros) que rellene
+   * el array con números sin repetir. Si el usuario introduce algún número
+   * repetido se le debe notificar, y no ha de ser contabilizado.
+   * 
+   * @param numeros
+   */
+  void rellenarArraySinRepetir(int[] numeros) {
+    boolean datoRepetido, ceroIntroducido = false;
+    int numero;
+
+    // Reseteamos el array rellenandolo con 0s
+    for (int i = 0; i < numeros.length; i++) {
+      numeros[i] = 0;
+    }
+
+    for (int i = 0; i < numeros.length; i++) {
+      do {
+        datoRepetido = false;
+        System.out.print("Introduce un valor para la posición nº" + i + " del array: ");
+        numero = sc.nextInt();
+        // Recorremos el array para buscar dentro el nº introducido
+        for (int j : numeros) {
+          // Gestiona el poder introducir un 1er 0
+          if (numero == 0 && !ceroIntroducido) {
+            ceroIntroducido = true;
+            break;
+          }
+          // Si el nº ya está dentro se repite el while
+          if (j == numero) {
+            datoRepetido = true;
+            System.out.println("¡El dato ya está dentro del array!");
+            System.out.println("Prueba otra vez.");
+            break;
+          }
+        }
+      } while (datoRepetido);
+      // Asignar el valor al array
+      numeros[i] = numero;
+    }
+
+    System.out.println("¡El array está completo!");
+
+  }
+
+  /* ========================================================================== */
   /* ============================== EJERCICIO 08 ============================== */
   /* ========================================================================== */
   /**
@@ -85,6 +165,7 @@ public class Ejercicios_Arrays {
     // Rellenar la primitiva con cada una de las apuestas individuales
     for (int i = 0; i < 40 / 5; i++) {
       String[][] apuesta = setPartePrimitiva();
+      apuesta[0][0] = Integer.toString(i + 1);
       apuesta(apuesta);
       for (int j = i * 5; j < i * 5 + 5; j++) {
         for (int j2 = 0; j2 < 10; j2++) {
@@ -200,22 +281,19 @@ public class Ejercicios_Arrays {
    * @return Array con solo los números pares
    */
   int[] filtrarPares(int[] numeros) {
-    int[] temp = new int[numeros.length];
-    int i = 0;
+    int[] pares = new int[numeros.length];
+    int nPares = 0;
 
     // Grabamos los nº pares en un array temporal del tamaño máximo
     for (int num : numeros) {
       if (num % 2 == 0)
-        temp[i++] = num;
+        pares[nPares++] = num;
     }
 
-    // Creamos un array del tamaño justo con solo los nº pares
-    int[] soloPares = new int[i];
-    for (int j = 0; j < i; j++) {
-      soloPares[j] = temp[j];
-    }
+    // Recortamos el array de pares a su tamaño justo
+    pares = recortarArray(pares, nPares);
 
-    return soloPares;
+    return pares;
   }
 
   /* ========================================================================== */
@@ -262,6 +340,48 @@ public class Ejercicios_Arrays {
       numeros[i] = sc.nextInt();
     }
     System.out.println("¡El array está completo!");
+  }
+
+  /* ========================================================================== */
+  /* ============================== OTRAS COSAS ============================== */
+  /* ========================================================================== */
+  /**
+   * Takes the first {@code #number} items of {@code #array} and returns them in
+   * the form of a new shorter array.
+   * 
+   * @param array  array to shorten
+   * @param number number of items in shortened array
+   * @return Shorteneted array.
+   */
+  int[] recortarArray(int[] array, int number) {
+    // Para evitar un indexOutOfBounds
+    if (number > array.length)
+      return array;
+
+    // Copia y pega los valores de un array a otro
+    int[] shortenedArray = new int[number];
+    for (int i = 0; i < shortenedArray.length; i++) {
+      shortenedArray[i] = array[i];
+    }
+
+    return shortenedArray;
+  }
+
+  void ordenarArray(int[] numbers) {
+    int salto = numbers.length / 2;
+
+    for (int j = 0; j < numbers.length / 2; j++) {
+      for (int i = 0; i < numbers.length - salto; i++) {
+        // Intercambio de números
+        if (numbers[i] > numbers[i + salto]) {
+          int temp = numbers[i];
+          numbers[i] = numbers[i + salto];
+          numbers[i + salto] = temp;
+        }
+      }
+      salto--;
+    }
+
   }
 
 }
