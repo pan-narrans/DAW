@@ -14,56 +14,60 @@
   <main>
     <section>
       <h2 class="negro">Carta a quien corresponda</h2>
-      <form action="">
+      <form action="form.php" method="post">
         <div class="flex-row center">
           <p>Desearía...</p>
           <input type="submit" value="Enviar">
         </div>
-
-        <div id="opciones">
-          <label for="optn1">1ª Opción</label>
-          <input type="text" id="optn1" name="optn1">
-          <label for="optn1">2ª Opción</label>
-          <input type="text" id="optn1" name="optn1">
-          <label for="optn1">3ª Opción</label>
-          <input type="text" id="optn1" name="optn1">
-        </div>
-
-        <div class="flex-row" id="dinero">
-          <div></div>
-          <fieldset>
-            <h3>Dinero</h3>
-            <div class="flex-row">
-              <input type="radio" name="dinero" id="dinero" value="si">
-              <label for="dinero"> Sí </label>
-              <input type="radio" name="dinero" id="dinero" value="no">
-              <label for="dinero"> No </label>
-            </div>
-          </fieldset>
-          <div class="flex-row">
-            <img src="img/dinero.jpg" alt="" class="blacked">
+        <div class="form-box">
+          <div id="opciones">
+            <label for="optn1">1ª Opción</label>
+            <input type="text" id="optn1" name="optn1">
+            <label for="optn2">2ª Opción</label>
+            <input type="text" id="optn2" name="optn2">
+            <label for="optn3">3ª Opción</label>
+            <input type="text" id="optn3" name="optn3">
           </div>
+
+          <div class="flex-row" id="dinero">
+            <div></div>
+            <fieldset>
+              <h3>Dinero</h3>
+              <div class="flex-row">
+                <input type="radio" name="dinero" id="dinero" value="si">
+                <label for="dinero"> Sí </label>
+                <input type="radio" name="dinero" id="dinero" value="no">
+                <label for="dinero"> No </label>
+              </div>
+            </fieldset>
+            <div class="flex-row">
+              <img src="img/dinero.jpg" alt="" class="blacked">
+            </div>
+          </div>
+
+
+          <p>¿De qué color quieres el envoltorio del regalo? </p>
+          <div class="flex-row" id="colores">
+            <input type="checkbox" name="color-envoltorio" id="color-envoltorio" value="azul">
+            <span class="azul"> Azúl </span>
+            <input type="checkbox" name="color-envoltorio" id="color-envoltorio" value="plata">
+            <span class="plata"> Plata </span>
+            <input type="checkbox" name="color-envoltorio" id="color-envoltorio" value="rojo">
+            <span class="rojo"> Rojo </span>
+            <input type="checkbox" name="color-envoltorio" id="color-envoltorio" value="negro">
+            <span class="negro"> Negro </span>
+          </div>
+
+          <div class="flex-row">
+            <p> Email </p>
+            <input type="email" name="email" id="email" class="flex-4">
+          </div>
+          <p class="subtext"> Por si Papá Noël tiene alguna duda </p>
+
+          <p class="text-small"><span class="underline"> Aviso</span>: No se aceptan peticiones de cacharros que se tengan que enchufar </p>
+          <input type="checkbox" name="aceptar-condiciones" id="aceptar-condiciones" value="ACEPTADAS">
+          <span class="rojo bold">¿ Aceptas mis condiciones ?</span>
         </div>
-
-
-        <p>¿De qué color quieres el envoltorio del regalo? </p>
-        <div class="flex-row" id="colores">
-          <input type="checkbox" name="color-envoltorio" id="color-envoltorio">
-          <span class="azul"> Azúl </span>
-          <input type="checkbox" name="color-envoltorio" id="color-envoltorio">
-          <span class="plata"> Plata </span>
-          <input type="checkbox" name="color-envoltorio" id="color-envoltorio">
-          <span class="rojo"> Rojo </span>
-          <input type="checkbox" name="color-envoltorio" id="color-envoltorio">
-          <span class="negro"> Negro </span>
-        </div>
-
-        <br> Email
-        <input type="email" name="email" id="email">
-        <br> Por si Papá Noël tiene alguna duda
-        <br> Aviso: No se aceptan peticiones de cacharros que se tengan que enchufar <br>
-        <input type="checkbox" name="aceptar-condiciones" id="aceptar-condiciones">
-        <span class="rojo bold">¿ Aceptas mis condiciones ?</span>
       </form>
     </section>
     <aside>
@@ -73,12 +77,15 @@
   </main>
 
   <footer>
-    <h3>Políticas de Privacidad</h3>
-    <ul>
-      <li>La información aportada sólo será utilizada con la finalidad de complacerle estas Navidades.</li>
-      <li>El responsable de la información que facilita es IES Infanta Elena. </li>
-      <li>Si desea más información mande un correo a IES@INFANTA.COM</li>
-    </ul>
+    <div>
+      <h3>Políticas de Privacidad</h3>
+      <ul>
+        <li>- La información aportada sólo será utilizada con la finalidad de complacerle estas Navidades.</li>
+        <li>- El responsable de la información que facilita es IES Infanta Elena. </li>
+        <li>- Si desea más información mande un correo a <span class="underline"> IES@INFANTA.COM</span></li>
+      </ul>
+    </div>
+    <img src="img/carro-renos.jpg" alt="">
   </footer>
 
 </body>

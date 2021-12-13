@@ -41,6 +41,10 @@ body {
   align-items: center;
 }
 
+.flex-4 {
+  flex: 4;
+}
+
 
 /* COLORES */
 
@@ -67,6 +71,22 @@ body {
 
 .bold {
   font-weight: bold;
+}
+
+
+/* TEXTO */
+
+.subtext {
+  font-size: small;
+  text-align: end;
+}
+
+.text-small {
+  font-size: small;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 
@@ -110,6 +130,10 @@ main aside img:first-of-type {
 
 /* FORM */
 
+form {
+  margin: 5% 0;
+}
+
 form>* {
   margin-top: 10px;
 }
@@ -133,6 +157,8 @@ form img {
   display: block;
   text-align: center;
   align-self: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 #opciones input {
@@ -202,11 +228,62 @@ footer h3 {
   text-align: center;
 }
 
+footer li {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+footer img {
+  display: none;
+}
+
 
 /* PHONES */
 
 @media (max-width: 600px) {
   body {
-    margin: 0 5%;
+    margin: 0;
+    justify-content: space-between;
+  }
+  main aside {
+    display: none;
+  }
+  .form-box {
+    border: solid 2px whitesmoke;
+    padding: 5% 15%;
+  }
+  /*OPCIONES*/
+  #opciones {
+    flex-direction: column;
+  }
+  #opciones>* {
+    width: 100% !important;
+  }
+  /*DINERO*/
+  #dinero {
+    margin: 0 10%;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+  #dinero h3 {
+    display: none;
+  }
+  #dinero div:first-child {
+    display: none;
+  }
+  fieldset {
+    border: none;
+  }
+  /*COLORES*/
+  #colores {
+    margin: 10% 0;
+  }
+  /*FOOTER*/
+  footer div {
+    display: none;
+  }
+  footer img {
+    display: block;
+    width: 100%;
   }
 }
