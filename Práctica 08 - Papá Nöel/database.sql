@@ -5,11 +5,11 @@ USE papanoel;
 
 CREATE TABLE formulario(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  optn1 VARCHAR(50),
-  optn2 VARCHAR(50),
-  optn3 VARCHAR(50),
-  dinero ENUM('si', 'no'),
-  color ENUM('azul', 'plata', 'rojo', 'negro'),
-  email VARCHAR(20),
-  condiciones VARCHAR(20) DEFAULT 'NO ACEPTADAS'
+  optn1 VARCHAR(50) NOT NULL,
+  optn2 VARCHAR(50) NOT NULL,
+  optn3 VARCHAR(50) NOT NULL,
+  dinero ENUM('si', 'no') NOT NULL,
+  color ENUM('azul', 'plata', 'rojo', 'negro') NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  condiciones VARCHAR(50) DEFAULT 'NO ACEPTADAS' NOT NULL
 );

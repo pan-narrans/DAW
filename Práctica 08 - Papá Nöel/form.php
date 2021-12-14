@@ -19,9 +19,13 @@
   $optn2 = $_POST['optn2'];
   $optn3 = $_POST['optn3'];
   $dinero = $_POST['dinero'];
-  $color = $_POST['color'];
+  $color = $_POST['color-envoltorio'];
   $email = $_POST['email'];
-  $condiciones = $_POST['condiciones'];
+  if (isset($_POST['aceptar-condiciones'])) {
+    $condiciones = $_POST['aceptar-condiciones'];
+  } else {
+    $condiciones = "NO ACEPTADAS";
+  }
   $consulta = "INSERT INTO formulario (optn1, optn2, optn3, dinero, color, email, condiciones)
   VALUES ('$optn1','$optn2','$optn3','$dinero','$color','$email','$condiciones')";
   // Si queremos visualizar la consulta que se envía al servidor pondremos: 
