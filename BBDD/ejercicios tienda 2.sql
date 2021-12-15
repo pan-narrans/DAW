@@ -19,6 +19,8 @@ SELECT COUNT(f.codigo)
 
 #############################################################
 # Esto es la forma correcta de hacerlo, con subconsultas.
+# La subconsulta en el FROM tiene que llevar un alias:
+#     -> "consulta" en este caso
 # Así es como funcionan las vistas.
 #############################################################
 SELECT COUNT(*) as "Nº de Fabricantes"
@@ -92,6 +94,18 @@ SELECT SUM(p.precio) AS "Suma precios Asus"
   WHERE p.codigo_fabricante LIKE 1;
 
 
+#############################################################
+# Lo mismo pero con una subconsulta para hacerlo con nombre y no código 
+#############################################################
+
+SELECT COUNT(codigo) as "Nº de productos de Asus"
+  FROM producto
+  WHERE codigo_fabricante = (
+    SELECT codigo FROM fabricante
+      WHERE nombre LIKE "Asus"
+  );
+
+
 # 15. Muestra el precio máximo, precio mínimo, precio medio y el número total de productos que tiene el fabricante Crucial.
 SELECT 
   MAX(p.precio) AS "Max precio Crucial", 
@@ -141,33 +155,95 @@ SELECT
   HAVING Avg_precio > 200;
 
 
-## Sacar productos cuyo precio está por encima de la media
+## Sacar productos cuyo precio está por encima de la media de todos los productos
 SELECT p.nombre, p.precio
   FROM producto p
   WHERE p.precio > (
     SELECT Avg(p1.precio) FROM producto p1
   );
 
+## Lo mismo pero mostrando la media
+#############################################################
+# AVG saca un único valor, para mostrar la media a la par que todos los registros tenemos que hacer el producto cartesiano de nuestra tabla con otra conteniendo solo la media.
+# Esto se hace con una subconsulta desde el FROM (tiene que llevar un alias sí o sí).
+#############################################################
+SELECT p.nombre, p.precio, ROUND(p2.media, 2)
+  FROM producto p, (SELECT AVG(precio) as media from producto) p2
+  WHERE p.precio > (
+    SELECT Avg(p1.precio) FROM producto p1
+  );
+
+
 
 # 19. Muestra el nombre de cada fabricante, junto con el precio máximo, precio mínimo, precio medio y el número total de productos de los fabricantes que tienen un precio medio superior a 200€. Es necesario mostrar el nombre del fabricante.
+SELECT 
+  f.nombre AS "Fabricante",
+  MAX(p.precio) AS "Max precio", 
+  MIN(p.precio) AS "Min precio", 
+  ROUND(AVG(p.precio),2) AS Avg_precio
+
+  FROM producto p
+  INNER JOIN fabricante f ON p.codigo_fabricante = f.codigo
+
+  GROUP BY f.nombre
+  HAVING Avg_precio > 200;
 
 
 # 20. Calcula el número de productos que tienen un precio mayor o igual a 180€.
+SELECT COUNT(codigo) FROM producto
+  WHERE precio >= 180;
 
 
 # 21. Calcula el número de productos que tiene cada fabricante con un precio mayor o igual a 180€.
+SELECT 
+  f.nombre as "Fabricante",
+  COUNT(p.codigo) as "Nº productos" 
+
+  FROM producto p  
+  INNER JOIN fabricante f ON p.codigo_fabricante = f.codigo
+
+  WHERE precio >= 180
+  GROUP BY codigo_fabricante;
 
 
 # 22. Lista el precio medio los productos de cada fabricante, mostrando solamente el código del fabricante.
+SELECT 
+  p.codigo_fabricante as "Fabricante",
+  ROUND(AVG(p.precio), 2) as "Precio medio del producto" 
+  
+  FROM producto p
+
+  GROUP BY codigo_fabricante;
 
 
 # 23. Lista el precio medio los productos de cada fabricante, mostrando solamente el nombre del fabricante.
+SELECT 
+  f.nombre as "Fabricante",
+  ROUND(AVG(p.precio), 2) as "Precio medio del producto" 
+  
+  FROM producto p
+  INNER JOIN fabricante f ON p.codigo_fabricante = f.codigo
+
+  GROUP BY codigo_fabricante;
 
 
 # 24. Lista los nombres de los fabricantes cuyos productos tienen un precio medio mayor o igual a 150€.
+SELECT
+  f.nombre as "Fabricante"
+
+  FROM fabricante f
+
+  WHERE ( 
+    SELECT AVG(precio) 
+      FROM producto 
+      GROUP BY codigo_fabricante 
+      HAVING codigo_fabricante = f.codigo
+  ) >= 150;
+
 
 
 # 25. Devuelve un listado con los nombres de los fabricantes que tienen 2 o más productos.
+SELECT f.nombre FROM
 
 
 # 26. Devuelve un listado con los nombres de los fabricantes y el número de productos que tiene cada uno con un precio superior o igual a 220 €. No es necesario mostrar el nombre de los fabricantes que no tienen productos que cumplan la condición.
