@@ -1,0 +1,11 @@
+public class Solution {
+  public static int zeros(int n) {    
+    if(n < 5){
+      return 0;
+    }else if(n < 10){
+      return 1;
+    } else{
+      return (int)Math.pow(10,Math.log10(n)-1);      
+    }
+  }
+}

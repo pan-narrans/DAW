@@ -241,18 +241,75 @@ SELECT
   ) >= 150;
 
 
-
 # 25. Devuelve un listado con los nombres de los fabricantes que tienen 2 o más productos.
-SELECT f.nombre FROM
+SELECT 
+  f.nombre as "Fabricante" 
+  FROM fabricante f
+
+  WHERE (
+    SELECT COUNT(codigo) 
+      FROM producto 
+      WHERE codigo_fabricante = f.codigo 
+  ) > 1;
 
 
 # 26. Devuelve un listado con los nombres de los fabricantes y el número de productos que tiene cada uno con un precio superior o igual a 220 €. No es necesario mostrar el nombre de los fabricantes que no tienen productos que cumplan la condición.
+SELECT
+  f.nombre as "Fabricante", 
+  p1.numero as "Nº productos"
+
+  FROM 
+    fabricante f, 
+    (SELECT 
+      COUNT(codigo) as numero, 
+      codigo_fabricante,
+      precio
+      FROM producto 
+      WHERE precio >= 220
+      GROUP BY codigo_fabricante
+    ) p1
+  
+  WHERE f.codigo = p1.codigo_fabricante;
+
 
 
 # 27. Devuelve un listado con los nombres de los fabricantes y el número de productos que tiene cada uno con un precio superior o igual a 220 €. El listado debe mostrar el nombre de todos los fabricantes, es decir, si hay algún fabricante que no tiene productos con un precio superior o igual a 220€ deberá aparecer en el listado con un valor igual a 0 en el número de productos.
+SELECT
+  f.nombre as "Fabricante", 
+  p1.numero as "Nº productos"
+
+  FROM 
+    fabricante f, 
+    (SELECT 
+      COUNT(codigo) as numero, 
+      codigo_fabricante,
+      precio
+      FROM producto 
+      WHERE precio >= 220
+      GROUP BY codigo_fabricante
+    ) p1
+  
+  WHERE f.codigo = p1.codigo_fabricante;
 
 
 # 28. Devuelve un listado con los nombres de los fabricantes donde la suma del precio de todos sus productos es superior a 1000 €.
 
 
 # 29. Devuelve un listado con el nombre del producto más caro que tiene cada fabricante. El resultado debe tener tres columnas: nombre del producto, precio y nombre del fabricante. El resultado tiene que estar ordenado alfabéticamente de menor a mayor por el nombre del fabricante.
+
+
+
+#############################################################
+# Insertar datos con un SELECT
+#############################################################
+
+CREATE TABLE fabricante_productos(
+  numero_fabricante INT,
+  numero_producto INT,
+  precio DOUBLE,
+  
+  PRIMARY KEY (numero_fabricante, numero_producto)
+);
+
+INSERT INTO fabricante_productos(numero_fabricante, numero_producto, precio)
+SELECT P.codigo_fabricante, P.codigo, P.precio FROM PRODUCTO P;
