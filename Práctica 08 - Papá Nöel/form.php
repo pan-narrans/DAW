@@ -11,7 +11,7 @@
 <body>
   <?php
   $link = mysqli_connect("localhost", "root", "") or die('No se pudo conectar: ' . mysqli_error($link));
-  $db = mysqli_select_db($link, "papanoel") or die('No se pudo seleccionar la base de datos');
+  $db = mysqli_select_db($link, "form_papanoel") or die('No se pudo seleccionar la base de datos');
 
   // volcamos en variables cada uno de los campos que queremos almacenar en la base de datos 
   // en nuestro caso POST(‘name de cada uno de los imput del formulario ) 

@@ -12,43 +12,77 @@
 <body>
 
   <header>
-    <h1>Peticiones a los Reyes Magos</h1>
+    <h1 class="text-center">Peticiones a los Reyes Magos</h1>
   </header>
 
-  <main>
+  <main class="row h-center v-center">
     <div id="content">
-      <section>
-        <img src="img/Melchor.jpg" alt="">
-        <form name="miformulario" id="miformulario" method="get">
-          <p>Para Melchor</p>
-          <input type="text" name="melchor" id="melchor">
-          <p>Observaciones (máximo 100 caracteres).</p>
-          <p>Campo opcional</p>
-          <input type="text" name="observaciones" id="observaciones">
-        </form>
-      </section>
-      <section>
-        <img src="img/gaspar.jpg" alt="">
-        <form name="miformulario" id="miformulario" method="get">
-          <p>Para Gaspar</p>
-          <input type="text" name="melchor" id="melchor"><br/>
-          <span>Cheque Regalo</span>
-          <input type="radio" name="cheque_regalo" value="si">
-          <span>Sí</span>
-          <input type="radio" name="cheque_regalo" value="no" checked="checked">
-          <span>No</span>
-        </form>
-      </section>
-      <section>
-        <img src="img/baltasar.jpg" alt="">
-        <form name="miformulario" id="miformulario" method="get">
-          <p>Para Baltasar</p>
-          <input type="text" name="melchor" id="melchor">
-          <p>¿A que hora te acuestas el día 5 de enero?</p>
-        </form>
-      </section>
+      <form name="form_reyesmagos" action="form.php" method="post">
+        <section class="row child-flex-1">
+          <div class="flex h-center"></div>
+
+          <div class="row">
+            <input type="checkbox" name="condiciones" id="condiciones" value="ACEPTADAS">
+            <label for="condiciones">Aceptas las políticas de privacidad</label>
+
+            <input type="submit" value="Enviar">
+          </div>
+        </section>
+
+        <section class="row child-flex-1 v-top">
+          <div class="flex h-center"><img src="img/Melchor.jpg" alt=""></div>
+          <div class="column">
+            <label for="melchor">Para Melchor</label>
+            <input id="melchor" name="melchor" type="text">
+
+            <label for="observaciones">Observaciones (máximo 100 caracteres)</label>
+            <p>Campo Opcional</p>
+            <input id="observaciones" name="observaciones" type="text">
+          </div>
+        </section>
+
+        <section class="row child-flex-1 v-top">
+          <div class="flex h-center"><img src="img/gaspar.jpg" alt=""></div>
+          <div class="column">
+            <label for="gaspar">Para Gaspar</label>
+            <input id="gaspar" name="gaspar" type="text">
+
+            <fieldset>
+              <legend>Cheque Regalo</legend>
+
+              <input type="radio" name="cheque_regalo" id="cheque_regalo_si" value="si" checked="checked">
+              <label for="cheque_regalo_si">Sí</label>
+
+              <input type="radio" name="cheque_regalo" id="cheque_regalo_no" value="no">
+              <label for="cheque_regalo_no">No</label>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="row child-flex-1 v-top">
+          <div class="flex h-center"><img src="img/baltasar.jpg" alt=""></div>
+          <div class="column">
+            <label for="baltasar">Para Baltasar</label>
+            <input id="baltasar" name="baltasar" type="text">
+
+            <fieldset>
+              <legend>¿A que hora te acuestas el día 5 de enero?</legend>
+
+              <p>
+                <input type="radio" name="hora_dormir" id="hora_dormir_si" value="10-12" checked="checked">
+                <label for="hora_dormir">De 10 a 12</label>
+              </p>
+              <p>
+                <input type="radio" name="hora_dormir" id="hora_dormir_no" value="+12">
+                <label for="hora_dormir">A partir de las 12</label>
+              </p>
+            </fieldset>
+          </div>
+        </section>
+      </form>
     </div>
-    <aside>
+
+    <aside class="column v-center">
       <img src="img/sobre.jpg" alt="">
       <img src="img/sobre.jpg" alt="">
       <img src="img/buzón.jpg" alt="">
