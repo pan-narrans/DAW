@@ -18,14 +18,17 @@
   <main class="row h-center v-center">
     <div id="content">
       <form name="form_reyesmagos" action="form.php" method="post">
-        <section class="row child-flex-1">
-          <div class="flex h-center"></div>
-
-          <div class="row">
+        <section class="column child-flex-1">
+          <div></div>
+          <div class="row space-around v-center">
             <input type="checkbox" name="condiciones" id="condiciones" value="ACEPTADAS">
-            <label for="condiciones">Aceptas las políticas de privacidad</label>
+            <label for="condiciones">Aceptas las <span class="blue bold"> políticas de privacidad </span></label>
 
             <input type="submit" value="Enviar">
+          </div>
+
+          <div class="row h-center mobile">
+            <img src="img/LosTresReyesMagos.jpg" alt="">
           </div>
         </section>
 

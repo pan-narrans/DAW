@@ -45,8 +45,28 @@ main {
   justify-content: center;
 }
 
+.h-end {
+  justify-content: flex-end;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
 .text-center {
   text-align: center;
+}
+
+.blue {
+  color: rgb(27, 86, 196);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.mobile {
+  display: none;
 }
 
 body {
@@ -74,7 +94,46 @@ form section {
   margin-top: 2%;
 }
 
+input[type=submit] {
+  padding: 2%;
+  background: rgb(235, 195, 18);
+  border: 0 none;
+  border-radius: 0px;
+  font-size: 130%;
+  color: white;
+  cursor: pointer;
+}
+
 img {
   width: auto;
   max-height: 200px;
+  max-width: 100%;
+}
+
+@media(max-width: 600px) {
+  body,
+  #content {
+    border: none;
+  }
+  body {
+    margin: 0;
+  }
+  aside {
+    display: none !important;
+  }
+  main section div:first-child {
+    display: none;
+  }
+  main {
+    text-align: center;
+  }
+  main section label:first-child {
+    background-color: grey;
+  }
+  footer {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
 }
