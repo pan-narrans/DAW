@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+:root {
+  --blue: rgb(54, 69, 117);
+}
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0 10%;
+}
+
+
+/*
+
+ GENERIC CLASSES
+
+*/
+
+.flex,
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.child-flex-1>* {
+  flex: 1;
+}
+
+.v-center {
+  align-items: center;
+}
+
+.v-top {
+  align-items: flex-start;
+}
+
+.h-center {
+  justify-content: center;
+}
+
+.h-end {
+  justify-content: flex-end;
+}
+
+.h-space-around {
+  justify-content: space-around;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.blue {
+  color: rgb(27, 86, 196);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.mobile {
+  display: none;
+}
+
+
+/*
+
+ PROPPER CSS FOR A PROPPER DOCUMENT
+
+*/
+
+body {
+  border: var(--border);
+}
+
+fieldset {
+  margin-bottom: 1%;
+}
+
+input[type=submit] {}
+
+@media(max-width: 600px) {}

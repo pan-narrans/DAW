@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <form class="column" action="form.php" method="post">
+
+    <fieldset>
+      <legend>Button:</legend>
+      <input id="id" name="name" type="button" value="Click Me Or Else...">
+    </fieldset>
+
+    <fieldset>
+      <legend>Checkbox:</legend>
+      <label><input type="checkbox" id="check_1" name="check_name" value="check_1" checked> check_1</label>
+      <label><input type="checkbox" id="check_2" name="check_name" value="check_2"> check_2</label>
+      <label><input type="checkbox" id="check_3" name="check_name" value="check_3"> check_3</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Color:</legend>
+      <label for="color">Color de pelo:</label>
+      <input id="color" name="color" type="color">
+    </fieldset>
+
+    <fieldset>
+      <legend>Date:</legend>
+      <label>Fecha: <input id="date" name="date" type="date" value="2021-01-10"> </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Datetime-local:</legend>
+      <label>Fecha y hora: <input id="datetime-local" name="datetime-local" type="datetime-local" value="2021-01-10T08:30"> </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>E-Mail:</legend>
+      <label for="email">E-mail: </label>
+      <input id="email" name="email" type="email" placeholder="Introduce tu email">
+    </fieldset>
+
+    <fieldset>
+      <legend>Files</legend>
+      <label for="file">Select a File: </label>
+      <input id="file" name="file" type="file" accept=".jpg, .png">
+    </fieldset>
+
+    <fieldset>
+      <legend>Hidden field</legend>
+      <p>Used to pass info to server.</p>
+      <input id="hidden" name="hidden" type="hidden" value="hidden value">
+    </fieldset>
+
+    <fieldset>
+      <legend>Image as button</legend>
+      <input id="image" name="image" type="image" src="" alt="summit">
+    </fieldset>
+
+    <fieldset>
+      <legend>Month selector</legend>
+      <p>(Only works in certain browsers)</p>
+      <label for="month">Month: </label>
+      <input id="month" name="month" type="month">
+    </fieldset>
+
+    <fieldset>
+      <legend>Number selector</legend>
+      <label for="number">Numbers (10-100): </label>
+      <input id="number" name="number" type="number" min="10" max="100" placeholder="42">
+    </fieldset>
+
+    <fieldset>
+      <legend>Passwords: </legend>
+      <label for="password">Password:</label>
+      <input id="password" name="password" type="password">
+    </fieldset>
+
+    <fieldset>
+      <legend>Radio:</legend>
+      <label><input id="radio_1" name="radio_name" type="radio"> radio_1 </label>
+      <label><input id="radio_2" name="radio_name" type="radio"> radio_2 </label>
+      <label><input id="radio_3" name="radio_name" type="radio"> radio_3 </label>
+    </fieldset>
+
+    <label for="">label</label>
+    <input id="id" name="name" type="range">
+
+    <label for="">label</label>
+    <input id="id" name="name" type="reset">
+
+    <label for="">label</label>
+    <input id="id" name="name" type="search">
+
+    <fieldset>
+      <label for="">Select:</label>
+      <select name="select" id="select">
+        <option value="">--Please choose an option--</option>
+        <option value="option_1">option_1</option>
+        <option value="option_2">option_2</option>
+        <option value="option_3">option_3</option>
+      </select>
+    </fieldset>
+
+    <label for="">label</label>
+    <input id="id" name="name" type="submit">
+
+    <label for="">label</label>
+    <input id="id" name="name" type="tel">
+
+    <fieldset>
+      <label for="text">Text:</label>
+      <input id="text" name="text" type="text" placeholder="text">
+    </fieldset>
+
+    <label for="">label</label>
+    <input id="id" name="name" type="time">
+
+    <label for="">label</label>
+    <input id="id" name="name" type="url">
+
+    <label for="">label</label>
+    <input id="id" name="name" type="week">
+
+
+  </form>
+
+</body>
+
+</html>
