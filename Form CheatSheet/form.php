@@ -1,46 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHP FORM</title>
-</head>
+<?php
+// Variables conexión
+$server = "localhost";
+$user = "root";
+$password = "";
+$database = "db_name";
 
-<body>
-  <?php
-  // Conectar con el servidor
-  $link = mysqli_connect("localhost", "root", "") or die('No se pudo conectar: ' . mysqli_error($link));
-  // Conectar con la base de datos
-  $db = mysqli_select_db($link, "form_reyesmagos") or die('No se pudo seleccionar la base de datos');
 
-  // Volcamos en variables cada uno de los campos de nuestro formulario
-  // $var_name = $_httpmethod['form_var_name']
-  $melchor = $_POST['melchor'];
-  $observaciones = $_POST['observaciones'];
-  $gaspar = $_POST['gaspar'];
-  $baltasar = $_POST['baltasar'];
-  
-  $cheque_regalo = $_POST['cheque_regalo'];
-  $hora_dormir = $_POST['hora_dormir'];
+// Conectar con el servidor
+$link = mysqli_connect($server, $user, $password) or die('No se pudo conectar: ' . mysqli_error($link));
+// Conectar con la base de datos
+$db = mysqli_select_db($link, $database) or die('No se pudo seleccionar la base de datos');
 
-  if (isset($_POST['condiciones'])) {
-    $condiciones = $_POST['condiciones'];
-  } else {
-    $condiciones = "NO ACEPTADAS";
-  }
 
-  // Creamos una variable con el comando SQL insert
-  $consulta = "INSERT INTO formulario (melchor, observaciones, gaspar, baltasar, cheque_regalo, hora_dormir, condiciones) 
-    VALUES ('$melchor','$observaciones','$gaspar','$baltasar','$cheque_regalo','$hora_dormir','$condiciones')";
+// Volcamos en variables cada uno de los campos de nuestro formulario
+$var_name_1 = $_POST['form_var_name_1'];
+$var_name_2 = $_POST['form_var_name_2'];
+$var_name_3 = $_POST['form_var_name_3'];
+$var_name_4 = $_POST['form_var_name_4'];
 
-  // Si queremos visualizar la consulta que se envía al servidor pondremos: 
-  echo "----------------------" . $consulta . "--";
+// Comprobar si un campo del formulario tiene valor o no
+$var_name_5 = (isset($_POST['form_var_name_5'])) ? $_POST['form_var_name_5'] : "OTHER VALUE";
 
-  // Insertar los datos
-  mysqli_query($link, $consulta) or die("<h3> Error al insertar en la tabla </h3>");
-  ?>
-</body>
+/* if (isset($_POST['form_var_name_5'])) {
+  $var_name_5 = $_POST['form_var_name_5'];
+} else {
+  $var_name_5 = "OTHER VALUE";
+} */
 
-</html>
+// Creamos una variable consulta con el comando SQL insert
+$consulta = "INSERT INTO formulario (db_var_name_1, db_var_name_2, db_var_name_3, db_var_name_4, db_var_name_5) 
+  VALUES ('$var_name_1','$var_name_2','$var_name_3','$var_name_4', '$var_name_5')";
+
+
+// Si queremos visualizar la consulta que se envía al servidor pondremos: 
+echo "----------------------" . $consulta . "--";
+
+
+// Insertar los datos
+mysqli_query($link, $consulta) or die("<h3> Error al insertar en la tabla </h3>");
+?>
