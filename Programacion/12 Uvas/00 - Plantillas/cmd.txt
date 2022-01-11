@@ -1,0 +1,6 @@
+javac Main.java
+java Main < IN > OUT
+diff EXPECTED OUT
+
+javac Main.java
+java Main < IN
