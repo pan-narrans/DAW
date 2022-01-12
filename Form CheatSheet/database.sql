@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS db_name;
 CREATE DATABASE db_name CHARACTER SET utf8mb4;
 USE db_name;
 
-CREATE TABLE formulario(
+CREATE TABLE table_name(
   id INT AUTO_INCREMENT PRIMARY KEY,
 
   db_var_name_1 VARCHAR(200) NOT NULL,
