@@ -1,12 +1,7 @@
-package Programame.Plantillas;
 
-public class CasosLimitados {
+public class Main {
 
   static java.util.Scanner in;
-
-  public static void casoDePrueba() {
-    ;
-  }
 
   public static void main(String args[]) {
     // Scanner
@@ -14,8 +9,11 @@ public class CasosLimitados {
 
     // Nº de casos
     int numCasos = in.nextInt();
+    in.nextLine();
+
+    // Reto
     for (int i = 0; i < numCasos; i++)
-      casoDePrueba();
+      System.out.println(in.nextLine().replace("Soy", "Hola,") + ".");
   }
 
 }
