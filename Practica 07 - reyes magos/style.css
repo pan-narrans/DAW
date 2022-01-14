@@ -41,6 +41,10 @@ main {
   align-items: flex-start;
 }
 
+.v-end {
+  align-items: flex-end;
+}
+
 .h-center {
   justify-content: center;
 }
@@ -104,6 +108,22 @@ input[type=submit] {
   cursor: pointer;
 }
 
+fieldset {
+  border: none;
+}
+
+main aside {
+  height: 100%;
+}
+
+main aside img:first-of-type {
+  max-height: 50px;
+}
+
+main aside img {
+  max-height: 100px;
+}
+
 img {
   width: auto;
   max-height: 200px;
@@ -135,5 +155,9 @@ img {
   }
   .mobile {
     display: block;
+  }
+  input {
+    min-height: 30px;
+    margin-bottom: 1%;
   }
 }

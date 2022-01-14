@@ -1,124 +1,65 @@
-# Comandos fantásticos de SQL y cómo usarlos:
-# Author: Alejandro Pérez
+-- Comandos de SQL y cómo usarlos:
+-- Author: Alejandro Pérez
+-- https://patorjk.com/software/taag/#p=display&h=3&v=2&c=mysql&w=.&f=Contrast&t=limit
 
+
+
+
+
+-- ..%%%%...%%%%%%..%%......%%%%%%...%%%%...%%%%%%.
+-- .%%......%%......%%......%%......%%..%%....%%...
+-- ..%%%%...%%%%....%%......%%%%....%%........%%...
+-- .....%%..%%......%%......%%......%%..%%....%%...
+-- ..%%%%...%%%%%%..%%%%%%..%%%%%%...%%%%.....%%...
 ##############################################################
-# ========================= WHERE ========================= #
-# Permite marcar condiciones que deben cumplir los resultados
-# de la consulta.
+# ========================= SELECT ========================= #
+# Permite hacer consultas, hay mil ejemplos en este documento.
+##############################################################
+# Podemos realizar un select dentro de casi cualquier sitio 
+# para realizar una subconsulta dentro de otra consulta.
 #
-# Disponemos de varios modificadores:
+# Se pueden hacer mil mierdas con esto y es una locura, por 
+# ahora nos faltan cosas por ver.
+#
+# Una subconsulta dentro de un FROM tiene que llevar un alias,
+# si se realiza en otro lugar no tiene porqué llevarlo.
 ##############################################################
-#   -'=':
-#   -'<>': differente
-#   -'<=':
-#   -'>=':
-#   -'<':
-#   -'>':
-##############################################################
-#   - AND:
-#   - OR:
-#   - NOT:
-##############################################################
-# ==================== LIKE // NOT LIKE ==================== #
-# Similar a los comparadores '=' y '<>' y casi siempre hacen 
-# lo mismo.
-# Permite búsqueda de patrones con wildcards
-##############################################################
-# ======================= WILDCARDS ======================= #
-#   -'%': Represents zero or more characters  
-#       -- bl% finds bl, black, blue, and blob
-#   -'_': Represents a single character 
-#       -- h_t finds hot, hat, and hit
-#   -'[]': Represents any single character within the brackets 
-#       -- h[oa]t finds hot and hat, but not hit
-#   -'^': Represents any character not in the brackets 
-#       -- h[^oa]t finds hit, but not hot and hat
-#   -'-': Represents any single character within the specified range 
-#       -- c[a-b]t finds cat and cbt
-##############################################################
-# ========================== IN() ========================== #
-# Comprueba que la variable se encuentre dentro de un conjunto
-# dado de elementos.
-# Es lo mismo que decir var == 1 AND var == 2 AND ...
-##############################################################
-# ======================== BETWEEN ======================== #
-# Comprueba que la variable se encuentre dentro de un rango
-##############################################################
-SELECT * FROM table_name
-  WHERE condition1 OR condition2 AND NOT condition3 ...; 
-  
-SELECT DISTINCT  p.codigo_cliente as "Cliente"  FROM pago p
-  WHERE p.fecha_pago LIKE "2008%";
-  
-SELECT * FROM cliente
-  WHERE codigo_empleado_rep_ventas IN (11, 30, 23);
+-- Calcula el número de valores distintos de codigo_fabricante
+-- que aparecen en la tabla productos.
+-- Tiene que llevar un alias en este caso.
+SELECT COUNT(*) as "Nº de Fabricantes"
+  FROM ( SELECT DISTINCT p.codigo_fabricante FROM producto p ) c;
 
-SELECT p.nombre FROM producto p
-  WHERE p.precio BETWEEN 60 AND 200;
+-- Cuenta el nº de productos fabricados por "Asus"
+-- Se podría hacer esto mismo con un INNER JOIN
+SELECT COUNT(codigo) as "Nº de productos de Asus" FROM producto
+  WHERE codigo_fabricante = 
+    ( SELECT codigo FROM fabricante WHERE nombre LIKE "Asus" );
+
+-- Muestra los productos con precio superior a la media
+SELECT p.nombre, p.precio, ROUND(p2.media, 2)
+  FROM producto p, (SELECT AVG(precio) as media from producto) p2
+  WHERE p.precio > p2.media;
+
+-- Devuelve los nombres de los fabricantes y el nº de productos que 
+-- tiene cada uno con un precio superior o igual a 220 €.
+SELECT f.nombre as "Fabricante", COALESCE(p1.numero, 0) as "Nº productos"
+  FROM fabricante f 
+  LEFT JOIN (SELECT COUNT(*) as numero, codigo_fabricante, precio
+              FROM producto WHERE precio >= 220
+              GROUP BY codigo_fabricante ) p1
+  ON f.codigo = p1.codigo_fabricante;
 ##############################################################
 
 
 
 
 
-##############################################################
-# ======================== ORDER BY ======================== #
-# Ordena en base a una columna dada de forma ASC o DESC.
-# Pueden concatenarse con una ','.
-# Por defecto ordena de forma ascendente.
-##############################################################
-SELECT p.nombre
-  FROM producto p
-  ORDER BY 1 ASC, p.precio DESC;
-##############################################################
-
-
-
-
-
-##############################################################
-# ======================== GROUP BY ======================== #
-# Agrupa los resultados según los valores de una columna dada.
-# Se suele usar junto con: 
-#   - COUNT(): cuenta el nº de ocurrencias
-#   - MAX(): muestra la ocurrencia más alta
-#   - MIN(): muestra la ocurrencia más baja
-#   - SUM(): suma todas las ocurrencias
-#   - AVG(): calcula la media de las ocurrencias
-##############################################################
-# ========================= HAVING ========================= #
-# El having es un where pero para la parte de agrupamientos.
-# Los aliases del select se pueden usar en el having ya que 
-# este se ejecuta después.
-##############################################################
-SELECT 
-  MAX(p.precio) as precioMax, p.codigo_fabricante 
-  FROM producto p 
-  
-  GROUP BY p.codigo_fabricante
-  HAVING precioMax > 200;
-##############################################################
-
-
-
-
-
-##############################################################
-# ========================= LIMIT ========================= #
-# Devuelve las x primeras filas de una consulta
-##############################################################
-# Devuelve 2 filas empezando por la 3ºra
-# Devuelve la fila cuatro y tres
-##############################################################
-SELECT * FROM fabricante f LIMIT 5;
-
-SELECT * FROM fabricante f LIMIT 3,2;
-##############################################################
-
-
-
-
-
+-- .%%%%%%...%%%%...%%%%%%..%%..%%.
+-- .....%%..%%..%%....%%....%%%.%%.
+-- .....%%..%%..%%....%%....%%.%%%.
+-- .%%..%%..%%..%%....%%....%%..%%.
+-- ..%%%%....%%%%...%%%%%%..%%..%%.
 ##############################################################
 # ========================== JOIN ========================== #
 # Realiza un producto cartesiano de las tablas incluídas y 
@@ -168,48 +109,168 @@ SELECT
 
 
 
+-- .%%..%%..%%..%%..%%%%%%...%%%%...%%..%%.
+-- .%%..%%..%%%.%%....%%....%%..%%..%%%.%%.
+-- .%%..%%..%%.%%%....%%....%%..%%..%%.%%%.
+-- .%%..%%..%%..%%....%%....%%..%%..%%..%%.
+-- ..%%%%...%%..%%..%%%%%%...%%%%...%%..%%.
 ##############################################################
-# ========================= SELECT ========================= #
-# Permite hacer consultas, hay mil ejemplos en este documento.
+# ========================= UNION ========================= #
+# Permite unir los resultados de dos o más consultas SELECT.
 ##############################################################
-# Podemos realizar un select dentro de casi cualquier sitio 
-# para realizar una subconsulta dentro de otra consulta.
+# Tiene un par de requisitos:
+#   - las dos consultas tienen que tener el mismo nº de columnas
+#   - las columnas tienen que tener un tipo de datos similar
+#   - las columnas tienen que estar en el mismo orden
+##############################################################
+-- Devuelve los clientes y comerciales que no tienen ningún
+-- producto relacionado.
+SELECT cliente.nombre, "Cliente" as "Tipo" FROM cliente
+  LEFT JOIN pedido ON pedido.id_cliente = cliente.id
+  WHERE pedido.id IS NULL
+UNION
+SELECT comercial.nombre, "Comercial" as "Tipo"  FROM comercial
+  LEFT JOIN pedido p1 ON p1.id_comercial = comercial.id
+  WHERE p1.id IS NULL
+ORDER BY 1;
+##############################################################
+
+
+
+
+
+-- .%%...%%..%%..%%..%%%%%%..%%%%%...%%%%%%.
+-- .%%...%%..%%..%%..%%......%%..%%..%%.....
+-- .%%.%.%%..%%%%%%..%%%%....%%%%%...%%%%...
+-- .%%%%%%%..%%..%%..%%......%%..%%..%%.....
+-- ..%%.%%...%%..%%..%%%%%%..%%..%%..%%%%%%.
+##############################################################
+# ========================= WHERE ========================= #
+# Permite marcar condiciones que deben cumplir los resultados
+# de la consulta.
 #
-# Se pueden hacer mil mierdas con esto y es una locura, por 
-# ahora nos faltan cosas por ver.
-#
-# Una subconsulta dentro de un FROM tiene que llevar un alias,
-# si se realiza en otro lugar no tiene porqué llevarlo.
+# Disponemos de varios modificadores:
 ##############################################################
--- Calcula el número de valores distintos de codigo_fabricante
--- que aparecen en la tabla productos.
--- Tiene que llevar un alias en este caso.
-SELECT COUNT(*) as "Nº de Fabricantes"
-  FROM ( SELECT DISTINCT p.codigo_fabricante FROM producto p ) c;
+#   -'=':
+#   -'<>': differente
+#   -'<=':
+#   -'>=':
+#   -'<':
+#   -'>':
+##############################################################
+#   - AND:
+#   - OR:
+#   - NOT:
+##############################################################
+# ==================== LIKE // NOT LIKE ==================== #
+# Similar a los comparadores '=' y '<>' y casi siempre hacen 
+# lo mismo.
+# Permite búsqueda de patrones con wildcards
+##############################################################
+# ======================= WILDCARDS ======================= #
+#   -'%': Represents zero or more characters  
+#       -- bl% finds bl, black, blue, and blob
+#   -'_': Represents a single character 
+#       -- h_t finds hot, hat, and hit
+#   -'[]': Represents any single character within the brackets 
+#       -- h[oa]t finds hot and hat, but not hit
+#   -'^': Represents any character not in the brackets 
+#       -- h[^oa]t finds hit, but not hot and hat
+#   -'-': Represents any single character within the specified range 
+#       -- c[a-b]t finds cat and cbt
+##############################################################
+# ========================== IN() ========================== #
+# Comprueba que la variable se encuentre dentro de un conjunto
+# dado de elementos.
+# Es lo mismo que decir var == 1 AND var == 2 AND ...
+##############################################################
+# ==================== BETWEEN . AND . ==================== #
+# Comprueba que la variable se encuentre dentro de un rango
+##############################################################
+SELECT * FROM table_name
+  WHERE condition1 OR condition2 AND NOT condition3 ...; 
+  
+SELECT DISTINCT  p.codigo_cliente as "Cliente"  FROM pago p
+  WHERE p.fecha_pago LIKE "2008%";
+  
+SELECT * FROM cliente
+  WHERE codigo_empleado_rep_ventas IN (11, 30, 23);
 
--- Cuenta el nº de productos fabricados por "Asus"
--- Se podría hacer esto mismo con un INNER JOIN
-SELECT COUNT(codigo) as "Nº de productos de Asus" FROM producto
-  WHERE codigo_fabricante = 
-    ( SELECT codigo FROM fabricante WHERE nombre LIKE "Asus" );
+SELECT p.nombre FROM producto p
+  WHERE p.precio BETWEEN 60 AND 200;
+##############################################################
 
--- Muestra los productos con precio superior a la media
-SELECT p.nombre, p.precio, ROUND(p2.media, 2)
-  FROM producto p, (SELECT AVG(precio) as media from producto) p2
-  WHERE p.precio > p2.media;
 
-  # 27. Devuelve un listado con los nombres de los fabricantes y el número de productos que tiene cada uno con un precio superior o igual a 220 €. El listado debe mostrar el nombre de todos los fabricantes, es decir, si hay algún fabricante que no tiene productos con un precio superior o igual a 220€ deberá aparecer en el listado con un valor igual a 0 en el número de productos.
-SELECT f.nombre as "Fabricante",  p1.numero as "Nº productos"
-FROM fabricante f, 
-    (SELECT 
-      COUNT(codigo) as numero, 
-      codigo_fabricante,
-      precio
-      FROM producto 
-      WHERE precio >= 220
-      GROUP BY codigo_fabricante
-    ) p1
-  WHERE f.codigo = p1.codigo_fabricante;
+
+
+
+-- ..%%%%...%%%%%...%%%%%...%%%%%%..%%%%%...........%%%%%...%%..%%.
+-- .%%..%%..%%..%%..%%..%%..%%......%%..%%..........%%..%%...%%%%..
+-- .%%..%%..%%%%%...%%..%%..%%%%....%%%%%...........%%%%%.....%%...
+-- .%%..%%..%%..%%..%%..%%..%%......%%..%%..........%%..%%....%%...
+-- ..%%%%...%%..%%..%%%%%...%%%%%%..%%..%%..........%%%%%.....%%...
+##############################################################
+# ======================== ORDER BY ======================== #
+# Ordena en base a una columna dada de forma ASC o DESC.
+# Pueden concatenarse con una ','.
+# Por defecto ordena de forma ascendente.
+##############################################################
+SELECT p.nombre
+  FROM producto p
+  ORDER BY 1 ASC, p.precio DESC;
+##############################################################
+
+
+
+
+
+-- ..%%%%...%%%%%....%%%%...%%..%%..%%%%%...........%%%%%...%%..%%.
+-- .%%......%%..%%..%%..%%..%%..%%..%%..%%..........%%..%%...%%%%..
+-- .%%.%%%..%%%%%...%%..%%..%%..%%..%%%%%...........%%%%%.....%%...
+-- .%%..%%..%%..%%..%%..%%..%%..%%..%%..............%%..%%....%%...
+-- ..%%%%...%%..%%...%%%%....%%%%...%%..............%%%%%.....%%...
+##############################################################
+# ======================== GROUP BY ======================== #
+# Agrupa los resultados según los valores de una columna dada.
+# Se suele usar junto con: 
+#   - COUNT(): cuenta el nº de ocurrencias
+#   - MAX(): muestra la ocurrencia más alta
+#   - MIN(): muestra la ocurrencia más baja
+#   - SUM(): suma todas las ocurrencias
+#   - AVG(): calcula la media de las ocurrencias
+##############################################################
+# ========================= HAVING ========================= #
+# El having es un where pero para la parte de agrupamientos.
+# Los aliases del select se pueden usar en el having ya que 
+# este se ejecuta después.
+##############################################################
+SELECT 
+  MAX(p.precio) as precioMax, p.codigo_fabricante 
+  FROM producto p 
+  
+  GROUP BY p.codigo_fabricante
+  HAVING precioMax > 200;
+##############################################################
+
+
+
+
+
+-- .%%......%%%%%%..%%...%%..%%%%%%..%%%%%%.
+-- .%%........%%....%%%.%%%....%%......%%...
+-- .%%........%%....%%.%.%%....%%......%%...
+-- .%%........%%....%%...%%....%%......%%...
+-- .%%%%%%..%%%%%%..%%...%%..%%%%%%....%%...
+##############################################################
+# ========================= LIMIT ========================= #
+# Devuelve las x primeras filas de una consulta
+##############################################################
+# Devuelve 2 filas empezando por la 3ºra
+# Devuelve la fila cuatro y tres
+##############################################################
+SELECT * FROM fabricante f LIMIT 5;
+
+SELECT * FROM fabricante f LIMIT 3,2;
 ##############################################################
 
 
