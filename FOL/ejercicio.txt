@@ -1,0 +1,15 @@
+Construcciones SA, tiene una plantilla de 260 trabajadores y un riesgo elevado de caídas, atrapamientos etc..
+Clasifica los riesgos en función de la probabilidad-gravedad y eliga una variante para aplicar la prevención.
+
+Riesgos Físicos:
+	- caida +++
+	- atrapamiento +++
+	- ruido y vibracion +++
+	- ergonomicos +++
+	- mal uso del equipo / distracciones +++
+	- incendio +
+Riesgos psicosociales:
+	- bulling -
+	- quemado +
+
+Recomendaría una prevención por servicio propio por el tamaño de la empresa.
