@@ -29,7 +29,7 @@ main {
   flex-direction: column;
 }
 
-.child-flex-1>* {
+.child-flex-1 > * {
   flex: 1;
 }
 
@@ -98,7 +98,7 @@ form section {
   margin-top: 2%;
 }
 
-input[type=submit] {
+input[type="submit"] {
   padding: 2%;
   background: rgb(235, 195, 18);
   border: 0 none;
@@ -114,14 +114,19 @@ fieldset {
 
 main aside {
   height: 100%;
+  flex: 1;
 }
 
 main aside img:first-of-type {
-  max-height: 50px;
+  max-height: 100px;
 }
 
-main aside img {
-  max-height: 100px;
+main aside img:nth-child(2n) {
+  max-height: 150px;
+}
+
+main aside img:nth-child(3n) {
+  max-height: 250px;
 }
 
 img {
@@ -129,8 +134,11 @@ img {
   max-height: 200px;
   max-width: 100%;
 }
+footer h2{
+  text-align: center;
+}
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   body,
   #content {
     border: none;
@@ -159,5 +167,21 @@ img {
   input {
     min-height: 30px;
     margin-bottom: 1%;
+  }
+  .rey-mago {
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+  }
+  .black-border-mobile{
+    border: solid black 2px;
+    padding: 5px;
+  }
+  .hora-dormir{
+    padding-left: 10px;
+    color: #444;
+  }
+  .hora-dormir p{
+    text-align: start;
   }
 }

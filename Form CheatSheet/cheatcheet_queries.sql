@@ -49,6 +49,14 @@ SELECT f.nombre as "Fabricante", COALESCE(p1.numero, 0) as "Nº productos"
               FROM producto WHERE precio >= 220
               GROUP BY codigo_fabricante ) p1
   ON f.codigo = p1.codigo_fabricante;
+
+-- El nombre de los clientes que no hayan realizado pagos y el nombre
+-- de sus representantes de ventas.
+SELECT cl1.nombre_cliente, e.nombre FROM cliente cl1
+  INNER JOIN empleado e ON cl1.codigo_empleado_rep_ventas = e.codigo_empleado
+  WHERE cl1.codigo_cliente NOT IN (
+    SELECT DISTINCT cl.codigo_cliente FROM cliente cl
+    INNER JOIN pago p on cl.codigo_cliente = p.codigo_cliente);
 ##############################################################
 
 
@@ -75,7 +83,7 @@ SELECT f.nombre as "Fabricante", COALESCE(p1.numero, 0) as "Nº productos"
 #  - RIGHT JOIN: 2da tabla y la intersección de las dos
 #       -- Returns all records from the right table, and the 
 #       -- matched records from the left table
-#  - FULL OUTER JOIN: A∪B es la unión de las dos tablas
+#  - FULL OUTER JOIN: AUB es la unión de las dos tablas
 #       -- Returns all records when there is a match in either 
 #       -- left or right table
 ##############################################################

@@ -18,7 +18,7 @@
   <main class="row h-center v-end">
     <div id="content">
       <form name="form_reyesmagos" action="form.php" method="post">
-        <section class="column child-flex-1">
+        <section class="row child-flex-1">
           <div></div>
           <div class="row space-around v-center">
             <input type="checkbox" name="condiciones" id="condiciones" value="ACEPTADAS">
@@ -27,16 +27,17 @@
             <input type="submit" value="Enviar">
           </div>
 
-          <div class="row h-center mobile">
-            <img src="img/LosTresReyesMagos.jpg" alt="">
-          </div>
+        </section>
+        
+        <section class="row h-center mobile">
+          <img src="img/LosTresReyesMagos.jpg" alt="">
         </section>
 
         <section class="row child-flex-1 v-top">
           <div class="flex h-center"><img src="img/Melchor.jpg" alt=""></div>
           <div class="column">
-            <label for="melchor">Para Melchor</label>
-            <input id="melchor" name="melchor" type="text">
+            <label for="melchor" class="rey-mago">Para Melchor</label>
+            <input class="black-border-mobile" id="melchor" name="melchor" type="text">
 
             <label for="observaciones">Observaciones (máximo 100 caracteres)</label>
             <p>Campo Opcional</p>
@@ -47,8 +48,8 @@
         <section class="row child-flex-1 v-top">
           <div class="flex h-center"><img src="img/gaspar.jpg" alt=""></div>
           <div class="column">
-            <label for="gaspar">Para Gaspar</label>
-            <input id="gaspar" name="gaspar" type="text">
+            <label for="gaspar" class="rey-mago">Para Gaspar</label>
+            <input class="black-border-mobile" id="gaspar" name="gaspar" type="text">
 
             <fieldset class="m-row">
               <legend>Cheque Regalo</legend>
@@ -65,10 +66,10 @@
         <section class="row child-flex-1 v-top">
           <div class="flex h-center"><img src="img/baltasar.jpg" alt=""></div>
           <div class="column">
-            <label for="baltasar">Para Baltasar</label>
-            <input id="baltasar" name="baltasar" type="text">
+            <label for="baltasar" class="rey-mago">Para Baltasar</label>
+            <input class="black-border-mobile" id="baltasar" name="baltasar" type="text">
 
-            <fieldset>
+            <fieldset class="hora-dormir">
               <legend>¿A que hora te acuestas el día 5 de enero?</legend>
 
               <p>
@@ -85,10 +86,12 @@
       </form>
     </div>
 
-    <aside class="column v-center">
-      <img src="img/sobre.jpg" alt="">
-      <img src="img/sobre.jpg" alt="">
-      <img src="img/buzón.jpg" alt="">
+    <aside>
+      <div class="column v-center">
+        <img src="img/sobre.jpg" alt="">
+        <img src="img/sobre.jpg" alt="">
+        <img src="img/buzón.jpg" alt="">
+     </div>
     </aside>
   </main>
 
