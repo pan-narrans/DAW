@@ -173,3 +173,32 @@ SELECT
 # 16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y cuyo representante de ventas tenga el código de empleado 11 o 30.
 SELECT * FROM cliente
   WHERE codigo_empleado_rep_ventas IN (11, 30);
+
+
+
+
+
+###################################################################################################################
+###################################################################################################################
+###################################################################################################################
+
+-- 6. Lista la dirección de las oficinas que tengan clientes en Fuenlabrada.
+SELECT DISTINCT CONCAT_WS(" ", ofi.linea_direccion1, ofi.linea_direccion2, " - ", ofi.ciudad) as "Dirección" 
+  FROM oficina ofi 
+  INNER JOIN empleado e ON e.codigo_oficina = ofi.codigo_oficina
+  INNER JOIN cliente cli ON cli.codigo_empleado_rep_ventas = e.codigo_empleado
+  WHERE UPPER(cli.ciudad) LIKE "FUENLABRADA" OR UPPER(cli.linea_direccion2) LIKE "FUENLABRADA";
+
+-- 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+SELECT DISTINCT cli.nombre_cliente, e.nombre, ofi.ciudad
+  FROM cliente cli
+  INNER JOIN empleado e ON e.codigo_empleado = cli.codigo_empleado_rep_ventas
+  INNER JOIN oficina ofi ON ofi.codigo_oficina = e.codigo_oficina
+
+-- 10. Devuelve un listado de las diferentes gamas de producto que ha comprado cada cliente.
+SELECT DISTINCT cli.nombre_cliente, g.gama
+  FROM cliente cli
+  INNER JOIN pedido ped ON ped.codigo_cliente = cli.codigo_cliente
+  INNER JOIN detalle_pedido det ON det.codigo_pedido = ped.codigo_pedido
+  INNER JOIN producto prod ON prod.codigo_producto = det.codigo_producto
+  INNER JOIN gama_producto g ON g.gama = prod.gama 

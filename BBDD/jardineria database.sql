@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS jardineria;
-CREATE DATABASE jardineria CHARACTER SET utf8mb4;
-USE jardineria;
+DROP DATABASE IF EXISTS daw_jardineria;
+CREATE DATABASE daw_jardineria CHARACTER SET utf8mb4;
+USE daw_jardineria;
 
 CREATE TABLE oficina (
   codigo_oficina VARCHAR(10) NOT NULL,
