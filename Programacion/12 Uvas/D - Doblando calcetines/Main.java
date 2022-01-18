@@ -8,7 +8,7 @@ public class Main {
     int n;
     n = in.nextInt();
 
-    if (!in.hasNext()) // Exit condition
+    if (n == 0) // Exit condition
       return false;
 
     int calcetin, max_desparejados = 1;
