@@ -1,7 +1,9 @@
 package es.infantaelena;
 
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
+// why use this with array of anything other than primitive types?
 import java.util.Arrays;
+// import java.util.Random;
 import java.util.Scanner;
 
 public class TresEnRaya {
@@ -27,7 +29,7 @@ public class TresEnRaya {
     int movimientos;
 
     // Matriz para la partida de tres en raya
-    char tablero[][];
+    public char tablero[][];
 
     // Matriz ordenada para almacenar los records,
     // la primera columna para el nombre
@@ -44,15 +46,20 @@ public class TresEnRaya {
      */
     public TresEnRaya() {
         records = creaRecords();
+        tablero = creaTablero(TAM_TABLERO);
     }
 
     /**
-     * TODO imprime tablero
+     * TODO imprimir el tablero con más gracia
+     * 
+     * Prints the game board
      * 
      * @param tablero
      */
     public void imprimirTablero(char[][] tablero) {
-
+        for (int i = 0; i < tablero.length; i++) {
+            System.out.println(Arrays.toString(tablero[i]));
+        }
     }
 
     /**
@@ -66,7 +73,7 @@ public class TresEnRaya {
         String[][] array = new String[NUM_RECORDS][2];
         String puntos = Integer.toString(TAM_TABLERO * TAM_TABLERO);
 
-        // Rellenar el array
+        // Fill the array with placeholder values
         for (int i = 0; i < NUM_RECORDS; i++) {
             array[i][0] = "PC";
             array[i][1] = puntos;
@@ -76,35 +83,53 @@ public class TresEnRaya {
     }
 
     /**
-     * TODO Función devuelve un tablero de juego vacio
+     * Initializes the board for a new game
      * 
-     * @param tam tamaÃ±o del tablero
-     * @return tablero para la partida
+     * @param tam size of the board
+     * @return empty board matrix
      */
     public char[][] creaTablero(int tam) {
-        return new char[][] { { ' ' }, { ' ' } };
+        char[][] array = new char[tam][tam];
+
+        // Fill the array with placeholder values
+        for (int i = 0; i < array.length; i++) {
+            Arrays.fill(array[i], VACIA);
+        }
+
+        return array;
     }
 
     /**
-     * TODO Función que devuelve sin una jugada es válida y no
-     * está ocupada
+     * Checks if a move made by a player is valid or not.
      * 
+     * @param tableroJuego board to check
+     * @param fila         row of the board
+     * @param col          column of the board
+     * @return Returns true if the move is valid, false if not.
      */
     public boolean esJugadaValida(int fila, int col, char[][] tableroJuego) {
-        return false;
+        // Check valid row number
+        if (fila < 0 || fila > tableroJuego.length)
+            return false;
 
+        // Check valid column number
+        if (col < 0 || col > tableroJuego[0].length)
+            return false;
+
+        // Check for empty cell
+        return esPosicionVacia(tableroJuego, fila, col);
     }
 
     /**
-     * TODO Devuelve si está ocupada una posición del tablero
+     * Checks if a board cell is occupied or not.
      * 
-     * @param tableroJuego
-     * @param fila
-     * @param col
-     * @return Devuelve true si es válida, false en caso contrario
+     * @param tableroJuego board to check
+     * @param fila         row of the board
+     * @param col          column of the board
+     * @return Returns true if occupied, false if not.
      */
     public boolean esPosicionVacia(char[][] tableroJuego, int fila, int col) {
-        return false;
+        return (tableroJuego[fila][col] == VACIA) ? true : false;
     }
 
     /**
@@ -116,9 +141,8 @@ public class TresEnRaya {
     }
 
     /**
-     * TODO Función que para un jugador PC para que
-     * de forma aleatoria o con algún tipo de estrategia
-     * realiza una jugada en el tablero
+     * TODO Función que realiza la jugada para un jugador PC
+     * (de forma aleatoria o con algún tipo de estrategia)
      * Genera como salida el jugador que juega y que fila y columna elige
      */
     public void pedirJugadaPC() {
@@ -179,13 +203,17 @@ public class TresEnRaya {
     }
 
     /**
-     * TODO función que devuelve si se ha producido un nuevo record
+     * Devuelve si se ha producido un nuevo record
      * 
      * @param records
      * @param movimientos
-     * @return Devuelve true si es un nuevo record, false en caso contrario
+     * @return Returns true if its a new high score, false if not
      */
     public boolean esNuevoRecord(String[][] records, int movimientos) {
+        for (int i = 0; i < records.length; i++) {
+            if (movimientos <= Integer.valueOf(records[i][1]))
+                return true;
+        }
         return false;
     }
 
@@ -205,7 +233,8 @@ public class TresEnRaya {
             position++;
         }
 
-        // Shift all items one position starting in the selected position
+        // Shift all items one position from the bottom up,
+        // ending in the selected position
         for (int i = records.length - 1; i > position; i--) {
             records[i][0] = records[i - 1][0];
             records[i][1] = records[i - 1][1];
@@ -215,16 +244,16 @@ public class TresEnRaya {
         records[position][0] = nombre;
         records[position][1] = Integer.toString(movimientos);
 
-        return new String[][] { { "" }, { "" } };
+        return records;
     }
 
     /**
-     * TODO Función que genera un turno aleatorio entre 0 y 1
+     * Genera un turno pseudo-aleatorio entre 0 y 1
      * 
-     * @return Número aletorio entre 0 y 1
+     * @return Número pseudo-aleatorio entre 0 y 1
      */
     private int sortearTurno() {
-        return 0;
+        return (int) (Math.random() * 2);
     }
 
     /**
