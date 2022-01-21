@@ -4,9 +4,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		TresEnRaya t = new TresEnRaya();
-		// t.menuJuego();
+		t.menuJuego();
 
-		 probarRecords(t);
+		// probarRecords(t);
 		// probarTablero(t);
 
 	}
@@ -36,7 +36,17 @@ public class Main {
 
 		System.out.println("[1,0] " + ((t.esPosicionVacia(t.tablero, 1, 0)) ? "" : "no ") + "está vacía.");
 		System.out.println("[2,1] " + ((t.esPosicionVacia(t.tablero, 2, 1)) ? "" : "no ") + "está vacía.");
+	}
 
+	static void probarJugada(TresEnRaya t) {
+		System.out.println("\nPROBAR MÉTODOS TABLERO");
+
+		t.tablero[1][0] = 'X';
+
+		t.imprimirTablero(t.tablero);
+
+		System.out.println("[1,0] " + ((t.esPosicionVacia(t.tablero, 1, 0)) ? "" : "no ") + "está vacía.");
+		System.out.println("[2,1] " + ((t.esPosicionVacia(t.tablero, 2, 1)) ? "" : "no ") + "está vacía.");
 	}
 
 }
@@ -47,3 +57,5 @@ public class Main {
  */
 
 // TODO: guardar records entre partidas
+
+// TODO: estandarizan los separadores gráficos

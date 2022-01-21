@@ -22,11 +22,14 @@ public class TresEnRaya {
 
     static Scanner sc = new Scanner(System.in);
 
-    // Variable para indicar los turnos 0, primer jugador, 1 segundo jugador
+    // Variable para indicar los turnos 0 primer jugador, 1 segundo jugador
     int turno;
 
     // Variable para guardar el número de movimientos de la partida actual
     int movimientos;
+
+    // Nº max de movimientos de una partida -> TAM_TABLERO * TAM_TABLERO
+    int maxMovimientos = TAM_TABLERO * TAM_TABLERO;
 
     // Matriz para la partida de tres en raya
     public char tablero[][];
@@ -46,7 +49,6 @@ public class TresEnRaya {
      */
     public TresEnRaya() {
         records = creaRecords();
-        tablero = creaTablero(TAM_TABLERO);
     }
 
     /**
@@ -57,9 +59,13 @@ public class TresEnRaya {
      * @param tablero
      */
     public void imprimirTablero(char[][] tablero) {
+        System.out.println("");
+
         for (int i = 0; i < tablero.length; i++) {
             System.out.println(Arrays.toString(tablero[i]));
         }
+
+        System.out.println("");
     }
 
     /**
@@ -71,7 +77,7 @@ public class TresEnRaya {
     //
     public String[][] creaRecords() {
         String[][] array = new String[NUM_RECORDS][2];
-        String puntos = Integer.toString(TAM_TABLERO * TAM_TABLERO);
+        String puntos = Integer.toString(maxMovimientos);
 
         // Fill the array with placeholder values
         for (int i = 0; i < NUM_RECORDS; i++) {
@@ -133,34 +139,75 @@ public class TresEnRaya {
     }
 
     /**
-     * TODO Función para llamar a pedirJugadaHumano o pedirJugadaPC
+     * Función para llamar a pedirJugadaHumano o pedirJugadaPC
      * según el tipo de jugador del jugador al que le toca
      */
     public void pedirJugada() {
-
+        if (jugadores[turno] == TipoJugador.HUMANO)
+            pedirJugadaHumano();
+        else
+            pedirJugadaPC();
     }
 
     /**
-     * TODO Función que realiza la jugada para un jugador PC
+     * Función que realiza la jugada para un jugador PC
      * (de forma aleatoria o con algún tipo de estrategia)
      * Genera como salida el jugador que juega y que fila y columna elige
      */
     public void pedirJugadaPC() {
+        int fila, columna;
+        boolean jugadaValida;
+
+        do {
+            // Chooses row and column
+            fila = (int) (Math.random() * TAM_TABLERO);
+            columna = (int) (Math.random() * TAM_TABLERO);
+
+            // Checks if play is valid
+            jugadaValida = esJugadaValida(fila, columna, tablero);
+        } while (!jugadaValida);
+
+        tablero[fila][columna] = (turno == 0) ? JUG_1 : JUG_2;
 
     }
 
     /**
-     * TODO Función que muestra de que jugador humano es el turno
-     * pide al jugador humano una fila o columna
-     * si la fila y/o columna no es válida volverá a pedirla
+     * TODO: pedir jugada empezando en 0 o en 1
+     * 
+     * Shows which player's turn it is and aks them some coordinates to place their
+     * token in the board.
+     * If the coordinates are not valid, it'll ask again until they are.
      */
     public void pedirJugadaHumano() {
+        int fila, columna;
+        boolean jugadaValida;
 
+        System.out.println("Turno del Jugador " + (turno + 1));
+
+        do {
+            // Querries the row
+            System.out.println("Introduce la fila:");
+            fila = sc.nextInt() - 1;
+
+            // Querries the column
+            System.out.println("Introduce la columna:");
+            columna = sc.nextInt() - 1;
+
+            jugadaValida = esJugadaValida(fila, columna, tablero);
+            if (!jugadaValida) {
+                System.out.println("La jugada introducida no es válida.");
+                System.out.println("Introduce otra jugada Jugador " + (turno + 1) + ":");
+                System.out.println("---------------------");
+                imprimirTablero(tablero);
+            }
+        } while (!jugadaValida);
+
+        tablero[fila][columna] = (turno == 0) ? JUG_1 : JUG_2;
     }
 
     /**
+     * TODO: ejecutar el menu en bucle
      * Función que imprime las opciones del menú del juego
-     * 
      */
     public void menuJuego() {
 
@@ -172,17 +219,28 @@ public class TresEnRaya {
 
         switch (sc.nextInt()) {
             case 1:
+                jugadores[0] = TipoJugador.HUMANO;
+                jugadores[1] = TipoJugador.HUMANO;
+                jugar();
                 break;
             case 2:
+                jugadores[0] = TipoJugador.HUMANO;
+                jugadores[1] = TipoJugador.PC;
+                jugar();
                 break;
             case 3:
+                jugadores[0] = TipoJugador.PC;
+                jugadores[1] = TipoJugador.PC;
+                jugar();
                 break;
             case 4:
                 imprimirRecords(records);
                 break;
             case 5:
 
+                break;
             default:
+                System.out.println("Esta opción no está recogida.");
                 break;
         }
 
@@ -266,6 +324,25 @@ public class TresEnRaya {
      * 
      */
     public void jugar() {
+        // Initialize variables
+        int ganador = -1;
+        movimientos = 0;
+        turno = sortearTurno();
+        tablero = creaTablero(TAM_TABLERO);
+
+        imprimirTablero(tablero);
+
+        do {
+            pedirJugada();
+            imprimirTablero(tablero);
+            turno = (turno == 0) ? 1 : 0;
+
+            ganador = comprobarVictoria(tablero);
+            partidaTerminada = (ganador == -1) ? false : true;
+
+        } while (!partidaTerminada);
+
+        System.out.println("ha ganado el jugador " + ganador);
 
     }
 
@@ -281,7 +358,51 @@ public class TresEnRaya {
      */
     public int comprobarVictoria(char[][] tablero) {
 
-        return 0;
+        int oneCounterH, twoCounterH;
+        int oneCounterV, twoCounterV;
+
+        for (int i = 0; i < tablero.length; i++) {
+            // Reiniciar variables
+            oneCounterH = 0;
+            twoCounterH = 0;
+            oneCounterV = 0;
+            twoCounterV = 0;
+
+            for (int j = 0; j < tablero.length; j++) {
+
+                // Check horizontals
+                if (tablero[i][j] == JUG_1)
+                    oneCounterH++;
+                else if (tablero[i][j] == JUG_2)
+                    twoCounterH++;
+
+                // Check verticals
+                if (tablero[j][i] == JUG_1)
+                    oneCounterV++;
+                else if (tablero[j][i] == JUG_2)
+                    twoCounterV++;
+
+                // Return winners if found to avoid further checking
+                if (oneCounterV > 2 || oneCounterH > 2)
+                    return 0;
+                if (twoCounterV > 2 || twoCounterH > 2)
+                    return 1;
+
+                // esta funcion se ejecuta una vez por turno, si encontramos un ganador sera el
+                // ultimo que ha puesto ficha
+                // repensar la logica de la comprobacion en base a eso
+                if (oneCounterV > 2 || oneCounterH > 2 || twoCounterV > 2 || twoCounterH > 2)
+                    return turno;
+            }
+        }
+
+        // Check diagonals
+
+        // Partida no acabada
+        if (++movimientos < maxMovimientos)
+            return -1;
+
+        return 2;
 
     }
 
