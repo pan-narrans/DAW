@@ -16,6 +16,7 @@ public class TresEnRaya {
     static final char JUG_1 = 'X';
     static final char JUG_2 = 'O';
     static final char VACIA = '-';
+    static final char[] JUGADAS = { JUG_1, JUG_2 };
 
     final int TAM_TABLERO = 3;
     final int NUM_RECORDS = 3;
@@ -61,8 +62,9 @@ public class TresEnRaya {
     public void imprimirTablero(char[][] tablero) {
         System.out.println("");
 
+        System.out.println("   0  1  2");
         for (int i = 0; i < tablero.length; i++) {
-            System.out.println(Arrays.toString(tablero[i]));
+            System.out.println(i + " " + Arrays.toString(tablero[i]));
         }
 
         System.out.println("");
@@ -115,11 +117,11 @@ public class TresEnRaya {
      */
     public boolean esJugadaValida(int fila, int col, char[][] tableroJuego) {
         // Check valid row number
-        if (fila < 0 || fila > tableroJuego.length)
+        if (fila < 0 || fila > tableroJuego.length - 1)
             return false;
 
         // Check valid column number
-        if (col < 0 || col > tableroJuego[0].length)
+        if (col < 0 || col > tableroJuego[0].length - 1)
             return false;
 
         // Check for empty cell
@@ -172,8 +174,6 @@ public class TresEnRaya {
     }
 
     /**
-     * TODO: pedir jugada empezando en 0 o en 1
-     * 
      * Shows which player's turn it is and aks them some coordinates to place their
      * token in the board.
      * If the coordinates are not valid, it'll ask again until they are.
@@ -185,20 +185,21 @@ public class TresEnRaya {
         System.out.println("Turno del Jugador " + (turno + 1));
 
         do {
+            imprimirTablero(tablero);
+
             // Querries the row
             System.out.println("Introduce la fila:");
-            fila = sc.nextInt() - 1;
+            fila = sc.nextInt();
 
             // Querries the column
             System.out.println("Introduce la columna:");
-            columna = sc.nextInt() - 1;
+            columna = sc.nextInt();
 
             jugadaValida = esJugadaValida(fila, columna, tablero);
             if (!jugadaValida) {
                 System.out.println("La jugada introducida no es válida.");
                 System.out.println("Introduce otra jugada Jugador " + (turno + 1) + ":");
                 System.out.println("---------------------");
-                imprimirTablero(tablero);
             }
         } while (!jugadaValida);
 
@@ -206,43 +207,51 @@ public class TresEnRaya {
     }
 
     /**
-     * TODO: ejecutar el menu en bucle
      * Función que imprime las opciones del menú del juego
      */
     public void menuJuego() {
 
-        System.out.println("1) Jugar humano vs humano");
-        System.out.println("2) Jugar humano vs PC");
-        System.out.println("3) Jugar PC vs PC");
-        System.out.println("4) Mostrar Records");
-        System.out.println("5) Salir");
+        // TODO: dar opcion a escoger tamaño tablero
+        // TODO: X en raya en función del tamaño del tablero
 
-        switch (sc.nextInt()) {
-            case 1:
-                jugadores[0] = TipoJugador.HUMANO;
-                jugadores[1] = TipoJugador.HUMANO;
-                jugar();
-                break;
-            case 2:
-                jugadores[0] = TipoJugador.HUMANO;
-                jugadores[1] = TipoJugador.PC;
-                jugar();
-                break;
-            case 3:
-                jugadores[0] = TipoJugador.PC;
-                jugadores[1] = TipoJugador.PC;
-                jugar();
-                break;
-            case 4:
-                imprimirRecords(records);
-                break;
-            case 5:
+        boolean continuePlaying = true;
 
-                break;
-            default:
-                System.out.println("Esta opción no está recogida.");
-                break;
-        }
+        do {
+
+            System.out.println("1) Jugar humano vs humano");
+            System.out.println("2) Jugar humano vs PC");
+            System.out.println("3) Jugar PC vs PC");
+            System.out.println("4) Mostrar Records");
+            System.out.println("5) Salir");
+
+            switch (sc.nextInt()) {
+                case 1:
+                    jugadores[0] = TipoJugador.HUMANO;
+                    jugadores[1] = TipoJugador.HUMANO;
+                    jugar();
+                    break;
+                case 2:
+                    jugadores[0] = TipoJugador.HUMANO;
+                    jugadores[1] = TipoJugador.PC;
+                    jugar();
+                    break;
+                case 3:
+                    jugadores[0] = TipoJugador.PC;
+                    jugadores[1] = TipoJugador.PC;
+                    jugar();
+                    break;
+                case 4:
+                    imprimirRecords(records);
+                    break;
+                case 5:
+                    continuePlaying = false;
+                    break;
+                default:
+                    System.out.println("Esta opción no está recogida.");
+                    break;
+            }
+
+        } while (continuePlaying);
 
     }
 
@@ -315,7 +324,7 @@ public class TresEnRaya {
     }
 
     /**
-     * TODO Función que implementa una partida entre jugadores
+     * Función que implementa una partida entre jugadores
      * ya sean humano y humano, humano y pc o humano y humano
      * no termina hasta que un jugador gane o se terminen los movimientos
      * indicará en la consola que jugador ha ganado o si ha sido un empate
@@ -326,29 +335,43 @@ public class TresEnRaya {
     public void jugar() {
         // Initialize variables
         int ganador = -1;
+        String nombre = "PC";
         movimientos = 0;
         turno = sortearTurno();
         tablero = creaTablero(TAM_TABLERO);
 
-        imprimirTablero(tablero);
-
         do {
+            // First things first, +1 moves
+            movimientos++;
+
+            // Call methods
             pedirJugada();
-            imprimirTablero(tablero);
-            turno = (turno == 0) ? 1 : 0;
-
             ganador = comprobarVictoria(tablero);
-            partidaTerminada = (ganador == -1) ? false : true;
 
+            // Update variables
+            turno = (turno == 0) ? 1 : 0;
+            partidaTerminada = (ganador == -1) ? false : true;
         } while (!partidaTerminada);
 
-        System.out.println("ha ganado el jugador " + ganador);
+        imprimirTablero(tablero);
+
+        // TODO: pedir nombre jugador para records
+
+        if (esNuevoRecord(records, movimientos)) {
+            nuevoRecord(records, nombre, movimientos);
+        }
+
+        if (ganador == 2)
+            System.out.println("¡Empate!");
+        else
+            System.out.println("ha ganado el jugador " + (ganador + 1));
 
     }
 
     /**
-     * TODO Función que indica si ha ganado un jugador, es un empate o todavía no ha
-     * terminado
+     * Función que indica si ha ganado un jugador, es un empate o todavía no ha
+     * terminado.
+     * 
      * 
      * @param tablero
      * @return -1 Si todavía no ha terminado
@@ -357,49 +380,125 @@ public class TresEnRaya {
      *         2 Si ha sido un empate
      */
     public int comprobarVictoria(char[][] tablero) {
+        /*
+         * As the function is called in at every turn, we only have to check the pieces
+         * for the current player. If a match of 3 is found, the winner is the current
+         * player.
+         */
 
-        int oneCounterH, twoCounterH;
-        int oneCounterV, twoCounterV;
+        int CounterH = 0, CounterV = 0;
 
+        // Check horizontals and verticals
         for (int i = 0; i < tablero.length; i++) {
             // Reiniciar variables
-            oneCounterH = 0;
-            twoCounterH = 0;
-            oneCounterV = 0;
-            twoCounterV = 0;
+            CounterH = 0;
+            CounterV = 0;
 
             for (int j = 0; j < tablero.length; j++) {
-
                 // Check horizontals
-                if (tablero[i][j] == JUG_1)
-                    oneCounterH++;
-                else if (tablero[i][j] == JUG_2)
-                    twoCounterH++;
+                if (tablero[i][j] == JUGADAS[turno])
+                    CounterH++;
 
                 // Check verticals
-                if (tablero[j][i] == JUG_1)
-                    oneCounterV++;
-                else if (tablero[j][i] == JUG_2)
-                    twoCounterV++;
+                if (tablero[j][i] == JUGADAS[turno])
+                    CounterV++;
 
-                // Return winners if found to avoid further checking
-                if (oneCounterV > 2 || oneCounterH > 2)
-                    return 0;
-                if (twoCounterV > 2 || twoCounterH > 2)
-                    return 1;
-
-                // esta funcion se ejecuta una vez por turno, si encontramos un ganador sera el
-                // ultimo que ha puesto ficha
-                // repensar la logica de la comprobacion en base a eso
-                if (oneCounterV > 2 || oneCounterH > 2 || twoCounterV > 2 || twoCounterH > 2)
+                // Return winner if found, and avoid diagonal calculation
+                if (CounterH > 2 || CounterV > 2)
                     return turno;
             }
         }
 
-        // Check diagonals
+        if (tablero.length == 3) {
+            // Check diagonals in 3x3 board
 
-        // Partida no acabada
-        if (++movimientos < maxMovimientos)
+            // Reiniciar variables
+            CounterH = 0;
+            CounterV = 0;
+
+            for (int i = 0; i < 3; i++) {
+                if (tablero[i][i] == JUGADAS[turno])
+                    CounterH++;
+                if (tablero[i][2 - i] == JUGADAS[turno])
+                    CounterV++;
+
+                // Return winner if found
+                if (CounterH > 2 || CounterV > 2)
+                    return turno;
+            }
+        } else {
+            // Check bigger diagonals or how I learned to stop worrying and trust the magic
+            // TODO: no comprobar las diagonales pequeñas
+
+            // - - - 0
+            // - - 0 -
+            // - 0 - -
+            // 0 - - -
+            for (int i = 0; i < tablero.length; i++) {
+                // Reiniciar variables
+                CounterH = 0;
+                CounterV = 0;
+
+                for (int j = 0; j <= i; j++) {
+                    if (tablero[i - j][j] == JUGADAS[turno])
+                        CounterH++;
+
+                    // Return winner if found
+                    if (CounterH > 2)
+                        return turno;
+                }
+            }
+            for (int i = tablero.length - 2; i > -1; i--) {
+                // Reiniciar variables
+                CounterH = 0;
+                CounterV = 0;
+
+                for (int j = 0; j <= i; j++) {
+                    if (tablero[i + j][tablero.length - 1 - j] == JUGADAS[turno])
+                        CounterH++;
+
+                    // Return winner if found
+                    if (CounterH > 2)
+                        return turno;
+                }
+            }
+
+            // 0 - - -
+            // - 0 - -
+            // - - 0 -
+            // - - - 0
+            for (int i = 0; i < tablero.length; i++) {
+                // Reiniciar variables
+                CounterH = 0;
+                CounterV = 0;
+
+                for (int j = 0; j <= i; j++) {
+                    if (tablero[i - j][tablero.length - 1 - j] == JUGADAS[turno])
+                        CounterV++;
+
+                    // Return winner if found
+                    if (CounterV > 2)
+                        return turno;
+                }
+            }
+            for (int i = tablero.length - 2; i > -1; i--) {
+                // Reiniciar variables
+                CounterH = 0;
+                CounterV = 0;
+
+                for (int j = 0; j <= i; j++) {
+                    if (tablero[tablero.length - 1 - j][i - j] == JUGADAS[turno])
+                        CounterV++;
+
+                    // Return winner if found
+                    if (CounterV > 2)
+                        return turno;
+                }
+            }
+        }
+
+        // Game still in progress
+        if (movimientos < maxMovimientos)
             return -1;
 
         return 2;
