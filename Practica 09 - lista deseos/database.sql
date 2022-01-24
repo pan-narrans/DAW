@@ -12,7 +12,7 @@ CREATE TABLE form(
   localidad VARCHAR(100) NOT NULL,
   provincia VARCHAR(100) NOT NULL,
 
-  deseos VARCHAR(1000) NOT NULL,
+  deseos TEXT NOT NULL,
   seguimiento BOOLEAN DEFAULT FALSE
 
 );

@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <main>
-    <aside>
-      <div>
+<body class="flex center">
+  <main class="row child-flex-1">
+    <aside class="row child-flex-1">
+      <div class="rotated-text">
         <p>Pedid que se os dará... o se intentará</p>
       </div>
       <div>
@@ -19,34 +19,72 @@
       </div>
     </aside>
 
-    <section>
-      <header>
+    <section style="flex:2">
+      <header class="flex center">
         <img src="img/cajonDeDeseos.png" alt="">
       </header>
 
-      <form action="">
+      <form action="form.php" class="column" method="post">
         <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellidos">
         <input type="text" id="direccion" name="direccion" placeholder="Dirección">
 
 
         <!-- faltan provincias -->
+        <select name="localidad" id="localidades_select">
+          <option value="">Localidad</option>
+          <option value="Alcala de Henares">Alcalá de Henares</option>
+          <option value="Alcobendas">Alcobendas</option>
+          <option value="Alcorcon">Alcorcón</option>
+          <option value="Aldea del Fresno">Aldea del Fresno</option>
+          <option value="Algete">Algete</option>
+          <option value="Alpedrete">Alpedrete</option>
+          <option value="Aranjuez">Aranjuez</option>
+          <option value="Arganda del Rey">Arganda del Rey</option>
+          <option value="Arroyomolinos">Arroyomolinos</option>
+          <option value="Batres">Batres</option>
+          <option value="Boadilla del Monte">Boadilla del Monte</option>
+          <option value="Brunete">Brunete</option>
+          <option value="Buitrago del Lozoya">Buitrago del Lozoya</option>
+        </select>
+
+        <!-- faltan localidades -->
         <select name="provincia" id="provincias_select">
+          <option value="">Provincia</option>
           <option value="Madrid">Madrid</option>
-          <option value="Cataluña">Cataluña</option>
-          <option value="Castilla la Mancha">Castilla la Mancha</option>
-          <option value="Castilla y León">Castilla y León</option>
-          <option value="Extremadura">Extremadura</option>
-          <option value="Galicia">Galicia</option>
-          <option value="Murcia">Murcia</option>
+          <option value="Alava">Álava</option>
+          <option value="Albacete">Albacete</option>
+          <option value="Alicante">Alicante</option>
+          <option value="Almeria">Almería</option>
+          <option value="Asturias">Asturias</option>
+          <option value="Avila">Ávila</option>
+          <option value="Badajoz">Badajoz</option>
+          <option value="Islas Baleares">Islas Baleares</option>
+          <option value="Barcelona">Barcelona</option>
+          <option value="Burgos">Burgos</option>
+          <option value="Caceres">Cáceres</option>
+          <option value="Cadiz">Cádiz</option>
+          <option value="Cantabria">Cantabria</option>
+          <option value="Castellon">Castellón</option>
+          <option value="Ceuta">Ceuta</option>
+          <option value="Ciudad Real">Ciudad Real</option>
+          <option value="Cordoba">Córdoba</option>
+          <option value="La Coruña">La Coruña</option>
+          <option value="Cuenca">Cuenca</option>
+          <option value="Gerona">Gerona</option>
+          <option value="Granada">Granada</option>
         </select>
 
 
-        <input type="textarea" id="deseos" name="deseos" placeholder="Deseos ... ">
+        <textarea rows="5" name="deseos" id="deseos" placeholder="Deseos ... "></textarea>
 
-        <input type="checkbox" id="seguimiento" name="seguimiento">
-        <label for="">Deseo realizar un seguimiento de mis deseos</label>
+        <fieldset>
+          <input type="checkbox" id="seguimiento" name="seguimiento" value="1">
+          <label for="">Deseo realizar un seguimiento de mis deseos</label>
+        </fieldset>
 
         <input type="email" id="email" name="email" placeholder="Correo electrónico">
+
+        <input type="submit" value="Enviar">
       </form>
     </section>
 

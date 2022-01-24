@@ -1,3 +1,145 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+:root {
+  --blue: rgb(57, 133, 196);
+}
+
+html,
+body{
+  min-height: 100vh;
+}
+
+/*
+
+ GENERIC CLASSES
+
+*/
+
+.flex,
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.child-flex-1>* {
+  flex: 1;
+}
+
+.v-center {
+  align-items: center;
+}
+
+.v-top {
+  align-items: flex-start;
+}
+
+.h-center {
+  justify-content: center;
+}
+
+.h-end {
+  justify-content: flex-end;
+}
+
+.center{
+  justify-content: center;
+  align-items: center;
+}
+
+.h-space-around {
+  justify-content: space-around;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.mobile {
+  display: none;
+}
+
+
+/*
+
+ PROPPER CSS FOR A PROPPER DOCUMENT
+
+*/
+
+main >* {  
+  margin: 0 2%;
+}
+
+.rotated-text{
+  transform: rotate(-90deg);
+}
+
+main section{
+  border-left: 50px solid black;
+  border-right: 50px solid black;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+}
+
+form{
+  padding: 10px 0px;
+}
+
+label{
+  color: grey;
+}
+
+input, select, textarea{
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid var(--blue);
+
+  font-size: 20px;
+  color: grey;
+}
+
+textarea{
+  resize: vertical;
+}
+
+input[type=email]{
+  padding: 5px;
+  border: 1px solid black;
+  
+  font-size:medium;
+}
+
+input[type=submit]{
+  padding: 15px 30px;
+  margin: auto;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size:large;
+  font-weight: bold;
+}
+
+fieldset{
+  border: none;
+}
+
+@media(max-width: 600px) {
+  .mobile{display: block;}
+}
+
 img {
   max-width: 100%;
 }
