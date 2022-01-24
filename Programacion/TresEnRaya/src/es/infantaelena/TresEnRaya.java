@@ -409,6 +409,7 @@ public class TresEnRaya {
             }
         }
 
+        // Check diagonals
         if (tablero.length == 3) {
             // Check diagonals in 3x3 board
 
@@ -430,68 +431,48 @@ public class TresEnRaya {
             // Check bigger diagonals or how I learned to stop worrying and trust the magic
             // TODO: no comprobar las diagonales pequeñas
 
-            // - - - 0
-            // - - 0 -
-            // - 0 - -
-            // 0 - - -
-            for (int i = 0; i < tablero.length; i++) {
+            // Check 1st half of the board
+            for (int i = 0 + 2; i < tablero.length; i++) {
                 // Reiniciar variables
                 CounterH = 0;
                 CounterV = 0;
 
                 for (int j = 0; j <= i; j++) {
+                    // - 0
+                    // 0 -
                     if (tablero[i - j][j] == JUGADAS[turno])
                         CounterH++;
 
-                    // Return winner if found
-                    if (CounterH > 2)
-                        return turno;
-                }
-            }
-            for (int i = tablero.length - 2; i > -1; i--) {
-                // Reiniciar variables
-                CounterH = 0;
-                CounterV = 0;
-
-                for (int j = 0; j <= i; j++) {
-                    if (tablero[i + j][tablero.length - 1 - j] == JUGADAS[turno])
-                        CounterH++;
-
-                    // Return winner if found
-                    if (CounterH > 2)
-                        return turno;
-                }
-            }
-
-            // 0 - - -
-            // - 0 - -
-            // - - 0 -
-            // - - - 0
-            for (int i = 0; i < tablero.length; i++) {
-                // Reiniciar variables
-                CounterH = 0;
-                CounterV = 0;
-
-                for (int j = 0; j <= i; j++) {
+                    // 0 -
+                    // - 0
                     if (tablero[i - j][tablero.length - 1 - j] == JUGADAS[turno])
                         CounterV++;
 
                     // Return winner if found
-                    if (CounterV > 2)
+                    if (CounterH > 2 || CounterV > 2)
                         return turno;
                 }
             }
-            for (int i = tablero.length - 2; i > -1; i--) {
+
+            // Check 2nd half of the board
+            for (int i = tablero.length - 2; i > -1 + 2; i--) {
                 // Reiniciar variables
                 CounterH = 0;
                 CounterV = 0;
 
                 for (int j = 0; j <= i; j++) {
+                    // - 0
+                    // 0 -
+                    if (tablero[i + j][tablero.length - 1 - j] == JUGADAS[turno])
+                        CounterH++;
+
+                    // 0 -
+                    // - 0
                     if (tablero[tablero.length - 1 - j][i - j] == JUGADAS[turno])
                         CounterV++;
 
                     // Return winner if found
-                    if (CounterV > 2)
+                    if (CounterH > 2 || CounterV > 2)
                         return turno;
                 }
             }

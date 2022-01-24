@@ -8,70 +8,14 @@ public class Main {
 
 		// probarRecords(t);
 		// probarTablero(t);
-		// probarDiagonalesV1(t);
-		// probarDiagonalesV2(t);
+		// probarDiagonales(t);
 	}
 
-	static void probarDiagonalesV1(TresEnRaya t) {
-
-		int tamaño = 5;
-
-		// Check diagonals
-		for (int i = 0; i < tamaño; i++) {
-			for (int j = 0; j < tamaño; j++) {
-				System.out.print("[" + i + "," + j + "]");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("");
-
-		// --0
-		// -0-
-		// 0--
-
-		// Check diagonals
-		for (int i = 0; i < tamaño; i++) {
-			for (int j = i; j > -1; j--) {
-				System.out.print("[" + (i - j) + "," + j + "]");
-			}
-			System.out.println("");
-		}
-
-		// Check diagonals
-		for (int i = tamaño - 1; i > 0; i--) {
-			for (int j = 0; j < tamaño - i; j++) {
-				System.out.print("[" + (i + j) + "," + (tamaño - 1 - j) + "]");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("");
-
-		// 0--
-		// -0-
-		// --0
-
-		// Check diagonals
-		for (int i = 0; i < tamaño; i++) {
-			for (int j = tamaño - 1; j > i; j--) {
-				System.out.print("[" + (i - j) + "," + j + "]");
-			}
-			System.out.println("");
-		}
-
-		// Check diagonals
-		for (int i = tamaño - 1; i > 0; i--) {
-			for (int j = 0; j < tamaño - i; j++) {
-				System.out.print("[" + (i + j) + "," + (tamaño - 1 - j) + "]");
-			}
-			System.out.println("");
-		}
-	}
-
-	static void probarDiagonalesV2(TresEnRaya t) {
+	static void probarDiagonales(TresEnRaya t) {
 
 		int tamaño = 2;
+		int rayas = (tamaño / 2) + 1;
+		int ajuste = rayas - 1;
 
 		// Check diagonals
 		for (int i = 0; i < tamaño; i++) {
@@ -82,20 +26,24 @@ public class Main {
 		}
 
 		System.out.println("");
+		System.out.println("Tamaño: " + tamaño);
+		System.out.println("Rayas:  " + rayas);
+		System.out.println("Ajuste: " + ajuste);
+		System.out.println("");
 
 		// --0
 		// -0-
 		// 0--
 
 		// Check diagonals
-		for (int i = 0; i < tamaño; i++) {
+		for (int i = ajuste; i < tamaño; i++) {
 			for (int j = 0; j <= i; j++) {
 				System.out.print("[" + (i - j) + "," + j + "]");
 			}
 			System.out.println("");
 		}
 		// Check diagonals
-		for (int i = tamaño - 2; i > -1; i--) {
+		for (int i = tamaño - 2; i > ajuste - 1; i--) {
 			for (int j = 0; j <= i; j++) {
 				System.out.print("[" + (tamaño - 1 - j) + "," + (tamaño - 1 - i + j) + "]");
 			}
@@ -107,14 +55,14 @@ public class Main {
 		// --0
 
 		// Check diagonals
-		for (int i = 0; i < tamaño; i++) {
+		for (int i = ajuste; i < tamaño; i++) {
 			for (int j = 0; j <= i; j++) {
 				System.out.print("[" + (i - j) + "," + (tamaño - 1 - j) + "]");
 			}
 			System.out.println("");
 		}
 		// Check diagonals
-		for (int i = tamaño - 2; i > -1; i--) {
+		for (int i = tamaño - 2; i > ajuste - 1; i--) {
 			for (int j = 0; j <= i; j++) {
 				System.out.print("[" + (tamaño - 1 - j) + "," + (i - j) + "]");
 			}
