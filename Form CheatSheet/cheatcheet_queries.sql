@@ -302,6 +302,13 @@ SELECT UPPER( p.nombre ), p.precio FROM producto p;
 #   - FLOOR(): redondea hacia abajo siempre
 #   - CEILING(): redondea hacia arriba siempre
 ##############################################################
+# ========================= MATES ========================= #
+#   - COUNT(): cuenta el nº de ocurrencias
+#   - MAX(): muestra la ocurrencia más alta
+#   - MIN(): muestra la ocurrencia más baja
+#   - SUM(): suma todas las ocurrencias
+#   - AVG(): calcula la media de las ocurrencias
+##############################################################
 SELECT 
     p.nombre as "nombre de producto", 
     p.precio as "euros", 
