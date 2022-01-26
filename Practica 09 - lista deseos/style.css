@@ -1,4 +1,3 @@
-
 * {
   padding: 0;
   margin: 0;
@@ -10,9 +9,10 @@
 }
 
 html,
-body{
+body {
   min-height: 100vh;
 }
+
 
 /*
 
@@ -51,7 +51,7 @@ body{
   justify-content: flex-end;
 }
 
-.center{
+.center {
   justify-content: center;
   align-items: center;
 }
@@ -79,67 +79,98 @@ body{
 
 */
 
-main >* {  
-  margin: 0 2%;
+aside>*,
+main section {
+  margin: 0 10px;
 }
 
-.rotated-text{
-  transform: rotate(-90deg);
+#rotated-text {
+  background-color: rgb(134, 134, 134);
 }
 
-main section{
+#rotated-text p {
+  transform: rotate(180deg);
+  color: white;
+  font-size: 35px;
+  writing-mode: vertical-lr;
+}
+
+main section {
   border-left: 50px solid black;
   border-right: 50px solid black;
   border-top: 5px solid black;
   border-bottom: 5px solid black;
 }
 
-form{
+form {
   padding: 10px 0px;
 }
 
-label{
+label {
   color: grey;
 }
 
-input, select, textarea{
+input,
+select,
+textarea {
   padding: 10px;
   margin: 10px;
   border: 3px solid var(--blue);
-
   font-size: 20px;
   color: grey;
 }
 
-textarea{
+textarea {
   resize: vertical;
 }
 
-input[type=email]{
+input[type=email] {
   padding: 5px;
   border: 1px solid black;
-  
-  font-size:medium;
+  font-size: medium;
 }
 
-input[type=submit]{
+input[type=submit] {
   padding: 15px 30px;
   margin: auto;
   border: none;
   background-color: black;
   color: white;
-  font-size:large;
+  font-size: large;
   font-weight: bold;
 }
 
-fieldset{
+fieldset {
   border: none;
-}
-
-@media(max-width: 600px) {
-  .mobile{display: block;}
 }
 
 img {
   max-width: 100%;
+  height: 100%;
+}
+
+aside div {
+  overflow: hidden;
+}
+
+.img-fill {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media(max-width: 600px) {
+  .mobile {
+    display: flex;
+  }
+  aside {
+    display: none !important;
+  }
+  main {
+    width: 100%;
+    margin: 0 2%;
+  }
+  main section {
+    margin: 0;
+    border: 0;
+  }
 }

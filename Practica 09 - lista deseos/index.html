@@ -11,25 +11,29 @@
 <body class="flex center">
   <main class="row child-flex-1">
     <aside class="row child-flex-1">
-      <div class="rotated-text">
+      <div id="rotated-text" class="row center">
         <p>Pedid que se os dará... o se intentará</p>
       </div>
       <div>
-        <img src="img/albahaca.jpeg" alt="">
+        <img src="img/albahaca.jpeg" alt="" class="img-fill">
       </div>
     </aside>
 
     <section style="flex:2">
+      <!-- img deseos -->
       <header class="flex center">
         <img src="img/cajonDeDeseos.png" alt="">
       </header>
 
+      <!-- formulario -->
       <form action="form.php" class="column" method="post">
+        <!-- nombre -->
         <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellidos">
+
+        <!-- direccion -->
         <input type="text" id="direccion" name="direccion" placeholder="Dirección">
 
-
-        <!-- faltan provincias -->
+        <!-- provincias -->
         <select name="localidad" id="localidades_select">
           <option value="">Localidad</option>
           <option value="Alcala de Henares">Alcalá de Henares</option>
@@ -47,7 +51,7 @@
           <option value="Buitrago del Lozoya">Buitrago del Lozoya</option>
         </select>
 
-        <!-- faltan localidades -->
+        <!-- localidades -->
         <select name="provincia" id="provincias_select">
           <option value="">Provincia</option>
           <option value="Madrid">Madrid</option>
@@ -74,23 +78,33 @@
           <option value="Granada">Granada</option>
         </select>
 
-
+        <!-- deseos -->
         <textarea rows="5" name="deseos" id="deseos" placeholder="Deseos ... "></textarea>
 
+        <!-- imagen movil -->
+        <div class="mobile row center">
+          <img src="img/quieresPuedesLoMereces.jpeg" alt="">
+        </div>
+
+        <!-- seguimiento -->
         <fieldset>
           <input type="checkbox" id="seguimiento" name="seguimiento" value="1">
           <label for="">Deseo realizar un seguimiento de mis deseos</label>
         </fieldset>
 
+        <!-- email -->
         <input type="email" id="email" name="email" placeholder="Correo electrónico">
 
+        <!-- enviar -->
         <input type="submit" value="Enviar">
       </form>
     </section>
 
-    <aside>
+    <aside class="column child-flex-1">
+      <div style="flex: 5">
+        <img src="img/Romero.jpeg" alt="" class="img-fill">
+      </div>
       <div>
-        <img src="img/albahaca.jpeg" alt="">
         <img src="img/gracias.jpeg" alt="">
       </div>
     </aside>
