@@ -2,31 +2,38 @@ package es.infantaelena;
 
 public class Main {
 
+  // TODO: conseguir hacer funcionar los unit tests
+  // TODO: guardar records entre partidas
+  // TODO: quitar los /**/ al .classpath y a TestTresEnRaja.java (unit test)
+
   public static void main(String[] args) {
-    TresEnRaya t = new TresEnRaya(4);
+    TresEnRaya t = new TresEnRaya();
     t.menuJuego();
 
     // probarRecords(t);
     // probarTablero(t);
     // probarDiagonales(t);
+
+    // "Destructor"
+    t = null;
   }
 
   static void probarDiagonales(TresEnRaya t) {
 
-    int tamaño = 5;
-    int rayas = ((tamaño + 1) / 2) + 1;
+    int size = 5;
+    int rayas = ((size + 1) / 2) + 1;
     int ajuste = rayas - 1;
 
     // Check diagonals
-    for (int i = 0; i < tamaño; i++) {
-      for (int j = 0; j < tamaño; j++) {
+    for (int i = 0; i < size; i++) {
+      for (int j = 0; j < size; j++) {
         System.out.print("[" + i + "," + j + "]");
       }
       System.out.println("");
     }
 
     System.out.println("");
-    System.out.println("Tamaño: " + tamaño);
+    System.out.println("size: " + size);
     System.out.println("Rayas:  " + rayas);
     System.out.println("Ajuste: " + ajuste);
     System.out.println("");
@@ -36,16 +43,16 @@ public class Main {
     // 0--
 
     // Check diagonals
-    for (int i = ajuste; i < tamaño; i++) {
+    for (int i = ajuste; i < size; i++) {
       for (int j = 0; j <= i; j++) {
         System.out.print("[" + (i - j) + "," + j + "]");
       }
       System.out.println("");
     }
     // Check diagonals
-    for (int i = tamaño - 2; i > ajuste - 1; i--) {
+    for (int i = size - 2; i > ajuste - 1; i--) {
       for (int j = 0; j <= i; j++) {
-        System.out.print("[" + (tamaño - 1 - j) + "," + (tamaño - 1 - i + j) + "]");
+        System.out.print("[" + (size - 1 - j) + "," + (size - 1 - i + j) + "]");
       }
       System.out.println("");
     }
@@ -55,16 +62,16 @@ public class Main {
     // --0
 
     // Check diagonals
-    for (int i = ajuste; i < tamaño; i++) {
+    for (int i = ajuste; i < size; i++) {
       for (int j = 0; j <= i; j++) {
-        System.out.print("[" + (i - j) + "," + (tamaño - 1 - j) + "]");
+        System.out.print("[" + (i - j) + "," + (size - 1 - j) + "]");
       }
       System.out.println("");
     }
     // Check diagonals
-    for (int i = tamaño - 2; i > ajuste - 1; i--) {
+    for (int i = size - 2; i > ajuste - 1; i--) {
       for (int j = 0; j <= i; j++) {
-        System.out.print("[" + (tamaño - 1 - j) + "," + (i - j) + "]");
+        System.out.print("[" + (size - 1 - j) + "," + (i - j) + "]");
       }
       System.out.println("");
     }
@@ -111,10 +118,3 @@ public class Main {
   }
 
 }
-
-/*
- * TODO: quitar los comentarios al .classpath y a TestTresEnRaja.java
- * quitando los java unit tests
- */
-
-// TODO: guardar records entre partidas

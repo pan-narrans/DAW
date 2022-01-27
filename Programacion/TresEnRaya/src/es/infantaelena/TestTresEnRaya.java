@@ -1,9 +1,10 @@
-/* package es.infantaelena;
+package es.infantaelena;
 
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
 import static es.infantaelena.TresEnRaya.*;
 import static es.infantaelena.TestTableros.*;
 
@@ -243,4 +244,3 @@ class TestTresEnRaya {
 		}
 	
 }
- */

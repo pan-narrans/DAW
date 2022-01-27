@@ -19,9 +19,13 @@ public class TresEnRaya {
   static final char VACIA = '-';
   static final char[] JUGADAS = { JUG_1, JUG_2 };
 
-  final int TAM_TABLERO;
+  // Default board size
+  final static int TAM_TABLERO = 3;
   final int NUM_RECORDS = 3;
   final int NUM_RAYAS;
+
+  // Used for custom board size
+  private int tamTablero;
 
   static Scanner sc = new Scanner(System.in);
 
@@ -51,21 +55,18 @@ public class TresEnRaya {
    * Constructor.
    */
   public TresEnRaya() {
-    TAM_TABLERO = 3;
-    NUM_RAYAS = ((TAM_TABLERO + 1) / 2) + 1;
-    maxMovimientos = TAM_TABLERO * TAM_TABLERO;
-    records = creaRecords();
+    this(TAM_TABLERO);
   }
 
   /**
    * Constructor.
    * 
-   * @param tam Size of the board
+   * @param tamTablero Size of the board
    */
-  public TresEnRaya(int tam) {
-    TAM_TABLERO = tam;
-    NUM_RAYAS = (TAM_TABLERO / 2) + 1;
-    maxMovimientos = TAM_TABLERO * TAM_TABLERO;
+  public TresEnRaya(int size) {
+    tamTablero = size;
+    NUM_RAYAS = (tamTablero / 2) + 1;
+    maxMovimientos = tamTablero * tamTablero;
     records = creaRecords();
   }
 
@@ -75,9 +76,15 @@ public class TresEnRaya {
    * @param tablero
    */
   public void imprimirTablero(char[][] tablero) {
+    // TODO: limpar codigo imprimir tablero
+    System.out.print("\n ");
+
+    for (int i = 0; i < tablero.length; i++) {
+      System.out.print("  " + i);
+    }
+
     System.out.println("");
 
-    System.out.println("   0  1  2");
     for (int i = 0; i < tablero.length; i++) {
       System.out.println(i + " " + Arrays.toString(tablero[i]));
     }
@@ -177,8 +184,8 @@ public class TresEnRaya {
 
     do {
       // Chooses row and column
-      fila = (int) (Math.random() * TAM_TABLERO);
-      columna = (int) (Math.random() * TAM_TABLERO);
+      fila = (int) (Math.random() * tamTablero);
+      columna = (int) (Math.random() * tamTablero);
 
       // Checks if play is valid
       jugadaValida = esJugadaValida(fila, columna, tablero);
@@ -194,10 +201,11 @@ public class TresEnRaya {
    * If the coordinates are not valid, it'll ask again until they are.
    */
   public void pedirJugadaHumano() {
+    // TODO: pedir jugada de una en vez de en dos tandas
     int fila, columna;
     boolean jugadaValida;
 
-    System.out.println("Turno del Jugador " + (turno + 1));
+    System.out.println("\nTurno del Jugador " + (turno + 1));
 
     do {
       imprimirTablero(tablero);
@@ -226,14 +234,13 @@ public class TresEnRaya {
    */
   public void menuJuego() {
 
-    // TODO: dar opcion a escoger tamaño tablero
-    // TODO: X en raya en función del tamaño del tablero
+    // TODO: dar opcion a escoger tamaño tablero (CUIDADO RECORDS)
 
     boolean continuePlaying = true;
 
     do {
       System.out.println("\n--- GENERAL INFO ---");
-      System.out.println("Tamaño del tablero: " + TAM_TABLERO);
+      System.out.println("Tamaño del tablero: " + tamTablero);
       System.out.println("Fichas consecutivas para ganar: " + NUM_RAYAS);
 
       System.out.println("\n--- MAIN MENU ---");
@@ -280,6 +287,7 @@ public class TresEnRaya {
    * @param records
    */
   public void imprimirRecords(String[][] records) {
+    // TODO: igualar espacios entre nombre y movimientos
     System.out.println("\n--- HIGH SCORES ---");
     for (String[] record : records) {
       System.out.println(Arrays.toString(record));
@@ -357,7 +365,7 @@ public class TresEnRaya {
     movimientos = 0;
 
     turno = sortearTurno();
-    tablero = creaTablero(TAM_TABLERO);
+    tablero = creaTablero(tamTablero);
 
     System.out.println("\n--- GAME ON ---");
     System.out.println("JUGADOR 01: " + JUG_1);
@@ -420,6 +428,9 @@ public class TresEnRaya {
      * player.
      */
 
+    // TODO: limpiar esto de jugadas y quitar el array
+    char jugadaAct = (turno == 0) ? JUG_1 : JUG_2;
+
     int CounterH = 0, CounterV = 0;
     int ajuste = NUM_RAYAS - 1;
 
@@ -433,10 +444,14 @@ public class TresEnRaya {
         // Check horizontals
         if (tablero[i][j] == JUGADAS[turno])
           CounterH++;
+        else
+          CounterH = 0;
 
         // Check verticals
         if (tablero[j][i] == JUGADAS[turno])
           CounterV++;
+        else
+          CounterV = 0;
 
         // Return winner if found, and avoid diagonal calculation
         if (CounterH > 2 || CounterV > 2)
@@ -464,7 +479,6 @@ public class TresEnRaya {
       }
     } else {
       // Check bigger diagonals or how I learned to stop worrying and trust the magic
-      // TODO: no comprobar las diagonales pequeñas
 
       // Check 1st half of the board
       for (int i = ajuste; i < tablero.length; i++) {
@@ -477,11 +491,15 @@ public class TresEnRaya {
           // 0 -
           if (tablero[i - j][j] == JUGADAS[turno])
             CounterH++;
+          else
+            CounterH = 0;
 
           // 0 -
           // - 0
           if (tablero[i - j][tablero.length - 1 - j] == JUGADAS[turno])
             CounterV++;
+          else
+            CounterV = 0;
 
           // Return winner if found
           if (CounterH > 2 || CounterV > 2)
@@ -499,8 +517,7 @@ public class TresEnRaya {
           // - 0
           // 0 -
 
-          //TODO: arreglar problema aqui con tableros grandes
-          if (tablero[i + j][tablero.length - 1 - j] == JUGADAS[turno])
+          if (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == JUGADAS[turno])
             CounterH++;
 
           // 0 -
