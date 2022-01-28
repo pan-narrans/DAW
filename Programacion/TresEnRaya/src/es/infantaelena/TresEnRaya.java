@@ -17,7 +17,6 @@ public class TresEnRaya {
   static final char JUG_1 = 'X';
   static final char JUG_2 = 'O';
   static final char VACIA = '-';
-  static final char[] JUGADAS = { JUG_1, JUG_2 };
 
   // Default board size
   final static int TAM_TABLERO = 3;
@@ -411,9 +410,10 @@ public class TresEnRaya {
   }// End jugar()
 
   /**
+   * TODO: comprobar tableros independientemente del estado de la partida
+   * 
    * Función que indica si ha ganado un jugador, es un empate o todavía no ha
    * terminado.
-   * 
    * 
    * @param tablero
    * @return -1 Si todavía no ha terminado
@@ -428,7 +428,6 @@ public class TresEnRaya {
      * player.
      */
 
-    // TODO: limpiar esto de jugadas y quitar el array
     char jugadaAct = (turno == 0) ? JUG_1 : JUG_2;
 
     int CounterH = 0, CounterV = 0;
@@ -442,13 +441,13 @@ public class TresEnRaya {
 
       for (int j = 0; j < tablero.length; j++) {
         // Check horizontals
-        if (tablero[i][j] == JUGADAS[turno])
+        if (tablero[i][j] == jugadaAct)
           CounterH++;
         else
           CounterH = 0;
 
         // Check verticals
-        if (tablero[j][i] == JUGADAS[turno])
+        if (tablero[j][i] == jugadaAct)
           CounterV++;
         else
           CounterV = 0;
@@ -468,9 +467,9 @@ public class TresEnRaya {
       CounterV = 0;
 
       for (int i = 0; i < 3; i++) {
-        if (tablero[i][i] == JUGADAS[turno])
+        if (tablero[i][i] == jugadaAct)
           CounterH++;
-        if (tablero[i][2 - i] == JUGADAS[turno])
+        if (tablero[i][2 - i] == jugadaAct)
           CounterV++;
 
         // Return winner if found
@@ -489,14 +488,14 @@ public class TresEnRaya {
         for (int j = 0; j <= i; j++) {
           // - 0
           // 0 -
-          if (tablero[i - j][j] == JUGADAS[turno])
+          if (tablero[i - j][j] == jugadaAct)
             CounterH++;
           else
             CounterH = 0;
 
           // 0 -
           // - 0
-          if (tablero[i - j][tablero.length - 1 - j] == JUGADAS[turno])
+          if (tablero[i - j][tablero.length - 1 - j] == jugadaAct)
             CounterV++;
           else
             CounterV = 0;
@@ -517,12 +516,12 @@ public class TresEnRaya {
           // - 0
           // 0 -
 
-          if (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == JUGADAS[turno])
+          if (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == jugadaAct)
             CounterH++;
 
           // 0 -
           // - 0
-          if (tablero[tablero.length - 1 - j][i - j] == JUGADAS[turno])
+          if (tablero[tablero.length - 1 - j][i - j] == jugadaAct)
             CounterV++;
 
           // Return winner if found
