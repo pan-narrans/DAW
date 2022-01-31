@@ -126,7 +126,6 @@ class TestTresEnRaya {
   void testComprobarVictoriaHorizontal() {
     TresEnRaya t = new TresEnRaya();
 
-    t.turno = 0;
     System.out.println("======TEST comprobarVictoria Horizontal======");
     for (int k = 0; k < TABLEROS_HORIZONTAL_JUG1.length; k++) {
       for (int i = 0; i < 3; i++) {
@@ -138,7 +137,6 @@ class TestTresEnRaya {
       }
     }
 
-    t.turno = 1;
     for (int k = 0; k < TABLEROS_HORIZONTAL_JUG2.length; k++) {
       for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -207,7 +205,7 @@ class TestTresEnRaya {
   void testComprobarVictoriaEmpate() {
     TresEnRaya t = new TresEnRaya();
     System.out.println("======TEST comprobarVictoria Empate======");
-    
+
     // t.movimientos = 9;
     for (int k = 0; k < TABLEROS_EMPATE.length; k++) {
       for (int i = 0; i < 3; i++) {

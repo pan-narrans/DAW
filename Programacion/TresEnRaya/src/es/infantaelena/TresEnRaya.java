@@ -7,6 +7,8 @@ import java.util.Arrays;
 // import java.util.Random;
 import java.util.Scanner;
 
+//import javax.swing.plaf.synth.Region;
+
 public class TresEnRaya {
 
   // enumeración para saber si el jugador es un PC o un Humano
@@ -267,6 +269,7 @@ public class TresEnRaya {
           break;
         case 4:
           imprimirRecords(records);
+          pressEnterToContinue();
           break;
         case 5:
           continuePlaying = false;
@@ -291,7 +294,6 @@ public class TresEnRaya {
     for (String[] record : records) {
       System.out.println(Arrays.toString(record));
     }
-    pressEnterToContinue();
   }
 
   /**
@@ -410,8 +412,6 @@ public class TresEnRaya {
   }// End jugar()
 
   /**
-   * TODO: comprobar tableros independientemente del estado de la partida
-   * 
    * Función que indica si ha ganado un jugador, es un empate o todavía no ha
    * terminado.
    * 
@@ -422,6 +422,165 @@ public class TresEnRaya {
    *         2 Si ha sido un empate
    */
   public int comprobarVictoria(char[][] tablero) {
+
+    int CounterJ1H = 0, CounterJ1V = 0;
+    int CounterJ2H = 0, CounterJ2V = 0;
+    int ajuste = NUM_RAYAS - 1;
+    boolean emptyCells = false;
+
+    // Check horizontals and verticals
+    for (int i = 0; i < tablero.length; i++) {
+      // Reiniciar variables
+      CounterJ1H = 0;
+      CounterJ1V = 0;
+      CounterJ2H = 0;
+      CounterJ2V = 0;
+
+      for (int j = 0; j < tablero.length; j++) {
+        // Check horizontals
+        CounterJ1H = (tablero[i][j] == JUG_1) ? CounterJ1H + 1 : 0;
+        CounterJ2H = (tablero[i][j] == JUG_2) ? CounterJ2H + 1 : 0;
+        // Check verticals
+        CounterJ1V = (tablero[j][i] == JUG_1) ? CounterJ1V + 1 : 0;
+        CounterJ2V = (tablero[j][i] == JUG_2) ? CounterJ2V + 1 : 0;
+
+        // Return winner if found, and avoid diagonal calculation
+        if (CounterJ1H > 2 || CounterJ1V > 2)
+          return 0;
+        if (CounterJ2H > 2 || CounterJ2V > 2)
+          return 1;
+      }
+    }
+
+    // Check diagonals
+    if (tablero.length == 3) {
+      // Check diagonals in 3x3 board
+
+      // Reiniciar variables
+      CounterJ1H = 0;
+      CounterJ1V = 0;
+      CounterJ2H = 0;
+      CounterJ2V = 0;
+
+      for (int i = 0; i < 3; i++) {
+        // PLAYER 1
+        if (tablero[i][i] == JUG_1)
+          CounterJ1H++;
+        if (tablero[i][2 - i] == JUG_1)
+          CounterJ1V++;
+
+        // PLAYER 2
+        if (tablero[i][i] == JUG_2)
+          CounterJ2H++;
+        if (tablero[i][2 - i] == JUG_2)
+          CounterJ2V++;
+
+        // Return winner if found
+        if (CounterJ1H > 2 || CounterJ1V > 2)
+          return 0;
+        if (CounterJ2H > 2 || CounterJ2V > 2)
+          return 1;
+      }
+    } else {
+      // Check bigger diagonals or how I learned to stop worrying and trust the magic
+
+      // Check 1st half of the board
+      for (int i = ajuste; i < tablero.length; i++) {
+        // Reiniciar variables
+        CounterJ1H = 0;
+        CounterJ1V = 0;
+        CounterJ2H = 0;
+        CounterJ2V = 0;
+
+        for (int j = 0; j <= i; j++) {
+          // - 0
+          // 0 -
+          CounterJ1H = (tablero[i - j][j] == JUG_1) ? CounterJ1H + 1 : 0;
+          CounterJ2H = (tablero[i - j][j] == JUG_2) ? CounterJ2H + 1 : 0;
+
+          // 0 -
+          // - 0
+          CounterJ1V = (tablero[i - j][tablero.length - 1 - j] == JUG_1) ? CounterJ1V + 1 : 0;
+          CounterJ2V = (tablero[i - j][tablero.length - 1 - j] == JUG_2) ? CounterJ2V + 1 : 0;
+
+          // Return winner if found
+          if (CounterJ1H > NUM_RAYAS - 1 || CounterJ1V > NUM_RAYAS - 1)
+            return 0;
+          if (CounterJ2H > NUM_RAYAS - 1 || CounterJ2V > NUM_RAYAS - 1)
+            return 1;
+        }
+      }
+
+      // Check 2nd half of the board
+      for (int i = tablero.length - 2; i > ajuste - 1; i--) {
+        // Reiniciar variables
+        CounterJ1H = 0;
+        CounterJ1V = 0;
+        CounterJ2H = 0;
+        CounterJ2V = 0;
+
+        for (int j = 0; j <= i; j++) {
+          // - 0
+          // 0 -
+          CounterJ1H = (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == JUG_1) ? CounterJ1H + 1 : 0;
+          CounterJ2H = (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == JUG_2) ? CounterJ2H + 1 : 0;
+
+          // 0 -
+          // - 0
+          CounterJ1V = (tablero[tablero.length - 1 - j][i - j] == JUG_1) ? CounterJ1V + 1 : 0;
+          CounterJ2V = (tablero[tablero.length - 1 - j][i - j] == JUG_2) ? CounterJ2V + 1 : 0;
+
+          // Return winner if found
+          if (CounterJ1H > NUM_RAYAS - 1 || CounterJ1V > NUM_RAYAS - 1)
+            return 0;
+          if (CounterJ2H > NUM_RAYAS - 1 || CounterJ2V > NUM_RAYAS - 1)
+            return 1;
+        }
+      }
+    }
+
+    // Check for empty cells
+    for (int i = 0; i < tablero.length; i++) {
+      for (int j = 0; j < tablero.length; j++) {
+        if (tablero[i][j] == VACIA)
+          emptyCells = true;
+      }
+    }
+
+    // Game still in progress
+    if (emptyCells)
+      return -1;
+    else
+      return 2;
+
+  }
+
+  /**
+   * Stops the execution of the program until enter is pressed.
+   */
+  private void pressEnterToContinue() {
+
+    System.out.println("\n--- press enter to continue");
+
+    try {
+      System.in.read();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * <h1>FOR REFERENCE ONLY</h1>
+   * Función que indica si ha ganado un jugador, es un empate o todavía no ha
+   * terminado.
+   * 
+   * @param tablero
+   * @return -1 Si todavía no ha terminado
+   *         0 Si ha ganado el jugador 1
+   *         1 Si ha ganado el jugador 2
+   *         2 Si ha sido un empate
+   */
+  public int oldComprobarVictoria(char[][] tablero) {
     /*
      * As the function is called in at every turn, we only have to check the pieces
      * for the current player. If a match of 3 is found, the winner is the current
@@ -537,20 +696,6 @@ public class TresEnRaya {
 
     return 2;
 
-  }
-
-  /**
-   * Stops the execution of the program until enter is pressed.
-   */
-  private void pressEnterToContinue() {
-
-    System.out.println("\n--- press enter to continue");
-
-    try {
-      System.in.read();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 
 }// End class

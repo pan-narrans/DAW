@@ -2,9 +2,7 @@ package es.infantaelena;
 
 public class Main {
 
-  // TODO: conseguir hacer funcionar los unit tests
   // TODO: guardar records entre partidas
-  // TODO: quitar los /**/ al .classpath y a TestTresEnRaja.java (unit test)
 
   public static void main(String[] args) {
     TresEnRaya t = new TresEnRaya();
@@ -13,6 +11,15 @@ public class Main {
     // probarRecords(t);
     // probarTablero(t);
     // probarDiagonales(t);
+
+    {
+      int test = 55;
+      System.out.println(test);
+    }
+    {
+      int test = 45;
+      System.out.println(test);
+    }
 
     // "Destructor"
     t = null;
@@ -82,13 +89,15 @@ public class Main {
   static void probarRecords(TresEnRaya t) {
     System.out.println("\nPROBAR MÉTODOS RECORDS");
 
-    t.nuevoRecord(t.records, "alex 01", 9);
-    t.nuevoRecord(t.records, "alex 02", 6);
-    t.nuevoRecord(t.records, "alex 03", 3);
-    t.nuevoRecord(t.records, "alex 04", 5);
-    t.nuevoRecord(t.records, "alex 05", 5);
+    String[][] records = t.creaRecords();
 
-    t.imprimirRecords(t.records);
+    t.nuevoRecord(records, "alex 01", 9);
+    t.nuevoRecord(records, "alex 02", 6);
+    t.nuevoRecord(records, "alex 03", 3);
+    t.nuevoRecord(records, "alex 04", 5);
+    t.nuevoRecord(records, "alex 05", 5);
+
+    t.imprimirRecords(records);
 
     System.out.println("4 " + ((t.esNuevoRecord(t.records, 4)) ? "" : "no ") + "es nuevo record.");
     System.out.println("6 " + ((t.esNuevoRecord(t.records, 6)) ? "" : "no ") + "es nuevo record.");
