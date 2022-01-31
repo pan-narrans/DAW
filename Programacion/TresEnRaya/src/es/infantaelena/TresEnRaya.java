@@ -66,7 +66,7 @@ public class TresEnRaya {
    */
   public TresEnRaya(int size) {
     tamTablero = size;
-    NUM_RAYAS = (tamTablero / 2) + 1;
+    NUM_RAYAS = ((tamTablero + 1) / 2) + 1;
     maxMovimientos = tamTablero * tamTablero;
     records = creaRecords();
   }
@@ -77,15 +77,16 @@ public class TresEnRaya {
    * @param tablero
    */
   public void imprimirTablero(char[][] tablero) {
-    // TODO: limpar codigo imprimir tablero
     System.out.print("\n ");
 
+    // Print col numbers
     for (int i = 0; i < tablero.length; i++) {
       System.out.print("  " + i);
     }
 
     System.out.println("");
 
+    // Print row numbers and array contents
     for (int i = 0; i < tablero.length; i++) {
       System.out.println(i + " " + Arrays.toString(tablero[i]));
     }
@@ -180,6 +181,7 @@ public class TresEnRaya {
    * Genera como salida el jugador que juega y que fila y columna elige
    */
   public void pedirJugadaPC() {
+    // TODO: ia easy/medium/ipossible
     int fila, columna;
     boolean jugadaValida;
 
@@ -202,7 +204,8 @@ public class TresEnRaya {
    * If the coordinates are not valid, it'll ask again until they are.
    */
   public void pedirJugadaHumano() {
-    // TODO: pedir jugada de una en vez de en dos tandas
+    String jugadaString;
+    String[] jugadaArray;
     int fila, columna;
     boolean jugadaValida;
 
@@ -211,13 +214,12 @@ public class TresEnRaya {
     do {
       imprimirTablero(tablero);
 
-      // Querries the row
-      System.out.println("Introduce la fila:");
-      fila = sc.nextInt();
+      System.out.println("Introduce la jugada fila-columna (ej: 2-0):");
+      jugadaString = sc.next();
+      jugadaArray = jugadaString.split("-");
 
-      // Querries the column
-      System.out.println("Introduce la columna:");
-      columna = sc.nextInt();
+      fila = Integer.valueOf(jugadaArray[0]);
+      columna = Integer.valueOf(jugadaArray[1]);
 
       jugadaValida = esJugadaValida(fila, columna, tablero);
       if (!jugadaValida) {
@@ -249,7 +251,7 @@ public class TresEnRaya {
       System.out.println("2) Jugar humano vs PC");
       System.out.println("3) Jugar PC vs PC");
       System.out.println("4) Mostrar Records");
-      System.out.println("5) Salir");
+      System.out.println("5) Salir\n");
 
       switch (sc.nextInt()) {
         case 1:
@@ -289,7 +291,6 @@ public class TresEnRaya {
    * @param records
    */
   public void imprimirRecords(String[][] records) {
-    // TODO: igualar espacios entre nombre y movimientos
     System.out.println("\n--- HIGH SCORES ---");
     for (String[] record : records) {
       System.out.println(Arrays.toString(record));
@@ -392,14 +393,14 @@ public class TresEnRaya {
     if (ganador == 2)
       System.out.println("¡Empate!");
     else {
-      System.out.println("ha ganado el jugador " + (ganador + 1));
+      System.out.println("¡Ha ganado el jugador " + (ganador + 1) + "!");
       pressEnterToContinue();
 
       // If there's a new record, record it
       if (esNuevoRecord(records, movimientos)) {
         // Ask name
         if (jugadores[ganador] == TipoJugador.HUMANO) {
-          System.out.println("Introduce tu nombre Jugador " + ganador + 1);
+          System.out.println("\nIntroduce tu nombre Jugador " + ganador + 1);
           nombre = sc.next();
         } else {
           nombre = "PC";
@@ -445,9 +446,9 @@ public class TresEnRaya {
         CounterJ2V = (tablero[j][i] == JUG_2) ? CounterJ2V + 1 : 0;
 
         // Return winner if found, and avoid diagonal calculation
-        if (CounterJ1H > 2 || CounterJ1V > 2)
+        if (CounterJ1H > NUM_RAYAS - 1 || CounterJ1V > NUM_RAYAS - 1)
           return 0;
-        if (CounterJ2H > 2 || CounterJ2V > 2)
+        if (CounterJ2H > NUM_RAYAS - 1 || CounterJ2V > NUM_RAYAS - 1)
           return 1;
       }
     }
@@ -560,7 +561,7 @@ public class TresEnRaya {
    */
   private void pressEnterToContinue() {
 
-    System.out.println("\n--- press enter to continue");
+    System.out.print("\n--- press enter to continue");
 
     try {
       System.in.read();

@@ -1,28 +1,78 @@
 package es.infantaelena;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Main {
 
   // TODO: guardar records entre partidas
 
   public static void main(String[] args) {
-    TresEnRaya t = new TresEnRaya();
-    t.menuJuego();
+
+    TresEnRaya t = new TresEnRaya(5);
+    // t.menuJuego();
+
+    try {
+      printToFile(t.records);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    try {
+      readFromFile();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     // probarRecords(t);
     // probarTablero(t);
     // probarDiagonales(t);
 
-    {
-      int test = 55;
-      System.out.println(test);
-    }
-    {
-      int test = 45;
-      System.out.println(test);
-    }
-
     // "Destructor"
     t = null;
+
+  }
+
+  static void printToFile(String[][] records) throws IOException {
+    FileWriter fileWriter = new FileWriter("bin/records.txt");
+    PrintWriter printWriter = new PrintWriter(fileWriter);
+
+    // tamaño del array
+    printWriter.println(records.length + " " + records[0].length);
+
+    for (int i = 0; i < records.length; i++) {
+      printWriter.print(records[i][0] + "," + records[i][1]);
+      printWriter.print(";");
+    }
+
+    fileWriter.close();
+    printWriter.close();
+  }
+
+  static void readFromFile() throws IOException {
+    FileReader fileReader = new FileReader("bin/records.txt");
+    BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+    {
+      String readResult;
+      readResult = bufferedReader.readLine();
+      System.out.println(readResult);
+      readResult = bufferedReader.readLine();
+      System.out.println(readResult);
+    }
+
+    {
+      String readResult = bufferedReader.toString();
+      System.out.println(readResult);
+    }
+
+    fileReader.close();
+    bufferedReader.close();
   }
 
   static void probarDiagonales(TresEnRaya t) {
