@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="pedido">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="destinatario" type="xs:string" />
+        <xs:element name="articulo" type="xs:string" maxOccurs="unbounded" />
+        <xs:element name="direccion" type="xs:string" />
+        <xs:element name="fecha-entrega" type="xs:date" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
