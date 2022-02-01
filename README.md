@@ -8,6 +8,7 @@ Ejercicios y archivos del grado de DAW
 
 
 ## Commit rules
+* [commit object] - [changes description]
 * Commits tart with a capital letter
 * Brief description of changes made to see them at first glance in folder view
 * Change only one course at a time
