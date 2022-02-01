@@ -1,53 +1,48 @@
 package es.infantaelena;
 
 import java.io.IOException;
-//import java.lang.reflect.Array;
-// why use this with array of anything other than primitive types?
 import java.util.Arrays;
-// import java.util.Random;
 import java.util.Scanner;
-
-//import javax.swing.plaf.synth.Region;
 
 public class TresEnRaya {
 
-  // enumeración para saber si el jugador es un PC o un Humano
+  // Enum differencing the type of the player
   enum TipoJugador {
     PC, HUMANO
   };
 
+  // Board Tokens:
   static final char JUG_1 = 'X';
   static final char JUG_2 = 'O';
   static final char VACIA = '-';
 
-  // Default board size
-  final static int TAM_TABLERO = 3;
+  final static int TAM_TABLERO = 3; // Default board size
   final int NUM_RECORDS = 3;
-  final int NUM_RAYAS;
+  final int NUM_RAYAS; // Number of consecutive tokens needed to win
 
-  // Used for custom board size
+  // Board size,
+  // introduced in order not to change the final variable already in the code.
   private int tamTablero;
 
   static Scanner sc = new Scanner(System.in);
 
-  // Variable para indicar los turnos 0 primer jugador, 1 segundo jugador
+  // Marks the player's turn, 0 - player 1, 1 - player 2
   int turno;
 
-  // Variable para guardar el número de movimientos de la partida actual
+  // Stores the number of moves made during the game
   int movimientos;
 
-  // Nº max de movimientos de una partida -> TAM_TABLERO * TAM_TABLERO
+  // max nº of possible moves -> TAM_TABLERO * TAM_TABLERO
   int maxMovimientos;
 
-  // Matriz para la partida de tres en raya
+  // Board matrix to store the tokens in
   public char tablero[][];
 
-  // Matriz ordenada para almacenar los records,
-  // la primera columna para el nombre
-  // y la segunda para el número de movimientos
+  // Records matrix:
+  // name, nº of moves
   String[][] records;
 
-  // Array para saber que jugadores estan haciendo la partida.
+  // Array for storing the type of player playing the current game
   TipoJugador jugadores[] = new TipoJugador[2];
 
   boolean partidaTerminada = false;
@@ -95,17 +90,18 @@ public class TresEnRaya {
   }
 
   /**
-   * Función que devuelve un tablero de records vacio
-   * con la mínima puntuación TAM_TABLERO X TAM_TABLERO y usuario PC
+   * Creates an empty scoreboard with placeholder values.
+   * All the records will be hold by "PC" with the worst possible score (board
+   * size * board size).
    * 
-   * @return tablero de records inicial
+   * @return scoreboard
    */
   //
   public String[][] creaRecords() {
     String[][] array = new String[NUM_RECORDS][2];
     String puntos = Integer.toString(maxMovimientos);
 
-    // Fill the array with placeholder values
+    // Fill the array with the placeholder values
     for (int i = 0; i < NUM_RECORDS; i++) {
       array[i][0] = "PC";
       array[i][1] = puntos;
@@ -123,7 +119,7 @@ public class TresEnRaya {
   public char[][] creaTablero(int tam) {
     char[][] array = new char[tam][tam];
 
-    // Fill the array with placeholder values
+    // Fill the array with empty tokens
     for (int i = 0; i < array.length; i++) {
       Arrays.fill(array[i], VACIA);
     }
@@ -134,18 +130,18 @@ public class TresEnRaya {
   /**
    * Checks if a move made by a player is valid or not.
    * 
-   * @param tableroJuego board to check
    * @param fila         row of the board
    * @param col          column of the board
+   * @param tableroJuego board to check
    * @return Returns true if the move is valid, false if not.
    */
   public boolean esJugadaValida(int fila, int col, char[][] tableroJuego) {
     // Check valid row number
-    if (fila < 0 || fila > tableroJuego.length - 1)
+    if (fila < 0 || fila > tamTablero - 1)
       return false;
 
     // Check valid column number
-    if (col < 0 || col > tableroJuego[0].length - 1)
+    if (col < 0 || col > tamTablero - 1)
       return false;
 
     // Check for empty cell
@@ -165,8 +161,7 @@ public class TresEnRaya {
   }
 
   /**
-   * Función para llamar a pedirJugadaHumano o pedirJugadaPC
-   * según el tipo de jugador del jugador al que le toca
+   * Asks current player for a move.
    */
   public void pedirJugada() {
     if (jugadores[turno] == TipoJugador.HUMANO)
@@ -176,9 +171,7 @@ public class TresEnRaya {
   }
 
   /**
-   * Función que realiza la jugada para un jugador PC
-   * (de forma aleatoria o con algún tipo de estrategia)
-   * Genera como salida el jugador que juega y que fila y columna elige
+   * Makes a random valid move for the PC player.
    */
   public void pedirJugadaPC() {
     // TODO: ia easy/medium/ipossible
@@ -194,34 +187,45 @@ public class TresEnRaya {
       jugadaValida = esJugadaValida(fila, columna, tablero);
     } while (!jugadaValida);
 
+    // PLaces the token
     tablero[fila][columna] = (turno == 0) ? JUG_1 : JUG_2;
-
   }
 
   /**
-   * Shows which player's turn it is and aks them some coordinates to place their
-   * token in the board.
-   * If the coordinates are not valid, it'll ask again until they are.
+   * Asks a human player for a valid move.
+   * <p>
+   * It'll keep asking until the move introduces is either valid or the app is
+   * closed in frustration.
    */
   public void pedirJugadaHumano() {
-    String jugadaString;
+    String jugadaString = "";
     String[] jugadaArray;
-    int fila, columna;
+    int fila = 0, columna = 0;
     boolean jugadaValida;
 
+    // Informs the human of the current holder of the turn
     System.out.println("\nTurno del Jugador " + (turno + 1));
 
+    // Ask for a move until the move is valid
     do {
       imprimirTablero(tablero);
 
+      // Ask
       System.out.println("Introduce la jugada fila-columna (ej: 2-0):");
       jugadaString = sc.next();
       jugadaArray = jugadaString.split("-");
 
-      fila = Integer.valueOf(jugadaArray[0]);
-      columna = Integer.valueOf(jugadaArray[1]);
+      // Check nº on inputs recieved
+      if (jugadaArray.length == 2) {
+        // All is good if we have two
+        fila = Integer.valueOf(jugadaArray[0]);
+        columna = Integer.valueOf(jugadaArray[1]);
+        jugadaValida = esJugadaValida(fila, columna, tablero);
+      } else {
+        // If we have any other number of inputs, we ask again
+        jugadaValida = false;
+      }
 
-      jugadaValida = esJugadaValida(fila, columna, tablero);
       if (!jugadaValida) {
         System.out.println("La jugada introducida no es válida.");
         System.out.println("Introduce otra jugada Jugador " + (turno + 1) + ":");
@@ -229,15 +233,14 @@ public class TresEnRaya {
       }
     } while (!jugadaValida);
 
+    // Place token
     tablero[fila][columna] = (turno == 0) ? JUG_1 : JUG_2;
   }
 
   /**
-   * Función que imprime las opciones del menú del juego
+   * Prints the game menu.
    */
   public void menuJuego() {
-
-    // TODO: dar opcion a escoger tamaño tablero (CUIDADO RECORDS)
 
     boolean continuePlaying = true;
 
@@ -285,10 +288,14 @@ public class TresEnRaya {
 
   }
 
+  public static char getJug1() {
+    return JUG_1;
+  }
+
   /**
-   * Función que imprime el contenido de la matriz de records
+   * Prints the contents of the records matrix.
    * 
-   * @param records
+   * @param records records matrix to print
    */
   public void imprimirRecords(String[][] records) {
     System.out.println("\n--- HIGH SCORES ---");
@@ -298,10 +305,10 @@ public class TresEnRaya {
   }
 
   /**
-   * Devuelve si se ha producido un nuevo record
+   * Checks if a new record had been achieved.
    * 
-   * @param records
-   * @param movimientos
+   * @param records     records matrix to check against
+   * @param movimientos nº of moves
    * @return Returns true if its a new high score, false if not
    */
   public boolean esNuevoRecord(String[][] records, int movimientos) {
@@ -313,7 +320,7 @@ public class TresEnRaya {
   }
 
   /**
-   * Añade un nuevo record ordenado al array y borra el último record.
+   * Adds a new record to the array, deleting the last record.
    * 
    * @param records     High scores matrix.
    * @param nombre      Name to put on the wall of fame.
@@ -343,29 +350,26 @@ public class TresEnRaya {
   }
 
   /**
-   * Genera un turno pseudo-aleatorio entre 0 y 1
+   * Randomly assigns a turn.
    * 
-   * @return Número pseudo-aleatorio entre 0 y 1
+   * @return random 0 or 1
    */
   private int sortearTurno() {
     return (int) (Math.random() * 2);
   }
 
   /**
-   * Función que implementa una partida entre jugadores
-   * ya sean humano y humano, humano y pc o humano y humano
-   * no termina hasta que un jugador gane o se terminen los movimientos
-   * indicará en la consola que jugador ha ganado o si ha sido un empate
-   * en caso de producirse un record si es humano, introducirá su nombre
-   * si es un pc se introducirá automáticamente un record con nombre PC
-   * 
+   * Starts a new game between two players.
+   * <p>
+   * A game lasts until there is a winner or there are no moves left.
+   * If the winner breaks a record, the event is handled.
    */
   public void jugar() {
-    // Initialize variables
-    String nombre;
+    String nombre = "";
     int ganador = -1;
     movimientos = 0;
 
+    // Draws the first turn and initializes the board
     turno = sortearTurno();
     tablero = creaTablero(tamTablero);
 
@@ -373,15 +377,16 @@ public class TresEnRaya {
     System.out.println("JUGADOR 01: " + JUG_1);
     System.out.println("JUGADOR 02: " + JUG_2);
 
+    // Play game per se
     do {
-      // First things first, +1 moves
+      // Updates the nº of moves
       movimientos++;
 
-      // Call methods
+      // Ask for a move and check for victory
       pedirJugada();
       ganador = comprobarVictoria(tablero);
 
-      // Update variables
+      // Change the turn and check if the game has ended
       turno = (turno == 0) ? 1 : 0;
       partidaTerminada = (ganador == -1) ? false : true;
     } while (!partidaTerminada);
@@ -389,7 +394,7 @@ public class TresEnRaya {
     // Show final state of the board
     imprimirTablero(tablero);
 
-    // Anounces winner
+    // Anounces winner and handles high scores
     if (ganador == 2)
       System.out.println("¡Empate!");
     else {
@@ -398,7 +403,7 @@ public class TresEnRaya {
 
       // If there's a new record, record it
       if (esNuevoRecord(records, movimientos)) {
-        // Ask name
+        // Ask for name if human
         if (jugadores[ganador] == TipoJugador.HUMANO) {
           System.out.println("\nIntroduce tu nombre Jugador " + ganador + 1);
           nombre = sc.next();
@@ -407,31 +412,32 @@ public class TresEnRaya {
         }
         nuevoRecord(records, nombre, movimientos);
       } // End "manage records"
-
     } // End "anounce winner"
 
   }// End jugar()
 
   /**
-   * Función que indica si ha ganado un jugador, es un empate o todavía no ha
-   * terminado.
+   * Checks a board for victory and returns the current state of the game.
    * 
-   * @param tablero
-   * @return -1 Si todavía no ha terminado
-   *         0 Si ha ganado el jugador 1
-   *         1 Si ha ganado el jugador 2
-   *         2 Si ha sido un empate
+   * @param tablero board to check
+   * @return -1 : Si todavía no ha terminado
+   *         <li>0 : Si ha ganado el jugador 1
+   *         <li>1 : Si ha ganado el jugador 2
+   *         <li>2 : Si ha sido un empate
    */
   public int comprobarVictoria(char[][] tablero) {
-
+    // Two counters per player
     int CounterJ1H = 0, CounterJ1V = 0;
     int CounterJ2H = 0, CounterJ2V = 0;
+
+    // Used in checking diagonals
     int ajuste = NUM_RAYAS - 1;
+
+    // Used in checking for ties
     boolean emptyCells = false;
 
     // Check horizontals and verticals
     for (int i = 0; i < tablero.length; i++) {
-      // Reiniciar variables
       CounterJ1H = 0;
       CounterJ1V = 0;
       CounterJ2H = 0;
@@ -441,6 +447,7 @@ public class TresEnRaya {
         // Check horizontals
         CounterJ1H = (tablero[i][j] == JUG_1) ? CounterJ1H + 1 : 0;
         CounterJ2H = (tablero[i][j] == JUG_2) ? CounterJ2H + 1 : 0;
+
         // Check verticals
         CounterJ1V = (tablero[j][i] == JUG_1) ? CounterJ1V + 1 : 0;
         CounterJ2V = (tablero[j][i] == JUG_2) ? CounterJ2V + 1 : 0;
@@ -456,25 +463,19 @@ public class TresEnRaya {
     // Check diagonals
     if (tablero.length == 3) {
       // Check diagonals in 3x3 board
-
-      // Reiniciar variables
       CounterJ1H = 0;
       CounterJ1V = 0;
       CounterJ2H = 0;
       CounterJ2V = 0;
 
       for (int i = 0; i < 3; i++) {
-        // PLAYER 1
-        if (tablero[i][i] == JUG_1)
-          CounterJ1H++;
-        if (tablero[i][2 - i] == JUG_1)
-          CounterJ1V++;
+        // Left to right
+        CounterJ1H = (tablero[i][i] == JUG_1) ? CounterJ1H + 1 : 0; // - 0
+        CounterJ2H = (tablero[i][i] == JUG_2) ? CounterJ2H + 1 : 0; // 0 -
 
-        // PLAYER 2
-        if (tablero[i][i] == JUG_2)
-          CounterJ2H++;
-        if (tablero[i][2 - i] == JUG_2)
-          CounterJ2V++;
+        // Right to left
+        CounterJ1V = (tablero[i][2 - i] == JUG_1) ? CounterJ1V + 1 : 0; // 0 -
+        CounterJ2V = (tablero[i][2 - i] == JUG_2) ? CounterJ2V + 1 : 0; // - 0
 
         // Return winner if found
         if (CounterJ1H > 2 || CounterJ1V > 2)
@@ -482,10 +483,12 @@ public class TresEnRaya {
         if (CounterJ2H > 2 || CounterJ2V > 2)
           return 1;
       }
-    } else {
-      // Check bigger diagonals or how I learned to stop worrying and trust the magic
 
-      // Check 1st half of the board
+    } else {
+      // Check bigger diagonals or:
+      // How I learned to stop worrying and trust the numbers
+
+      // Checks 1st half of the board
       for (int i = ajuste; i < tablero.length; i++) {
         // Reiniciar variables
         CounterJ1H = 0;
@@ -494,15 +497,13 @@ public class TresEnRaya {
         CounterJ2V = 0;
 
         for (int j = 0; j <= i; j++) {
-          // - 0
-          // 0 -
-          CounterJ1H = (tablero[i - j][j] == JUG_1) ? CounterJ1H + 1 : 0;
-          CounterJ2H = (tablero[i - j][j] == JUG_2) ? CounterJ2H + 1 : 0;
+          // Left to right
+          CounterJ1H = (tablero[i - j][j] == JUG_1) ? CounterJ1H + 1 : 0; // - 0
+          CounterJ2H = (tablero[i - j][j] == JUG_2) ? CounterJ2H + 1 : 0; // 0 -
 
-          // 0 -
-          // - 0
-          CounterJ1V = (tablero[i - j][tablero.length - 1 - j] == JUG_1) ? CounterJ1V + 1 : 0;
-          CounterJ2V = (tablero[i - j][tablero.length - 1 - j] == JUG_2) ? CounterJ2V + 1 : 0;
+          // Right to left
+          CounterJ1V = (tablero[i - j][tablero.length - 1 - j] == JUG_1) ? CounterJ1V + 1 : 0; // 0 -
+          CounterJ2V = (tablero[i - j][tablero.length - 1 - j] == JUG_2) ? CounterJ2V + 1 : 0; // - 0
 
           // Return winner if found
           if (CounterJ1H > NUM_RAYAS - 1 || CounterJ1V > NUM_RAYAS - 1)
@@ -512,7 +513,7 @@ public class TresEnRaya {
         }
       }
 
-      // Check 2nd half of the board
+      // Checks 2nd half of the board
       for (int i = tablero.length - 2; i > ajuste - 1; i--) {
         // Reiniciar variables
         CounterJ1H = 0;
@@ -521,13 +522,11 @@ public class TresEnRaya {
         CounterJ2V = 0;
 
         for (int j = 0; j <= i; j++) {
-          // - 0
-          // 0 -
+          // Left to right
           CounterJ1H = (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == JUG_1) ? CounterJ1H + 1 : 0;
           CounterJ2H = (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == JUG_2) ? CounterJ2H + 1 : 0;
 
-          // 0 -
-          // - 0
+          // Right to left
           CounterJ1V = (tablero[tablero.length - 1 - j][i - j] == JUG_1) ? CounterJ1V + 1 : 0;
           CounterJ2V = (tablero[tablero.length - 1 - j][i - j] == JUG_2) ? CounterJ2V + 1 : 0;
 
@@ -543,12 +542,17 @@ public class TresEnRaya {
     // Check for empty cells
     for (int i = 0; i < tablero.length; i++) {
       for (int j = 0; j < tablero.length; j++) {
-        if (tablero[i][j] == VACIA)
+        if (tablero[i][j] == VACIA) {
           emptyCells = true;
+          break;
+        }
       }
+
+      if (emptyCells)
+        break;
     }
 
-    // Game still in progress
+    // Game still in progress or tie
     if (emptyCells)
       return -1;
     else
@@ -558,6 +562,8 @@ public class TresEnRaya {
 
   /**
    * Stops the execution of the program until enter is pressed.
+   * <p>
+   * <i>Functionality plucked gently from StackOverflow.</i>
    */
   private void pressEnterToContinue() {
 
@@ -574,6 +580,9 @@ public class TresEnRaya {
    * <h1>FOR REFERENCE ONLY</h1>
    * Función que indica si ha ganado un jugador, es un empate o todavía no ha
    * terminado.
+   * <p>
+   * Únicamente comprueba la victoria del último jugador en jugar. Depende de la
+   * variables turno y movimientos para poder funcionar correctamente.
    * 
    * @param tablero
    * @return -1 Si todavía no ha terminado
@@ -595,98 +604,79 @@ public class TresEnRaya {
 
     // Check horizontals and verticals
     for (int i = 0; i < tablero.length; i++) {
-      // Reiniciar variables
       CounterH = 0;
       CounterV = 0;
 
       for (int j = 0; j < tablero.length; j++) {
         // Check horizontals
-        if (tablero[i][j] == jugadaAct)
-          CounterH++;
-        else
-          CounterH = 0;
+        CounterH = (tablero[i][j] == jugadaAct) ? CounterH + 1 : 0;
 
         // Check verticals
-        if (tablero[j][i] == jugadaAct)
-          CounterV++;
-        else
-          CounterV = 0;
+        CounterV = (tablero[j][i] == jugadaAct) ? CounterV + 1 : 0;
 
         // Return winner if found, and avoid diagonal calculation
-        if (CounterH > 2 || CounterV > 2)
-          return turno;
+        if (CounterH > NUM_RAYAS - 1 || CounterV > NUM_RAYAS - 1)
+          return 0;
       }
     }
 
     // Check diagonals
     if (tablero.length == 3) {
       // Check diagonals in 3x3 board
-
-      // Reiniciar variables
       CounterH = 0;
       CounterV = 0;
 
       for (int i = 0; i < 3; i++) {
-        if (tablero[i][i] == jugadaAct)
-          CounterH++;
-        if (tablero[i][2 - i] == jugadaAct)
-          CounterV++;
+        // Left to right
+        CounterH = (tablero[i][i] == jugadaAct) ? CounterH + 1 : 0;
+
+        // Right to left
+        CounterV = (tablero[i][2 - i] == jugadaAct) ? CounterV + 1 : 0;
 
         // Return winner if found
         if (CounterH > 2 || CounterV > 2)
-          return turno;
+          return 0;
       }
-    } else {
-      // Check bigger diagonals or how I learned to stop worrying and trust the magic
 
-      // Check 1st half of the board
+    } else {
+      // Check bigger diagonals or:
+      // How I learned to stop worrying and trust the numbers
+
+      // Checks 1st half of the board
       for (int i = ajuste; i < tablero.length; i++) {
         // Reiniciar variables
         CounterH = 0;
         CounterV = 0;
 
         for (int j = 0; j <= i; j++) {
-          // - 0
-          // 0 -
-          if (tablero[i - j][j] == jugadaAct)
-            CounterH++;
-          else
-            CounterH = 0;
+          // Left to right
+          CounterH = (tablero[i - j][j] == jugadaAct) ? CounterH + 1 : 0;
 
-          // 0 -
-          // - 0
-          if (tablero[i - j][tablero.length - 1 - j] == jugadaAct)
-            CounterV++;
-          else
-            CounterV = 0;
+          // Right to left
+          CounterV = (tablero[i - j][tablero.length - 1 - j] == jugadaAct) ? CounterV + 1 : 0;
 
           // Return winner if found
-          if (CounterH > 2 || CounterV > 2)
-            return turno;
+          if (CounterH > NUM_RAYAS - 1 || CounterV > NUM_RAYAS - 1)
+            return 0;
         }
       }
 
-      // Check 2nd half of the board
+      // Checks 2nd half of the board
       for (int i = tablero.length - 2; i > ajuste - 1; i--) {
         // Reiniciar variables
         CounterH = 0;
         CounterV = 0;
 
         for (int j = 0; j <= i; j++) {
-          // - 0
-          // 0 -
+          // Left to right
+          CounterH = (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == jugadaAct) ? CounterH + 1 : 0;
 
-          if (tablero[tablero.length - 1 - j][tablero.length - 1 - i + j] == jugadaAct)
-            CounterH++;
-
-          // 0 -
-          // - 0
-          if (tablero[tablero.length - 1 - j][i - j] == jugadaAct)
-            CounterV++;
+          // Right to left
+          CounterV = (tablero[tablero.length - 1 - j][i - j] == jugadaAct) ? CounterV + 1 : 0;
 
           // Return winner if found
-          if (CounterH > 2 || CounterV > 2)
-            return turno;
+          if (CounterH > NUM_RAYAS - 1 || CounterV > NUM_RAYAS - 1)
+            return 0;
         }
       }
     }

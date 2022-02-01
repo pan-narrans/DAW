@@ -3,13 +3,4 @@
     "src"
   ],
   "java.project.outputPath": "bin",
-  "java.project.referencedLibraries": {
-    "include": [
-      "lib/**/*.jar",
-      "c:\\Users\\grupo1\\Downloads\\junit-platform-console-standalone-1.8.2.jar"
-    ],
-    "exclude": [
-      "c:\\TresEnRaya\\lib"
-    ]
-  },
 }
