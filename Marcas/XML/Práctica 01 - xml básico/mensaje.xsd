@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- simple-->
+  <xs:element name="nombre" type="xs:string" />
+  <xs:element name="email" type="xs:string" />
+  <xs:element name="asunto" type="xs:string" />
+  <xs:element name="parrafo" type="xs:string" />
+
+  <!-- complex-->
+  <xs:element name="remite">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nombre" />
+        <xs:element ref="email" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="destinatario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nombre" />
+        <xs:element ref="email" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="texto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="parrafo" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="mensaje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="remite" />
+        <xs:element ref="destinatario" />
+        <xs:element ref="asunto" />
+        <xs:element ref="texto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
