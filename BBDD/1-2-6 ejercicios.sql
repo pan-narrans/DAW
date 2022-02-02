@@ -63,3 +63,15 @@ SELECT dep.nombre, COUNT(emp.codigo) as "nEmpleados" FROM departamento dep
   WHERE dep.presupuesto > 200000
   GROUP BY dep.codigo;
 
+
+
+
+
+-- SUBCONSULTAS
+SELECT d1.nombre, d1.presupuesto FROM departamento d1
+	WHERE d1.presupuesto >= ALL (SELECT d2.presupuesto FROM departamento d2);
+    
+SELECT d1.nombre, d1.presupuesto  FROM departamento d1
+	WHERE d1.presupuesto = (SELECT MAX(d2.presupuesto) FROM departamento d2);
+    
+-- departamentos con presupueto por encima de la media

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mensaje xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="mensaje.xsd" >
+  <remite>
+    <nombre>Alfredo Reino</nombre>
+    <email>alf@bium.com</email>
+  </remite>
+  <destinatario>
+    <nombre>Bill Clinton</nombre>
+    <email>president@whitehouse.gov</email>
+  </destinatario>
+  <asunto>Hola Bill</asunto>
+  <texto>
+    <parrafo>¿Hola que tal?</parrafo>
+    <parrafo>Hace mucho tiempo que no escribes. A ver si llamas y quedamos pronto</parrafo>
+    <parrafo>Un saludo.</parrafo>
+  </texto>
+</mensaje>
