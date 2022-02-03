@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arboles xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="trees.xsd">
+  <arbol>
+    <nombre>Arce de Montpellier</nombre>
+    <nombre>Arce menor </nombre>
+    <vegetacion>Caducifolio</vegetacion>
+    <altura>
+      <altura_min>6</altura_min>
+      <altura_max>10</altura_max>
+    </altura>
+    <forma_estructura>
+      <copa>esférica</copa>
+      <tronco>recto con bifurcaciones</tronco>
+      <ramaje>colgante</ramaje>
+    </forma_estructura>
+    <color>
+      <color_primavera></color_primavera>
+    </color>
+    <resistencia_heladas>
+      <tipo_helada>fuerte</tipo_helada>
+      <temperatura_helada>-20</temperatura_helada>
+    </resistencia_heladas>
+  </arbol>
+  <arbol>
+    <nombre>Olivo</nombre>
+    <vegetacion>Perenne</vegetacion>
+    <altura>
+      <altura_min>8</altura_min>
+      <altura_max>15</altura_max>
+    </altura>
+    <forma_estructura>
+      <copa>irregular</copa>
+      <tronco>irregular con bifurcaciones</tronco>
+      <ramaje>tortuoso</ramaje>
+    </forma_estructura>
+    <color>
+      <color_primavera></color_primavera>
+    </color>
+    <resistencia_heladas>
+      <tipo_helada>medias</tipo_helada>
+      <temperatura_helada>-10</temperatura_helada>
+    </resistencia_heladas>
+  </arbol>
+</arboles>

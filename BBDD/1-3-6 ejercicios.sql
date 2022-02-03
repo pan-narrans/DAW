@@ -69,7 +69,15 @@ SELECT
   ORDER BY 1 ASC;
 
 -- 13. Devuelve un listado que muestre el identificador de cliente, nombre, primer apellido y el valor de la máxima cantidad del pedido realizado por cada uno de los clientes. El resultado debe mostrar aquellos clientes que no han realizado ningún pedido indicando que la máxima cantidad de sus pedidos realizados es 0. Puede hacer uso de la función IFNULL.
+SELECT c1.id, c1.nombre, c1.apellido1, IFNULL(MAX(p1.total),0) 
+  FROM cliente c1
+  LEFT JOIN pedido p1 ON p1.id_cliente = c1.id
+  GROUP BY c1.id;
 
 -- 14. Devuelve cuál ha sido el pedido de máximo valor que se ha realizado cada año.
+SELECT  YEAR(p1.fecha) as "Año", MAX(p1.total) as "Máximo pedido" FROM pedido p1
+  GROUP BY YEAR(p1.fecha);
 
 -- 15. Devuelve el número total de pedidos que se han realizado cada año.
+SELECT YEAR(p1.fecha) as "Año", COUNT(p1.id) as "Nº pedidos" FROM pedido p1
+  GROUP BY YEAR(p1.fecha);

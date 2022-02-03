@@ -16,36 +16,32 @@ public class TresEnRaya {
   static final char JUG_2 = 'O';
   static final char VACIA = '-';
 
-  final static int TAM_TABLERO = 3; // Default board size
-  final int NUM_RECORDS = 3;
-  final int NUM_RAYAS; // Number of consecutive tokens needed to win
-
-  // Board size,
-  // introduced in order not to change the final variable already in the code.
-  private int tamTablero;
-
-  static Scanner sc = new Scanner(System.in);
-
-  // Marks the player's turn, 0 - player 1, 1 - player 2
-  int turno;
-
-  // Stores the number of moves made during the game
-  int movimientos;
-
-  // max nº of possible moves -> TAM_TABLERO * TAM_TABLERO
-  int maxMovimientos;
-
-  // Board matrix to store the tokens in
+  // Board matrix
   public char tablero[][];
 
-  // Records matrix:
-  // name, nº of moves
-  String[][] records;
+  // Board parameters
+  final static int TAM_TABLERO = 3; // Default board size
+  final int NUM_RAYAS; // Number of consecutive tokens needed to win
+  private int tamTablero;
+  boolean partidaTerminada = false;
+
+  // Scanner
+  static Scanner sc = new Scanner(System.in);
+
+  // Game related variables
+  int turno; // Marks the player's turn, 0 - player 1, 1 - player 2
+  int movimientos; // Stores the number of moves made during the game
+  int maxMovimientos; // max nº of possible moves -> TAM_TABLERO * TAM_TABLERO
+
+  // Records variables
+  String[][] records; // Records matrix: name, nº of moves
+  final int NUM_RECORDS = 3;
+
+  // IA
+  int IADifficulty = 1;
 
   // Array for storing the type of player playing the current game
   TipoJugador jugadores[] = new TipoJugador[2];
-
-  boolean partidaTerminada = false;
 
   /**
    * Constructor.
@@ -175,6 +171,136 @@ public class TresEnRaya {
    */
   public void pedirJugadaPC() {
     // TODO: ia easy/medium/ipossible
+    int fila, columna;
+    boolean jugadaValida;
+
+    do {
+      // Chooses row and column
+      fila = (int) (Math.random() * tamTablero);
+      columna = (int) (Math.random() * tamTablero);
+
+      // Checks if play is valid
+      jugadaValida = esJugadaValida(fila, columna, tablero);
+    } while (!jugadaValida);
+
+    // PLaces the token
+    tablero[fila][columna] = (turno == 0) ? JUG_1 : JUG_2;
+  }
+
+  /*
+   * public void escogerJugadaPC() {
+   * switch (IADifficulty) {
+   * case 1:
+   * // pedirJugadaPCFacil();
+   * break;
+   * case 2:
+   * // pedirJugadaPCMedio();
+   * break;
+   * default:
+   * break;
+   * }
+   * }
+   */
+
+  /*
+   * public void pedirJugadaPCMedio() {
+   * if (ganarEnUna())
+   * return;
+   * else if (bloquearEnUna())
+   * return;
+   * else
+   * jugadaAleatoria();
+   * }
+   */
+
+  /*
+   * public boolean ganarEnUna() {
+   * char token = (turno == 0) ? JUG_1 : JUG_2;
+   * checkTokens(token, tablero);
+   * return true;
+   * }
+   */
+
+  /*
+   * public boolean bloquearEnUna() {
+   * return true;
+   * }
+   */
+
+  public int[] checkTokens(char token, char[][] board) {
+    int counterH = 0;
+    int counterV = 0;
+    int filaH = 0, columnaH = 0;
+    int filaV = 0, columnaV = 0;
+    boolean emptyH = false;
+    boolean emptyV = false;
+
+    // Check vertical and horizontal
+    for (int i = 0; i < board.length; i++) {
+      counterH = 0;
+      counterV = 0;
+      emptyH = false;
+      emptyV = false;
+
+      for (int j = 0; j < board.length; j++) {
+        // Count tokens
+        counterH = (board[i][j] == token) ? counterH + 1 : counterH;
+        counterV = (board[j][i] == token) ? counterV + 1 : counterV;
+
+        // Check empty
+        if (board[i][j] == VACIA) {
+          emptyH = true;
+          filaH = i;
+          columnaH = j;
+        }
+        if (board[j][i] == VACIA) {
+          emptyV = true;
+          filaV = j;
+          columnaV = i;
+        }
+
+        // Return findings
+        if (emptyH && counterH == 2)
+          return new int[] { filaH, columnaH };
+        if (emptyV && counterV == 2)
+          return new int[] { filaV, columnaV };
+      }
+    }
+
+    // Check diagonals
+    counterH = 0;
+    counterV = 0;
+    emptyH = false;
+    emptyV = false;
+    for (int i = 0; i < 3; i++) {
+      // Count tokens
+      counterH = (board[i][i] == token) ? counterH + 1 : counterH;
+      /* counterV = (board[i][2 - i] == token) ? counterV + 1 : counterV; */
+
+      // Check empty
+      if (board[i][i] == VACIA) {
+        emptyH = true;
+        filaH = i;
+        columnaH = i;
+      }
+      /* if (board[i][2 - i] == VACIA) {
+        emptyV = true;
+        filaV = i;
+        columnaV = 2 - i;
+      } */
+
+      // Return findings
+      if (emptyH && counterH == 2)
+        return new int[] { filaH, columnaH };
+      /* if (emptyV && counterV == 2)
+        return new int[] { filaV, columnaV }; */
+    }
+
+    return new int[] { -1, -1 };
+
+  }
+
+  public void jugadaAleatoria() {
     int fila, columna;
     boolean jugadaValida;
 
@@ -470,12 +596,12 @@ public class TresEnRaya {
 
       for (int i = 0; i < 3; i++) {
         // Left to right
-        CounterJ1H = (tablero[i][i] == JUG_1) ? CounterJ1H + 1 : 0; // - 0
-        CounterJ2H = (tablero[i][i] == JUG_2) ? CounterJ2H + 1 : 0; // 0 -
+        CounterJ1H = (tablero[i][i] == JUG_1) ? CounterJ1H + 1 : 0; // 0 -
+        CounterJ2H = (tablero[i][i] == JUG_2) ? CounterJ2H + 1 : 0; // - 0
 
         // Right to left
-        CounterJ1V = (tablero[i][2 - i] == JUG_1) ? CounterJ1V + 1 : 0; // 0 -
-        CounterJ2V = (tablero[i][2 - i] == JUG_2) ? CounterJ2V + 1 : 0; // - 0
+        CounterJ1V = (tablero[i][2 - i] == JUG_1) ? CounterJ1V + 1 : 0; // - 0
+        CounterJ2V = (tablero[i][2 - i] == JUG_2) ? CounterJ2V + 1 : 0; // 0 -
 
         // Return winner if found
         if (CounterJ1H > 2 || CounterJ1V > 2)
