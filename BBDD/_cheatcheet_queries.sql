@@ -144,6 +144,7 @@ SELECT
 ##############################################################
 -- Devuelve los clientes y comerciales que no tienen ningún
 -- producto relacionado.
+-- BBDD 1-3
 SELECT cliente.nombre, "Cliente" as "Tipo" FROM cliente
   LEFT JOIN pedido ON pedido.id_cliente = cliente.id
   WHERE pedido.id IS NULL
