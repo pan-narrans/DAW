@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <arboles xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="trees.xsd">
   <arbol>
-    <nombre>Arce de Montpellier</nombre>
-    <nombre>Arce menor </nombre>
-    <vegetacion>Caducifolio</vegetacion>
+    <nombre_cientifico>Acer monspessulanum</nombre_cientifico>
+    <nombre_comun>Arce de Montpellier</nombre_comun>
+    <nombre_comun>Arce menor</nombre_comun>
+    <vegetacion>caducifolio</vegetacion>
     <altura>
       <altura_min>6</altura_min>
       <altura_max>10</altura_max>
@@ -14,16 +15,20 @@
       <ramaje>colgante</ramaje>
     </forma_estructura>
     <color>
-      <color_primavera></color_primavera>
+      <estacion>primavera</estacion>
+      <hoja_haz>verde brillante</hoja_haz>
+      <hoja_enves>verde blanquecino</hoja_enves>
     </color>
     <resistencia_heladas>
       <tipo_helada>fuerte</tipo_helada>
       <temperatura_helada>-20</temperatura_helada>
     </resistencia_heladas>
   </arbol>
+
   <arbol>
-    <nombre>Olivo</nombre>
-    <vegetacion>Perenne</vegetacion>
+    <nombre_cientifico>Olea europea</nombre_cientifico>
+    <nombre_comun>Olivo</nombre_comun>
+    <vegetacion>perenne</vegetacion>
     <altura>
       <altura_min>8</altura_min>
       <altura_max>15</altura_max>
@@ -34,11 +39,65 @@
       <ramaje>tortuoso</ramaje>
     </forma_estructura>
     <color>
-      <color_primavera></color_primavera>
+      <estacion>primavera</estacion>
+      <hoja_haz>verde oscuro</hoja_haz>
+      <hoja_enves>verde plateado</hoja_enves>
     </color>
     <resistencia_heladas>
       <tipo_helada>medias</tipo_helada>
       <temperatura_helada>-10</temperatura_helada>
+    </resistencia_heladas>
+  </arbol>
+
+  <arbol>
+    <nombre_cientifico>Platanus orientalis</nombre_cientifico>
+    <nombre_comun>Platano</nombre_comun>
+    <vegetacion>caducifolio</vegetacion>
+    <altura>
+      <altura_min>20</altura_min>
+      <altura_max>25</altura_max>
+    </altura>
+    <forma_estructura>
+      <copa>ovoidal</copa>
+      <tronco>recto</tronco>
+      <ramaje>expandido</ramaje>
+    </forma_estructura>
+    <color>
+      <estacion>primavera</estacion>
+      <hoja_haz>verde medio</hoja_haz>
+      <hoja_enves>verde claro</hoja_enves>
+    </color>
+    <color>
+      <estacion>otoño</estacion>
+      <color_hoja>Ocre</color_hoja>
+    </color>
+    <resistencia_heladas>
+      <tipo_helada>fuertes</tipo_helada>
+      <temperatura_helada>-20</temperatura_helada>
+    </resistencia_heladas>
+  </arbol>
+
+  <arbol>
+    <nombre_cientifico>Quercus ilex</nombre_cientifico>
+    <nombre_comun>Encina</nombre_comun>
+    <vegetacion>perenne</vegetacion>
+    <altura>
+      <altura_aprox>25</altura_aprox>
+    </altura>
+    <forma_estructura>
+      <copa>esférica o elíptica irregular</copa>
+      <tronco>recto</tronco>
+      <ramaje>tortuoso</ramaje>
+    </forma_estructura>
+    <color>
+      <estacion>primavera</estacion>
+      <hoja_joven>plateado</hoja_joven>
+      <hoja_haz>verde oscuro</hoja_haz>
+      <hoja_enves>plateado</hoja_enves>
+    </color>
+    <resistencia_heladas>
+      <tipo_helada>fuertes</tipo_helada>
+      <temperatura_helada>-15</temperatura_helada>
     </resistencia_heladas>
   </arbol>
 </arboles>
