@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:complexType name="d-m-y">
+  <xs:complexType name="date">
     <xs:sequence>
       <xs:element name="dia" type="xs:string" />
       <xs:element name="mes" type="xs:string" />
@@ -12,8 +12,8 @@
   <xs:element name="fabricacion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="inicio" type="d-m-y" />
-        <xs:element name="fin" type="d-m-y" />
+        <xs:element name="inicio" type="date" />
+        <xs:element name="fin" type="date" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

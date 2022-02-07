@@ -1,58 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <!-- SIMPLE TYPES -->
-  <!-- Generales -->
-  <xs:element name="nombre_cientifico" type="xs:string" />
-  <xs:element name="nombre_comun" type="xs:string" />
-  <xs:element name="vegetacion">
-    <xs:simpleType>
-      <xs:restriction base="xs:string">
-        <xs:enumeration value="caducifolio" />
-        <xs:enumeration value="perenne" />
-        <!-- <xs:pattern value="[cC]aducifolio|[pP]erenne"></xs:pattern> -->
-      </xs:restriction>
-    </xs:simpleType>
-  </xs:element>
-
-  <!-- Altura-->
-  <xs:element name="altura_max" type="xs:int" />
-  <xs:element name="altura_min" type="xs:int" />
-  <xs:element name="altura_aprox" type="xs:int" />
-
-  <!-- Forma -->
-  <xs:element name="copa" type="xs:string" />
-  <xs:element name="tronco" type="xs:string" />
-  <xs:element name="ramaje" type="xs:string" />
+  <xs:simpleType name="vegetacion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="caducifolio" />
+      <xs:enumeration value="perenne" />
+      <!-- <xs:pattern value="[cC]aducifolio|[pP]erenne"></xs:pattern> -->
+    </xs:restriction>
+  </xs:simpleType>
 
   <!-- Color -->
-  <xs:element name="estacion">
-    <xs:simpleType>
-      <xs:restriction base="xs:string">
-        <xs:enumeration value="primavera" />
-        <xs:enumeration value="verano" />
-        <xs:enumeration value="otoño" />
-        <xs:enumeration value="invierno" />
-      </xs:restriction>
-    </xs:simpleType>
-  </xs:element>
-  <xs:element name="color_hoja" type="xs:string" />
-  <xs:element name="hoja_joven" type="xs:string" />
-  <xs:element name="hoja_enves" type="xs:string" />
-  <xs:element name="hoja_haz" type="xs:string" />
-
-  <!-- Heladas -->
-  <xs:element name="tipo_helada" type="xs:string" />
-  <xs:element name="temperatura_helada" type="xs:int" />
+  <xs:simpleType name="estacion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="primavera" />
+      <xs:enumeration value="verano" />
+      <xs:enumeration value="otoño" />
+      <xs:enumeration value="invierno" />
+    </xs:restriction>
+  </xs:simpleType>
 
 
   <!-- COMPLEX TYPES -->
   <xs:element name="altura">
     <xs:complexType>
       <xs:all>
-        <xs:element ref="altura_max" minOccurs="0" />
-        <xs:element ref="altura_min" minOccurs="0" />
-        <xs:element ref="altura_aprox" minOccurs="0" />
+        <xs:element name="altura_max" type="xs:int" minOccurs="0" />
+        <xs:element name="altura_min" type="xs:int" minOccurs="0" />
+        <xs:element name="altura_aprox" type="xs:int" minOccurs="0" />
       </xs:all>
     </xs:complexType>
   </xs:element>
@@ -60,9 +34,9 @@
   <xs:element name="forma_estructura">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="copa" />
-        <xs:element ref="tronco" />
-        <xs:element ref="ramaje" />
+        <xs:element name="copa" type="xs:string" />
+        <xs:element name="tronco" type="xs:string" />
+        <xs:element name="ramaje" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -70,30 +44,31 @@
   <xs:element name="color">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="estacion" />
-        <xs:element ref="color_hoja" minOccurs="0" />
-        <xs:element ref="hoja_joven" minOccurs="0" />
-        <xs:element ref="hoja_haz" minOccurs="0" />
-        <xs:element ref="hoja_enves" minOccurs="0" />
+        <xs:element name="estacion" type="estacion" />
+        <xs:element name="color_hoja" type="xs:string" minOccurs="0" />
+        <xs:element name="hoja_joven" type="xs:string" minOccurs="0" />
+        <xs:element name="hoja_haz" type="xs:string" minOccurs="0" />
+        <xs:element name="hoja_enves" type="xs:string" minOccurs="0" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
+
   <xs:element name="resistencia_heladas">
     <xs:complexType>
-      <xs:all>
-        <xs:element ref="tipo_helada" />
-        <xs:element ref="temperatura_helada" />
-      </xs:all>
+      <xs:sequence>
+        <xs:element name="tipo_helada" type="xs:string" />
+        <xs:element name="temperatura_helada" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 
   <xs:element name="arbol">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="nombre_cientifico" />
-        <xs:element ref="nombre_comun" maxOccurs="unbounded" />
-        <xs:element ref="vegetacion" />
+        <xs:element name="nombre_cientifico" type="xs:string" />
+        <xs:element name="nombre_comun" type="xs:string" maxOccurs="unbounded" />
+        <xs:element name="vegetacion" type="vegetacion" />
         <xs:element ref="altura" />
         <xs:element ref="forma_estructura" />
         <xs:element ref="color" maxOccurs="unbounded" />
