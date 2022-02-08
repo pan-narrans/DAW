@@ -8,25 +8,25 @@
   - [Tipos de **JOIN**:](#tipos-de-join)
   - [Ejemplos:](#ejemplos-1)
 - [**UNION**](#union)
-  - [Requisitos:](#requisitos)
 - [**WHERE**](#where)
   - [Modificadores lógicos:](#modificadores-lógicos)
   - [**LIKE** // **NOT LIKE**](#like--not-like)
-    - [WILDCARDS](#wildcards)
   - [**IN**( )](#in-)
   - [**BETWEEN** . **AND** .](#between--and-)
-- [**ORDER BY**](#order-by)
+  - [**EXISTS**](#exists)
+  - [**ALL** // **ANY**](#all--any)
 - [**GROUP BY**](#group-by)
   - [**HAVING**](#having)
-- [**EXISTS**](#exists)
-- [**ALL** // **ANY** - **[WIP]**](#all--any---wip)
+- [**ORDER BY**](#order-by)
 - [Otras Funciones:](#otras-funciones)
-  - [LIMIT](#limit)
-  - [UPPER() // LOWER()](#upper--lower)
-  - [ROUND() // FLOOR() // CEILING()](#round--floor--ceiling)
-  - [MAX() // COUNT() // SUM() // ...](#max--count--sum--)
-  - [TRUNCATE()](#truncate)
-  - [CONCAT_WS()](#concat_ws)
+  - [**LIMIT**](#limit)
+  - [Matemáticas](#matemáticas)
+    - [Redondeo de valores:](#redondeo-de-valores)
+    - [Cálculo con **MAX**, **MIN**, **SUM**, **AVG** y **COUNT**:](#cálculo-con-max-min-sum-avg-y-count)
+  - [Cadenas](#cadenas)
+    - [**UPPER()** y **LOWER()**](#upper-y-lower)
+    - [**CONCAT_WS()**](#concat_ws)
+    - [WILDCARDS (para búsqueda de cadenas)](#wildcards-para-búsqueda-de-cadenas)
 
 
 <!--..%%%%...%%%%%%..%%......%%%%%%...%%%%...%%%%%%.-->
@@ -40,12 +40,11 @@ Permite hacer consultas, hay mil ejemplos en este documento.
 ## Subconsultas
 Podemos realizar un select dentro de casi cualquier sitio para realizar una subconsulta dentro de otra consulta. Se pueden anidar de esta forma varias consultas una dentro de otra.
 
-Se pueden hacer mil mierdas con esto y es una locura, por ahora nos faltan cosas por ver.
+Se pueden hacer mil mierdas con esto y es un poco locura.
 
->   Son **poco eficientes**. 
+>   Son **poco eficientes** 🙊 
 > 
 > Si podemos evitar hacer una subconsulta, lo evitamos y usamos **JOIN** donde se pueda, que es más eficiente.
-
 
 ---
 
@@ -53,10 +52,9 @@ Una subconsulta dentro de un **FROM** tiene que llevar un alias, si se realiza e
 ``` sql
 -- Calcula el número de valores distintos de codigo_fabricante que aparecen en la tabla productos.
 -- BBDD 1-1 (tienda)
-SELECT COUNT(*) as "Nº de Fabricantes"
-  FROM ( SELECT DISTINCT p.codigo_fabricante FROM producto p ) c;
+SELECT COUNT(*) as "Nº de Fabricantes" FROM 
+  (SELECT DISTINCT p.codigo_fabricante FROM producto p) c;
 ```
-
 
 ---
 
@@ -65,8 +63,6 @@ Pueden hacerse subconsultas con campos de la consulta madre, a esto se le llama 
 ~~(culturilla y ya 😬)~~
 
 ---
-
-
 
 ## Ejemplos:
 
@@ -108,7 +104,7 @@ SELECT cl1.nombre_cliente, e.nombre FROM cliente cl1
 <!--.%%..%%..%%..%%....%%....%%..%%.-->
 <!--..%%%%....%%%%...%%%%%%..%%..%%.-->
 # **JOIN** 
-Realiza un producto cartesiano de las tablas incluídas y devuelve los valores en base a una cierta condición dada que es la que marca la unión de las tablas.
+Realiza un producto cartesiano de las tablas incluidas y devuelve los valores en base a una cierta condición dada que es la que marca la unión de las tablas.
 
 ## Tipos de **JOIN**:
 
@@ -118,7 +114,7 @@ Realiza un producto cartesiano de las tablas incluídas y devuelve los valores e
 | **`LEFT JOIN`**       | 1ra tabla y la intersección de las dos | All records from the left table, and the matched records from the right table |
 | **`RIGHT JOIN`**      | 2da tabla y la intersección de las dos | All records from the right table, and the matched records from the left table |
 | **`FULL OUTER JOIN`** | "A∪B" Unión de las dos tablas          | ll records when there is a match in either left or right table                |
-|                       |                                        |
+
 
 ## Ejemplos:
 
@@ -134,7 +130,7 @@ De esta forma podemos "saltar" de tabla en tabla.
 
 ```sql
 -- Devuelve el nombre de todos los clientes y el de todos los productos que han pedido, al igual que el nº de unidades de cada producto.
--- BBDD 1-4 (jardineria)
+-- BBDD 1-4 (jardinería)
 SELECT 
     cliente.nombre_cliente as "Nombre Cliente", 
     producto.nombre as "Nombre Producto", 
@@ -150,16 +146,17 @@ SELECT
 ```
 
 
-
 <!--.%%..%%..%%..%%..%%%%%%...%%%%...%%..%%.-->
 <!--.%%..%%..%%%.%%....%%....%%..%%..%%%.%%.-->
 <!--.%%..%%..%%.%%%....%%....%%..%%..%%.%%%.-->
 <!--.%%..%%..%%..%%....%%....%%..%%..%%..%%.-->
 <!--..%%%%...%%..%%..%%%%%%...%%%%...%%..%%.-->
-# **UNION**
-Permite unir los resultados de dos o más consultas SELECT en una sola tabla.
+# **UNION** 
+Permite unir los resultados de dos o más consultas **`SELECT`** en una sola tabla. 
 
-## Requisitos:
+Para unir más de dos **`SELECT`** únicamente tenemos que concatenar los **`UNION`** uno detrás de otro. 
+
+**Requisitos:**
   - las dos consultas tienen que tener el mismo nº de columnas
   - las columnas tienen que tener un tipo de datos similar
   - las columnas tienen que estar en el mismo orden
@@ -198,12 +195,11 @@ Marca condiciones que deben cumplir los resultados de la consulta. Permite hacer
 |   Símbolo   | Significado      |
 | :---------: | ---------------- |
 |     `=`     | igual            |
-| `<>` / `!=` | differente       |
+| `<>` / `!=` | diferente        |
 |     `<`     | inferior         |
 |     `>`     | superior         |
 |    `<=`     | inferior o igual |
 |    `>=`     | superior o igual |
-|             |                  |
 
 </td><td>
 
@@ -212,7 +208,6 @@ Marca condiciones que deben cumplir los resultados de la consulta. Permite hacer
 |  `AND`  | and lógico  |
 |  `OR`   | or lógico   |
 |  `NOT`  | negación    |
-|         |             |
 
 </td></tr>
 </table>
@@ -227,18 +222,6 @@ SELECT * FROM table_name
 Similar a los comparadores `=` y `<>`, se usan para comparar cadenas.
 
 Permite búsqueda de patrones con wildcards.
-
-
-###  WILDCARDS 
-
-| Symbol | Explicación                                      | Ejemplo                                  |
-| :----: | ------------------------------------------------ | ---------------------------------------- |
-|  `%`   | Zero or more characters.                         | `bl%` finds bl, black, blue, and blob    |
-|  `_`   | A single character.                              | `h_t` finds hot, hat, and hit            |
-|  `[]`  | Any single character within the brackets.        | `h[oa]t` finds hot and hat, but not hit  |
-|  `^`   | Any character not in the brackets.               | `h[^oa]t` finds hit, but not hot and hat |
-|  `-`   | Any single character within the specified range. | `c[a-b]t` finds cat and cbt              |
-|        |                                                  |
 
 
 ``` sql
@@ -267,6 +250,114 @@ SELECT p.nombre FROM producto p
   WHERE p.precio BETWEEN 60 AND 200;
 ```
 
+<!--.%%%%%%..%%..%%..%%%%%%...%%%%...%%%%%%...%%%%..-->
+<!--.%%.......%%%%.....%%....%%........%%....%%.....-->
+<!--.%%%%......%%......%%.....%%%%.....%%.....%%%%..-->
+<!--.%%.......%%%%.....%%........%%....%%........%%.-->
+<!--.%%%%%%..%%..%%..%%%%%%...%%%%.....%%.....%%%%..-->
+## **EXISTS**
+Comprueba si existe el dato comprobado.
+
+Lo podemos usar para comprobar si una subconsulta ha devuelto
+algún resultado.
+
+``` sql
+-- Devuelve los nombres de los fabricantes que tienen productos asociados.
+-- BBDD 1-1 (tienda)
+SELECT * FROM fabricante f1 WHERE EXISTS 
+  (SELECT * FROM producto p1 
+  WHERE p1.codigo_fabricante = f1.codigo);
+```
+
+``` sql
+-- Devuelve los nombres de los fabricantes que no tienen productos asociados.
+-- BBDD 1-1 (tienda)
+SELECT * FROM fabricante f1 WHERE NOT EXISTS 
+  (SELECT * FROM producto p1 WHERE p1.codigo_fabricante = f1.codigo);
+```
+
+
+
+
+<!--..%%%%...%%......%%..........%%%%...%%..%%..%%..%%.-->
+<!--.%%..%%..%%......%%.........%%..%%..%%%.%%...%%%%..-->
+<!--.%%%%%%..%%......%%.........%%%%%%..%%.%%%....%%...-->
+<!--.%%..%%..%%......%%.........%%..%%..%%..%%....%%...-->
+<!--.%%..%%..%%%%%%..%%%%%%.....%%..%%..%%..%%....%%...-->
+## **ALL** // **ANY**
+
+Nos permite comprobar si de un grupo de elementos (obtenido a partir de una subconsulta) todos o alguno de ellos cumple una condición.
+
+---
+
+Devuelve `true` si se cumple la condición marcada al comparar con **todos** los elementos.
+
+``` sql
+-- Devuelve el nombre del departamento con menor presupuesto y la cantidad que tiene asignada.
+-- BBDD 1-2 (empleados)
+SELECT dep.nombre, dep.presupuesto FROM departamento dep
+  WHERE dep.presupuesto <= ALL 
+  (SELECT dep.presupuesto FROM departamento dep);
+```
+
+Devuelve `true` si se cumple la condición marcada con **al menos uno** de los elementos.
+
+``` sql
+-- Devuelve los nombres de los departamentos que tienen empleados asociados.
+-- BBDD 1-2 (empleados)
+SELECT dep.nombre FROM departamento dep
+  WHERE dep.codigo = ANY 
+  (SELECT emp.codigo_departamento FROM empleado emp);
+```
+
+
+
+
+
+<!--..%%%%...%%%%%....%%%%...%%..%%..%%%%%......%%%%%...%%..%%.-->
+<!--.%%......%%..%%..%%..%%..%%..%%..%%..%%.....%%..%%...%%%%..-->
+<!--.%%.%%%..%%%%%...%%..%%..%%..%%..%%%%%......%%%%%.....%%...-->
+<!--.%%..%%..%%..%%..%%..%%..%%..%%..%%.........%%..%%....%%...-->
+<!--..%%%%...%%..%%...%%%%....%%%%...%%.........%%%%%.....%%...-->
+
+#  **GROUP BY**
+Agrupa los resultados según los valores de una columna dada.
+Se suele usar junto con funciones que nos agrupan varios valores en uno solo. 
+
+Tales como: 
+  - **`COUNT()`** : cuenta el nº de ocurrencias
+  - **`MAX()`** : muestra la ocurrencia más alta
+  - **`MIN()`** : muestra la ocurrencia más baja
+  - **`SUM()`** : suma todas las ocurrencias
+  - **`AVG()`** : calcula la media de las ocurrencias
+
+Para evitar que la consulta nos devuelva un único valor realizamos un **`GROUP BY`** por el valor por el cual nos interesa diferenciar.
+
+```sql
+-- Devuelve el número de empleados que hay en cada departamento.
+-- BBDD 1-2 (empleados)
+SELECT dep.nombre, COUNT(emp.codigo) FROM empleado emp
+  INNER JOIN departamento dep ON emp.codigo_departamento = dep.codigo
+  GROUP BY dep.nombre;
+```
+
+> En este caso el **`COUNT`** nos contaría a priori el nº total de empleados. 
+> 
+> Al agrupar por departamento, lo que hace es contar el nº de empleados por departamento.
+
+## **HAVING** 
+El having es un **`WHERE`** pero para la parte de agrupamientos. Es menos eficiente por lo que debe usarse únicamente cuando sea necesario.
+
+Los aliases del **`SELECT`** se pueden usar en el **`HAVING`** ya que este se ejecuta después. Recordamos que en el **`WHERE`** no se podían usar ya que este se ejecutaba antes.
+``` sql
+-- BBDD 1-1 (tienda)
+SELECT 
+  MAX(p.precio) as precioMax, p.codigo_fabricante 
+  FROM producto p 
+  
+  GROUP BY p.codigo_fabricante
+  HAVING precioMax > 200;
+```
 
 
 
@@ -292,81 +383,10 @@ SELECT p.nombre
 
 
 
-<!--..%%%%...%%%%%....%%%%...%%..%%..%%%%%......%%%%%...%%..%%.-->
-<!--.%%......%%..%%..%%..%%..%%..%%..%%..%%.....%%..%%...%%%%..-->
-<!--.%%.%%%..%%%%%...%%..%%..%%..%%..%%%%%......%%%%%.....%%...-->
-<!--.%%..%%..%%..%%..%%..%%..%%..%%..%%.........%%..%%....%%...-->
-<!--..%%%%...%%..%%...%%%%....%%%%...%%.........%%%%%.....%%...-->
-
-#  **GROUP BY**
-Agrupa los resultados según los valores de una columna dada.
-Se suele usar junto con: 
-  - **COUNT()**: cuenta el nº de ocurrencias
-  - **MAX()**: muestra la ocurrencia más alta
-  - **MIN()**: muestra la ocurrencia más baja
-  - **SUM()**: suma todas las ocurrencias
-  - **AVG()**: calcula la media de las ocurrencias
-
-
-## **HAVING** 
-El having es un **WHERE** pero para la parte de agrupamientos.
-
-Los aliases del **SELECT** se pueden usar en el **HAVING** ya que este se ejecuta después. Recordamos que en el **WHERE** no se podían usar ya que este se ejecutaba antes del **SELECT**.
-``` sql
--- BBDD 1-1 (tienda)
-SELECT 
-  MAX(p.precio) as precioMax, p.codigo_fabricante 
-  FROM producto p 
-  
-  GROUP BY p.codigo_fabricante
-  HAVING precioMax > 200;
-```
-
-
-
-
-<!--.%%%%%%..%%..%%..%%%%%%...%%%%...%%%%%%...%%%%..-->
-<!--.%%.......%%%%.....%%....%%........%%....%%.....-->
-<!--.%%%%......%%......%%.....%%%%.....%%.....%%%%..-->
-<!--.%%.......%%%%.....%%........%%....%%........%%.-->
-<!--.%%%%%%..%%..%%..%%%%%%...%%%%.....%%.....%%%%..-->
-# **EXISTS**
-Comprueba si existe el dato comprobado.
-
-Lo podemos usar para comprobar si una subconsulta ha devuelto
-algún resultado.
-
-``` sql
--- 14. Devuelve los nombres de los fabricantes que tienen productos asociados.
--- BBDD 1-1 (tienda)
-SELECT * FROM fabricante f1 WHERE EXISTS 
-  (SELECT * FROM producto p1 WHERE p1.codigo_fabricante = f1.codigo);
-```
-
-``` sql
--- 15. Devuelve los nombres de los fabricantes que no tienen productos asociados.
--- BBDD 1-1 (tienda)
-SELECT * FROM fabricante f1 WHERE NOT EXISTS 
-  (SELECT * FROM producto p1 WHERE p1.codigo_fabricante = f1.codigo);
-```
-
-
-
-
-<!--..%%%%...%%......%%..........%%%%...%%..%%..%%..%%.-->
-<!--.%%..%%..%%......%%.........%%..%%..%%%.%%...%%%%..-->
-<!--.%%%%%%..%%......%%.........%%%%%%..%%.%%%....%%...-->
-<!--.%%..%%..%%......%%.........%%..%%..%%..%%....%%...-->
-<!--.%%..%%..%%%%%%..%%%%%%.....%%..%%..%%..%%....%%...-->
-# **ALL** // **ANY** - **[WIP]**
-
-
-
-
 
 # Otras Funciones:
 
-## LIMIT
+## **LIMIT**
 Devuelve las 5 primeras filas:
 ``` sql
 -- BBDD 1-1 (tienda)
@@ -378,24 +398,36 @@ Devuelve dos filas empezando por la 3ºa, devuelve entonces las filas cuatro y t
 SELECT * FROM fabricante f LIMIT 3,2;
 ```
 
-##  UPPER() // LOWER()
-Transforman una string a uppercase o lowercase
-``` sql
-SELECT UPPER( p.nombre ), p.precio FROM producto p;
+## Matemáticas
+
+### Redondeo de valores:
+
+| Comando      | Comportamiento                       |
+| ------------ | ------------------------------------ |
+| `ROUND()`    | redondea de forma normal             |
+| `FLOOR()`    | redondea hacia abajo siempre         |
+| `CEILING()`  | redondea hacia arriba siempre        |
+| `TRUNCATE()` | trunca hasta un nº dado de decimales |
+
+``` SQL
+SELECT 
+    p.nombre, 
+    TRUNCATE( p.precio, 2 ) as "precio" 
+  FROM producto p;
 ```
 
+### Cálculo con **MAX**, **MIN**, **SUM**, **AVG** y **COUNT**:
 
-## ROUND() // FLOOR() // CEILING()
-   - ROUND(): redondea de forma normal
-   - FLOOR(): redondea hacia abajo siempre
-   - CEILING(): redondea hacia arriba siempre
+Agrupan los resultados de la consulta en un único valor. Por esta razón se suelen usan junto con el [**`GROUP BY`**](#group-by).
 
-## MAX() // COUNT() // SUM() // ...
-   - COUNT(): cuenta el nº de ocurrencias
-   - MAX(): muestra la ocurrencia más alta
-   - MIN(): muestra la ocurrencia más baja
-   - SUM(): suma todas las ocurrencias
-   - AVG(): calcula la media de las ocurrencias
+| Comando   | Comportamiento                      |
+| --------- | ----------------------------------- |
+| `COUNT()` | cuenta el nº de ocurrencias         |
+| `MAX()`   | muestra la ocurrencia más alta      |
+| `MIN()`   | muestra la ocurrencia más baja      |
+| `SUM()`   | suma todas las ocurrencias          |
+| `AVG()`   | calcula la media de las ocurrencias |
+
 
 ``` sql
 SELECT 
@@ -405,22 +437,47 @@ SELECT
   FROM producto p;
 ```
 
-## TRUNCATE()
-Redondea hasta un nº dado de decimales.
-``` SQL
-SELECT 
-    p.nombre, 
-    TRUNCATE( p.precio, 2 ) as "precio" 
-  FROM producto p;
+
+## Cadenas
+
+###  **UPPER()** y **LOWER()**
+Transforman una string a uppercase o lowercase. 
+
+> Lo usamos principalmente para comparar strings sin preocuparnos por la capitalización de los datos.
+``` sql
+SELECT UPPER( p.nombre ), p.precio FROM producto p;
 ```
 
-## CONCAT_WS()  
-concatenar con espaciador.
+
+### **CONCAT_WS()**
 Concatena una serie de datos separándolos con el separador
 dado.
 ``` sql
 SELECT 
-    producto.nombre AS "Nombre",
-    CONCAT_WS(" ", ROUND(producto.precio * 1.21), "€") AS "Precio Final" 
-  FROM producto;
+  p.nombre AS "Nombre",
+  CONCAT_WS(" ", ROUND(p.precio * 1.21), "€") AS "Precio" 
+  FROM producto p;
+```
+
+###  WILDCARDS (para búsqueda de cadenas)
+
+| Symbol | Explicación                                      | Ejemplo                                  |
+| :----: | ------------------------------------------------ | ---------------------------------------- |
+|  `%`   | Zero or more characters.                         | `bl%` finds bl, black, blue, and blob    |
+|  `_`   | A single character.                              | `h_t` finds hot, hat, and hit            |
+|  `[]`  | Any single character within the brackets.        | `h[oa]t` finds hot and hat, but not hit  |
+|  `^`   | Any character not in the brackets.               | `h[^oa]t` finds hit, but not hot and hat |
+|  `_`   | Any single character within the specified range. | `c[a-b]t` finds cat and cbt              |
+
+Ejemplillos:
+
+```sql
+-- Devuelve todas las ciudades empezando por cualquier letra y acabando en "ondon".
+SELECT * FROM Customers
+WHERE City LIKE '_ondon';
+```
+```sql
+-- Devuelve todas las ciudades que empiezan por "b", "s" o "p".
+SELECT * FROM Customers
+WHERE City LIKE '[bsp]%';
 ```

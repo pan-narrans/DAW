@@ -6,7 +6,7 @@
   - [Conectar **XML** y **XSD**](#conectar-xml-y-xsd)
 - [**XSD**](#xsd)
 - [Template](#template)
-  - [Pluggin](#pluggin)
+  - [Plugin](#plugin)
 
 
 # **XML**
@@ -96,7 +96,7 @@ De esta forma podemos organizar mejor nuestro código para no perdernos y hacerl
 XML
 ``` XML
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="shcema.xsd">
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
   <element>
   </element>
 </root>
@@ -116,8 +116,8 @@ XSD
 </xs:schema>
 ```
 
-## Pluggin
-El pluggin 
+## Plugin
+El plugin 
 [XML de Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) 
 en vscode permite realizar todo esto de forma quasi automática. Llegando al punto de generar un schema a partir de un archivo XML. 
 
