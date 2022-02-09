@@ -1,0 +1,15 @@
+1.1 GESTION NAVES
+1.1.1 Actualizar Alquiler (IPC)
+1.1.2 Gestionar Naves
+1.1.3 Mantener Alquileres (Precio, Inquilino, ...)
+1.1.4 Consultar Alquileres (Informe Alquileres)
+
+1.2 GESTION RECIBOS
+1.2.1 Generar Factura
+1.2.2 Enviar Remesa
+1.2.3 Calcular Precios
+1.2.4 Procesar Cobros (Devoluciones)
+1.2.5 Gestionar Cobros (Informe)
+
+1.3 GESTION ARRENDATARIOS
+1.3.1 Gestionar Arrendatario
