@@ -7,6 +7,12 @@
   - [Trabajar con Directorios](#trabajar-con-directorios)
 - [Editar Archivos](#editar-archivos)
 - [Usar el manual](#usar-el-manual)
+- [otros](#otros)
+  - [tratar el contenido de los archivos](#tratar-el-contenido-de-los-archivos)
+    - [grep](#grep)
+    - [sed](#sed)
+  - [mover y copiar](#mover-y-copiar)
+  - [permisos](#permisos)
 
 
 # Commandos Básicos
@@ -17,7 +23,7 @@
 | `cd `       | nos lleva a nuestra "home"                           |
 | `cd /`      | nos lleva al "root"                                  |
 | `cd ..`     | nos sube al directorio inmediatamente superior       |
-| `cd [path]` | nos a la dirección introducida (absoluta o relativa) |
+| `cd [path]` | nos lleva a la dirección introducida (absoluta o relativa) |
 
 ```console
 alex@alex-vm:~$ cd /media
@@ -51,3 +57,11 @@ alex@alex-vm:/media$
 # Editar Archivos
 
 # Usar el manual
+
+# otros
+## tratar el contenido de los archivos
+### grep
+### sed
+## mover y copiar
+## permisos
+##
