@@ -5,6 +5,7 @@
 - [**XML**](#xml)
   - [Conectar **XML** y **XSD**](#conectar-xml-y-xsd)
 - [**XSD**](#xsd)
+  - [restricciones](#restricciones)
 - [Template](#template)
   - [Plugin](#plugin)
 
@@ -89,6 +90,25 @@ Para luego referenciarlo:
 ```
 De esta forma podemos organizar mejor nuestro código para no perdernos y hacerlo más reutilizable.
 
+
+## restricciones
+
+``` xml
+  <xs:simpleType name="edad">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="130" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ficha_datos">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string" />
+      <xs:element name="edad" type="edad" />
+    </xs:sequence>
+    <xs:attribute name="numero" type="xs:integer" use="required" />
+  </xs:complexType>
+```
 
 # Template
 
