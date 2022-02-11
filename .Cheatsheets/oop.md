@@ -91,3 +91,12 @@ public class humanoJedi implements Jedi(){
 
 # Otros
 ## Sobrecarga
+
+Permite tener varios métodos que se llamen igual pero se comporten distinto. Para diferenciar entre ellos es **imprescindible** que el nº de atributos sea distinto.
+
+Cambiar el return type no es necesario ni relevante a la hora de hacer la sobrecarga.
+
+```java
+public void talk(){ System.out.println("moo"); }  
+public void talk(String words){ System.out.println(words); } 
+```
