@@ -5,8 +5,9 @@
   - [Subconsultas](#subconsultas)
   - [Ejemplos:](#ejemplos)
 - [**JOIN**](#join)
-  - [Tipos de **JOIN**:](#tipos-de-join)
+  - [Tipos de **`JOIN`**:](#tipos-de-join)
   - [Ejemplos:](#ejemplos-1)
+  - [Ejemplo **`JOIN`** con Subconsulta:](#ejemplo-join-con-subconsulta)
 - [**UNION**](#union)
 - [**WHERE**](#where)
   - [Modificadores lógicos:](#modificadores-lógicos)
@@ -98,6 +99,7 @@ SELECT cl1.nombre_cliente, e.nombre FROM cliente cl1
 
 
 
+
 <!--.%%%%%%...%%%%...%%%%%%..%%..%%.-->
 <!--.....%%..%%..%%....%%....%%%.%%.-->
 <!--.....%%..%%..%%....%%....%%.%%%.-->
@@ -106,14 +108,13 @@ SELECT cl1.nombre_cliente, e.nombre FROM cliente cl1
 # **JOIN** 
 Realiza un producto cartesiano de las tablas incluidas y devuelve los valores en base a una cierta condición dada que es la que marca la unión de las tablas.
 
-## Tipos de **JOIN**:
+## Tipos de **`JOIN`**:
 
-| Tipo                  | Comportamiento                         | Resultado                                                                     |
-| --------------------- | -------------------------------------- | ----------------------------------------------------------------------------- |
-| **`INNER JOIN`**      | "A∩B" Intersección de dos tablas       | Records that have matching values in both tables                              |
-| **`LEFT JOIN`**       | 1ra tabla y la intersección de las dos | All records from the left table, and the matched records from the right table |
-| **`RIGHT JOIN`**      | 2da tabla y la intersección de las dos | All records from the right table, and the matched records from the left table |
-| **`FULL OUTER JOIN`** | "A∪B" Unión de las dos tablas          | ll records when there is a match in either left or right table                |
+| Tipo             | Comportamiento                         | Resultado                                                                     |
+| ---------------- | -------------------------------------- | ----------------------------------------------------------------------------- |
+| **`INNER JOIN`** | "A∩B" Intersección de dos tablas       | Records that have matching values in both tables                              |
+| **`LEFT JOIN`**  | 1ra tabla y la intersección de las dos | All records from the left table, and the matched records from the right table |
+| **`RIGHT JOIN`** | 2da tabla y la intersección de las dos | All records from the right table, and the matched records from the left table |
 
 
 ## Ejemplos:
@@ -143,6 +144,49 @@ SELECT
 
   GROUP BY cliente.nombre_cliente, producto.nombre 
   ORDER BY cliente.nombre_cliente, producto.nombre;
+```
+
+## Ejemplo **`JOIN`** con Subconsulta:
+
+El enunciado:
+``` sql
+-- Devuelve las oficinas donde no trabajan ninguno de los empleados que hayan sido los representantes de ventas de algún cliente que haya realizado la compra de algún producto de la gama Frutales.
+-- BBDD 1-4 (jardinería)
+```
+
+Con **`JOIN`**`s:
+
+``` sql
+SELECT ofi1.codigo_oficina, ofi1.ciudad FROM oficina ofi1
+  -- Sacamos los que tienen frutales y nos aseguramos de no coger esos
+  WHERE ofi1.codigo_oficina NOT IN (
+    SELECT  emp1.codigo_oficina FROM empleado emp1
+    INNER JOIN cliente cli1 ON cli1.codigo_empleado_rep_ventas = emp1.codigo_empleado
+    INNER JOIN pedido ped1 ON ped1.codigo_cliente = cli1.codigo_cliente
+    INNER JOIN detalle_pedido det1 ON det1.codigo_pedido = ped1.codigo_pedido
+    INNER JOIN producto prod1 ON prod1.codigo_producto = det1.codigo_producto
+    WHERE UPPER(prod1.gama) LIKE "FRUTALES" )
+  GROUP BY ofi1.codigo_oficina
+  ORDER BY 1;
+```
+
+El enunciado anterior se podría resolver únicamente con subconsultas.
+> ⛔ Recordamos que esta forma de resolverlo es terriblemente ineficiente y debe de hacerse con **`INNER JOIN`**`s.
+
+``` sql
+SELECT ofi1.codigo_oficina, ofi1.ciudad FROM oficina ofi1
+  WHERE ofi1.codigo_oficina NOT IN (
+  SELECT emp1.codigo_oficina FROM empleado emp1  
+  WHERE emp1.codigo_empleado IN(
+    SELECT cli1.codigo_empleado_rep_ventas FROM cliente cli1 
+    WHERE cli1.codigo_cliente IN(
+      SELECT ped1.codigo_cliente FROM pedido ped1
+      WHERE ped1.codigo_pedido IN(
+        SELECT det1.codigo_pedido FROM detalle_pedido det1
+        WHERE det1.codigo_producto IN(
+          SELECT prod1.codigo_producto FROM producto prod1
+          WHERE UPPER(prod1.gama) LIKE "FRUTALES" ) ) ) ) )
+  ORDER BY 1;
 ```
 
 
