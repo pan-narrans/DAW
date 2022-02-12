@@ -2,25 +2,25 @@
     Programación Orientada a Objetos:
     @author: Alejandro Pérez
 
-- [Conceptos Básicos](#conceptos-básicos)
+- [Semántica:](#semántica)
   - [Herencia](#herencia)
   - [Polimorfismo](#polimorfismo)
   - [Interfaz](#interfaz)
-- [Otros Conceptos](#otros-conceptos)
+  - [Sobrecarga](#sobrecarga)
+- [Modificadores](#modificadores)
   - [Visibilidad](#visibilidad)
   - [`static` wip](#static-wip)
-  - [Sobrecarga](#sobrecarga)
   - [`super` WIP](#super-wip)
   - [`this` WIP](#this-wip)
   - [Ejemplo con todo:](#ejemplo-con-todo)
 - [Resumen](#resumen)
 
-# Conceptos Básicos
+# Semántica: 
 
 Clase de inicio:
 ```java
 public class Animal(){
-  private int nLegs;
+  protected int nLegs;
   public void talk(){ ; }
 }
 ```
@@ -34,11 +34,12 @@ Aparte puede añadir atributos y métodos propios.
 
 ```java
 public class Caballo extends Animal (){
-  String breed;
+  protected String breed; // --> Atributo propio a Caballo() independiente de Animal()
 }
 ```
 
 La clase `Caballo()` hereda de `Animal()` por lo que tiene acceso tanto a `nLegs` como a `talk()` y aparte añade la variable `breed` que es propia a la clase hija.
+
 
 ## Polimorfismo
 
@@ -56,9 +57,6 @@ public class Vaca extends Animal (){
   public void talk(){ System.out.println("moo"); }
 }
 ```
-> Detalle importante:
-> 
-> El tipo de la variable es el que nos marca las funcionalidades del objeto.
 
 ```java
 Animal caballo = new Caballo();
@@ -74,11 +72,14 @@ El objeto `Animal caballo = new Caballo()` no tiene acceso a los métodos de la 
 ```java
 Animal caballo = new Caballo();
 
+caballo.talk();     // --> "neigh"
 caballo.getBreed(); //  --> error, Animal() no tiene breed
 ```
+> El tipo de la variable es el que nos marca las funcionalidades del objeto. Si el tipo es Animal únicamente tendremos acceso a los atributos y métodos de Animal, por mucho que declaremos como Caballo o Vaca.
+
 
 ## Interfaz
-Blueprint de un objeto. Únicamente contiene un listado de métodos y no los implementa.
+Blueprint de un objeto. Únicamente contiene un listado de métodos y no los implementa. **No** contiene atributos.
 
 ```java
 public interface Jedi(){
@@ -99,23 +100,7 @@ public class humanoJedi implements Jedi(){
 }
 ```
 
-
-# Otros Conceptos
-## Visibilidad 
-
-```java
-public class NuevaClase(){
-  public int publico;       // --> todo el mundo tiene acceso
-  protected int protegido;  // --> únicamente la clase y sus hijos
-  private int privado;      // --> únicamente la clase
-}
-```
-
-Los keywords `public`, `protected` y `private` pueden aplicarse a clases, métodos y atributos. Límitan el acceso a los atributos de una clase y los protegen de cambios inesperados.
-
-## `static` wip
-
-NO ES LO MISMO QUE FINAL
+> 💬 Una interfaz es una plantilla de métodos para clases.
 
 ## Sobrecarga
 Permite declarar un mismo método varias veces con el mismo nombre, pero cabiando sus entrañas. Para hacer esto es necesario que el tipo o número de los parámetros de entrada sea distinto.
@@ -134,6 +119,24 @@ Creamos sólo un método y lo sobrecargamos con distintos parámentros:
 int plusMethod(int x, int y) { return x + y; }
 double plusMethod(double x, double y) { return x + y; }
 ```
+
+# Modificadores
+## Visibilidad 
+
+```java
+public class NuevaClase(){
+  public int publico;       // --> todo el mundo tiene acceso
+  protected int protegido;  // --> únicamente la clase y sus hijos
+  private int privado;      // --> únicamente la clase
+}
+```
+
+Los keywords `public`, `protected` y `private` pueden aplicarse a clases, métodos y atributos. Límitan el acceso a los atributos de una clase y los protegen de cambios inesperados.
+
+## `static` wip
+
+NO ES LO MISMO QUE FINAL
+
 
 ## `super` WIP
 
@@ -186,13 +189,13 @@ public class Caballo extends Animal{
 
 # Resumen
 
-|                      |                                                                                                                                |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **`Herencia`** :     | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                           |
-| **`Interfaz`** :     | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                     |
-| **`Polimorfismo`** : | Sobreescribes funcionalidades de la madre para adaptarlas a la hija.                                                           |
-| **`Sobrecarga`** :   | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                     |
-| **`Visibilidad`** :  | `public` : todo el mundo tiene acceso <br> `protected` : únicamente la clase y sus hijos <br> `private` : únicamente la clase |
-| **`super`** :        | Hace referencia a elementos de la parte heredada de la instancia.                                                              |
-| **`this`** :         | Hace referencia a elementos de la instancia del objeto.                                                                        |
-| **`static`** :       | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                   |
+|                      |                                                                                                                                     |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **`Herencia`** :     | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
+| **`Interfaz`** :     | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
+| **`Polimorfismo`** : | Sobreescribes funcionalidades de la madre para adaptarlas a la hija.                                                                |
+| **`Sobrecarga`** :   | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                          |
+| **`Visibilidad`** :  | - `public` : todo el mundo tiene acceso <br> - `protected` : únicamente la clase y sus hijos <br> - `private` : únicamente la clase |
+| **`super`** :        | Hace referencia a elementos de la parte heredada de la instancia.                                                                   |
+| **`this`** :         | Hace referencia a elementos de la instancia del objeto.                                                                             |
+| **`static`** :       | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                        |
