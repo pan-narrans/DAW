@@ -189,13 +189,13 @@ public class Caballo extends Animal{
 
 # Resumen
 
-|                      |                                                                                                                                     |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **`Herencia`** :     | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
-| **`Interfaz`** :     | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
-| **`Polimorfismo`** : | Sobreescribes funcionalidades de la madre para adaptarlas a la hija.                                                                |
-| **`Sobrecarga`** :   | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                          |
-| **`Visibilidad`** :  | - `public` : todo el mundo tiene acceso <br> - `protected` : únicamente la clase y sus hijos <br> - `private` : únicamente la clase |
-| **`super`** :        | Hace referencia a elementos de la parte heredada de la instancia.                                                                   |
-| **`this`** :         | Hace referencia a elementos de la instancia del objeto.                                                                             |
-| **`static`** :       | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                        |
+|                    |                                                                                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Herencia** :     | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
+| **Interfaz** :     | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
+| **Polimorfismo** : | Sobreescribes funcionalidades de la madre para adaptarlas a la hija.                                                                |
+| **Sobrecarga** :   | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                          |
+| **Visibilidad** :  | - `public` : todo el mundo tiene acceso <br> - `protected` : únicamente la clase y sus hijos <br> - `private` : únicamente la clase |
+| **`super`** :      | Hace referencia a elementos de la parte heredada de la instancia.                                                                   |
+| **`this`** :       | Hace referencia a elementos de la instancia del objeto.                                                                             |
+| **`static`** :     | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                        |
