@@ -135,7 +135,25 @@ Los keywords `public`, `protected` y `private` pueden aplicarse a clases, métod
 
 ## `static` wip
 
-NO ES LO MISMO QUE FINAL
+Depende de la clase y no de la instacia, es común a todas las instancias de un objeto. Permite acceder (si la visibilidad lo permite) al atributo o método sin necesidad de instanciar el objeto.
+
+Si modificamos desde un objeto un atributo `static` este se modificará también para todas las otras instancias del objeto. 
+
+> ⚠ **NO ES LO MISMO QUE FINAL** ⚠
+> 
+> Un atributo estático sigue pudiendo ser modificado.
+
+```java
+public class NuevaClase(){
+  public static String nombre = "Alex";
+}
+
+public class App(){
+  public static void main(String[] args){
+    System.out.println(NuevaClase.nombre); // --> imprime "Alex"
+  }
+}
+```
 
 
 ## `super` WIP
