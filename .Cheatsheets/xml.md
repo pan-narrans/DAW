@@ -8,6 +8,11 @@
   - [restricciones](#restricciones)
 - [Template](#template)
   - [Plugin](#plugin)
+- [por meter](#por-meter)
+  - [atributos](#atributos)
+  - [elementos](#elementos)
+  - [refs](#refs)
+  - [secuencia](#secuencia)
 
 
 # **XML**
@@ -142,3 +147,10 @@ El plugin
 en vscode permite realizar todo esto de forma quasi automática. Llegando al punto de generar un schema a partir de un archivo XML. 
 
 Se encarga de realizar la validación del XML y da información pertinente en caso de error.
+
+
+# por meter
+## atributos
+## elementos
+## refs
+## secuencia
