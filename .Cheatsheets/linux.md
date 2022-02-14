@@ -19,6 +19,11 @@
     - [sed](#sed)
   - [mover y copiar](#mover-y-copiar)
   - [permisos](#permisos)
+- [Shell](#shell)
+  - [Requisitos](#requisitos)
+  - [Parámetros](#parámetros)
+  - [Variables](#variables)
+    - [Predefinidas](#predefinidas)
 
 
 # Commandos Básicos
@@ -199,3 +204,39 @@ alex@alex-vm:~$ ls -l
 ## mover y copiar
 ## permisos
 ##
+
+# Shell
+Cabecera, indica que el archivo de texto en cuestión es un shell script. 
+```shell
+#! /bin/bash
+```
+
+## Requisitos
+Tiene que tener permisos de ejecución (*ya que es un archivo ejecutable* 😬).
+
+## Parámetros
+Cadenas de texto escritas después del nombre del script.
+```console
+alex@alex-vm:~$ sh shell.sh param1 param2 ...
+```
+| icon | ¿Qué representa?                                      |
+| ---- | ----------------------------------------------------- |
+| `$n` | info de un parámetro siento n el nº del parámetro     |
+| `$*` | todos los parámetros (bajo forma de una única string) |
+| `$@` | todos los parámetros (bajo forma de una lista)        |
+| `$#`  | nº de parámetros recibidos (int)                      |
+
+## Variables
+
+```shell
+var = "hola"  # asignar valor
+echo $var     # acceder a su contenido
+echo {$var}   # acceder a su contenido
+```
+
+### Predefinidas
+| icon | ¿Qué representa?                                |
+| ---- | ----------------------------------------------- |
+| `$0` | nombre del script                               |
+| `$$` | PID del proceso asignado al script en ejecución |
+| `$?` | resultado del último proceso ejecutado          |
