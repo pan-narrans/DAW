@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fichas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="07.xsd">
+  <ficha>
+    <nombre>Antonio Machado Ruiz</nombre>
+    <iniciales>AMR</iniciales>
+    <edad>22</edad>
+  </ficha>
+  <ficha>
+    <nombre>Mario Moreno</nombre>
+    <iniciales>MMO</iniciales>
+    <edad>23</edad>
+  </ficha>
+  <ficha>
+    <nombre>Ada Lovelace</nombre>
+    <iniciales>ALO</iniciales>
+    <edad>24</edad>
+  </ficha>
+  <ficha>
+    <nombre>pablo ruiz picasso</nombre>
+    <iniciales>PRP</iniciales>
+    <edad>24</edad>
+  </ficha>
+</fichas>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="res_iniciales">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z][A-Z][A-Z]" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="ficha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string" />
+        <xs:element name="iniciales" type="res_iniciales" />
+        <xs:element name="edad" type="xs:integer" />
+        <xs:element name="iniciales-al-reves" type="res_iniciales" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="fichas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ficha" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
