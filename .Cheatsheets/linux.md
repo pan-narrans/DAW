@@ -3,13 +3,16 @@
 
 - [Commandos Básicos](#commandos-básicos)
   - [Movernos - `cd`](#movernos---cd)
-  - [Listar Archivos - `ls`](#listar-archivos---ls)
-  - [Trabajar con Directorios](#trabajar-con-directorios)
-  - [Permisos - `chmod`](#permisos---chmod)
-    - [Forma simbólica:](#forma-simbólica)
-    - [Forma numérica:](#forma-numérica)
+  - [Listar Contenidos - `ls`](#listar-contenidos---ls)
+    - [Ejemplo de `ls -l`:](#ejemplo-de-ls--l)
+    - [Tipos de fichero:](#tipos-de-fichero)
+  - [Directorios](#directorios)
+  - [Archivos](#archivos)
   - [Metacaracteres - Wildcards](#metacaracteres---wildcards)
 - [Editar Archivos](#editar-archivos)
+- [Permisos - `chmod`](#permisos---chmod)
+  - [Forma simbólica:](#forma-simbólica)
+  - [Forma numérica:](#forma-numérica)
 - [otros](#otros)
   - [tratar el contenido de los archivos](#tratar-el-contenido-de-los-archivos)
     - [grep](#grep)
@@ -41,7 +44,7 @@ alex@alex-vm:/media$
 > 
 > Cheatsheets\linux.md
 
-## Listar Archivos - `ls`
+## Listar Contenidos - `ls`
 
 | Comando | Resultado                               |
 | ------- | --------------------------------------- |
@@ -50,7 +53,29 @@ alex@alex-vm:/media$
 | `ls -l` | muestra los archivos de forma detallada |
 | `ls -r` | muestra los archivos en orden inverso   |
 
-## Trabajar con Directorios
+### Ejemplo de `ls -l`:
+
+```console
+alex@alex-vm:~$ ls -l
+-rw-rw---- 1 alex alex 32 feb 11 08:47 fichero.txt
+```
+
+
+| tipo de fichero | permisos  | propietario | grupo | tamaño | fecha y hora | nombre      |
+| --------------- | --------- | ----------- | ----- | ------ | ------------ | ----------- |
+| -               | rw-rw---- | alex        | alex  | 32     | feb 11 08:47 | fichero.txt |
+
+
+### Tipos de fichero:
+
+| signo  | tipo de fichero   |
+| :----: | ----------------- |
+|  `-`   | fichero ordinario |
+|  `d`   | directorio        |
+| `b, c` | archivo especial  |
+|  `l`   | enlace            |
+
+## Directorios
 
 | Comando            | Resultado                            |
 | ------------------ | ------------------------------------ |
@@ -59,12 +84,42 @@ alex@alex-vm:/media$
 | `rm -d [dir_name]` | elimina un directorio                |
 | `rm -r [dir_name]` | elimina un directorio y su contenido |
 
-## Permisos - `chmod`
-### Forma simbólica:
+## Archivos
+
+| Comando             | Resultado                           |
+| ------------------- | ----------------------------------- |
+| `touch [file_name]` | crea un archivo                     |
+| `rm [file_name]`    | elimina un archivo                  |
+| `cat [file_name]`   | abre un archivo de texto            |
+| `nano [file_name]`  | abre un editor de archivos de texto |
+
+
+## Metacaracteres - Wildcards
+
+
+|   Mod   | Significado                                       | Ejemplo                                                                   |
+| :-----: | ------------------------------------------------- | ------------------------------------------------------------------------- |
+|   `*`   | cualquier carácter o grupo de caracteres          | `ls *.txt` : encuentra todos los .txt                                     |
+|   `?`   | un solo carácter                                  | `ls ?.txt` : encuentra todos los .txt cuyo nombre tenga un solo carácter. |
+| `[..]`  | cualquier carácter de los incluídos dentro        | `ls [abc].txt` :                                                          |
+| `[!..]` | cualquier carácter de los **no** incluídos dentro | `ls [!abc].txt` :                                                         |
+
+# Editar Archivos
+
+| Comando                     | Resultado                           |
+| --------------------------- | ----------------------------------- |
+| `[comando] > [file_name] `  |                                     |
+| `[comando] >> [file_name] ` |                                     |
+| `nano [file_name]`          | abre un editor de archivos de texto |
+
+
+# Permisos - `chmod`
+
+## Forma simbólica:
 
 <table>
 <tr>
-  <th>A quien afecta</th>
+  <th>Afectado</th>
   <th>Asignación</th>
   <th>Permisos</th>
 </tr>
@@ -105,7 +160,7 @@ alex@alex-vm:~$ ls -l
 -rw-rw---- 1 alex alex 32 feb 11 08:47 fichero.txt
 ```
 
-### Forma numérica:
+## Forma numérica:
 
 <table>
 <tr><td>
@@ -135,10 +190,6 @@ alex@alex-vm:~$ ls -l
 -rwxr-x--- 1 alex alex 32 feb 11 08:47 fichero.txt
 ```
 
-## Metacaracteres - Wildcards
-
-
-# Editar Archivos
 
 
 # otros

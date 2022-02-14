@@ -1,4 +1,4 @@
-    Comandos de SQL y cómo usarlos:    
+    Comandos de SQL y cómo usarlos:
     @author: Alejandro Pérez
 
 - [**SELECT**](#select)
@@ -170,7 +170,7 @@ SELECT ofi1.codigo_oficina, ofi1.ciudad FROM oficina ofi1
   ORDER BY 1;
 ```
 
-El enunciado anterior se podría resolver únicamente con subconsultas.
+El enunciado anterior se podría resolver únicamente con subconsultas. Es más lioso y menos eficiente, pero nos pueden pedir hacerlo en un examen 🤷‍♂️
 > ⛔ Recordamos que esta forma de resolverlo es terriblemente ineficiente y debe de hacerse con **`INNER JOIN`**`s.
 
 ``` sql

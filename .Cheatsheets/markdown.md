@@ -1,4 +1,14 @@
-
+- [HEADINGS](#headings)
+  - [H2](#h2)
+    - [H3](#h3)
+      - [H4](#h4)
+        - [H5](#h5)
+          - [H6](#h6)
+- [Formatting](#formatting)
+- [Lists](#lists)
+- [Tables](#tables)
+- [Code](#code)
+- [Links & Images](#links--images)
 
 # HEADINGS
 ## H2
@@ -41,7 +51,7 @@ X<sup>2</sup>
 <br>
 
 
-# LISTS
+# Lists
 
 Ordered List:
 1. First item
@@ -60,8 +70,7 @@ Checklist:
 
 <br>
 
-# TABLES
-
+# Tables
 
 | Syntax    | Description |
 | --------- | ----------- |
@@ -90,13 +99,12 @@ Checklist:
 
 <br>
 
-# CODE
-
+# Code
 
 Single line of code: `let x: number = 20;`
 
 Full block of code:
-```
+``` json
 {
   "firstName": "John",
   "lastName": "Smith",

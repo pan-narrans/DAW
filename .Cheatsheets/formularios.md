@@ -14,6 +14,12 @@
 
 
 # PHP y SQL:
+
+> 🐵🐵 **MONKE CONSEJO** 🐵🐵 <BR>
+> Recordar sustituir en la url hasta el /httdocs por `localhost`.
+
+~~(ya han sido un par las veces que se me ha olvidado)~~
+
 ## Crear la base de datos
 
 ```sql
