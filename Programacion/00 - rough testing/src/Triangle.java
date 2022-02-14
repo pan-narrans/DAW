@@ -1,5 +1,14 @@
 public class Triangle {
+  static int nLados = 3;
   protected int side1, side2, side3;
+
+  public static int getNLados() {
+    return nLados;
+  }
+
+  public static void setNLados(int num) {
+    Triangle.nLados = num;
+  }
 
   Triangle() {
     this(3);
