@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="tipo_fecha_hora">
+    <xs:sequence>
+      <xs:element name="fecha" type="xs:date" />
+      <xs:element name="hora" type="xs:time" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="tipo_forma_pago">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="tarjeta" />
+      <xs:enumeration value="efectivo" />
+      <xs:enumeration value="bitcoins" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipo_CIF">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="G[0-9]{8}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipo_tlf">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{9}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:element name="ticket">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="codigo" type="xs:int" />
+        <xs:element name="fecha_hora" type="tipo_fecha_hora" />
+
+        <xs:element name="precio">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="precion_sin_IVA" type="xs:float" />
+              <xs:element name="IVA" type="xs:float" />
+              <xs:element name="PVP" type="xs:float" />
+            </xs:sequence>
+            <xs:attribute name="moneda" use="required" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="forma_pago" type="tipo_forma_pago" />
+
+        <xs:element name="datos_comercio">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" type="xs:string" />
+              <xs:element name="dirección" type="xs:string" />
+              <xs:element name="CIF" type="tipo_CIF" />
+              <xs:element name="tlf" type="tipo_tlf" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="datos_compra">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="articulo" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="nombre" type="xs:string" />
+                    <xs:element name="cantidad" type="xs:string" />
+                    <xs:element name="precio" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
