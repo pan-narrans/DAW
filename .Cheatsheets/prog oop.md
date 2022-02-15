@@ -9,17 +9,16 @@
   - [Sobrecarga](#sobrecarga)
 - [Modificadores](#modificadores)
   - [Visibilidad](#visibilidad)
-  - [`static` wip](#static-wip)
-  - [`super` WIP](#super-wip)
-  - [`this` WIP](#this-wip)
-  - [Ejemplo con todo:](#ejemplo-con-todo)
+  - [`static`](#static)
+  - [`super`](#super)
+  - [`this`](#this)
 - [Resumen](#resumen)
 
 # Semántica: 
 
 Clase de inicio:
 ```java
-public class Animal(){
+public class Animal {
   protected int nLegs;
   public void talk(){ ; }
 }
@@ -33,7 +32,7 @@ La clase hijo hereda atributos y métodos públicos o protegidos de la clase pad
 Aparte puede añadir atributos y métodos propios.
 
 ```java
-public class Caballo extends Animal (){
+public class Caballo extends Animal {
   protected String breed; // --> Atributo propio a Caballo() independiente de Animal()
 }
 ```
@@ -46,13 +45,13 @@ La clase `Caballo()` hereda de `Animal()` por lo que tiene acceso tanto a `nLegs
 Permite sobrescribir la funcionalidad de un método de la clase padre.
 
 ```java
-public class Caballo extends Animal (){
+public class Caballo extends Animal {
   @Overrides
   public void talk(){ System.out.println("neigh"); }
 }
 ```
 ```java
-public class Vaca extends Animal (){
+public class Vaca extends Animal {
   @Overrides
   public void talk(){ System.out.println("moo"); }
 }
@@ -82,7 +81,7 @@ caballo.getBreed(); //  --> error, Animal() no tiene breed
 Blueprint de un objeto. Únicamente contiene un listado de métodos y no los implementa. **No** contiene atributos.
 
 ```java
-public interface Jedi(){
+public interface Jedi {
   public void forcePush();
   public void meditate();
 }
@@ -90,7 +89,7 @@ public interface Jedi(){
 Al implementar una interfaz tenemos que implementar **todos** los métodos de dicha interfaz.
 
 ```java
-public class humanoJedi implements Jedi(){
+public class humanoJedi implements Jedi {
   public void forcePush(){    
     System.out.println("fshhhhhh");
   }
@@ -124,7 +123,7 @@ double plusMethod(double x, double y) { return x + y; }
 ## Visibilidad 
 
 ```java
-public class NuevaClase(){
+public class NuevaClase {
   public int publico;       // --> todo el mundo tiene acceso
   protected int protegido;  // --> únicamente la clase y sus hijos
   private int privado;      // --> únicamente la clase
@@ -133,9 +132,9 @@ public class NuevaClase(){
 
 Los keywords `public`, `protected` y `private` pueden aplicarse a clases, métodos y atributos. Límitan el acceso a los atributos de una clase y los protegen de cambios inesperados.
 
-## `static` wip
+## `static`
 
-Depende de la clase y no de la instacia, es común a todas las instancias de un objeto. Permite acceder (si la visibilidad lo permite) al atributo o método sin necesidad de instanciar el objeto.
+Depende de la clase y no de la instancia, es común a todas las instancias de un objeto. Permite acceder (si la visibilidad lo permite) al atributo o método sin necesidad de instanciar el objeto.
 
 Si modificamos desde un objeto un atributo `static` este se modificará también para todas las otras instancias del objeto. 
 
@@ -144,11 +143,13 @@ Si modificamos desde un objeto un atributo `static` este se modificará también
 > Un atributo estático sigue pudiendo ser modificado.
 
 ```java
-public class NuevaClase(){
+public class NuevaClase {
   public static String nombre = "Alex";
 }
+```
 
-public class App(){
+```java
+public class App {
   public static void main(String[] args){
     System.out.println(NuevaClase.nombre); // --> imprime "Alex"
   }
@@ -156,64 +157,89 @@ public class App(){
 ```
 
 
-## `super` WIP
+## `super`
 
-Permite acceder a los atributos y métodos de la superclase y de distingirlos de los del objeto.
+Permite acceder a los atributos y métodos de la superclase y de distinguirlos de los del objeto.
 
---> hablar de overrides
+Es lo mismo que un `this` pero para referenciar a la clase padre/madre.
 
-## `this` WIP
-
-Permite diferenciar los atributos de un objeto de las variables locales de sus métodos.
-
-
-
-## Ejemplo con todo:
 
 ```java
-public class Animal(){
+public class Animal {
   protected int nLegs;
   protected boolean alive;
 
-  Animal(){ this(0); }   // ->  Constructor por defecto llama al otro constructor
-  Animal(int nLegs){     // ->  Constructor con atributos
+  Animal(int nLegs){
     this.alive = true; 
     this.nLegs = nLegs; 
   }
+}
+```
+```java
+public class Caballo extends Animal {
+  protected String name, breed;
 
-  public void revive(){ this.alive = true; }
-  public void die(){ this.alive = false; }
+  Caballo(String name, String breed){ 
+    super(4);            // -> Llama al constructor de Animal()
+    this.name = name;
+    this.breed = breed;
+  }
+}
+```
+
+En el caso de tener una `override` y sobrescribir métodos de la clase superior, podemos hacer referencia al método original gracias al keyword `super`.
+
+```java
+public class Animal {
+  public void die() { this.alive = false; }
 }
 ```
 
 ```java
-public class Caballo extends Animal{
-  protected String name, breed;
-
-  Caballo(){            // ->  Constructor por defecto llama al otro constructor
-    this("", "");
+public class Caballo extends Animal {
+  @Override
+  public void die() {
+    System.out.println("Has matado al caballo :(");
+    this.alive = false;
   }
-
-  Caballo(String name, String breed){ 
-    super(4);           // -> Llama al constructor de Animal()
-    this.name = name;   // -> Asigna valor al atributo `name`
-    this.breed = breed; // -> Asigna valor al atributo `breed`
-  }
-
-  public void loseALeg(){
-    super.nLegs--;      // -> Cambia el valor de la variable heredada `nLegs`
 }
 ```
 
+```java
+public class Caballo {
+  public void prueba() { 
+    super.die();  // no muestra el mensaje
+    this.die();   // te inculpa por la muerte del caballo
+  }
+}
+```
+
+## `this`
+
+Permite diferenciar los atributos de un objeto de las variables locales de sus métodos.
+
+```java
+public class Animal {
+  protected int nLegs;
+  Animal(int nLegs){ this.nLegs = nLegs; }
+}
+```
+
+> `super` y `this` no son siempre necesarios. 
+ 
+Únicamente los usamos cuando:
+- Necesitemos diferenciar de forma explícita los atributos del objeto de otras variables locales.
+- Queramos diferenciar entre los métodos o atributos heredados y los sobrescritos en el objeto.
+
 # Resumen
 
-|                    |                                                                                                                                     |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Herencia** :     | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
-| **Interfaz** :     | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
-| **Polimorfismo** : | Sobreescribes funcionalidades de la madre para adaptarlas a la hija.                                                                |
-| **Sobrecarga** :   | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                          |
-| **Visibilidad** :  | - `public` : todo el mundo tiene acceso <br> - `protected` : únicamente la clase y sus hijos <br> - `private` : únicamente la clase |
-| **`super`** :      | Hace referencia a elementos de la parte heredada de la instancia.                                                                   |
-| **`this`** :       | Hace referencia a elementos de la instancia del objeto.                                                                             |
-| **`static`** :     | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                        |
+|          Concepto | TLDR                                                                                                                                |
+| ----------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
+|     **Herencia**: | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
+|     **Interfaz**: | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
+| **Polimorfismo**: | Sobrescribes funcionalidades de la madre para adaptarlas a la hija.                                                                 |
+|   **Sobrecarga**: | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                          |
+|  **Visibilidad**: | - `public` : todo el mundo tiene acceso <br> - `protected` : únicamente la clase y sus hijos <br> - `private` : únicamente la clase |
+|      **`super`**: | Hace referencia a elementos de la parte heredada de la instancia.                                                                   |
+|       **`this`**: | Hace referencia a elementos de la instancia del objeto.                                                                             |
+|     **`static`**: | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                        |
