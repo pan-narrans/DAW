@@ -7,7 +7,6 @@ public class WookieJedi extends Jugador implements Jedi {
 
   @Override
   public void forceBlast() {
-    // TODO Auto-generated method stub
     System.out.println("SOY UN WOOKIE FUAAAA");
 
   }

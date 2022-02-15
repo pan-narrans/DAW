@@ -1,5 +1,4 @@
 package zz_misc;
-import java.util.Random;
 
 public class Persona {
   protected String nombre, dni;

@@ -1,4 +1,5 @@
 package zz_misc;
+
 public class HumanoJedi extends Jugador implements Jedi {
 
   HumanoJedi() {
@@ -7,7 +8,6 @@ public class HumanoJedi extends Jugador implements Jedi {
 
   @Override
   public void forceBlast() {
-    // TODO Auto-generated method stub
     System.out.println("SOY UN HUMANO FUAAAA");
   }
 
