@@ -1,3 +1,4 @@
+package zz_misc;
 public class Jugador {
   protected int health;
 

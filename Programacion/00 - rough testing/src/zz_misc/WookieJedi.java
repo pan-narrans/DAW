@@ -1,3 +1,4 @@
+package zz_misc;
 public class WookieJedi extends Jugador implements Jedi {
 
   WookieJedi() {

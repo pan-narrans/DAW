@@ -1,3 +1,4 @@
+package zz_misc;
 public class HumanoJedi extends Jugador implements Jedi {
 
   HumanoJedi() {

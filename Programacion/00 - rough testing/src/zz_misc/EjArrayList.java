@@ -1,3 +1,5 @@
+package zz_misc;
+
 import java.util.ArrayList;
 
 public class EjArrayList {

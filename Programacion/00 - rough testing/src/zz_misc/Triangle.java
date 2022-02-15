@@ -1,3 +1,4 @@
+package zz_misc;
 public class Triangle {
   static int nLados = 3;
   protected int side1, side2, side3;
