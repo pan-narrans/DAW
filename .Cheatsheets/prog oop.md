@@ -102,9 +102,9 @@ public class humanoJedi implements Jedi {
 > 💬 Una interfaz es una plantilla de métodos para clases.
 
 ## Sobrecarga
-Permite declarar un mismo método varias veces con el mismo nombre, pero cabiando sus entrañas. Para hacer esto es necesario que el tipo o número de los parámetros de entrada sea distinto.
+Permite declarar un mismo método varias veces con el mismo nombre, pero cambiando sus entrañas. Para hacer esto es necesario que el tipo o número de los parámetros de entrada sea distinto.
 
-> Esto es lo que hacemos al crear varios constructiores par una clase (hay ejemplos más abajo).
+> Esto es lo que hacemos al crear varios constructores par una clase (hay ejemplos más abajo).
 
 En vez de declarar dos métodos distintos que hacen básicamente lo mismo:
 ```java
@@ -112,7 +112,7 @@ int plusMethodInt(int x, int y) { return x + y; }
 double plusMethodDouble(double x, double y) { return x + y; }
 ```
 
-Creamos sólo un método y lo sobrecargamos con distintos parámentros:
+Creamos sólo un método y lo sobrecargamos con distintos parámetros:
 
 ```java
 int plusMethod(int x, int y) { return x + y; }
@@ -130,7 +130,7 @@ public class NuevaClase {
 }
 ```
 
-Los keywords `public`, `protected` y `private` pueden aplicarse a clases, métodos y atributos. Límitan el acceso a los atributos de una clase y los protegen de cambios inesperados.
+Los keywords `public`, `protected` y `private` pueden aplicarse a clases, métodos y atributos. Limitan el acceso a los atributos de una clase y los protegen de cambios inesperados.
 
 ## `static`
 
@@ -233,13 +233,13 @@ public class Animal {
 
 # Resumen
 
-|          Concepto | TLDR                                                                                                                                |
-| ----------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
-|     **Herencia**: | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
-|     **Interfaz**: | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
-| **Polimorfismo**: | Sobrescribes funcionalidades de la madre para adaptarlas a la hija.                                                                 |
-|   **Sobrecarga**: | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                          |
-|  **Visibilidad**: | - `public` : todo el mundo tiene acceso <br> - `protected` : únicamente la clase y sus hijos <br> - `private` : únicamente la clase |
-|      **`super`**: | Hace referencia a elementos de la parte heredada de la instancia.                                                                   |
-|       **`this`**: | Hace referencia a elementos de la instancia del objeto.                                                                             |
-|     **`static`**: | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                        |
+|           Concepto | TLDR                                                                                                                                |
+| -----------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
+|     **Herencia :** | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
+|     **Interfaz :** | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
+| **Polimorfismo :** | Sobrescribes funcionalidades de la madre para adaptarlas a la hija.                                                                 |
+|   **Sobrecarga :** | Métodos con mismo nombre pero distinta implementación dentro de una clase.                                                          |
+|  **Visibilidad :** | - `public` : todo el mundo tiene acceso <br> - `protected` : únicamente la clase y sus hijos <br> - `private` : únicamente la clase |
+|      **`super` :** | Hace referencia a elementos de la parte heredada de la instancia.                                                                   |
+|       **`this` :** | Hace referencia a elementos de la instancia del objeto.                                                                             |
+|     **`static` :** | Se comparte entre todas las instancias y se puede usar sin declarar objetos.                                                        |
