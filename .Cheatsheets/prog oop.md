@@ -7,6 +7,8 @@
   - [Polimorfismo](#polimorfismo)
   - [Interfaz](#interfaz)
   - [Sobrecarga](#sobrecarga)
+  - [Encapsulación WIP](#encapsulación-wip)
+  - [Abstracción WIP](#abstracción-wip)
 - [Modificadores](#modificadores)
   - [Visibilidad](#visibilidad)
   - [`static`](#static)
@@ -118,6 +120,9 @@ Creamos sólo un método y lo sobrecargamos con distintos parámetros:
 int plusMethod(int x, int y) { return x + y; }
 double plusMethod(double x, double y) { return x + y; }
 ```
+
+## Encapsulación WIP
+## Abstracción WIP
 
 # Modificadores
 ## Visibilidad 
@@ -234,7 +239,7 @@ public class Animal {
 # Resumen
 
 |           Concepto | TLDR                                                                                                                                |
-| -----------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
+| -----------------: | :---------------------------------------------------------------------------------------------------------------------------------- |
 |     **Herencia :** | Heredas las cosas publicas y protegidas de la madre. No las privadas                                                                |
 |     **Interfaz :** | Plantilla de métodos (no atributos) para asegurar coherencia entre clases.                                                          |
 | **Polimorfismo :** | Sobrescribes funcionalidades de la madre para adaptarlas a la hija.                                                                 |
