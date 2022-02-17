@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animales xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="animalex.xsd">
+  <animal clase="Gato" />
+  <nombre>Izzy</nombre>
+  <raza>Siamese</raza>
+  <edad>6</edad>
+  <castrado>True</castrado>
+  <numChip>izz138bod</numChip>
+  <propietario>
+    <nombreProp>
+      Colin Wilcox
+    </nombreProp>
+    <tlfProp>897654321</tlfProp>
+  </propietario>
+</animales>

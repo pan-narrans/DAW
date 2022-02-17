@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cocina xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="cocina.xsd">
+  <sopas>
+    <sopa nombre="Juliana" precio="15€">
+      <ingredientes>
+        <ingrediente>Espárragos</ingrediente>
+        <ingrediente>Cebolla</ingrediente>
+        <ingrediente>Calabacín</ingrediente>
+      </ingredientes>
+    </sopa>
+    
+    <sopa nombre="Mariana" precio="20€">
+      <ingredientes>
+        <ingrediente>Berengenas</ingrediente>
+        <ingrediente>Apio</ingrediente>
+        <ingrediente>Queso</ingrediente>
+      </ingredientes>
+    </sopa>
+
+    <sopa nombre="Coralna" precio="18€">
+      <ingredientes>
+        <ingrediente>Apio</ingrediente>
+        <ingrediente>Puerros</ingrediente>
+        <ingrediente>Huevo</ingrediente>
+      </ingredientes>
+    </sopa>
+  </sopas>
+
+  <postres>
+    <titulo precio="4€">Tiramisú</titulo>
+    <titulo precio="2€"> Fruta</titulo>
+  </postres>
+</cocina>

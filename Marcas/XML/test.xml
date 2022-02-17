@@ -1,39 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ticket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="test1.xsd">
-  <codigo>01</codigo>
-  
-  <fecha_hora>
-    <fecha>2022-02-05</fecha>
-    <hora>08:15:20</hora>
-  </fecha_hora>
+<livre xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="test.xsd">
 
-  <precio moneda="euros">
-    <precion_sin_IVA>5.50</precion_sin_IVA>
-    <IVA>0.5</IVA>
-    <PVP>6.00</PVP>
-  </precio>
+  <secuencias>
+    <impair>qwe</impair>
+    <pair>qwe</pair>
+    <impair>qwe</impair>
+    <pair>qwe</pair>
+    <impair>qwe</impair>
+    <pair>qwe</pair>
+    <impair>qwe</impair>
+    <pair>qwe</pair>
+    <impair>qwe</impair>
+    <pair>qwe</pair>
+    <impair>qwe</impair>
+    <pair>qwe</pair>
+  </secuencias>
 
-  <forma_pago>efectivo</forma_pago>
+  <impair>qwe</impair>
 
-  <datos_comercio>
-    <nombre>Pedro's</nombre>
-    <dirección>cº calle</dirección>
-    <CIF>G85274163</CIF>
-    <tlf>656644665</tlf>
-  </datos_comercio>
-
-  <datos_compra>
-    <articulo>
-      <nombre>Champú</nombre>
-      <cantidad>2</cantidad>
-      <precio>6.5</precio>
-    </articulo>
-    <articulo>
-      <nombre>Tijeras</nombre>
-      <cantidad>5</cantidad>
-      <precio>16.5</precio>
-    </articulo>
-  </datos_compra>
-
-</ticket>
+</livre>

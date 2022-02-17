@@ -6,15 +6,11 @@
   <xs:element name="livre">
     <xs:complexType>
       <xs:sequence>
-
-        <xs:element name="secuencias">
-          <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-              <xs:element ref="impair" />
-              <xs:element ref="pair" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+        
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="impair" />
+          <xs:element ref="pair" />
+        </xs:sequence>
         
         <xs:element ref="impair" />
       </xs:sequence>

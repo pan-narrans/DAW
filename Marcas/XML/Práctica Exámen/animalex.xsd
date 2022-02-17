@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="animales">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="animal" />
+        <xs:element name="nombre" type="xs:string" />
+        <xs:element name="raza" type="xs:string" />
+        <xs:element name="edad" type="tipo_edad" />
+        <xs:element name="castrado" type="xs:string" />
+        <xs:element name="numChip" type="tipo_chip" />
+        <xs:element ref="propietario" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="animal">
+    <xs:complexType>
+      <xs:attribute name="clase" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[Pp]erro" />
+            <xs:pattern value="[Gg]ato" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="propietario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombreProp" type="xs:string" />
+        <xs:element name="tlfProp" type="tipo_tlf" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="tipo_edad">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="19" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipo_chip">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z]{3}[0-9]{3}[a-zA-Z]{3}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tipo_tlf">
+    <xs:restriction base="xs:integer">
+      <xs:totalDigits value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
