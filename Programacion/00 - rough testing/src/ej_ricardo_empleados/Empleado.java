@@ -1,12 +1,11 @@
 package ej_ricardo_empleados;
 
-
 public class Empleado {
   String name;
   String birthDate;
   String post;
   int category;
-  float baseSalary;
+  double baseSalary;
 
   enum Type {
     Vendedor,
@@ -19,7 +18,19 @@ public class Empleado {
    * @param birthDate : dd/mm/yyyy
    * @param category  : int between 1 and 4 (both included)
    */
-  public Empleado(String name, String birthDate, String post, int category, float baseSalary) {
+  public Empleado() {
+    this.name = "name";
+    this.birthDate = "dd/mm/yyyy";
+    this.post = "post";
+    this.category = 0;
+    this.baseSalary = 0;
+  }
+
+  /**
+   * @param birthDate : dd/mm/yyyy
+   * @param category  : int between 1 and 4 (both included)
+   */
+  public Empleado(String name, String birthDate, String post, int category, double baseSalary) {
     this.name = name;
     this.birthDate = birthDate;
     this.post = post;
@@ -27,35 +38,49 @@ public class Empleado {
     this.baseSalary = baseSalary;
   }
 
-  public float calcularSueldo() {
-    float sueldo = this.baseSalary, incremento, impuestos;
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public double calcularSueldo() {
+    double sueldo = this.baseSalary, incremento, impuestos;
     switch (category) {
       case 1:
-        incremento = 20;
-        impuestos = 5;
+        incremento = 0.20f;
+        impuestos = 0.05f;
         break;
       case 2:
-        incremento = 15;
-        impuestos = 3;
+        incremento = 0.15f;
+        impuestos = 0.03f;
         break;
       case 3:
-        incremento = 10;
-        impuestos = 2;
+        incremento = 0.10f;
+        impuestos = 0.02f;
         break;
       case 4:
-        incremento = 5;
-        impuestos = 1;
+        incremento = 0.5f;
+        impuestos = 0.01f;
         break;
       default:
-        incremento = 0;
-        impuestos = 0;
+        incremento = 0.0f;
+        impuestos = 0.00f;
         break;
     }
 
-    sueldo = sueldo * incremento;
-    sueldo = sueldo - (sueldo * impuestos);
+    sueldo += (sueldo * incremento);
+    sueldo -= (sueldo * impuestos);
 
     return sueldo;
+  }
+
+  @Override
+  public String toString() {
+    return "Empleado [name=" + name + ", birthDate=" + birthDate + ", category=" + category + ", baseSalary="
+        + baseSalary + ", post=" + post + "]";
   }
 
 }

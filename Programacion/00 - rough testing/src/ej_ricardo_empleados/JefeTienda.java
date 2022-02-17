@@ -6,7 +6,7 @@ public class JefeTienda extends Empleado {
   int shop_id;
   ArrayList<String> salesmen = new ArrayList<String>();
 
-  public JefeTienda(String name, String birthDate, String post, float baseSalary) {
+  public JefeTienda(String name, String birthDate, String post, double baseSalary) {
     super(name, birthDate, post, 1, baseSalary);
   }
 

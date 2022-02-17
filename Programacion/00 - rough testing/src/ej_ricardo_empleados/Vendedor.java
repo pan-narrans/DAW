@@ -6,13 +6,13 @@ public class Vendedor extends Empleado {
   int sales;
   JefeTienda jefe;
 
-  public Vendedor(String name, String birthDate, String post, float baseSalary) {
+  public Vendedor(String name, String birthDate, String post, double baseSalary) {
     super(name, birthDate, post, 2, baseSalary);
     id = id_ref++;
     sales = 0;
   }
 
-  public Vendedor(String name, String birthDate, String post, float baseSalary, JefeTienda jefe) {
+  public Vendedor(String name, String birthDate, String post, double baseSalary, JefeTienda jefe) {
     this(name, birthDate, post, baseSalary);
     this.jefe = jefe;
   }

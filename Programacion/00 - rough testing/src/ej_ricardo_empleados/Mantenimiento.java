@@ -2,7 +2,7 @@ package ej_ricardo_empleados;
 
 public class Mantenimiento extends Empleado {
 
-  public Mantenimiento(String name, String birthDate, String post, float baseSalary) {
+  public Mantenimiento(String name, String birthDate, String post, double baseSalary) {
     super(name, birthDate, post, 4, baseSalary);
   }
 

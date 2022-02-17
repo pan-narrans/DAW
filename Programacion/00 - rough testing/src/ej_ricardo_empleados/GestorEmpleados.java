@@ -1,7 +1,10 @@
 package ej_ricardo_empleados;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
+
+import ej_ricardo_empleados.Empleado.Type;
 
 public class GestorEmpleados {
   ArrayList<Empleado> empleados = new ArrayList<>();
@@ -17,7 +20,8 @@ public class GestorEmpleados {
       System.out.println("  2) Baja de empleado:");
       System.out.println("  3) Modificación de empleado:");
       System.out.println("  4) Calcular sueldos:");
-      System.out.println("  5) Salir");
+      System.out.println("  5) Listado de empleados:");
+      System.out.println("  6) Salir");
 
       eleccion = sc.nextInt();
 
@@ -32,11 +36,16 @@ public class GestorEmpleados {
 
           break;
         case 4:
-
+          calcularSueldos();
           break;
         case 5:
-        default:
+          listarEmpleados();
+          break;
+        case 6:
           seguir = false;
+          break;
+        default:
+          System.out.println("Valor no contemplado.");
           break;
       }
 
@@ -50,22 +59,21 @@ public class GestorEmpleados {
     String birthDate;
     String post;
     int category;
-    float baseSalary;
+    double baseSalary;
 
     System.out.println("Introduce el nombre del empleado:");
-    name = sc.nextLine();
+    name = sc.next();
 
-    System.out.println("Introduce la fecha de nacimiento del empleado:");
-    birthDate = sc.nextLine();
+    System.out.println("Introduce la fecha de nacimiento del empleado (dd/mm/yyyy):");
+    birthDate = sc.next();
 
     System.out.println("Introduce el puesto del empleado:");
-    post = sc.nextLine();
+    post = sc.next();
 
-    System.out.println("Introduce la categoría del empleado (1-4):");
     category = validateCategory();
 
     System.out.println("Introduce el salario base del empleado:");
-    baseSalary = sc.nextFloat();
+    baseSalary = sc.nextDouble();
 
     switch (category) {
       case 1:
@@ -79,7 +87,9 @@ public class GestorEmpleados {
         break;
       case 4:
         empleado = new Mantenimiento(name, birthDate, post, baseSalary);
+        break;
       default:
+        empleado = new Empleado();
         break;
     }
 
@@ -94,11 +104,51 @@ public class GestorEmpleados {
     boolean valid;
 
     do {
+
       System.out.println("Introduce la categoría del empleado (1-4):");
+      System.out.println("  1) Jeje de Tienda");
+      System.out.println("  2) Vendedor");
+      System.out.println("  3) Jeje de Almacén");
+      System.out.println("  4) Mantenimiento");
       category = sc.nextInt();
       valid = (category < 5 && category > 0) ? true : false;
+      if (!valid)
+        System.out.println("Valor no válido.");
+
     } while (!valid);
-    return 0;
+
+    return category;
+  }
+
+  private void calcularSueldos() {
+    System.out.println("\n\n--- LISTADO DE SUELDOS ---\n");
+    Iterator<Empleado> it = empleados.iterator();
+    while (it.hasNext()) {
+      Empleado temp = it.next();
+      System.out.println(temp);
+      System.out.println("Su sueldo es: " + temp.calcularSueldo() + "\n");
+    }
+  }
+
+  private void listarEmpleados() {
+    Iterator<Empleado> it = empleados.iterator();
+    while (it.hasNext()) {
+      System.out.println(it.next());
+    }
+  }
+
+  private void elminiarEmpleado() {
+    boolean elementoNoEncontrado = true;
+
+    Iterator<Empleado> it = empleados.iterator();
+    while (it.hasNext() && elementoNoEncontrado) {
+      Empleado temp = it.next();
+      if (temp.getName() == "alex") {
+        it.remove();
+        elementoNoEncontrado = false;
+      }
+    }
+
   }
 
 }
