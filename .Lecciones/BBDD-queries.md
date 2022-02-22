@@ -1,4 +1,4 @@
-    Comandos de SQL y cómo usarlos:
+    Queries en SQL
     @author: Alejandro Pérez
 
 - [**SELECT**](#select)

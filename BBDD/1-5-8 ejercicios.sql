@@ -27,7 +27,7 @@ select d1.* from departamento d1
 select prof1.* from profesor prof1
   where prof1.id_profesor not in (
     select a1.id_profesor from asignatura a1
-  );
+  )and prof1.id_departamento is not null;
 
 
 # 5. Devuelve un listado con las asignaturas que no tienen un profesor asignado.
@@ -37,12 +37,11 @@ select a1.* from asignatura a1
 
 # 6. Devuelve un listado con todos los departamentos que no han impartido asignaturas en ningún curso escolar.
 select d1.* from departamento d1
-  where d1.id not it (
+  where d1.id not in (
     select d2.id from departamento d2
     inner join profesor prof1 on prof1.id_departamento = d2.id
     inner join asignatura a1 on a1.id_profesor = prof1.id_profesor
-    inner join profesor prof1 on prof1.id_departamento = d2.id
-    inner join profesor prof1 on prof1.id_departamento = d2.id
+    inner join alumno_se_matricula_asignatura m1 on m1.id_asignatura = a1.id
   )
 
 
