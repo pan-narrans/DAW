@@ -186,7 +186,6 @@ Ordena el contenido por líneas de un archivo, en orden alfabético y carácter 
 
 ## `grep` - (global, regular expression and print)
 ```bash
-# mueve el archivo y le cambia el nombre
 grep 'regex' file_name
 ```
 
