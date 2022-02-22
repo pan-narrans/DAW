@@ -5,7 +5,6 @@
   - [Movernos - `cd`](#movernos---cd)
   - [Listar Contenidos - `ls`](#listar-contenidos---ls)
     - [Ejemplo de `ls -l`:](#ejemplo-de-ls--l)
-    - [Tipos de fichero:](#tipos-de-fichero)
   - [Directorios](#directorios)
   - [Archivos](#archivos)
   - [Metacaracteres - Wildcards](#metacaracteres---wildcards)
@@ -24,6 +23,7 @@
   - [Parámetros](#parámetros)
   - [Variables](#variables)
     - [Predefinidas](#predefinidas)
+  - [Comillas y acentos](#comillas-y-acentos)
 
 
 # Commandos Básicos
@@ -51,12 +51,13 @@ alex@alex-vm:/media$
 
 ## Listar Contenidos - `ls`
 
-| Comando | Resultado                               |
-| ------- | --------------------------------------- |
-| `ls `   | muestra por nombre los archivos         |
-| `ls -a` | muestra también los archivos ocultos    |
-| `ls -l` | muestra los archivos de forma detallada |
-| `ls -r` | muestra los archivos en orden inverso   |
+| Comando | Resultado                                                |
+| ------- | -------------------------------------------------------- |
+| `ls `   | el nombre de los archivos                                |
+| `ls -a` | también los archivos ocultos                             |
+| `ls -l` | los archivos de forma detallada                          |
+| `ls -r` | los archivos en orden inverso                            |
+| `ls -t` | los archivos por orden de modificación (+nuevos primero) |
 
 ### Ejemplo de `ls -l`:
 
@@ -71,7 +72,8 @@ alex@alex-vm:~$ ls -l
 | -               | rw-rw---- | alex        | alex  | 32     | feb 11 08:47 | fichero.txt |
 
 
-### Tipos de fichero:
+<table>
+<tr style="vertical-align: top;"><td>
 
 | signo  | tipo de fichero   |
 | :----: | ----------------- |
@@ -79,6 +81,15 @@ alex@alex-vm:~$ ls -l
 |  `d`   | directorio        |
 | `b, c` | archivo especial  |
 |  `l`   | enlace            |
+
+
+</td><td>
+
+Listado de los distintos tipos de fichero que nos puede sacar el `-l`.
+
+</td></tr>
+</table>
+
 
 ## Directorios
 
@@ -102,12 +113,14 @@ alex@alex-vm:~$ ls -l
 ## Metacaracteres - Wildcards
 
 
-|   Mod   | Significado                                       | Ejemplo                                                                   |
-| :-----: | ------------------------------------------------- | ------------------------------------------------------------------------- |
-|   `*`   | cualquier carácter o grupo de caracteres          | `ls *.txt` : encuentra todos los .txt                                     |
-|   `?`   | un solo carácter                                  | `ls ?.txt` : encuentra todos los .txt cuyo nombre tenga un solo carácter. |
-| `[..]`  | cualquier carácter de los incluídos dentro        | `ls [abc].txt` :                                                          |
-| `[!..]` | cualquier carácter de los **no** incluídos dentro | `ls [!abc].txt` :                                                         |
+|     Mod      | Significado                                       | Ejemplo                                                                                         |
+| :----------: | ------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+|     `*`      | cualquier carácter o grupo de caracteres          | `ls *.txt` : todos los .txt                                                                     |
+|     `?`      | un solo carácter                                  | `ls ?.txt` : todos los .txt cuyo nombre tenga un solo carácter.                                 |
+|    `[..]`    | cualquier carácter de los incluidos dentro        | `ls [abc].txt` : a.txt, b.txt y c.txt                                                           |
+|   `[!..]`    | cualquier carácter de los **no** incluidos dentro | `ls [!abc].txt` : todos los .txt cuyo nombre tenga un solo carácter y sea distinto de a, b y c. |
+|   `{x..x}`   | todos los elementos entre los dos (incluidos)     | `ls {A..M}.txt` : igual que arriba pero con todos de la A a la M.                               |
+| `{x1,x2,x3}` | todos los elementos de la lista                   | `mkdir {carpeta1,carpeta2,carpeta3}` : crea las 3 carpetas                                      |
 
 # Editar Archivos
 
@@ -224,7 +237,7 @@ alex@alex-vm:~$ sh shell.sh param1 param2 ...
 | `$n` | info de un parámetro siento n el nº del parámetro     |
 | `$*` | todos los parámetros (bajo forma de una única string) |
 | `$@` | todos los parámetros (bajo forma de una lista)        |
-| `$#`  | nº de parámetros recibidos (int)                      |
+| `$#` | nº de parámetros recibidos (int)                      |
 
 ## Variables
 
@@ -240,3 +253,12 @@ echo {$var}   # acceder a su contenido
 | `$0` | nombre del script                               |
 | `$$` | PID del proceso asignado al script en ejecución |
 | `$?` | resultado del último proceso ejecutado          |
+
+## Comillas y acentos
+Los acentos graves permiten ejecutar comandos dentro de un echo.
+
+```shell
+echo date     # date
+echo 'date'   # date
+echo `date`   # vie 28 ene 2022 08:47:17 CET
+```
