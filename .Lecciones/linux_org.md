@@ -191,6 +191,7 @@ grep 'regex' file_name
 
 ## cut 
 ## sed
+sed -i 's/word1/word2/g' fichero_name  
 
 ## `>` & `>>`
 | Comando                     | Resultado                                                          |
