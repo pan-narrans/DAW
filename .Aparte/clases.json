@@ -1,0 +1,21 @@
+[{
+    "type": "transaction",
+    "amount": 12.3,
+    "category": "text",
+    "tags": [
+      "tag",
+      "tag"
+    ],
+    "account": "account_name",
+    "date": "yyyy-mm-dd",
+    "description": "text",
+    "documents": [
+      "path",
+      "path"
+    ]
+  },
+  {
+    "type": "note",
+    "content": "asdasdasd"
+  }
+]
