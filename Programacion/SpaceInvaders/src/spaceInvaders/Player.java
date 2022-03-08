@@ -1,13 +1,11 @@
 package spaceInvaders;
 
-public class Player {
-
-  protected static int[] oldPosition;
-  protected static int[] position;
+public class Player extends BoardObject {
 
   public Player() {
-    Player.position = new int[] { (int) (Board.BOARD_SIZE_X / 2), Board.BOARD_SIZE_Y };
-    Player.oldPosition = Player.position.clone();
+    this.position = new int[] { (int) (Board.BOARD_SIZE_X / 2), Board.BOARD_SIZE_Y - 1 };
+    this.oldPosition = this.position.clone();
+    this.type = Type.PLAYER;
   }
 
   public void moveLeft() {
@@ -18,5 +16,9 @@ public class Player {
   public void moveRight() {
     oldPosition[0] = position[0];
     position[0] = (position[0] == 0) ? position[0] : position[0] - 1;
+  }
+
+  public Bullet shoot() {
+    return new Bullet(position);
   }
 }

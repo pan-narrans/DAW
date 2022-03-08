@@ -9,6 +9,10 @@ public class Board {
   protected final static int BOARD_SIZE_X = 5;
   protected final static int BOARD_SIZE_Y = 10;
 
+  private final char EMPTY = '-';
+  private final char PLAYER = '▄';
+  private final char ENEMY = 'Y';
+  private final char BULLET = 'o';
 
   public Board() {
     resetBoard();
@@ -26,14 +30,35 @@ public class Board {
     System.out.flush();
   }
 
-  public void updateObjets() {
+  public void updateObjet(BoardObject o) {
+    char c;
+
+    // Choose Sprite
+    switch (o.getType()) {
+      case PLAYER:
+        c = PLAYER;
+        break;
+      case ENEMY:
+        c = ENEMY;
+        break;
+      case BULLET:
+        c = BULLET;
+        break;
+      default:
+        c = EMPTY;
+        break;
+    }
+
     // old pos
-    playBoard[BOARD_SIZE_Y - 1][Player.oldPosition[0]] = '-';
+    playBoard[o.getOldPositionY()][o.getOldPositionX()] = EMPTY;
 
     // new pos
-    playBoard[BOARD_SIZE_Y - 1][Player.position[0]] = 'X';
+    playBoard[o.getPositionY()][o.getPositionX()] = c;
   }
 
+  /**
+   * Sets all cells to empty.
+   */
   private void resetBoard() {
     for (int i = 0; i < BOARD_SIZE_Y; i++) {
       for (int j = 0; j < BOARD_SIZE_X; j++) {
