@@ -1,0 +1,49 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "ej_ricardo_empleados.Main",
+      "projectName": "00 - rough testing_184fd22a"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main(1)",
+      "request": "launch",
+      "mainClass": "ejemplos_objetos.Main",
+      "projectName": "00 - rough testing_184fd22a"
+    },
+    {
+      "type": "java",
+      "name": "Launch ConsoleHelper",
+      "request": "launch",
+      "mainClass": "textAnim.ConsoleHelper",
+      "projectName": "00 - rough testing_184fd22a"
+    },
+    {
+      "type": "java",
+      "name": "Launch SpaceInvader",
+      "request": "launch",
+      "mainClass": "textAnim.SpaceInvader",
+      "projectName": "00 - rough testing_184fd22a"
+    },
+    {
+      "type": "java",
+      "name": "Launch Main(2)",
+      "request": "launch",
+      "mainClass": "zz_misc.Main",
+      "projectName": "00 - rough testing_184fd22a"
+    }
+  ]
+}
