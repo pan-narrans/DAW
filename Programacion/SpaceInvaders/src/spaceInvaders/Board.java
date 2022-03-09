@@ -30,7 +30,13 @@ public class Board {
     System.out.flush();
   }
 
-  public void updateObjet(BoardObject o) {
+  public void updateBoard(BoardObject[] objects) {
+    for (BoardObject o : objects) {
+      updateObjet(o);
+    }
+  }
+
+  private void updateObjet(BoardObject o) {
     char c;
 
     // Choose Sprite
@@ -49,9 +55,6 @@ public class Board {
         break;
     }
 
-    // old pos
-    playBoard[o.getOldPositionY()][o.getOldPositionX()] = EMPTY;
-
     // new pos
     playBoard[o.getPositionY()][o.getPositionX()] = c;
   }
@@ -59,7 +62,7 @@ public class Board {
   /**
    * Sets all cells to empty.
    */
-  private void resetBoard() {
+  protected void resetBoard() {
     for (int i = 0; i < BOARD_SIZE_Y; i++) {
       for (int j = 0; j < BOARD_SIZE_X; j++) {
         playBoard[i][j] = '-';

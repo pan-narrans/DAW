@@ -4,14 +4,18 @@ public class BoardObject {
 
   /** [ x , y ] */
   protected int[] position;
-  /** [ x , y ] */
-  protected int[] oldPosition;
+  protected int speed;
+  protected boolean outOfBounds;
+
+  protected Type type;
 
   protected static enum Type {
     PLAYER, ENEMY, BULLET
   }
 
-  protected Type type;
+  BoardObject() {
+    outOfBounds = false;
+  }
 
   public int getPositionX() {
     return position[0];
@@ -21,14 +25,6 @@ public class BoardObject {
     return position[1];
   }
 
-  public int getOldPositionX() {
-    return oldPosition[0];
-  }
-
-  public int getOldPositionY() {
-    return oldPosition[1];
-  }
-
   public Type getType() {
     return type;
   }
@@ -36,6 +32,5 @@ public class BoardObject {
   public void updatePos() {
     ;
   }
-  
 
 }
