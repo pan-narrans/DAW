@@ -8,13 +8,14 @@ import java.awt.event.KeyEvent;
 // Basic funcionalities
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import spaceInvaders.BoardObject.Type;
+
 import java.util.Iterator;
 
 public class GameController {
 
   private final int SLEEP_TIME = 10;
-  private final int FRAME_DELAY = 20;
-  private int delayCounter = 0;
 
   private Robot robot;
   private Scanner sc = new Scanner(System.in);
@@ -23,6 +24,7 @@ public class GameController {
   private Player playerShip = new Player();
   private ArrayList<BoardObject> boardObjets = new ArrayList<BoardObject>();
 
+  /** Default constructor */
   public GameController() {
     try {
       this.robot = new Robot();
@@ -32,8 +34,12 @@ public class GameController {
     }
 
     boardObjets.add(playerShip);
-    Enemy enemyTest = new Enemy(new int[] { 0, 0 });
-    boardObjets.add(enemyTest);
+    Enemy enemyTest1 = new Enemy(new int[] { 0, 0 });
+    Enemy enemyTest2 = new Enemy(new int[] { 2, 0 });
+    Enemy enemyTest3 = new Enemy(new int[] { 4, 0 });
+    boardObjets.add(enemyTest1);
+    boardObjets.add(enemyTest2);
+    boardObjets.add(enemyTest3);
   }
 
   public void play() {
@@ -47,16 +53,11 @@ public class GameController {
     // Player Actions
     managePlayerInput(listenKey());
 
-    delayCounter++;
-
-    if (delayCounter == FRAME_DELAY) {
-      delayCounter = 0;
-      // Other elements management
-      for (BoardObject o : boardObjets) {
-        o.updatePos();
-      }
-      deleteOutOfBounds();
+    // Other elements management
+    for (BoardObject o : boardObjets) {
+      o.updatePos();
     }
+    objectCleanUp();
 
     // BOARD
     board.resetBoard();
@@ -77,17 +78,14 @@ public class GameController {
    * @param key Key press of the current frame.
    */
   private void managePlayerInput(char key) {
-    switch (key) {
+    switch (Character.toLowerCase(key)) {
       case 'a':
-      case 'A':
         playerShip.moveRight();
         break;
       case 'd':
-      case 'D':
         playerShip.moveLeft();
         break;
       case 's':
-      case 'S':
         boardObjets.add(playerShip.shoot());
         break;
       default:
@@ -111,14 +109,32 @@ public class GameController {
   }
 
   /**
-   * Removes from the {@link #boardObjets} array all out of bounds objects.
+   * Removes from the {@link #boardObjets} array list all objects marked as
+   * 'dead'.
    */
-  private void deleteOutOfBounds() {
+  private void objectCleanUp() {
     Iterator<BoardObject> it = boardObjets.iterator();
     while (it.hasNext()) {
       BoardObject temp = it.next();
-      if (temp.outOfBounds)
+      if (temp.isDead)
         it.remove();
+    }
+  }
+
+  private void checkCollisions() {
+    Iterator<BoardObject> it1 = boardObjets.iterator();
+
+    while (it1.hasNext()) {
+      BoardObject temp1 = it1.next();
+
+      if (temp1.type == Type.BULLET) {
+        Iterator<BoardObject> it2 = boardObjets.iterator();
+
+        while (it2.hasNext()) {
+          BoardObject temp2 = it2.next();
+
+        }
+      }
     }
   }
 

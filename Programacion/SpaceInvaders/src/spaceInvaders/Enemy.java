@@ -2,20 +2,26 @@ package spaceInvaders;
 
 public class Enemy extends BoardObject {
 
+  private int moveDir = 1;
+
   public Enemy(int[] position) {
-    super();
+    super('Y');
     this.position = position.clone();
     this.type = Type.ENEMY;
+    speedDelay = 40;
   }
 
-  public void updatePos() {
-    position[0] += 1;
-    if (position[0] >= Board.BOARD_SIZE_X)
-      position = new int[] { 0, position[1] + 1 };
+  @Override
+  protected void move() {
+    position[0] += moveDir;
+    
+    if (position[0] >= Board.BOARD_SIZE_X || position[0] < 0) {
+      position = new int[] { position[0] - moveDir, position[1] + 1 };
+      moveDir *= -1;
+    }
 
     if (position[1] >= Board.BOARD_SIZE_Y)
-      outOfBounds = true;
-
+      isDead = true;
   }
 
 }

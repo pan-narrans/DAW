@@ -1,20 +1,29 @@
 package spaceInvaders;
 
-public class BoardObject {
+public abstract class BoardObject {
 
-  /** [ x , y ] */
+  /** vector2 [ x , y ] */
   protected int[] position;
-  protected int speed;
-  protected boolean outOfBounds;
+  /** Dead instances will be deleted. */
+  protected boolean isDead;
+  protected final char SPRITE;
 
+  // SPEED
+
+  /** range [ 1 , 100 ] */
+  protected int speedDelay;
+  protected int speedCounter;
+
+  // DEPRECATED ?
   protected Type type;
 
   protected static enum Type {
     PLAYER, ENEMY, BULLET
   }
 
-  BoardObject() {
-    outOfBounds = false;
+  BoardObject(char sprite) {
+    isDead = false;
+    SPRITE = sprite;
   }
 
   public int getPositionX() {
@@ -30,6 +39,14 @@ public class BoardObject {
   }
 
   public void updatePos() {
+    speedCounter++;
+    if (speedCounter == speedDelay) {
+      speedCounter = 0;
+      move();
+    }
+  }
+
+  protected void move() {
     ;
   }
 

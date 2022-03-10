@@ -3,9 +3,10 @@ package spaceInvaders;
 public class Player extends BoardObject {
 
   public Player() {
-    super();
+    super('▄');
     this.position = new int[] { (int) (Board.BOARD_SIZE_X / 2), Board.BOARD_SIZE_Y - 1 };
     this.type = Type.PLAYER;
+    speedDelay = 1;
   }
 
   public void moveLeft() {

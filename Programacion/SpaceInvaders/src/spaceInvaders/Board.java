@@ -10,53 +10,32 @@ public class Board {
   protected final static int BOARD_SIZE_Y = 10;
 
   private final char EMPTY = '-';
-  private final char PLAYER = '▄';
-  private final char ENEMY = 'Y';
-  private final char BULLET = 'o';
+  // private final char PLAYER = '▄';
+  // private final char ENEMY = 'Y';
+  // private final char BULLET = 'o';
 
-  public Board() {
+  protected Board() {
     resetBoard();
   }
 
-  public void prinBoard() {
+  /**
+   * Calls {@link #clearScreen()} and prints the new board.
+   */
+  protected void prinBoard() {
     clearScreen();
     for (char[] charray : playBoard) {
       System.out.println(Arrays.toString(charray));
     }
   }
 
-  private void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
-  }
-
-  public void updateBoard(BoardObject[] objects) {
+  protected void updateBoard(BoardObject[] objects) {
     for (BoardObject o : objects) {
       updateObjet(o);
     }
   }
 
   private void updateObjet(BoardObject o) {
-    char c;
-
-    // Choose Sprite
-    switch (o.getType()) {
-      case PLAYER:
-        c = PLAYER;
-        break;
-      case ENEMY:
-        c = ENEMY;
-        break;
-      case BULLET:
-        c = BULLET;
-        break;
-      default:
-        c = EMPTY;
-        break;
-    }
-
-    // new pos
-    playBoard[o.getPositionY()][o.getPositionX()] = c;
+    playBoard[o.getPositionY()][o.getPositionX()] = o.SPRITE;
   }
 
   /**
@@ -70,4 +49,11 @@ public class Board {
     }
   }
 
+  /**
+   * "Clears" the screen, allowing for the new frame to be printed.
+   */
+  private void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
 }
