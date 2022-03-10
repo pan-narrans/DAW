@@ -3,6 +3,8 @@
   <xsl:template match="/">
     <HTML>
       <BODY>
+        <H1>RESTAURANTE SOPERO</H1>
+        <H2>SOPAS</H2>
         <TABLE border="1" cellspacing="0" cellpadding="2">
           <xsl:apply-templates select="customers/customer">
             <xsl:sort select="state" />
