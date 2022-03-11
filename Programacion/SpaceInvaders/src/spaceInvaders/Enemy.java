@@ -7,7 +7,6 @@ public class Enemy extends BoardObject {
   public Enemy(int[] position) {
     super('Y');
     this.position = position.clone();
-    this.type = Type.ENEMY;
     speedDelay = 40;
   }
 

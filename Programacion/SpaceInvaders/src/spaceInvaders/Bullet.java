@@ -5,7 +5,7 @@ public class Bullet extends BoardObject {
   public Bullet(int[] position) {
     super('o');
     this.position = position.clone();
-    this.type = Type.BULLET;
+    // this.position[1] -= 2;
     speedDelay = 5;
   }
 

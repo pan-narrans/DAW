@@ -14,13 +14,6 @@ public abstract class BoardObject {
   protected int speedDelay;
   protected int speedCounter;
 
-  // DEPRECATED ?
-  protected Type type;
-
-  protected static enum Type {
-    PLAYER, ENEMY, BULLET
-  }
-
   BoardObject(char sprite) {
     isDead = false;
     SPRITE = sprite;
@@ -34,8 +27,12 @@ public abstract class BoardObject {
     return position[1];
   }
 
-  public Type getType() {
-    return type;
+  public void kill() {
+    isDead = true;
+  }
+
+  public void update() {
+    updatePos();
   }
 
   public void updatePos() {

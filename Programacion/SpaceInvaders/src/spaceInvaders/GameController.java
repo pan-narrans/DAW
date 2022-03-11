@@ -9,8 +9,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import spaceInvaders.BoardObject.Type;
-
 import java.util.Iterator;
 
 public class GameController {
@@ -55,8 +53,9 @@ public class GameController {
 
     // Other elements management
     for (BoardObject o : boardObjets) {
-      o.updatePos();
+      o.update();
     }
+    checkCollisions();
     objectCleanUp();
 
     // BOARD
@@ -86,7 +85,8 @@ public class GameController {
         playerShip.moveLeft();
         break;
       case 's':
-        boardObjets.add(playerShip.shoot());
+        if (playerShip.canShoot())
+          boardObjets.add(playerShip.shoot());
         break;
       default:
         break;
@@ -115,25 +115,38 @@ public class GameController {
   private void objectCleanUp() {
     Iterator<BoardObject> it = boardObjets.iterator();
     while (it.hasNext()) {
-      BoardObject temp = it.next();
-      if (temp.isDead)
+      // BoardObject temp = it.next();
+      if (it.next().isDead)
         it.remove();
     }
   }
 
+  /**
+   * Checks bullet collisions with other objects.
+   */
   private void checkCollisions() {
+
+    // 1st loop
     Iterator<BoardObject> it1 = boardObjets.iterator();
-
     while (it1.hasNext()) {
-      BoardObject temp1 = it1.next();
 
-      if (temp1.type == Type.BULLET) {
+      // if bullet.
+
+      BoardObject obj1 = it1.next();
+      if (obj1 instanceof Bullet) {
+        boolean colision = false;
+
+        // 2nd loop
         Iterator<BoardObject> it2 = boardObjets.iterator();
-
-        while (it2.hasNext()) {
-          BoardObject temp2 = it2.next();
-
+        while (it2.hasNext() && !colision) {
+          BoardObject obj2 = it2.next();
+          if (obj1.position.equals(obj2.position) && !obj1.equals(obj2)) {
+            colision = true;
+            obj1.kill();
+            obj2.kill();
+          }
         }
+
       }
     }
   }

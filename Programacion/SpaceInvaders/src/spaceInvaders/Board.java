@@ -9,7 +9,7 @@ public class Board {
   protected final static int BOARD_SIZE_X = 5;
   protected final static int BOARD_SIZE_Y = 10;
 
-  private final char EMPTY = '-';
+  private final char EMPTY = '.';
   // private final char PLAYER = '▄';
   // private final char ENEMY = 'Y';
   // private final char BULLET = 'o';
@@ -44,7 +44,7 @@ public class Board {
   protected void resetBoard() {
     for (int i = 0; i < BOARD_SIZE_Y; i++) {
       for (int j = 0; j < BOARD_SIZE_X; j++) {
-        playBoard[i][j] = '-';
+        playBoard[i][j] = EMPTY;
       }
     }
   }
