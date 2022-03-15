@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="sopas.xsl"?>
+<?xml-stylesheet type="text/xsl" href="sopas v2.xsl"?>
 <cocina>
   <sopas>
     <sopa nombre="Juliana" precio="15€">
