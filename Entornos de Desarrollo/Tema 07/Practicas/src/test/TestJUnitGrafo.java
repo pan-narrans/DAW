@@ -1,17 +1,26 @@
 package test;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import grafo.Grafo;
 
+@DisplayName("Tests de la clase Grafo")
 public class TestJUnitGrafo {
 
-  @Tag("testGrafo")
+  Grafo g = new Grafo();
+
+  @BeforeAll
+  public static void name() {
+    System.out.println("hey");
+  }
+
   @Test
+  @DisplayName("Test Grafo")
   public void testGrafo() {
-    Grafo g = new Grafo();
+    System.out.println("hola");
 
     Assertions.assertEquals(1, g.aMethod(true, true, false));
     Assertions.assertEquals(1, g.aMethod(true, true, true));
