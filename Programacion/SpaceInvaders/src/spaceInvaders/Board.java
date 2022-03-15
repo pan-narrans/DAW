@@ -19,13 +19,30 @@ public class Board {
   }
 
   /**
-   * Calls {@link #clearScreen()} and prints the new board.
+   * Calls {@link #clearScreen()} then prints all the interface goodies, including
+   * (but not restricted to) the board, the score, the TITLE.
+   * 
+   * @param score
+   */
+  public void print(int score) {
+    clearScreen();
+    printHead();
+    printScore(score);
+    prinBoard();
+    printPlayerInfo();
+  }
+
+  /**
+   * Prints the board.
    */
   protected void prinBoard() {
-    clearScreen();
+    int i = 0;
+    System.out.println("");
     for (char[] charray : playBoard) {
-      System.out.println(Arrays.toString(charray));
+      System.out.println(i++ + " " + Arrays.toString(charray));
     }
+    System.out.println("");
+
   }
 
   protected void updateBoard(BoardObject[] objects) {
@@ -56,4 +73,19 @@ public class Board {
     System.out.print("\033[H\033[2J");
     System.out.flush();
   }
+
+  private void printHead() {
+    System.out.println("");
+    System.out.println("");
+    System.out.println("=== SPACE INVADERS ===");
+  }
+
+  public void printScore(int score) {
+    System.out.println("Score = " + score);
+  }
+
+  private void printPlayerInfo() {
+    System.out.println("Player = ");
+  }
+
 }

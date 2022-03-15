@@ -39,7 +39,8 @@ public class Player extends BoardObject {
 
   protected Bullet shoot() {
     canShoot = false;
-    return new Bullet(position);
+    // return new Bullet(new int[] { position[0], position[1] - 1 });
+    return new Bullet(position, -1);
   }
 
 }

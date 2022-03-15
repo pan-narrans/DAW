@@ -1,15 +1,20 @@
 package spaceInvaders;
 
-public abstract class BoardObject {
+import java.util.Arrays;
+
+public abstract class BoardObject implements GameObject {
 
   /** vector2 [ x , y ] */
   protected int[] position;
+
   /** Dead instances will be deleted. */
   protected boolean isDead;
+
   protected final char SPRITE;
+  
+  protected int pointValue = 0;;
 
   // SPEED
-
   /** range [ 1 , 100 ] */
   protected int speedDelay;
   protected int speedCounter;
@@ -25,6 +30,15 @@ public abstract class BoardObject {
 
   public int getPositionY() {
     return position[1];
+  }
+
+  public boolean comparePosition(BoardObject o) {
+    boolean areEqual = true;
+    if (this.position[0] != o.position[0])
+      areEqual = false;
+    if (this.position[1] != o.position[1])
+      areEqual = false;
+    return areEqual;
   }
 
   public void kill() {
@@ -45,6 +59,16 @@ public abstract class BoardObject {
 
   protected void move() {
     ;
+  }
+
+  @Override
+  public String toString() {
+    return "BoardObject [SPRITE=" + SPRITE + ", isDead=" + isDead + ", position=" + Arrays.toString(position)
+        + "]";
+  }
+
+  public int getPointValue() {
+    return pointValue;
   }
 
 }

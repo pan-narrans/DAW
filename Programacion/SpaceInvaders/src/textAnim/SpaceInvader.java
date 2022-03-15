@@ -1,14 +1,11 @@
 package textAnim;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import java.io.*;
 
 public class SpaceInvader {
 
@@ -37,7 +34,6 @@ public class SpaceInvader {
   public static void main(String[] args) throws InterruptedException, IOException {
     String line = "hey jude";
     Scanner sc = new Scanner(System.in);
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     SpaceInvader spacey = new SpaceInvader();
     char c = 0;

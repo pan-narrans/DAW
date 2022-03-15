@@ -20,7 +20,10 @@ public class GameController {
 
   private Board board = new Board();
   private Player playerShip = new Player();
+  private EnemyController badGuyControl = new EnemyController();
   private ArrayList<BoardObject> boardObjets = new ArrayList<BoardObject>();
+
+  private int score = 0;
 
   /** Default constructor */
   public GameController() {
@@ -32,12 +35,12 @@ public class GameController {
     }
 
     boardObjets.add(playerShip);
-    Enemy enemyTest1 = new Enemy(new int[] { 0, 0 });
-    Enemy enemyTest2 = new Enemy(new int[] { 2, 0 });
-    Enemy enemyTest3 = new Enemy(new int[] { 4, 0 });
-    boardObjets.add(enemyTest1);
-    boardObjets.add(enemyTest2);
-    boardObjets.add(enemyTest3);
+    // Enemy enemyTest1 = new Enemy(new int[] { 0, 0 });
+    // Enemy enemyTest2 = new Enemy(new int[] { 2, 0 });
+    // Enemy enemyTest3 = new Enemy(new int[] { 4, 0 });
+    // boardObjets.add(enemyTest1);
+    // boardObjets.add(enemyTest2);
+    // boardObjets.add(enemyTest3);
   }
 
   public void play() {
@@ -47,27 +50,46 @@ public class GameController {
   }
 
   private void Update() {
-
     // Player Actions
     managePlayerInput(listenKey());
 
     // Other elements management
-    for (BoardObject o : boardObjets) {
-      o.update();
-    }
+    updateObjects();
+    generateEnemies();
     checkCollisions();
     objectCleanUp();
 
     // BOARD
     board.resetBoard();
     board.updateBoard(boardObjets.toArray(new BoardObject[0]));
-    board.prinBoard();
+    // board.printScore(score);
+    board.print(score);
+    // board.prinBoard();
 
     // SLEEP
     try {
       Thread.sleep(SLEEP_TIME);
     } catch (InterruptedException e) {
       e.printStackTrace();
+    }
+  }
+
+  /**
+   * If there's an enemy to generate, it adds it to the array.
+   */
+  private void generateEnemies() {
+    if (badGuyControl.hasEnemyReady()) {
+      boardObjets.add(badGuyControl.createEnemy());
+    }
+  }
+
+  /**
+   * Calls the update method of each game object.
+   */
+  private void updateObjects() {
+    badGuyControl.update();
+    for (BoardObject o : boardObjets) {
+      o.update();
     }
   }
 
@@ -125,30 +147,34 @@ public class GameController {
    * Checks bullet collisions with other objects.
    */
   private void checkCollisions() {
-
     // 1st loop
     Iterator<BoardObject> it1 = boardObjets.iterator();
     while (it1.hasNext()) {
-
-      // if bullet.
-
       BoardObject obj1 = it1.next();
       if (obj1 instanceof Bullet) {
+        // Used to break out of the inner loop,
+        // as bullets can only collide with one object
         boolean colision = false;
-
         // 2nd loop
         Iterator<BoardObject> it2 = boardObjets.iterator();
         while (it2.hasNext() && !colision) {
           BoardObject obj2 = it2.next();
-          if (obj1.position.equals(obj2.position) && !obj1.equals(obj2)) {
+          // Collision check
+          if (obj1.comparePosition(obj2) && !obj1.equals(obj2)) {
             colision = true;
             obj1.kill();
             obj2.kill();
           }
-        }
+          if (colision)
+            addScore(obj2.getPointValue());
+        } // End 2nd loop
 
-      }
-    }
+      } // End if bullet
+    } // End 1st loop
+  } // End checkCollisions()
+
+  private void addScore(int pointValue) {
+    score += pointValue;
   }
 
 }
