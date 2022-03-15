@@ -1,12 +1,8 @@
 {
-  "xml.fileAssociations": [
-    {
-      "pattern": "**/pedido.xml",
-      "systemId": "Pr%C3%A1ctica%2001%20-%20xml%20b%C3%A1sico/pedido.xsd"
-    },
-    //{
-    //  "pattern": "**/desayuno.xml",
-    //  "systemId": "Pr%C3%A1ctica%2001%20-%20xml%20b%C3%A1sico/desayuno.xsd"
-    //}
-  ]
+  "xml.format.preserveAttributeLineBreaks": true,
+  "xml.format.emptyElements": "collapse",
+  "xml.format.joinContentLines": true,
+  "xml.format.preservedNewlines": 1,
+  "xml.format.splitAttributesIndentSize": 1,
+  "xml.format.xsiSchemaLocationSplit": "onPair"
 }
