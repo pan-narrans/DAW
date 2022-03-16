@@ -8,7 +8,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>XSL Test 1</title>
+        <title>XSL Test nº1</title>
       </head>
       <body>
 
@@ -33,6 +33,7 @@
                 <xsl:value-of select="name(.)" />
                 :
                 <!-- gets the element value -->
+                
                 <xsl:value-of select="." />
               </li>
             </xsl:for-each>
