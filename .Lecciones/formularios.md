@@ -1,26 +1,28 @@
-    Montar un form y conectarlo a una BBDD:    
+# Montar un form y conectarlo a una BBDD
+
+``` cmd
     @author: Alejandro Pérez
+```
 
+- [Montar un form y conectarlo a una BBDD](#montar-un-form-y-conectarlo-a-una-bbdd)
+  - [PHP y SQL](#php-y-sql)
+    - [Crear la base de datos](#crear-la-base-de-datos)
+    - [Conectar a la base de datos](#conectar-a-la-base-de-datos)
+  - [HTML](#html)
+    - [fieldset y legend](#fieldset-y-legend)
+    - [input](#input)
+    - [enviar formulario](#enviar-formulario)
+    - [diferencias entre name y id](#diferencias-entre-name-y-id)
+    - [the fuk is label](#the-fuk-is-label)
 
-- [PHP y SQL:](#php-y-sql)
-  - [Crear la base de datos](#crear-la-base-de-datos)
-  - [Conectar a la base de datos](#conectar-a-la-base-de-datos)
-- [HTML:](#html)
-  - [fieldset y legend](#fieldset-y-legend)
-  - [input](#input)
-  - [enviar formulario](#enviar-formulario)
-  - [diferencias entre name y id](#diferencias-entre-name-y-id)
-  - [the fuk is label](#the-fuk-is-label)
-
-
-# PHP y SQL:
+## PHP y SQL
 
 > 🐵🐵 **MONKE CONSEJO** 🐵🐵 <BR>
 > Recordar sustituir en la url hasta el /httdocs por `localhost`.
 
 ~~(ya han sido un par las veces que se me ha olvidado)~~
 
-## Crear la base de datos
+### Crear la base de datos
 
 ```sql
 DROP DATABASE IF EXISTS db_name;
@@ -37,7 +39,7 @@ CREATE TABLE table_name(
 );
 ```
 
-## Conectar a la base de datos
+### Conectar a la base de datos
 
 ```php
 // Variables conexión
@@ -73,9 +75,14 @@ echo "----------------------" . $consulta . "--";
 mysqli_query($link, $consulta) or die("<h3> Error al insertar en la tabla </h3>");
 ```
 
-# HTML:
-## fieldset y legend
-## input
-## enviar formulario
-## diferencias entre name y id
-## the fuk is label
+## HTML
+
+### fieldset y legend
+
+### input
+
+### enviar formulario
+
+### diferencias entre name y id
+
+### the fuk is label

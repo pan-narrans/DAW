@@ -1,37 +1,42 @@
 
-    Comandos de Linux:
+# Comandos de Linux
 
-- [Commandos Básicos](#commandos-básicos)
-  - [Movernos - `cd`](#movernos---cd)
-  - [Listar Contenidos - `ls`](#listar-contenidos---ls)
-    - [Ejemplo de `ls -l`:](#ejemplo-de-ls--l)
-  - [Directorios](#directorios)
-  - [Archivos](#archivos)
-  - [Metacaracteres - Wildcards](#metacaracteres---wildcards)
-- [Editar Archivos](#editar-archivos)
-- [Permisos - `chmod`](#permisos---chmod)
-  - [Forma simbólica:](#forma-simbólica)
-  - [Forma numérica:](#forma-numérica)
-- [otros](#otros)
-  - [tratar el contenido de los archivos](#tratar-el-contenido-de-los-archivos)
-    - [grep](#grep)
-    - [sed](#sed)
-  - [mover y copiar](#mover-y-copiar)
-  - [permisos](#permisos)
-- [Shell](#shell)
-  - [Requisitos](#requisitos)
-  - [Parámetros](#parámetros)
-  - [Variables](#variables)
-    - [Predefinidas](#predefinidas)
-  - [Comillas y acentos](#comillas-y-acentos)
+``` cmd
+    @author: Alejandro Pérez
+```
 
+- [Comandos de Linux](#comandos-de-linux)
+  - [Commandos Básicos](#commandos-básicos)
+    - [Movernos - `cd`](#movernos---cd)
+    - [Listar Contenidos - `ls`](#listar-contenidos---ls)
+      - [Ejemplo de `ls -l`](#ejemplo-de-ls--l)
+    - [Directorios](#directorios)
+    - [Archivos](#archivos)
+    - [Metacaracteres - Wildcards](#metacaracteres---wildcards)
+  - [Editar Archivos](#editar-archivos)
+  - [Permisos - `chmod`](#permisos---chmod)
+    - [Forma simbólica](#forma-simbólica)
+    - [Forma numérica](#forma-numérica)
+  - [otros](#otros)
+    - [tratar el contenido de los archivos](#tratar-el-contenido-de-los-archivos)
+      - [grep](#grep)
+      - [sed](#sed)
+    - [mover y copiar](#mover-y-copiar)
+    - [permisos](#permisos)
+  - [Shell](#shell)
+    - [Requisitos](#requisitos)
+    - [Parámetros](#parámetros)
+    - [Variables](#variables)
+      - [Predefinidas](#predefinidas)
+    - [Comillas y acentos](#comillas-y-acentos)
 
-# Commandos Básicos
-## Movernos - `cd`
+## Commandos Básicos
+
+### Movernos - `cd`
 
 | Comando     | Resultado                                                  |
 | ----------- | ---------------------------------------------------------- |
-| `cd `       | nos lleva a nuestra "home"                                 |
+| `cd`       | nos lleva a nuestra "home"                                 |
 | `cd /`      | nos lleva al "root"                                        |
 | `cd ..`     | nos sube al directorio inmediatamente superior             |
 | `cd [path]` | nos lleva a la dirección introducida (absoluta o relativa) |
@@ -42,35 +47,33 @@ alex@alex-vm:/media$
 ```
 
 > **Ruta absoluta:** Desde el root hasta el archivo:
-> 
+>
 > \Users\grupo1\Documents\DAW-Alex\Cheatsheets\linux.md
 
 > **Ruta relativa:** Desde el directorio actual (DAW-Alex)
-> 
+>
 > Cheatsheets\linux.md
 
-## Listar Contenidos - `ls`
+### Listar Contenidos - `ls`
 
 | Comando | Resultado                                                |
 | ------- | -------------------------------------------------------- |
-| `ls `   | el nombre de los archivos                                |
+| `ls`   | el nombre de los archivos                                |
 | `ls -a` | también los archivos ocultos                             |
 | `ls -l` | los archivos de forma detallada                          |
 | `ls -r` | los archivos en orden inverso                            |
 | `ls -t` | los archivos por orden de modificación (+nuevos primero) |
 
-### Ejemplo de `ls -l`:
+#### Ejemplo de `ls -l`
 
 ```console
 alex@alex-vm:~$ ls -l
 -rw-rw---- 1 alex alex 32 feb 11 08:47 fichero.txt
 ```
 
-
 | tipo de fichero | permisos  | propietario | grupo | tamaño | fecha y hora | nombre      |
 | --------------- | --------- | ----------- | ----- | ------ | ------------ | ----------- |
 | -               | rw-rw---- | alex        | alex  | 32     | feb 11 08:47 | fichero.txt |
-
 
 <table>
 <tr style="vertical-align: top;"><td>
@@ -82,7 +85,6 @@ alex@alex-vm:~$ ls -l
 | `b, c` | archivo especial  |
 |  `l`   | enlace            |
 
-
 </td><td>
 
 Listado de los distintos tipos de fichero que nos puede sacar el `-l`.
@@ -90,8 +92,7 @@ Listado de los distintos tipos de fichero que nos puede sacar el `-l`.
 </td></tr>
 </table>
 
-
-## Directorios
+### Directorios
 
 | Comando            | Resultado                            |
 | ------------------ | ------------------------------------ |
@@ -100,7 +101,7 @@ Listado de los distintos tipos de fichero que nos puede sacar el `-l`.
 | `rm -d [dir_name]` | elimina un directorio                |
 | `rm -r [dir_name]` | elimina un directorio y su contenido |
 
-## Archivos
+### Archivos
 
 | Comando             | Resultado                           |
 | ------------------- | ----------------------------------- |
@@ -109,9 +110,7 @@ Listado de los distintos tipos de fichero que nos puede sacar el `-l`.
 | `cat [file_name]`   | abre un archivo de texto            |
 | `nano [file_name]`  | abre un editor de archivos de texto |
 
-
-## Metacaracteres - Wildcards
-
+### Metacaracteres - Wildcards
 
 |     Mod      | Significado                                       | Ejemplo                                                                                         |
 | :----------: | ------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -122,18 +121,17 @@ Listado de los distintos tipos de fichero que nos puede sacar el `-l`.
 |   `{x..x}`   | todos los elementos entre los dos (incluidos)     | `ls {A..M}.txt` : igual que arriba pero con todos de la A a la M.                               |
 | `{x1,x2,x3}` | todos los elementos de la lista                   | `mkdir {carpeta1,carpeta2,carpeta3}` : crea las 3 carpetas                                      |
 
-# Editar Archivos
+## Editar Archivos
 
 | Comando                     | Resultado                           |
 | --------------------------- | ----------------------------------- |
-| `[comando] > [file_name] `  |                                     |
-| `[comando] >> [file_name] ` |                                     |
+| `[comando] > [file_name]`  |                                     |
+| `[comando] >> [file_name]` |                                     |
 | `nano [file_name]`          | abre un editor de archivos de texto |
 
+## Permisos - `chmod`
 
-# Permisos - `chmod`
-
-## Forma simbólica:
+### Forma simbólica
 
 <table>
 <tr>
@@ -178,7 +176,7 @@ alex@alex-vm:~$ ls -l
 -rw-rw---- 1 alex alex 32 feb 11 08:47 fichero.txt
 ```
 
-## Forma numérica:
+### Forma numérica
 
 <table>
 <tr><td>
@@ -208,30 +206,38 @@ alex@alex-vm:~$ ls -l
 -rwxr-x--- 1 alex alex 32 feb 11 08:47 fichero.txt
 ```
 
+## otros
 
+### tratar el contenido de los archivos
 
-# otros
-## tratar el contenido de los archivos
-### grep
-### sed
-## mover y copiar
-## permisos
-##
+#### grep
 
-# Shell
-Cabecera, indica que el archivo de texto en cuestión es un shell script. 
+#### sed
+
+### mover y copiar
+
+### permisos
+
+## Shell
+
+Cabecera, indica que el archivo de texto en cuestión es un shell script.
+
 ```shell
 #! /bin/bash
 ```
 
-## Requisitos
+### Requisitos
+
 Tiene que tener permisos de ejecución (*ya que es un archivo ejecutable* 😬).
 
-## Parámetros
+### Parámetros
+
 Cadenas de texto escritas después del nombre del script.
+
 ```console
 alex@alex-vm:~$ sh shell.sh param1 param2 ...
 ```
+
 | icon | ¿Qué representa?                                      |
 | ---- | ----------------------------------------------------- |
 | `$n` | info de un parámetro siento n el nº del parámetro     |
@@ -239,26 +245,28 @@ alex@alex-vm:~$ sh shell.sh param1 param2 ...
 | `$@` | todos los parámetros (bajo forma de una lista)        |
 | `$#` | nº de parámetros recibidos (int)                      |
 
-## Variables
+### Variables
 
 ```shell
-var = "hola"  # asignar valor
-echo $var     # acceder a su contenido
-echo {$var}   # acceder a su contenido
+var = "hola"  ## asignar valor
+echo $var     ## acceder a su contenido
+echo {$var}   ## acceder a su contenido
 ```
 
-### Predefinidas
+#### Predefinidas
+
 | icon | ¿Qué representa?                                |
 | ---- | ----------------------------------------------- |
 | `$0` | nombre del script                               |
 | `$$` | PID del proceso asignado al script en ejecución |
 | `$?` | resultado del último proceso ejecutado          |
 
-## Comillas y acentos
+### Comillas y acentos
+
 Los acentos graves permiten ejecutar comandos dentro de un echo.
 
 ```shell
-echo date     # date
-echo 'date'   # date
-echo `date`   # vie 28 ene 2022 08:47:17 CET
+echo date     ## date
+echo 'date'   ## date
+echo `date`   ## vie 28 ene 2022 08:47:17 CET
 ```

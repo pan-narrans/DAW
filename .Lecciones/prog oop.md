@@ -1,8 +1,12 @@
 
-    Programación Orientada a Objetos:
-    @author: Alejandro Pérez
+# Programación Orientada a Objetos
 
-- [Semántica:](#semántica)
+```cmd
+@author: Alejandro Pérez
+```
+
+- [Programación Orientada a Objetos](#programación-orientada-a-objetos)
+- [Semántica](#semántica)
   - [Herencia](#herencia)
   - [Polimorfismo](#polimorfismo)
   - [Interfaz](#interfaz)
@@ -16,9 +20,10 @@
   - [`this`](#this)
 - [Resumen](#resumen)
 
-# Semántica: 
+# Semántica
 
 Clase de inicio:
+
 ```java
 public class Animal {
   protected int nLegs;
@@ -27,6 +32,7 @@ public class Animal {
 ```
 
 ## Herencia
+
 La clase hijo hereda atributos y métodos públicos o protegidos de la clase padre.
 
 > ⚠ Los métodos o atributos privados **NO** se heredan.
@@ -41,7 +47,6 @@ public class Caballo extends Animal {
 
 La clase `Caballo()` hereda de `Animal()` por lo que tiene acceso tanto a `nLegs` como a `talk()` y aparte añade la variable `breed` que es propia a la clase hija.
 
-
 ## Polimorfismo
 
 Permite sobrescribir la funcionalidad de un método de la clase padre.
@@ -52,6 +57,7 @@ public class Caballo extends Animal {
   public void talk(){ System.out.println("neigh"); }
 }
 ```
+
 ```java
 public class Vaca extends Animal {
   @Overrides
@@ -67,7 +73,6 @@ caballo.talk(); // --> "neigh"
 vaca.talk();    // --> "moo"
 ```
 
-
 El objeto `Animal caballo = new Caballo()` no tiene acceso a los métodos de la clase Caballo pero al declararlo cómo `new Caballo()` se aplica el polimorfismo.
 
 ```java
@@ -76,10 +81,11 @@ Animal caballo = new Caballo();
 caballo.talk();     // --> "neigh"
 caballo.getBreed(); //  --> error, Animal() no tiene breed
 ```
+
 > El tipo de la variable es el que nos marca las funcionalidades del objeto. Si el tipo es Animal únicamente tendremos acceso a los atributos y métodos de Animal, por mucho que declaremos como Caballo o Vaca.
 
-
 ## Interfaz
+
 Blueprint de un objeto. Únicamente contiene un listado de métodos y no los implementa. **No** contiene atributos.
 
 ```java
@@ -88,6 +94,7 @@ public interface Jedi {
   public void meditate();
 }
 ```
+
 Al implementar una interfaz tenemos que implementar **todos** los métodos de dicha interfaz.
 
 ```java
@@ -104,11 +111,13 @@ public class humanoJedi implements Jedi {
 > 💬 Una interfaz es una plantilla de métodos para clases.
 
 ## Sobrecarga
+
 Permite declarar un mismo método varias veces con el mismo nombre, pero cambiando sus entrañas. Para hacer esto es necesario que el tipo o número de los parámetros de entrada sea distinto.
 
 > Esto es lo que hacemos al crear varios constructores par una clase (hay ejemplos más abajo).
 
 En vez de declarar dos métodos distintos que hacen básicamente lo mismo:
+
 ```java
 int plusMethodInt(int x, int y) { return x + y; }
 double plusMethodDouble(double x, double y) { return x + y; }
@@ -122,10 +131,12 @@ double plusMethod(double x, double y) { return x + y; }
 ```
 
 ## Encapsulación WIP
+
 ## Abstracción WIP
 
 # Modificadores
-## Visibilidad 
+
+## Visibilidad
 
 ```java
 public class NuevaClase {
@@ -141,10 +152,10 @@ Los keywords `public`, `protected` y `private` pueden aplicarse a clases, métod
 
 Depende de la clase y no de la instancia, es común a todas las instancias de un objeto. Permite acceder (si la visibilidad lo permite) al atributo o método sin necesidad de instanciar el objeto.
 
-Si modificamos desde un objeto un atributo `static` este se modificará también para todas las otras instancias del objeto. 
+Si modificamos desde un objeto un atributo `static` este se modificará también para todas las otras instancias del objeto.
 
 > ⚠ **NO ES LO MISMO QUE FINAL** ⚠
-> 
+>
 > Un atributo estático sigue pudiendo ser modificado.
 
 ```java
@@ -161,13 +172,11 @@ public class App {
 }
 ```
 
-
 ## `super`
 
 Permite acceder a los atributos y métodos de la superclase y de distinguirlos de los del objeto.
 
 Es lo mismo que un `this` pero para referenciar a la clase padre/madre.
-
 
 ```java
 public class Animal {
@@ -180,6 +189,7 @@ public class Animal {
   }
 }
 ```
+
 ```java
 public class Caballo extends Animal {
   protected String name, breed;
@@ -230,9 +240,10 @@ public class Animal {
 }
 ```
 
-> `super` y `this` no son siempre necesarios. 
- 
+> `super` y `this` no son siempre necesarios.
+
 Únicamente los usamos cuando:
+
 - Necesitemos diferenciar de forma explícita los atributos del objeto de otras variables locales.
 - Queramos diferenciar entre los métodos o atributos heredados y los sobrescritos en el objeto.
 

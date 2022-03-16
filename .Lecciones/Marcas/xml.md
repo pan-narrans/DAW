@@ -1,47 +1,52 @@
-    Resumen XML y XSD:
-    @author: Alejandro Pérez
+# Resumen XML y XSD
 
+``` cmd
+@author: Alejandro Pérez
+```
 
-- [**XML**](#xml)
-  - [Conectar **XML** y **XSD**](#conectar-xml-y-xsd)
-  - [Caracteres especiales](#caracteres-especiales)
-- [**XSD** basics](#xsd-basics)
-  - [Elementos y atributos](#elementos-y-atributos)
-    - [default / fixed](#default--fixed)
-  - [Tipos](#tipos)
-    - [simple / complex](#simple--complex)
-    - [secuencia / all](#secuencia--all)
-  - [refs / name](#refs--name)
-- [**XSD** Restricciones](#xsd-restricciones)
-  - [pattern](#pattern)
-  - [enum](#enum)
-  - [min / max](#min--max)
+- [Resumen XML y XSD](#resumen-xml-y-xsd)
+  - [**XML**](#xml)
+    - [Conectar **XML** y **XSD**](#conectar-xml-y-xsd)
+    - [Caracteres especiales](#caracteres-especiales)
+  - [**XSD** basics](#xsd-basics)
+    - [Elementos y atributos](#elementos-y-atributos)
+      - [default / fixed](#default--fixed)
+    - [Tipos](#tipos)
+      - [simple / complex](#simple--complex)
+      - [secuencia / all](#secuencia--all)
+    - [refs / name](#refs--name)
+  - [**XSD** Restricciones](#xsd-restricciones)
+    - [pattern](#pattern)
+    - [enum](#enum)
+    - [min / max](#min--max)
   - [length](#length)
-  - [whitespace](#whitespace)
-- [Init Template](#init-template)
-  - [**XML**](#xml-1)
-  - [**XSD**](#xsd)
-  - [Plugin](#plugin)
-- [**XSD** old](#xsd-old)
-  - [refs](#refs)
-  - [Restricciones](#restricciones)
+    - [whitespace](#whitespace)
+  - [Init Template](#init-template)
+    - [Template **XML**](#template-xml)
+    - [Template **XSD**](#template-xsd)
+    - [Plugin](#plugin)
+  - [**XSD** old](#xsd-old)
+    - [refs](#refs)
+    - [Restricciones](#restricciones)
 
+## **XML**
 
-# **XML**
-
-## Conectar **XML** y **XSD**
+### Conectar **XML** y **XSD**
 
 La 1ra parte no tengo claro aún que significa ("``xmlns:xsi``").
 
 La 2da parte ("``xsi:noNamespaceSchemaLocation``") es el path a nuestro archivo XSL.
 
 XML:
+
 ``` XML
 <vehiculos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vehiculos.xsd">
 ```
+
 ---
 
 XSD:
+
 ``` XML
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 ```
@@ -49,23 +54,21 @@ XSD:
 Esto importa los tipos definidos en la URL proporcionada
 (xs:string, xs:float, ect...).
 
-
-## Caracteres especiales
+### Caracteres especiales
 
 Algunos caracteres están reservados a la sintaxis de XML y el usarlos nos puede ~~joder~~ descuadrar el documento. Para ponerlos sin liarla podemos hacer uso de los códigos de la siguiente tabla.
 
 | Código   | Char |                |
 | -------- | ---: | :------------- |
-| `&lt;  ` |  < : | less than      |
-| `&gt;  ` |  > : | greater than   |
-| `&amp; ` |  & : | ampersand      |
+| `&lt;` |  < : | less than      |
+| `&gt;` |  > : | greater than   |
+| `&amp;` |  & : | ampersand      |
 | `&apos;` |  ' : | apostrophe     |
 | `&quot;` |  " : | quotation mark |
 
+## **XSD** basics
 
-
-# **XSD** basics
-## Elementos y atributos
+### Elementos y atributos
 
 ``` XML
 <root num="56">
@@ -84,35 +87,39 @@ Algunos caracteres están reservados a la sintaxis de XML y el usarlos nos puede
 
 Los atributos se definen después de los elementos y fuera del `sequence`. Al igual que estos, dependen del elemento directamente superior. En este ejemplo, el root.
 
-### default / fixed
+#### default / fixed
 
 Valor por defecto o valor fijo. No tiene mucho más. Valen tanto para atributos como para elementos.
 
 ``` XSD
 <xs:element name="1" type="xs:boolean" default="false" />
 <xs:attribute name="2" type="xs:boolean" fixed="true" />
-``` 
+```
 
-## Tipos
-### simple / complex
+### Tipos
 
+#### simple / complex
 
+#### secuencia / all
 
-### secuencia / all
-## refs / name
+### refs / name
 
-# **XSD** Restricciones
-## pattern
-## enum
-## min / max
+## **XSD** Restricciones
+
+### pattern
+
+### enum
+
+### min / max
+
 ## length
-## whitespace
 
+### whitespace
 
+## Init Template
 
-# Init Template
+### Template **XML**
 
-## **XML**
 ``` XML
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
@@ -121,7 +128,8 @@ Valor por defecto o valor fijo. No tiene mucho más. Valen tanto para atributos 
 </root>
 ```
 
-## **XSD**
+### Template **XSD**
+
 ``` XML
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">  
@@ -135,29 +143,20 @@ Valor por defecto o valor fijo. No tiene mucho más. Valen tanto para atributos 
 </xs:schema>
 ```
 
-## Plugin
-El plugin 
-[XML de Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml) 
-en vscode permite realizar todo esto de forma casi automática. Llegando al punto de generar un schema a partir de un archivo XML. 
+### Plugin
+
+El plugin
+[XML de Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml)
+en vscode permite realizar todo esto de forma casi automática. Llegando al punto de generar un schema a partir de un archivo XML.
 
 Se encarga de realizar la validación del XML y da información pertinente en caso de error ~~no como XML copy~~.
 
+## **XSD** old
 
+### refs
 
-
-
-
-
-
-
-
-
-
-
-
-# **XSD** old
-## refs
 Podemos declarar un **tipo**:
+
 ``` XML
   <xs:complexType name="date">
     <xs:sequence>
@@ -167,7 +166,9 @@ Podemos declarar un **tipo**:
     </xs:sequence>
   </xs:complexType>
 ```
+
 Y reutilizarlo posteriormente para no duplicar código:
+
 ``` XML
   <xs:element name="fabricacion">
     <xs:complexType>
@@ -178,8 +179,10 @@ Y reutilizarlo posteriormente para no duplicar código:
     </xs:complexType>
   </xs:element>
 ```
+
 ---
 De la misma forma, podemos declarar un **elemento**:
+
 ``` XML
   <xs:element name="modificaciones">
     <xs:complexType>
@@ -189,6 +192,7 @@ De la misma forma, podemos declarar un **elemento**:
     </xs:complexType>
   </xs:element>
 ```
+
 ``` XML
   <xs:element name="vehiculo">
     <xs:complexType>
@@ -201,7 +205,9 @@ De la misma forma, podemos declarar un **elemento**:
     </xs:complexType>
   </xs:element>
 ```
+
 Para luego referenciarlo:
+
 ``` XML
   <xs:element name="vehiculos">
     <xs:complexType>
@@ -211,10 +217,10 @@ Para luego referenciarlo:
     </xs:complexType>
   </xs:element>
 ```
+
 De esta forma podemos organizar mejor nuestro código para no perdernos y hacerlo más reutilizable.
 
-
-## Restricciones
+### Restricciones
 
 ``` xml
   <xs:simpleType name="edad">
@@ -231,5 +237,3 @@ De esta forma podemos organizar mejor nuestro código para no perdernos y hacerl
     <xs:attribute name="numero" type="xs:integer" use="required" />
   </xs:complexType>
 ```
-
-
