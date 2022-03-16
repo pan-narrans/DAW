@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+  <!-- BASIC XSL -->
+
   <xsl:template match="/">
 
     <html lang="en">
@@ -33,7 +35,7 @@
                 <xsl:value-of select="name(.)" />
                 :
                 <!-- gets the element value -->
-                
+
                 <xsl:value-of select="." />
               </li>
             </xsl:for-each>
@@ -45,8 +47,6 @@
     </html>
   </xsl:template>
 
-  <xsl:template match="//book/title">
-
-  </xsl:template>
+  <xsl:template match="//book/title" />
 
 </xsl:stylesheet>
