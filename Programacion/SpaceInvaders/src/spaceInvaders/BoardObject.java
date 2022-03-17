@@ -11,7 +11,7 @@ public abstract class BoardObject implements GameObject {
   protected boolean isDead;
 
   protected final char SPRITE;
-  
+
   protected int pointValue = 0;;
 
   // SPEED
@@ -34,9 +34,9 @@ public abstract class BoardObject implements GameObject {
 
   public boolean comparePosition(BoardObject o) {
     boolean areEqual = true;
-    if (this.position[0] != o.position[0])
+    if (this.position[0] != o.position[0]) 
       areEqual = false;
-    if (this.position[1] != o.position[1])
+    if (this.position[1] != o.position[1]) 
       areEqual = false;
     return areEqual;
   }
@@ -57,14 +57,12 @@ public abstract class BoardObject implements GameObject {
     }
   }
 
-  protected void move() {
-    ;
+  protected void move() {;
   }
 
-  @Override
-  public String toString() {
-    return "BoardObject [SPRITE=" + SPRITE + ", isDead=" + isDead + ", position=" + Arrays.toString(position)
-        + "]";
+  @Override public String toString() {
+    return "BoardObject [SPRITE=" + SPRITE + ", isDead=" + isDead + ", position=" +
+        Arrays.toString(position) + "]";
   }
 
   public int getPointValue() {

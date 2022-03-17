@@ -4,15 +4,14 @@ import java.util.Arrays;
 
 public class Board {
 
-  public char[][] playBoard = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
+  public char[][] playBoard               = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
 
-  protected final static int BOARD_SIZE_X = 5;
+  protected final static int BOARD_SIZE_X = 10;
   protected final static int BOARD_SIZE_Y = 10;
 
-  private final char EMPTY = '.';
-  // private final char PLAYER = '▄';
-  // private final char ENEMY = 'Y';
-  // private final char BULLET = 'o';
+  private final char EMPTY                = '.';
+  // private final char PLAYER = '▄'; private final char ENEMY = 'Y'; private
+  // final char BULLET = 'o';
 
   protected Board() {
     resetBoard();
@@ -21,31 +20,45 @@ public class Board {
   /**
    * Calls {@link #clearScreen()} then prints all the interface goodies, including
    * (but not restricted to) the board, the score, the TITLE.
-   * 
+   *
    * @param score
    */
-  public void print(int score) {
+  protected void print(int score) {
     clearScreen();
     printHead();
     printScore(score);
-    prinBoard();
+    printBoard();
     printPlayerInfo();
   }
 
   /**
-   * Prints the board.
+   * Prints the board..
+   *
    */
-  protected void prinBoard() {
+  private void printBoard() {
     int i = 0;
     System.out.println("");
     for (char[] charray : playBoard) {
+      if (i > BOARD_SIZE_Y - 2) 
+        printPlayerLine();
+      
       System.out.println(i++ + " " + Arrays.toString(charray));
+
     }
     System.out.println("");
 
   }
 
+  private void printPlayerLine() {
+    System.out.print("  ");
+    for (int i = 0; i < BOARD_SIZE_X; i++) {
+      System.out.print("---");
+    }
+    System.out.println("");
+  }
+
   protected void updateBoard(BoardObject[] objects) {
+    resetBoard();
     for (BoardObject o : objects) {
       updateObjet(o);
     }
@@ -58,7 +71,7 @@ public class Board {
   /**
    * Sets all cells to empty.
    */
-  protected void resetBoard() {
+  private void resetBoard() {
     for (int i = 0; i < BOARD_SIZE_Y; i++) {
       for (int j = 0; j < BOARD_SIZE_X; j++) {
         playBoard[i][j] = EMPTY;
@@ -80,7 +93,7 @@ public class Board {
     System.out.println("=== SPACE INVADERS ===");
   }
 
-  public void printScore(int score) {
+  protected void printScore(int score) {
     System.out.println("Score = " + score);
   }
 

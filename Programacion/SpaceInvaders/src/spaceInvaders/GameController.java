@@ -5,10 +5,9 @@ import java.awt.Robot;
 import java.awt.AWTException;
 import java.awt.event.KeyEvent;
 
-// Basic funcionalities
+// Basic functionalities
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import java.util.Iterator;
 
 public class GameController {
@@ -16,13 +15,14 @@ public class GameController {
   private final int SLEEP_TIME = 10;
 
   private Robot robot;
-  private Scanner sc = new Scanner(System.in);
+  private Scanner sc = new Scanner(System. in);
 
   private Board board = new Board();
   private Player playerShip = new Player();
   private EnemyController badGuyControl = new EnemyController();
-  private ArrayList<BoardObject> boardObjets = new ArrayList<BoardObject>();
+  private ArrayList<BoardObject> boardObjects = new ArrayList<BoardObject>();
 
+  private boolean inGame = false;
   private int score = 0;
 
   /** Default constructor */
@@ -34,19 +34,15 @@ public class GameController {
       e.printStackTrace();
     }
 
-    boardObjets.add(playerShip);
-    // Enemy enemyTest1 = new Enemy(new int[] { 0, 0 });
-    // Enemy enemyTest2 = new Enemy(new int[] { 2, 0 });
-    // Enemy enemyTest3 = new Enemy(new int[] { 4, 0 });
-    // boardObjets.add(enemyTest1);
-    // boardObjets.add(enemyTest2);
-    // boardObjets.add(enemyTest3);
+    // Añadir el player al array
+    boardObjects.add(playerShip);
   }
 
   public void play() {
+    inGame = true;
     do {
       Update();
-    } while (true);
+    } while (inGame);
   }
 
   private void Update() {
@@ -60,11 +56,8 @@ public class GameController {
     objectCleanUp();
 
     // BOARD
-    board.resetBoard();
-    board.updateBoard(boardObjets.toArray(new BoardObject[0]));
-    // board.printScore(score);
+    board.updateBoard(boardObjects.toArray(new BoardObject[0]));
     board.print(score);
-    // board.prinBoard();
 
     // SLEEP
     try {
@@ -79,7 +72,7 @@ public class GameController {
    */
   private void generateEnemies() {
     if (badGuyControl.hasEnemyReady()) {
-      boardObjets.add(badGuyControl.createEnemy());
+      boardObjects.add(badGuyControl.createEnemy());
     }
   }
 
@@ -88,14 +81,14 @@ public class GameController {
    */
   private void updateObjects() {
     badGuyControl.update();
-    for (BoardObject o : boardObjets) {
+    for (BoardObject o : boardObjects) {
       o.update();
     }
   }
 
   /**
    * Calls the appropriate {@link #playerShip} method based of the key.
-   * 
+   *
    * @param key Key press of the current frame.
    */
   private void managePlayerInput(char key) {
@@ -107,8 +100,8 @@ public class GameController {
         playerShip.moveLeft();
         break;
       case 's':
-        if (playerShip.canShoot())
-          boardObjets.add(playerShip.shoot());
+        if (playerShip.canShoot()) 
+          boardObjects.add(playerShip.shoot());
         break;
       default:
         break;
@@ -119,7 +112,7 @@ public class GameController {
    * Fakes a keyboard input.
    * <p>
    * Returns the first character of the keyboard input for the current frame.
-   * 
+   *
    * @return key pressed
    *         <li>'.' if no key is pressed
    */
@@ -131,43 +124,45 @@ public class GameController {
   }
 
   /**
-   * Removes from the {@link #boardObjets} array list all objects marked as
+   * Removes from the {@link #boardObjects} array list all objects marked as
    * 'dead'.
    */
   private void objectCleanUp() {
-    Iterator<BoardObject> it = boardObjets.iterator();
+    Iterator<BoardObject> it = boardObjects.iterator();
     while (it.hasNext()) {
       // BoardObject temp = it.next();
-      if (it.next().isDead)
+      if (it.next().isDead) 
         it.remove();
+      }
     }
-  }
 
   /**
    * Checks bullet collisions with other objects.
    */
   private void checkCollisions() {
     // 1st loop
-    Iterator<BoardObject> it1 = boardObjets.iterator();
+    Iterator<BoardObject> it1 = boardObjects.iterator();
     while (it1.hasNext()) {
       BoardObject obj1 = it1.next();
       if (obj1 instanceof Bullet) {
-        // Used to break out of the inner loop,
-        // as bullets can only collide with one object
-        boolean colision = false;
+        // Used to break out of the inner loop, as bullets can only collide with one
+        // object
+        boolean collision = false;
+
         // 2nd loop
-        Iterator<BoardObject> it2 = boardObjets.iterator();
-        while (it2.hasNext() && !colision) {
+        Iterator<BoardObject> it2 = boardObjects.iterator();
+        while (it2.hasNext() && !collision) {
           BoardObject obj2 = it2.next();
           // Collision check
           if (obj1.comparePosition(obj2) && !obj1.equals(obj2)) {
-            colision = true;
+            collision = true;
             obj1.kill();
             obj2.kill();
           }
-          if (colision)
+          if (collision) 
             addScore(obj2.getPointValue());
-        } // End 2nd loop
+          }
+        // End 2nd loop
 
       } // End if bullet
     } // End 1st loop
