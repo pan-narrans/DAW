@@ -1,0 +1,128 @@
+{
+  "JSON": {
+    "indent_size": 2,
+    "indent_style": "space",
+    "max_preserve_newlines": 1
+  },
+
+  "Java": {
+    "beautifiers": ["Pretty Diff"],
+    "align_assignments": true,
+    "break_chained_methods": false,
+    "indent_comments": true,
+    "indent_size": 2,
+    "indent_style": "space",
+    "max_preserve_newlines": 1,
+    "multiline_ternary": "never",
+    "quotes": "double",
+    "wrap_line_length": 80
+  },
+
+  "C#": {
+    "comment": "Not working! It separates the f from floats.",
+    "beautifiers": [
+      "Pretty Diff"
+    ],
+    "align_assignments": true,
+    "break_chained_methods": true,
+    "indent_comments": true,
+    "indent_size": 2,
+    "indent_style": "space",
+    "max_preserve_newlines": 1,
+    "multiline_ternary": "never",
+    "quotes": "double",
+    "wrap_line_length": 80
+  },
+
+  "HTML": {
+    "beautifiers": [
+      "Pretty Diff", "JS-Beautify"
+    ],
+    "brace_style": "collapse",
+    "end_with_newline": true,
+    "indent_comments": true,
+    "indent_inner_html": false,
+    "indent_scripts": "separate",
+    "indent_size": 2,
+    "indent_style": "space",
+    "max_preserve_newlines": 1,
+    "preserve_newlines": false,
+    "quotes": "double",
+    "wrap_attributes": "force-aligned",
+    "wrap_attributes_indent_size": 2,
+    "wrap_line_length": 80,
+    "newline_before_tags": [
+      "head",
+      "body",
+      "main",
+      "/main",
+      "aside",
+      "header",
+      "section",
+      "article",
+      "fieldset",
+      "footer",
+      "/html"
+    ]
+  },
+
+  "CSS": {
+    "comment": "Not working!",
+    "beautifiers": [
+      "Prettier", "Pretty Diff", "JS-Beautify"
+    ],
+    "indent_size": 4,
+    "indent_style": "space",
+    "max_preserve_newlines": 1,
+    "newline_between_rules": true,
+    "no_leading_zero": true,
+    "preserve_newlines": false,
+    "quotes": "double",
+    "wrap_line_length": 100,
+    "selector_separator_newline": true
+  },
+
+  "JavaScript": {
+    "beautifiers": [
+      "Prettier", "Pretty Diff", "JS-Beautify", "ESLint"
+    ],
+    "align_assignments": true,
+    "arrow_parens": "as-needed",
+    "brace_style": "collapse",
+    "break_chained_methods": false,
+    "comma_first": false,
+    "end_with_newline": false,
+    "end_with_semicolon": true,
+    "indent_size": 2,
+    "indent_style": "space",
+    "jslint_happy": true,
+    "keep_array_indentation": true,
+    "max_preserve_newlines": 2,
+    "multiline_ternary": "never",
+    "object_curly_spacing": true,
+    "preserve_newlines": true,
+    "remove_trailing_whitespace": true,
+    "space_after_anon_function": true,
+    "space_before_conditional": true,
+    "space_in_paren": true
+  },
+
+  "XML": {
+    "beautifiers": ["JS-Beautify"],
+    "brace_style": "collapse",
+    "end_with_newline": true,
+    "indent_inner_html": false,
+    "indent_scripts": "separate",
+    "indent_size": 2,
+    "indent_style": "space",
+    "max_preserve_newlines": 1,
+    "preserve_newlines": true,
+    "newline_before_tags": [
+      "head", "body", "/html", "xsl:template", "/xsl:template"
+    ],
+    "quotes": "double",
+    "wrap_attributes": "force-aligned",
+    "wrap_attributes_indent_size": 2,
+    "wrap_line_length": 80
+  }
+}

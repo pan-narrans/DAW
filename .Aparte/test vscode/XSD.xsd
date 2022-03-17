@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+  <xs:element name="cocina">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="sopas" />
+        <xs:element ref="postres" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sopas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="sopa"
+                    maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sopa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ingredientes" />
+      </xs:sequence>
+      <xs:attribute name="nombre"
+                    type="xs:string"
+                    use="required" />
+      <xs:attribute name="precio"
+                    type="xs:string"
+                    use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ingredientes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ingrediente"
+                    type="xs:string"
+                    maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="postres">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="titulo"
+                    maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="titulo">
+    <xs:complexType mixed="true">
+      <xs:attribute name="precio"
+                    type="xs:string"
+                    use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
