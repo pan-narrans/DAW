@@ -14,8 +14,10 @@
     - [template](#template)
     - [call-template](#call-template)
       - [with-param](#with-param)
+    - [apply-templates](#apply-templates)
     - [for-each](#for-each)
     - [if](#if)
+    - [choose](#choose)
     - [sort](#sort)
     - [value-of](#value-of)
 
@@ -72,9 +74,13 @@ We can add HTML syntax almost anywhere inside the XML document.
 
 #### with-param
 
+### apply-templates
+
 ### for-each
 
 ### if
+
+### choose
 
 ### sort
 
