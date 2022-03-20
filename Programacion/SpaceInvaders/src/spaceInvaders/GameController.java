@@ -42,7 +42,9 @@ public class GameController {
     inGame = true;
     do {
       Update();
+      inGame = checkGameOver();
     } while (inGame);
+    board.printGameOver();
   }
 
   private void Update() {
@@ -130,7 +132,6 @@ public class GameController {
   private void objectCleanUp() {
     Iterator<BoardObject> it = boardObjects.iterator();
     while (it.hasNext()) {
-      // BoardObject temp = it.next();
       if (it.next().isDead) 
         it.remove();
       }
@@ -167,6 +168,16 @@ public class GameController {
       } // End if bullet
     } // End 1st loop
   } // End checkCollisions()
+
+  private boolean checkGameOver() {
+    Iterator<BoardObject> it = boardObjects.iterator();
+    while (it.hasNext()) {
+      BoardObject obj = it.next();
+      if (obj instanceof Enemy && obj.position[1] > Board.BOARD_SIZE_Y - 2) 
+        return false;
+      }
+    return true;
+  }
 
   private void addScore(int pointValue) {
     score += pointValue;

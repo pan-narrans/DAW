@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 public class Board {
 
-  public char[][] playBoard               = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
+  public char[][] playBoard = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
 
-  protected final static int BOARD_SIZE_X = 10;
+  protected final static int BOARD_SIZE_X = 4;
   protected final static int BOARD_SIZE_Y = 10;
 
-  private final char EMPTY                = '.';
+  private final char EMPTY = '.';
   // private final char PLAYER = '▄'; private final char ENEMY = 'Y'; private
   // final char BULLET = 'o';
 
@@ -28,12 +28,11 @@ public class Board {
     printHead();
     printScore(score);
     printBoard();
-    printPlayerInfo();
+    // printPlayerInfo();
   }
 
   /**
-   * Prints the board..
-   *
+   * Prints the board...
    */
   private void printBoard() {
     int i = 0;
@@ -41,9 +40,7 @@ public class Board {
     for (char[] charray : playBoard) {
       if (i > BOARD_SIZE_Y - 2) 
         printPlayerLine();
-      
       System.out.println(i++ + " " + Arrays.toString(charray));
-
     }
     System.out.println("");
 
@@ -87,7 +84,7 @@ public class Board {
     System.out.flush();
   }
 
-  private void printHead() {
+  protected void printHead() {
     System.out.println("");
     System.out.println("");
     System.out.println("=== SPACE INVADERS ===");
@@ -99,6 +96,10 @@ public class Board {
 
   private void printPlayerInfo() {
     System.out.println("Player = ");
+  }
+
+  protected void printGameOver() {
+    System.out.println("=== GAME OVER === ");
   }
 
 }

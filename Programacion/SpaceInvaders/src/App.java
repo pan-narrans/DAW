@@ -1,10 +1,11 @@
-
-import spaceInvaders.*;
+import spaceInvaders. *;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-      GameController gc = new GameController();
+  public static void main(String[] args)throws Exception {
+    SpaceInvader sp = new SpaceInvader();
+    GameController gc = new GameController();
 
-      gc.play();
-    }
+    sp.menu();
+    // gc.play();
+  }
 }

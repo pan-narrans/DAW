@@ -38,14 +38,14 @@ public class ConsoleHelper {
   }
 
 
-  public static void main(String[] args) throws InterruptedException {
-    ConsoleHelper consoleHelper = new ConsoleHelper();
-    for (int i = 0; i < 20; i++) {
-      consoleHelper.animate(i + "");
-      // simulate a piece of task
-      Thread.sleep(400);
-    }
-  }
+  // public static void main(String[] args) throws InterruptedException {
+  //   ConsoleHelper consoleHelper = new ConsoleHelper();
+  //   for (int i = 0; i < 20; i++) {
+  //     consoleHelper.animate(i + "");
+  //     // simulate a piece of task
+  //     Thread.sleep(400);
+  //   }
+  // }
 }
 /*
 

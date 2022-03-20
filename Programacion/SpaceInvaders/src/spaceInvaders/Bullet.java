@@ -12,11 +12,12 @@ public class Bullet extends BoardObject {
    *
    */
   public Bullet(int[] position, int direction) {
+
     super('o');
-    this.position    = position.clone();
+    this.position = position.clone();
     // Manual clamp the direction value between -1 and 1
     this.position[1] += Math.max(-1, Math.min(1, direction));
-    speedDelay       = 5;
+    speedDelay = 5;
   }
 
   @Override public void move() {

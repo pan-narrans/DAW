@@ -7,7 +7,7 @@
 
   "Java": {
     "beautifiers": ["Pretty Diff"],
-    "align_assignments": false,
+    "align_assignments": true,
     "break_chained_methods": false,
     "indent_comments": true,
     "indent_size": 2,
