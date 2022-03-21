@@ -28,6 +28,7 @@
 ### Connect to XML
 
 ---
+
 This goes at the top of the XML file:
 
 ```xml
@@ -45,6 +46,7 @@ Open the XML document in internet explorer.
 ---
 
 We move around the XML and select items like we would in a console, using:
+
 | symbol | meaning                     |
 | :----: | --------------------------- |
 |   .    | the current node            |
@@ -72,6 +74,8 @@ We can add HTML syntax almost anywhere inside the XML document.
 
 ### Template
 
+---
+
 They come in two (2) flavors, `call` and `apply`. Their syntax goes like this:
 
 ```xsl
@@ -83,6 +87,8 @@ They come in two (2) flavors, `call` and `apply`. Their syntax goes like this:
 ```
 
 #### call-template
+
+---
 
 Behaves like a **function**. You declare a template with a name attribute anywhere in your file and then call it with the call-template element.
 
@@ -97,6 +103,8 @@ Behaves like a **function**. You declare a template with a name attribute anywhe
 ```
 
 #### apply-templates
+
+---
 
 Applies the template that best matches the given selection.
 
@@ -131,6 +139,8 @@ And XSL document:
 
 #### with-param
 
+---
+
 Allows to send parameters to the templates while calling them.
 
 ```xsl
@@ -141,18 +151,30 @@ Allows to send parameters to the templates while calling them.
 
 ### for-each
 
+---
+
 ### if
 
+---
+
 ### choose (switch)
+
+---
 
 ## XSL functions
 
 ### sort
 
+---
+
 ### value-of
 
-### count
+---
 
 ``` xsl
 <xsl:value-of select="title" />
 ```
+
+### count
+
+---
