@@ -10,16 +10,18 @@
     - [Preview changes](#preview-changes)
     - [Move around the XML doc](#move-around-the-xml-doc)
     - [HTML](#html)
-  - [XSL functions](#xsl-functions)
-    - [template](#template)
-    - [call-template](#call-template)
+  - [XSL elements](#xsl-elements)
+    - [Template](#template)
+      - [call-template](#call-template)
+      - [apply-templates](#apply-templates)
       - [with-param](#with-param)
-    - [apply-templates](#apply-templates)
     - [for-each](#for-each)
     - [if](#if)
-    - [choose](#choose)
+    - [choose (switch)](#choose-switch)
+  - [XSL functions](#xsl-functions)
     - [sort](#sort)
     - [value-of](#value-of)
+    - [count](#count)
 
 ## Basics
 
@@ -66,25 +68,90 @@ Examples:
 
 We can add HTML syntax almost anywhere inside the XML document.
 
-## XSL functions
+## XSL elements
 
-### template
+### Template
 
-### call-template
+They come in two (2) flavors, `call` and `apply`. Their syntax goes like this:
+
+```xsl
+<!-- Used with CALL -->
+<xsl:template name="mostrar_hijos" />
+
+<!-- Used with APPLY -->
+<xsl:template match="/horario" />
+```
+
+#### call-template
+
+Behaves like a **function**. You declare a template with a name attribute anywhere in your file and then call it with the call-template element.
+
+```xsl
+<!-- Declaration -->
+<xsl:template name="show_children">
+  <p>I'm a child!</p>
+</template>
+
+<!-- Application -->
+<xsl:call-template name="show_children" />
+```
+
+#### apply-templates
+
+Applies the template that best matches the given selection.
+
+For example, for the given XML document:
+
+```xml
+<xml>
+  <foo />
+  <bar />
+  <baz />
+</xml>
+```
+
+And XSL document:
+
+```xsl
+<xsl:template match="xml">
+  <xsl:apply-templates select="*" /> 
+  <!-- Three nodes selected here, foo, bar and baz. -->
+</xsl:template>
+
+<!-- Will be called once (foo). -->
+<xsl:template match="foo"> 
+  <xsl:text>foo element encountered</xsl:text>
+</xsl:template>
+
+<!-- Will be called twice (bar and baz). -->
+<xsl:template match="*"> 
+  <xsl:text>other element countered</xsl:text>
+</xsl:template>
+```
 
 #### with-param
 
-### apply-templates
+Allows to send parameters to the templates while calling them.
+
+```xsl
+<xsl:call-template name="mostrar_hijos">
+  <xsl:with-param name="node" select="." />
+</xsl:call-template>
+```
 
 ### for-each
 
 ### if
 
-### choose
+### choose (switch)
+
+## XSL functions
 
 ### sort
 
 ### value-of
+
+### count
 
 ``` xsl
 <xsl:value-of select="title" />
