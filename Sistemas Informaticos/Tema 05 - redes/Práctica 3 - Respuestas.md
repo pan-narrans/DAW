@@ -4,6 +4,13 @@
   - [Conversiones Binario - Decimal](#conversiones-binario---decimal)
   - [Identificación de la Clase de Red](#identificación-de-la-clase-de-red)
   - [Máscaras de Red por Defecto](#máscaras-de-red-por-defecto)
+  - [Máscaras de Subred Adaptadas](#máscaras-de-subred-adaptadas)
+    - [Problema Adaptadas 4](#problema-adaptadas-4)
+    - [Problema Adaptadas 5](#problema-adaptadas-5)
+    - [Problema Adaptadas 6](#problema-adaptadas-6)
+  - [Subredes](#subredes)
+    - [Problema Subredes 3](#problema-subredes-3)
+    - [Problema Subredes 4](#problema-subredes-4)
 
 ## Conversiones Binario - Decimal
 
@@ -83,3 +90,120 @@
 |   220.90.130.45 | 255.255.0.0   |
 |    134.125.34.9 | 255.255.0.0   |
 |    95.250.91.99 | 255.0.0.0     |
+
+## Máscaras de Subred Adaptadas
+
+No he tenido en cuenta la subredes adaptadas, por lo mencionado en clase.
+
+### Problema Adaptadas 4
+
+|                                      |                 |
+| ------------------------------------ | --------------- |
+| Nº  de  subredes  útiles  necesarias | 6               |
+| Nº  de  hosts  útiles  necesarios    | 30              |
+| Dirección  de Red                    | 210.100.56.0    |
+| Clase                                | C               |
+|                                      |                 |
+| Máscara de Subred (por defecto)      | 255.255.255.0   |
+| Máscara de  Subred (adaptada)        | 255.255.255.224 |
+| Nº  total de  subredes               | 8               |
+|                                      |                 |
+| Nº  total  de  direcciones  de  host | 32              |
+| Nº  de  direcciones  útiles          | 30              |
+| Nº  de  bits  cogidos                | 3               |
+
+Muestre  aquí  su  forma  de  proceder  para  el  Problema  4:  
+
+- nº de subredes necesarios: 6 < 2^3
+- nº de hosts necesarios: 30 < 2^5
+- 3 + 5 = 8 -> nos cabe en los bits reservados a host de una red C
+- al nº de host siempre le restamos los 2 reservados (nombre de red y dirección de broadcast)
+  
+### Problema Adaptadas 5
+
+|                                      |                 |
+| ------------------------------------ | --------------- |
+| Nº  de  subredes  útiles  necesarias | 6               |
+| Nº  de  hosts  útiles  necesarios    | 30              |
+| Dirección  de Red                    | 195.85.8.0      |
+| Clase                                | C               |
+|                                      |                 |
+| Máscara de Subred (por defecto)      | 255.255.255.0   |
+| Máscara de  Subred (adaptada)        | 255.255.255.224 |
+| Nº  total de  subredes               | 8               |
+|                                      |                 |
+| Nº  total  de  direcciones  de  host | 32              |
+| Nº  de  direcciones  útiles          | 30              |
+| Nº  de  bits  cogidos                | 3               |
+
+Muestre  aquí  su  forma  de  proceder  para  el  Problema  5:  
+
+- exactamente lo mismo que el anterior.
+  
+### Problema Adaptadas 6
+
+|                                      |             |
+| ------------------------------------ | ----------- |
+| Nº  de  subredes  útiles  necesarias | 126         |
+| Nº  de  hosts  útiles  necesarios    | 131,070     |
+| Dirección  de Red                    | 118.0.0.0   |
+| Clase                                | A           |
+|                                      |             |
+| Máscara de Subred (por defecto)      | 255.0.0.0   |
+| Máscara de  Subred (adaptada)        | 255.254.0.0 |
+| Nº  total de  subredes               | 128         |
+|                                      |             |
+| Nº  total  de  direcciones  de  host | 131,072     |
+| Nº  de  direcciones  útiles          | 131,070     |
+| Nº  de  bits  cogidos                | 7           |
+
+Muestre  aquí  su  forma  de  proceder  para  el  Problema  6:  
+
+- nº de subredes necesarios: 126 < 2^7
+- nº de hosts necesarios: 131,070 < 2^17
+- 7 + 17 = 24 -> nos cabe en los bits reservados a host de una red C
+- al nº de host siempre le restamos los 2 reservados (nombre de red y dirección de broadcast)
+  
+## Subredes
+
+### Problema Subredes 3
+
+|                                      |                 |
+| ------------------------------------ | --------------- |
+| Nº  de  subredes  útiles  necesarias | 1               |
+| Dirección  de  Red                   | 195.223.50.0    |
+| Clase                                | C               |
+|                                      |                 |
+| Máscara de Subred  (por defecto)     | 255.255.255.0   |
+| Máscara de  Subred  (adaptada)       | 255.255.255.128 |
+| Nº  total  de  subredes              | 2               |
+|                                      |                 |
+| Nº  total  de  direcciones  de  host | 128             |
+| Nº  de  direcciones  útiles          | 124             |
+|                                      |                 |
+| Nº  de  bits  cogidos                | 7               |
+
+ ¿Cuál es el 2º rango útil de subredes?
+
+- 195.223.50.129 a  195.223.50.254
+
+### Problema Subredes 4
+
+|                                      |                 |
+| ------------------------------------ | --------------- |
+| Nº  de  subredes  útiles  necesarias | 1               |
+| Dirección  de  Red                   | 195.223.50.0    |
+| Clase                                | C               |
+|                                      |                 |
+| Máscara de Subred  (por defecto)     | 255.255.255.0   |
+| Máscara de  Subred  (adaptada)       | 255.255.255.128 |
+| Nº  total  de  subredes              | 2               |
+|                                      |                 |
+| Nº  total  de  direcciones  de  host | 128             |
+| Nº  de  direcciones  útiles          | 124             |
+|                                      |                 |
+| Nº  de  bits  cogidos                | 7               |
+
+ ¿Cuál es el 2º rango útil de subredes?
+
+- 195.223.50.129 a  195.223.50.254
