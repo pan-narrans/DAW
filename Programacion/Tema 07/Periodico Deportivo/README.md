@@ -1,18 +1,28 @@
-## Getting Started
+# EJERCICIO
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+En este ejercicio usaremos las estructuras aprendidas hasta ahora:
 
-## Folder Structure
+- Clases Herencia y encapsulación
+- métodos Equal, toString y hashcode
+- Objetos
+- Array
+- ArrayList
+- HashMap
 
-The workspace contains two folders by default, where:
+En un periódico deportivo necesitan una aplicación que muestre la información de las carreras de MOTO GP y FORMULA 1.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+De las carreras se necesita un calendario de las carreras de motos y coches (lugar, dia, hora de inicio, hora de fin y escuderías que se presentan)
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+De las escuderías se necesita (país de origen, año de creación, palmares) se deben estructurar en motos, coches y los pilotos en activo de los cuales se necesita (nacionalidad, fecha de nacimiento, historial de escuderías y posiciones obtenidas al final del campeonato.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+``` console
+GRAN FIN DE SEMANA DEL MOTOR
 
-## Dependency Management
+Carreras:
+MOTO GP  Circuito de Spa-Francorchamps, Viernes 6 desde las 6:00 hasta las 14:00
+ Circuito de Spa-Francorchamps, Sábado 7 desde las 6:00 hasta las 14:00
+ Circuito de Spa-Francorchamps,Domingo 8 desde las 6:00 hasta las 14:00
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Escuderías  REPSOL (N.º de Campeonatos)
+Pilotos  aaa fff (N.º de Campeonatos) bbb ggg (N.º de Campeonatos)
+```
