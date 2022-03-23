@@ -4,26 +4,24 @@ version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="/horario">
-    <ul>
-      <xsl:apply-templates select="*" />
-    </ul>
-  </xsl:template>
+    <head>
+      <title>Horario - 2</title>
+    </head>
 
-  <xsl:template match="*">
-
-    <li>
-      <strong>
-        <xsl:value-of select="position()" />
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="name()" />
-      </strong>
-      <xsl:text> - Hijos </xsl:text>
-      <xsl:value-of select="count(*)" />
-    </li>
-
-    <ul>
-      <xsl:apply-templates select="*" />
-    </ul>
+    <xsl:for-each select="dia[numdia>3]">
+      <h2>
+        Día
+        <xsl:value-of select="numdia" />
+      </h2>
+      <ol>
+        <xsl:for-each select="tarea">
+          <li>
+            <xsl:value-of select="nombre" />
+          </li>
+        </xsl:for-each>
+      </ol>
+      <hr />
+    </xsl:for-each>
 
   </xsl:template>
 

@@ -4,41 +4,12 @@ version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="/horario">
-
-    <ol>
-      <xsl:for-each select="*">
-        <xsl:call-template name="mostrar_hijos">
-          <xsl:with-param
-          name="node"
-          select="." />
-        </xsl:call-template>
-      </xsl:for-each>
-    </ol>
-
-  </xsl:template>
-
-  <xsl:template name="mostrar_hijos">
-    <xsl:param name="node" />
-
-    <li>
-      <strong>
-        <xsl:value-of select="name(.)" />
-      </strong>
-      <xsl:text> - Hijos </xsl:text>
+    <head>
+      <title>Horario - 1</title>
+    </head>
+    <h2>
+      Número de días:
       <xsl:value-of select="count(*)" />
-    </li>
-
-    <ol>
-      <xsl:for-each select="*">
-        <xsl:call-template name="mostrar_hijos">
-          <xsl:with-param
-          name="node"
-          select="." />
-        </xsl:call-template>
-      </xsl:for-each>
-    </ol>
-   
-
+    </h2>
   </xsl:template>
-
 </xsl:stylesheet>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type= text/xsl href= dlibros3.xsl?>
+<repertorio>
+  <libro>
+    <titulo>Don Quijote de la Mancha</titulo>
+    <autor>Miguel de Cervantes</autor>
+    <anyo_pub>1987</anyo_pub>
+    <isbn>84-568-94-3</isbn>
+  </libro>
+  <libro>
+    <titulo>La Galatea</titulo>
+    <autor>Miguel de Cervantes</autor>
+    <anyo_pub>1989</anyo_pub>
+    <isbn>84-568-9424</isbn>
+  </libro>
+  <libro>
+    <titulo>La Celestina</titulo>
+    <autor>Fernando de Rojas</autor>
+    <anyo_pub>1998</anyo_pub>
+    <isbn>84-568-95-12</isbn>
+  </libro>
+</repertorio> 
