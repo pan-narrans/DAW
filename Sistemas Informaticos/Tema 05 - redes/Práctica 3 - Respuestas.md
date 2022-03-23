@@ -1,5 +1,7 @@
 # Práctica 3
 
+    Alejandro Pérez Álvarez
+
 - [Práctica 3](#práctica-3)
   - [Conversiones Binario - Decimal](#conversiones-binario---decimal)
   - [Identificación de la Clase de Red](#identificación-de-la-clase-de-red)
@@ -11,6 +13,7 @@
   - [Subredes](#subredes)
     - [Problema Subredes 3](#problema-subredes-3)
     - [Problema Subredes 4](#problema-subredes-4)
+    - [Problema Subredes 5](#problema-subredes-5)
 
 ## Conversiones Binario - Decimal
 
@@ -166,6 +169,10 @@ Muestre  aquí  su  forma  de  proceder  para  el  Problema  6:
   
 ## Subredes
 
+Igual que en el anterior, no he tenido en cuenta la subredes adaptadas, por lo mencionado en clase.
+
+De todas formas, simplemente hace falta sumarle dos al nº de redes que necesitamos y ajustar los bit.
+
 ### Problema Subredes 3
 
 |                                      |                 |
@@ -207,3 +214,30 @@ Muestre  aquí  su  forma  de  proceder  para  el  Problema  6:
  ¿Cuál es el 2º rango útil de subredes?
 
 - 195.223.50.129 a  195.223.50.254
+
+### Problema Subredes 5
+
+|                                      |             |
+| ------------------------------------ | ----------- |
+| Nº  de  subredes  útiles  necesarias | 6           |
+| Dirección  de  Red                   | 126.0.0.0   |
+| Clase                                | A           |
+|                                      |             |
+| Máscara de Subred  (por defecto)     | 255.0.0.0   |
+| Máscara de  Subred  (adaptada)       | 255.224.0.0 |
+| Nº  total  de  subredes              | 8           |
+| Nº  de redes útiles                  | 6           |
+|                                      |             |
+| Nº  total  de  direcciones  de  host | 2.097.152   |
+| Nº  de  direcciones  útiles          | 2.097.150   |
+| Nº  de  bits  cogidos                | 21          |
+
+- ¿Cual es el rango útil de subredes?
+  - 126.32.0.0 a 126.192.0.0
+- ¿Cual es el nº de subred para la 4º subred útil?
+  - 126.96.0.0
+- ¿Cual es la dirección de broadcast para la 6º subred útil?
+  - 126.223.255.255
+- ¿Cuales son las direcciones asignables a la 9º subred útil?
+  - No hay una novena subred útil.
+  
