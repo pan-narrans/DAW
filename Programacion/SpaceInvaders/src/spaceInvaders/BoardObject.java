@@ -2,7 +2,7 @@ package spaceInvaders;
 
 import java.util.Arrays;
 
-public abstract class BoardObject implements GameObject {
+public abstract class BoardObject implements Sprites {
 
   /** vector2 [ x , y ] */
   protected int[] position;
@@ -34,9 +34,9 @@ public abstract class BoardObject implements GameObject {
 
   public boolean comparePosition(BoardObject o) {
     boolean areEqual = true;
-    if (this.position[0] != o.position[0]) 
+    if (this.position[0] != o.position[0])
       areEqual = false;
-    if (this.position[1] != o.position[1]) 
+    if (this.position[1] != o.position[1])
       areEqual = false;
     return areEqual;
   }
@@ -57,10 +57,10 @@ public abstract class BoardObject implements GameObject {
     }
   }
 
-  protected void move() {;
-  }
+  protected abstract void move();
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "BoardObject [SPRITE=" + SPRITE + ", isDead=" + isDead + ", position=" +
         Arrays.toString(position) + "]";
   }

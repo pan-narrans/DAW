@@ -8,7 +8,7 @@ public class Player extends BoardObject {
   private boolean canShoot;
 
   public Player() {
-    super('X');
+    super(SPR_PLAYER);
     this.position = new int[]{
       (int)(Board.BOARD_SIZE_X / 2),
       Board.BOARD_SIZE_Y - 1
@@ -43,6 +43,12 @@ public class Player extends BoardObject {
     canShoot = false;
     // return new Bullet(new int[] { position[0], position[1] - 1 });
     return new Bullet(position, -1);
+  }
+
+  @Override
+  protected void move() {
+    // TODO Auto-generated method stub
+    
   }
 
 }

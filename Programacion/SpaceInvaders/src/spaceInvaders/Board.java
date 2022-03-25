@@ -2,14 +2,13 @@ package spaceInvaders;
 
 import java.util.Arrays;
 
-public class Board {
+public class Board extends Screen implements Sprites {
 
   public char[][] playBoard = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
 
   protected final static int BOARD_SIZE_X = 4;
   protected final static int BOARD_SIZE_Y = 10;
 
-  private final char EMPTY = '.';
   // private final char PLAYER = '▄'; private final char ENEMY = 'Y'; private
   // final char BULLET = 'o';
 
@@ -38,7 +37,7 @@ public class Board {
     int i = 0;
     System.out.println("");
     for (char[] charray : playBoard) {
-      if (i > BOARD_SIZE_Y - 2) 
+      if (i > BOARD_SIZE_Y - 2)
         printPlayerLine();
       System.out.println(i++ + " " + Arrays.toString(charray));
     }
@@ -71,17 +70,9 @@ public class Board {
   private void resetBoard() {
     for (int i = 0; i < BOARD_SIZE_Y; i++) {
       for (int j = 0; j < BOARD_SIZE_X; j++) {
-        playBoard[i][j] = EMPTY;
+        playBoard[i][j] = SPR_EMPTY;
       }
     }
-  }
-
-  /**
-   * "Clears" the screen, allowing for the new frame to be printed.
-   */
-  private void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
   }
 
   protected void printHead() {

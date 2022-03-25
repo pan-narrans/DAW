@@ -6,7 +6,7 @@ public class Enemy extends BoardObject {
   // private boolean canShoot = false;
 
   public Enemy(int[] position, int speedDelay) {
-    super('Y');
+    super(SPR_ENEMY);
     this.position   = position.clone();
     this.speedDelay = speedDelay;
     this.pointValue = 5;

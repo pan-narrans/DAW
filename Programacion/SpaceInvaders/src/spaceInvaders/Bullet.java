@@ -13,7 +13,7 @@ public class Bullet extends BoardObject {
    */
   public Bullet(int[] position, int direction) {
 
-    super('o');
+    super(SPR_BULLET);
     this.position = position.clone();
     // Manual clamp the direction value between -1 and 1
     this.position[1] += Math.max(-1, Math.min(1, direction));
