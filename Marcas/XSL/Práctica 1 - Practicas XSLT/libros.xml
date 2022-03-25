@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type= text/xsl href= dlibros3.xsl?>
+<?xml-stylesheet href="libros-1.xsl" type="text/xsl"?>
 <repertorio>
   <libro>
     <titulo>Don Quijote de la Mancha</titulo>

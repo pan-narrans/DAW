@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="contenido-2.xsl" type="text/xsl"?>
+<contenido>
+  <eventos>
+    <evento id_evento="A335">
+      <fecha_evento>20.6.2011</fecha_evento>
+      <titulo>Verbena popular</titulo>
+      <descripcion>Verbena en el recinto ferial con atracciones para niños y mayores, amenizada por 
+				estupendas orquestas.
+			</descripcion>
+    </evento>
+    <evento
+    id_evento="B963"
+    opcional="no">
+      <fecha_evento>21.6.2011</fecha_evento>
+      <titulo>Mercado medieval</titulo>
+      <descripcion>Mercado medieval en la Plaza Mayor, con productos gastronómicos, bisutería, 
+				decoración, etc.
+			</descripcion>
+    </evento>
+    <evento
+    id_evento="C934"
+    opcional="yes">
+      <fecha_evento>26.6.2011 </fecha_evento>
+      <titulo> Fin de fiestas </titulo>
+      <descripcion>Ceremonia de cierre de las fiestas, con fuegos artificiales y música en directo, en el 
+				recinto ferial.
+			</descripcion>
+    </evento>
+  </eventos>
+  <noticias>
+    <noticia num_noticia="1">
+      <fecha_noticia>18.06.2011</fecha_noticia>
+      <titulo>Inaugurado el nuevo hospital</titulo>
+      <texto>
+        En el día de ayer, el
+        <persona>Secretario de Sanidad</persona>
+        inauguró el nuevo hospital de la localidad.
+      </texto>
+    </noticia>
+    <noticia num_noticia="2">
+      <fecha_noticia>19.06.2011</fecha_noticia>
+      <titulo>Nueva programación</titulo>
+      <texto>
+        El canal local ha presentado sus dos nuevos programas para este verano.
+        <programa>"Yo también vivo aquí"</programa>
+        será un programa de entrevistas a diferentes personalidades de la región.
+        <programa>Sal y Pimienta</programa>
+        nos presentará las recetas más sabrosas de la zona.
+      </texto>
+    </noticia>
+  </noticias>
+</contenido>

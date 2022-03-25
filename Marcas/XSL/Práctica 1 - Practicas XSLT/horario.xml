@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="horario-4.xsl" type="text/xsl"?>
+<?xml-stylesheet href="horario-3.xsl" type="text/xsl"?>
 <horario>
   <dia>
     <numdia>1</numdia>

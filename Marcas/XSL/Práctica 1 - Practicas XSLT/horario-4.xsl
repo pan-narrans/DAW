@@ -18,7 +18,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template match="dia">
     <h2>
-      Día nº
+      Día nº  
       <xsl:value-of select="numdia" />
     </h2>
     <ul>
