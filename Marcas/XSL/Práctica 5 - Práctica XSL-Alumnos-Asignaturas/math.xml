@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="math-1.xsl"?>
+<matematicas>
+  <alumno>
+    <expediente>239</expediente>
+    <nombre>Jose</nombre>
+    <nota1>8</nota1>
+    <nota2>8</nota2>
+    <nota3>9</nota3>
+    <notafinal>8.33</notafinal>
+  </alumno>
+  <alumno>
+    <expediente>237</expediente>
+    <nombre>Antonio</nombre>
+    <nota1>7</nota1>
+    <nota2>7</nota2>
+    <nota3>9</nota3>
+    <notafinal>8.7</notafinal>
+  </alumno>
+  <alumno>
+    <expediente>238</expediente>
+    <nombre>Cristina</nombre>
+    <nota1>8</nota1>
+    <nota2>7</nota2>
+    <nota3>9</nota3>
+    <notafinal>8.0</notafinal>
+  </alumno>
+</matematicas>

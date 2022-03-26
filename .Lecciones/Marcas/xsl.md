@@ -22,11 +22,12 @@
       - [with-param](#with-param)
     - [for-each](#for-each)
     - [if](#if)
-    - [choose (switch)](#choose-switch)
+    - [choose](#choose)
   - [XSL functions](#xsl-functions)
     - [sort](#sort)
     - [value-of](#value-of)
     - [count](#count)
+    - [contains](#contains)
 
 ## Basics
 
@@ -208,19 +209,58 @@ Allows to send parameters to the templates while calling them.
 
 ---
 
+The code inside will be run once for each node returned by the `select` expression.
+
+```xsl
+<xsl:for-each select="expression">
+  <!-- do something -->
+</xsl:for-each> 
+```
+
 ### if
 
 ---
 
-### choose (switch)
+Tests a condition, if evaluated to true the code inside will run.
+
+```xsl
+<xsl:if  test="condition" >
+  <!-- do something -->
+</xsl:if>
+```
+
+### choose
 
 ---
+
+Acts as a switch in java, each case is a `when` and the default is `otherwise`. The otherwise element is not required.
+
+```xsl
+<xsl:choose>
+  <xsl:when test="condition"> <!-- do something --> </xsl:when>
+  <xsl:when test="condition"> <!-- do something --> </xsl:when>
+  <xsl:otherwise> <!-- or something else --> </xsl:otherwise> [optional]
+</xsl:choose>
+```
 
 ## XSL functions
 
 ### sort
 
 ---
+
+```xsl
+<xsl:sort select="expression"
+          data-type="text|number|qname"
+          order="ascending|descending"
+          case-order="upper-first|lower-first"/> 
+```
+
+```xsl
+<xsl:apply-templates select="//alumno">
+  <xsl:sort select="nombre" />
+</xsl:apply-templates>
+```
 
 ### value-of
 
@@ -233,3 +273,25 @@ Allows to send parameters to the templates while calling them.
 ### count
 
 ---
+
+Counts the number of nodes in a given set.
+
+- `count( node-set )`
+
+``` xsl
+<xsl:value-of select="book[count(author)>3]">
+```
+
+### contains
+
+---
+
+Checks if a string contains another string. The syntax is thus:
+
+- `'contains(haystack, needle)'`
+
+And here is an example:
+
+``` xsl
+<xsl:value-of select="*[contains(name(), 'nota')]">
+```
