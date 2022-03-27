@@ -90,7 +90,8 @@ public class Board extends Screen implements Sprites {
   }
 
   protected void printGameOver() {
-    System.out.println("=== GAME OVER === ");
+    System.out.println("=== GAME OVER ===");
+    System.out.println("press 'd' to continue ");
   }
 
 }

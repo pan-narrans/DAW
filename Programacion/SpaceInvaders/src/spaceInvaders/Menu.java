@@ -51,7 +51,8 @@ public class Menu extends Screen {
   /**
    * Updates the menu on the screen.
    */
-  public void update() {
+  public void update(char key) {
+    manageInput(key);
     printMenu();
   }
 
@@ -75,6 +76,35 @@ public class Menu extends Screen {
 
   public String selectItem() {
     return KEYS.get(itemSelected);
+  }
+
+  private void manageInput(char key) {
+    switch (Character.toLowerCase(key)) {
+      case 'w':
+        previousItem();
+        break;
+      case 's':
+        nextItem();
+        break;
+      case 'd':
+        takeAction();
+        break;
+      default:
+        break;
+    }
+  }
+
+  private void takeAction() {
+    switch (itemSelected) {
+      case 0:
+        SpaceInvader.startGame();
+        break;
+      case 1:
+        SpaceInvader.exitApp();
+        break;
+      default:
+        break;
+    }
   }
 
 }
