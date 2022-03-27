@@ -9,15 +9,14 @@ public abstract class BoardObject implements Sprites {
 
   /** Dead instances will be deleted. */
   protected boolean isDead;
-
-  protected final char SPRITE;
-
   protected int pointValue = 0;;
 
   // SPEED
   /** range [ 1 , 100 ] */
   protected int speedDelay;
   protected int speedCounter;
+  
+  protected final char SPRITE;
 
   BoardObject(char sprite) {
     isDead = false;
@@ -30,6 +29,10 @@ public abstract class BoardObject implements Sprites {
 
   public int getPositionY() {
     return position[1];
+  }
+
+  public int getPointValue() {
+    return pointValue;
   }
 
   public boolean comparePosition(BoardObject o) {
@@ -63,10 +66,6 @@ public abstract class BoardObject implements Sprites {
   public String toString() {
     return "BoardObject [SPRITE=" + SPRITE + ", isDead=" + isDead + ", position=" +
         Arrays.toString(position) + "]";
-  }
-
-  public int getPointValue() {
-    return pointValue;
   }
 
 }

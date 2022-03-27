@@ -1,7 +1,7 @@
 package spaceInvaders;
 
-public class EnemyController implements GameObject {
-  private int speedDelay        = 10;
+public class EnemyController {
+  private int speedDelay        = 50;
   private int speedCounter      = 0;
   private boolean hasEnemyReady = false;
 

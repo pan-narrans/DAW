@@ -34,16 +34,20 @@ public class SpaceInvader {
       System.out.println("El robot no se ha podido instanciar.");
       e.printStackTrace();
     }
-
-    // Añadir el player al array
     boardObjects.add(playerShip);
   }
 
   public void start() {
+    boolean inSpaceInvaders = true;
     boolean inMenu = true;
     do {
-      menu.update();
-    } while (inMenu);
+      do {
+        manageMenuInput(listenKey());
+        menu.update();
+        sleep();
+      } while (inMenu);
+      play();
+    } while (inSpaceInvaders);
   }
 
   public void play() {
@@ -51,13 +55,16 @@ public class SpaceInvader {
     do {
       Update();
       inGame = checkGameOver();
+      sleep();
     } while (inGame);
     board.printGameOver();
+
+    // TODO: press key to continue
   }
 
   private void Update() {
     // Player Actions
-    managePlayerInput(listenKey());
+    manageGameInput(listenKey());
 
     // Other elements management
     updateObjects();
@@ -68,13 +75,6 @@ public class SpaceInvader {
     // BOARD
     board.updateBoard(boardObjects.toArray(new BoardObject[0]));
     board.print(score);
-
-    // SLEEP
-    try {
-      Thread.sleep(SLEEP_TIME);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
   }
 
   /**
@@ -96,12 +96,39 @@ public class SpaceInvader {
     }
   }
 
+  private void manageMenuInput(char key) {
+    switch (Character.toLowerCase(key)) {
+      case 'w':
+        menu.previousItem();
+        break;
+      case 's':
+        menu.nextItem();
+        break;
+      case 'd':
+        gameAction(menu.selectItem());
+        break;
+      default:
+        break;
+    }
+  }
+
+  private void gameAction(String action) {
+    switch (action) {
+      case "play":
+
+        break;
+      case "exit":
+      default:
+        break;
+    }
+  }
+
   /**
    * Calls the appropriate {@link #playerShip} method based of the key.
    *
    * @param key Key press of the current frame.
    */
-  private void managePlayerInput(char key) {
+  private void manageGameInput(char key) {
     switch (Character.toLowerCase(key)) {
       case 'a':
         playerShip.moveRight();
@@ -189,6 +216,14 @@ public class SpaceInvader {
 
   private void addScore(int pointValue) {
     score += pointValue;
+  }
+
+  private void sleep() {
+    try {
+      Thread.sleep(SLEEP_TIME);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
 }

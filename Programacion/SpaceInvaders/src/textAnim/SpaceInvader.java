@@ -1,11 +1,11 @@
 package textAnim;
 
-import java.io.IOException;
-import java.util.Scanner;
+// import java.io.IOException;
+// import java.util.Scanner;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
+// import java.awt.AWTException;
+// import java.awt.Robot;
+// import java.awt.event.KeyEvent;
 
 public class SpaceInvader {
 
