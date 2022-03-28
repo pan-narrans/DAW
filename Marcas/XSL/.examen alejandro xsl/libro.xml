@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="libro.xsl" type="text/xsl"?>
+<libro>
+  <titulo>Dos por tres calles</titulo>
+  <autor>Josefa Santos</autor>
+  <capitulo num="1">
+    La primera calle
+    <parrafo>Era una sombría noche del mes de agosto...</parrafo>
+    <parrafo destacar="si">
+      Ella, inocente cual
+      <enlace href="http://www.enlace.es">mariposa</enlace>
+      que surca el cielo en busca de libaciones...
+    </parrafo>
+  </capitulo>
+  <capitulo
+  num="2"
+  public="si">
+    La segunda calle
+    <parrafo>Era una obscura noche del mes de septiembre...</parrafo>
+    <parrafo>
+      Ella, inocente cual
+      <enlace href="http://www.abejilla.es">abejilla</enlace>
+      que surca el viento en busca del néctar de las flores...
+    </parrafo>
+  </capitulo>
+  <apendice
+  num="3"
+  public="si">
+    La tercera calle
+    <parrafo>Era una densa noche del mes de diciembre... </parrafo>
+    <parrafo>
+      Ella, cándida cual
+      <enlace href="ttp://www.pajarillo.es">abejilla</enlace>
+      que surca el espacio en busca de bichejos para comer...
+    </parrafo>
+  </apendice>
+</libro>

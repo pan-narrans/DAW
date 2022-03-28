@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="pedidos.xsl" type="text/xsl"?>
+<pedidos>
+  <pedido idorden="009654">
+    <remitente>IES Infanta Elena</remitente>
+    <receptor>
+      <nombre>Maria Guerrero García</nombre>
+      <direccion>Calle Sagasta Nº 14</direccion>
+      <ciudad>Madrid</ciudad>
+      <pais>España</pais>
+    </receptor>
+    <libro>
+      <titulo>La Espada de Joram. Volumen 1: La forja</titulo>
+      <notas>
+Edición coleccionista
+</notas>
+      <cantidad>1</cantidad>
+      <precio>10.90</precio>
+    </libro>
+    <libro>
+      <titulo>La Espada de Joram. Volumen 2:La profecia</titulo>
+      <cantidad>1</cantidad>
+      <precio>9.90</precio>
+    </libro>
+  </pedido>
+</pedidos>
