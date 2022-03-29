@@ -15,7 +15,7 @@ public class HPL {
   }
 
   public void solve() {
-    turingStrip = new int[200];
+    turingStrip = new int[400];
     turingPointer = 0;
     instructionPointer = 0;
 
@@ -58,40 +58,55 @@ public class HPL {
   }
 
   private void jumpLeftIfZero() {
+    // "🤜"
     if (turingStrip[turingPointer] == 0) {
-      int counter = 0;
+      int counter = 1;
+      instructionPointer += 2;
       String instruction = getEmojiAt(instructionPointer);
 
-      while (!instruction.equals("🤛") && counter == 0) {
+      while (!instruction.equals("🤛") || counter != 0) {
+
+        instructionPointer += 2;
+        instruction = getEmojiAt(instructionPointer);
+
         if (instruction.equals("🤜"))
           counter++;
         if (instruction.equals("🤛"))
           counter--;
-        instruction = getEmojiAt(instructionPointer);
-        instructionPointer += 2;
+
       }
+
+      /* while (!instruction.equals("🤛")) {
+      instruction = getEmojiAt(instructionPointer);
+      instructionPointer += 2;
+      } */
 
     }
   }
 
   private void jumpRightIfNotZero() {
+    // "🤛"
     if (turingStrip[turingPointer] != 0) {
-      int counter = 0;
+      int counter = 1;
+      instructionPointer -= 2;
       String instruction = getEmojiAt(instructionPointer);
-      // TODO: esta mierda aqui pls solucionar una cosa
-      while (!instruction.equals("🤜") && counter == 0) {
-        if (instruction.equals("🤜"))
-          counter--;
+
+      while (!instruction.equals("🤜") || counter != 0) {
+
+        instructionPointer -= 2;
+        instruction = getEmojiAt(instructionPointer);
+
         if (instruction.equals("🤛"))
           counter++;
-        instruction = getEmojiAt(instructionPointer);
-        instructionPointer -= 2;
+        if (instruction.equals("🤜"))
+          counter--;
       }
 
-      while (!instruction.equals("🤜")) {
-        instruction = getEmojiAt(instructionPointer);
-        instructionPointer -= 2;
-      }
+      // instructionPointer += 2;
+      /* while (!instruction.equals("🤜")) {
+      instruction = getEmojiAt(instructionPointer);
+      instructionPointer -= 2;
+      } */
     }
   }
 
