@@ -29,7 +29,6 @@ public class HPL {
   }
 
   public void doIt(String key) {
-    // System.out.println(key);
     switch (key) {
       case "👉":
         movePointerRight();
@@ -75,12 +74,6 @@ public class HPL {
           counter--;
 
       }
-
-      /* while (!instruction.equals("🤛")) {
-      instruction = getEmojiAt(instructionPointer);
-      instructionPointer += 2;
-      } */
-
     }
   }
 
@@ -101,12 +94,6 @@ public class HPL {
         if (instruction.equals("🤜"))
           counter--;
       }
-
-      // instructionPointer += 2;
-      /* while (!instruction.equals("🤜")) {
-      instruction = getEmojiAt(instructionPointer);
-      instructionPointer -= 2;
-      } */
     }
   }
 
