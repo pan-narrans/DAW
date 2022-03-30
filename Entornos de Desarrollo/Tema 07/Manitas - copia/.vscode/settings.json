@@ -6,6 +6,8 @@
     ],
     "java.format.settings.url": ".vscode/java-formatter.xml",
     "[java]": {
-      "editor.detectIndentation": false
+      "editor.detectIndentation": false,
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
     }
 }

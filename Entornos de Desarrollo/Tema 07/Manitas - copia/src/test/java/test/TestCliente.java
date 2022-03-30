@@ -17,7 +17,7 @@ class TestCliente {
   @DisplayName("Cliente: Excepciones")
   @MethodSource("test.java.test.TestSourcesAleatorios#argClienteAleatorios")
 
-  // El test usa un m�todo que le da como argumentos de entrada valores
+  // El test usa un método que le da como argumentos de entrada valores
   // aleatorios
 
   void testClienteExcepciones(
@@ -26,10 +26,10 @@ class TestCliente {
 
     // 0. Excepciones
 
-    ClienteReal clienteVacio = new ClienteReal();
+    ClienteReal clienteVacío = new ClienteReal();
 
     try {
-      clienteVacio.setId(argId);
+      clienteVacío.setId(argId);
     } catch (IllegalArgumentException exception) {
       assertEquals("Exception: Id <= 0", exception.getMessage());
     }
@@ -37,7 +37,7 @@ class TestCliente {
     // Opcional: repetimos las pruebas de persona
 
     try {
-      clienteVacio.setNIF(argNIF);
+      clienteVacío.setNIF(argNIF);
     } catch (IllegalArgumentException exception) {
       if (argNIF == "" || argNIF == null)
         assertEquals("Exception: NIF vac�o", exception.getMessage());
@@ -46,7 +46,7 @@ class TestCliente {
     }
 
     try {
-      clienteVacio.setNombre(argNombre);
+      clienteVacío.setNombre(argNombre);
     } catch (IllegalArgumentException exception) {
       if (argNombre == "" || argNombre == null)
         assertEquals("Exception: Nombre vac�o", exception.getMessage());
@@ -55,13 +55,13 @@ class TestCliente {
     }
 
     try {
-      clienteVacio.setTelefono(argTelefono);
+      clienteVacío.setTelefono(argTelefono);
     } catch (IllegalArgumentException exception) {
       assertEquals("Exception: Telefono incorrecto", exception.getMessage());
     }
 
     try {
-      clienteVacio.setEMail(argEMail);
+      clienteVacío.setEMail(argEMail);
     } catch (IllegalArgumentException exception) {
       if (argEMail == "" || argEMail == null)
         assertEquals("Exception: eMail vac�o", exception.getMessage());
