@@ -15,7 +15,7 @@ class TestPersona {
 
 	@ParameterizedTest
 	@DisplayName("Persona: Excepciones")
-	@MethodSource("test.TestSourcesAleatorios#argPersonaAleatorios")
+	@MethodSource("test.java.test.TestSourcesAleatorios#argPersonaAleatorios")
 
 	void testPersonaExcepciones(
 	    String argNIF,
@@ -48,7 +48,7 @@ class TestPersona {
 	
 	@ParameterizedTest
 	@DisplayName("Persona: Clase")
-	@MethodSource("test.TestSourcesValidos#argPersonaValidos")
+	@MethodSource("test.java.test.TestSourcesValidos#argPersonaValidos")
 
 	void testPersonaBasico(
 	    String argNIF,

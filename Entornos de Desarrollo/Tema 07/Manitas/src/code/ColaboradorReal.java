@@ -47,16 +47,7 @@ public class ColaboradorReal extends Persona implements Colaborador {
 
 	public String toString() {return Clase.imprimeClase(this) + "Activo: "+ this.esActivo() + "\n";}
 
-/*		
-		Viejuno
-		 
-		texto = "Colaborador: " + this.nombre + "\n";
-		texto += "NIF: " + this.NIF + "\n";
-		texto += "Servicio: " + this.servicio + "\n";
-		texto += "Scoring: " + this.scoring + "\n";
-		texto += "Tarifa: " + this.tarifa + "\n";
-		texto += "Disponible: " + this.disponible + "\n";
-*/		
+	
 	
 // M�TODOS
 	

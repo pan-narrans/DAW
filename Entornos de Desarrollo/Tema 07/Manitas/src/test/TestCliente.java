@@ -26,7 +26,7 @@ class TestCliente {
 	    int argTelefono,
 	    String argEMail) {
 
-// El test usa un método que le da como argumentos de entrada un nombre y tarifa aleatorios
+// El test usa un mÃ©todo que le da como argumentos de entrada un nombre y tarifa aleatorios
 // Hay que probar varias cosas:	
 // 0. Excepciones
 // 1. Constructor

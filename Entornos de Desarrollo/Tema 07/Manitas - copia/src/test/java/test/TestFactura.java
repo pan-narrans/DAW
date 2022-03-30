@@ -17,7 +17,7 @@ class TestFactura {
 
 	@ParameterizedTest
 	@DisplayName("Factura: Excepciones")
-	@MethodSource("test.TestSourcesAleatorios#argFacturaAleatorios")
+	@MethodSource("test.java.test.TestSourcesAleatorios#argFacturaAleatorios")
 
 //El test usa un m�todo que le da argumentos aleatorios
 	
@@ -68,7 +68,7 @@ class TestFactura {
 
 	@ParameterizedTest
 	@DisplayName("Factura: Clase")
-	@MethodSource("test.TestSourcesValidos#argFacturaValidos")
+	@MethodSource("test.java.test.TestSourcesValidos#argFacturaValidos")
 
 	//El test usa un m�todo que le da argumentos v�lidos
 	
