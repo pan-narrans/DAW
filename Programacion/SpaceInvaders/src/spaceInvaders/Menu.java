@@ -2,7 +2,7 @@ package spaceInvaders;
 
 import java.util.HashMap;
 
-public class Menu extends Screen {
+public class Menu {
 
   protected final HashMap<Integer, String> KEYS = new HashMap<>();
 
@@ -32,7 +32,6 @@ public class Menu extends Screen {
    * Prints the actual state of the menu.
    */
   public void printMenu() {
-    clearScreen();
     System.out.println(HEAD);
     System.out.println(BLANK);
 

@@ -2,15 +2,9 @@ package spaceInvaders;
 
 import java.util.Arrays;
 
-public class Board extends Screen implements Sprites {
+public class Board implements Constants {
 
   public char[][] playBoard = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
-
-  protected final static int BOARD_SIZE_X = 4;
-  protected final static int BOARD_SIZE_Y = 10;
-
-  // private final char PLAYER = '▄'; private final char ENEMY = 'Y'; private
-  // final char BULLET = 'o';
 
   protected Board() {
     resetBoard();
@@ -23,7 +17,6 @@ public class Board extends Screen implements Sprites {
    * @param score
    */
   protected void print(int score) {
-    clearScreen();
     printHead();
     printScore(score);
     printBoard();
@@ -36,10 +29,10 @@ public class Board extends Screen implements Sprites {
   private void printBoard() {
     int i = 0;
     System.out.println("");
-    for (char[] charray : playBoard) {
+    for (char[] charArray : playBoard) {
       if (i > BOARD_SIZE_Y - 2)
         printPlayerLine();
-      System.out.println(i++ + " " + Arrays.toString(charray));
+      System.out.println(i++ + " " + Arrays.toString(charArray));
     }
     System.out.println("");
 
@@ -53,15 +46,16 @@ public class Board extends Screen implements Sprites {
     System.out.println("");
   }
 
-  protected void updateBoard(BoardObject[] objects) {
+  protected void updateBoard(GameObject[] objects) {
     resetBoard();
-    for (BoardObject o : objects) {
+    for (GameObject o : objects) {
       updateObjet(o);
     }
   }
 
-  private void updateObjet(BoardObject o) {
-    playBoard[o.getPositionY()][o.getPositionX()] = o.SPRITE;
+  private void updateObjet(GameObject o) {
+    if (!o.isOutOfBounds())
+      playBoard[o.getPositionY()][o.getPositionX()] = o.sprite;
   }
 
   /**

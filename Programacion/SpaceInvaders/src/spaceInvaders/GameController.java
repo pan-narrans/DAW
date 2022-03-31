@@ -6,34 +6,18 @@ import java.util.Iterator;
 
 public class GameController {
 
-  private final int SLEEP_TIME = 10;
-
-  private Menu menu = new Menu();
   private Board board = new Board();
   private Player playerShip = new Player();
-  private EnemyController badGuyControl = new EnemyController();
-  private ArrayList<BoardObject> boardObjects = new ArrayList<BoardObject>();
+  private EnemyController enemyController = new EnemyController();
+  private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
   private boolean gameOver = false;
   private int score = 0;
 
   /** Default constructor */
   public GameController() {
-    boardObjects.add(playerShip);
+    gameObjects.add(playerShip);
   }
-
-  // public void start() {
-  // boolean inSpaceInvaders = true;
-  // boolean inMenu = true;
-  // do {
-  // do {
-  // manageMenuInput(listenKey());
-  // menu.update();
-  // sleep();
-  // } while (inMenu);
-  // play();
-  // } while (inSpaceInvaders);
-  // }
 
   public void update(char key) {
     gameOver = checkGameOver();
@@ -48,7 +32,6 @@ public class GameController {
       if (key == 'd')
         SpaceInvader.endGame();
     }
-    // TODO: press key to continue
   }
 
   public void play(char key) {
@@ -57,29 +40,30 @@ public class GameController {
 
     // Other elements management
     updateObjects();
-    generateEnemies();
+    // generateEnemies();
+    enemyController.update();
     checkCollisions();
     objectCleanUp();
 
     // BOARD
-    board.updateBoard(boardObjects.toArray(new BoardObject[0]));
+    board.updateBoard(gameObjects.toArray(new GameObject[0]));
   }
 
   /**
    * If there's an enemy to generate, it adds it to the array.
    */
-  private void generateEnemies() {
-    if (badGuyControl.hasEnemyReady()) {
-      boardObjects.add(badGuyControl.createEnemy());
-    }
-  }
+  // private void generateEnemies() {
+  // if (enemyController.hasEnemyReady()) {
+  // gameObjects.add(enemyController.createEnemy());
+  // }
+  // }
 
   /**
    * Calls the update method of each game object.
    */
   private void updateObjects() {
-    badGuyControl.update();
-    for (BoardObject o : boardObjects) {
+    enemyController.update();
+    for (GameObject o : gameObjects) {
       o.update();
     }
   }
@@ -99,7 +83,7 @@ public class GameController {
         break;
       case 's':
         if (playerShip.canShoot())
-          boardObjects.add(playerShip.shoot());
+          gameObjects.add(playerShip.shoot());
         break;
       default:
         break;
@@ -107,11 +91,11 @@ public class GameController {
   }
 
   /**
-   * Removes from the {@link #boardObjects} array list all objects marked as
+   * Removes from the {@link #gameObjects} array list all objects marked as
    * 'dead'.
    */
   private void objectCleanUp() {
-    Iterator<BoardObject> it = boardObjects.iterator();
+    Iterator<GameObject> it = gameObjects.iterator();
     while (it.hasNext()) {
       if (it.next().isDead)
         it.remove();
@@ -123,37 +107,33 @@ public class GameController {
    */
   private void checkCollisions() {
     // 1st loop
-    Iterator<BoardObject> it1 = boardObjects.iterator();
+    Iterator<GameObject> it1 = gameObjects.iterator();
     while (it1.hasNext()) {
-      BoardObject obj1 = it1.next();
+      GameObject obj1 = it1.next();
       if (obj1 instanceof Bullet) {
-        // Used to break out of the inner loop, as bullets can only collide with one
-        // object
-        boolean collision = false;
+        boolean hasCollided = false;
+        Iterator<GameObject> it2 = gameObjects.iterator();
 
         // 2nd loop
-        Iterator<BoardObject> it2 = boardObjects.iterator();
-        while (it2.hasNext() && !collision) {
-          BoardObject obj2 = it2.next();
+        while (it2.hasNext() && !hasCollided) {
+          GameObject obj2 = it2.next();
           // Collision check
-          if (obj1.comparePosition(obj2) && !obj1.equals(obj2)) {
-            collision = true;
+          if (obj1.samePositionAs(obj2) && !obj1.equals(obj2)) {
+            hasCollided = true;
             obj1.kill();
             obj2.kill();
           }
-          if (collision)
+          if (hasCollided)
             addScore(obj2.getPointValue());
-        }
-        // End 2nd loop
-
+        } // End 2nd loop
       } // End if bullet
     } // End 1st loop
   } // End checkCollisions()
 
   protected boolean checkGameOver() {
-    Iterator<BoardObject> it = boardObjects.iterator();
+    Iterator<GameObject> it = gameObjects.iterator();
     while (it.hasNext()) {
-      BoardObject obj = it.next();
+      GameObject obj = it.next();
       if (obj instanceof Enemy && obj.position[1] > Board.BOARD_SIZE_Y - 2)
         return true;
     }

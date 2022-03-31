@@ -8,10 +8,7 @@ import java.awt.event.KeyEvent;
 // Basic functionalities
 import java.util.Scanner;
 
-public class SpaceInvader {
-
-  private final int SLEEP_TIME = 10;
-
+public class SpaceInvader implements Constants {
   private Robot robot;
   private Scanner sc = new Scanner(System.in);
 
@@ -33,6 +30,7 @@ public class SpaceInvader {
   public void start() {
     inSpaceInvaders = true;
     do {
+      clearScreen();
       if (!inGame) {
         menu.update(listenKey());
       } else {
@@ -78,6 +76,18 @@ public class SpaceInvader {
     try {
       Thread.sleep(milliseconds);
     } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * "Clears" the screen, allowing for the new frame to be printed.
+   */
+  protected static void clearScreen() {
+    try {
+      new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    } catch (Exception e) {
+      System.out.println("Couldn't clear the screen...");
       e.printStackTrace();
     }
   }

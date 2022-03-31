@@ -1,6 +1,6 @@
 package spaceInvaders;
 
-public class Player extends BoardObject {
+public class Player extends GameObject {
 
   private static int shootDelay = 10;
   private int shootCounter = 0;
@@ -13,7 +13,7 @@ public class Player extends BoardObject {
         (int) (Board.BOARD_SIZE_X / 2),
         Board.BOARD_SIZE_Y - 1
     };
-    speedDelay = 1;
+    speedDelay = SPD_PLAYER;
   }
 
   public void moveLeft() {
