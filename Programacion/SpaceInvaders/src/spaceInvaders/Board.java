@@ -4,6 +4,18 @@ import java.util.Arrays;
 
 public class Board implements Constants {
 
+  /*
+   * Coordinates:
+   * Y ↓ / X →
+   * 
+   * BOARD EX
+   * ========
+   * 00 10 20
+   * 01 11 21
+   * 02 12 22
+   * 03 13 23
+   * 04 14 24
+   */
   public char[][] playBoard = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
 
   protected Board() {

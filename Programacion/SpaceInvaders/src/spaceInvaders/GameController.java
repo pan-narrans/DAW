@@ -9,7 +9,7 @@ public class GameController {
   private Board board = new Board();
   private Player playerShip = new Player();
   private EnemyController enemyController = new EnemyController();
-  private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+  public static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
   private boolean gameOver = false;
   private int score = 0;
@@ -47,6 +47,10 @@ public class GameController {
 
     // BOARD
     board.updateBoard(gameObjects.toArray(new GameObject[0]));
+  }
+
+  public static void addObject(GameObject o) {
+    gameObjects.add(o);
   }
 
   /**
@@ -130,7 +134,7 @@ public class GameController {
     } // End 1st loop
   } // End checkCollisions()
 
-  protected boolean checkGameOver() {
+  private boolean checkGameOver() {
     Iterator<GameObject> it = gameObjects.iterator();
     while (it.hasNext()) {
       GameObject obj = it.next();

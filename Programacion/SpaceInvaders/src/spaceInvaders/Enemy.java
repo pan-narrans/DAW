@@ -9,7 +9,19 @@ public class Enemy extends GameObject {
   }
 
   @Override
+  public void update() {
+  }
+
+  @Override
   protected void move() {
+  }
+
+  protected void move(byte direction) {
+    position[0] += direction;
+  }
+
+  protected void moveDown() {
+    position[1]++;
   }
 
 }

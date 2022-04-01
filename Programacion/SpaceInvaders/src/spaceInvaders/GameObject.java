@@ -73,11 +73,11 @@ public abstract class GameObject implements Constants {
    */
   public boolean isOutOfBounds() {
     // Check X
-    if (this.position[0] < 0 || this.position[0] > BOARD_SIZE_X)
+    if (this.position[0] < 0 || this.position[0] >= BOARD_SIZE_X)
       return true;
 
     // Check Y
-    if (this.position[1] < 0 || this.position[1] > BOARD_SIZE_Y)
+    if (this.position[1] < 0 || this.position[1] >= BOARD_SIZE_Y)
       return true;
 
     return false;
