@@ -12,12 +12,15 @@ public interface Constants {
   public final char SPR_PLAYER = 'X';
   public final char SPR_ENEMY = 'Y';
   public final char SPR_BULLET = 'o';
-  public final char SPR_EMPTY = '.';
+  public final char SPR_EMPTY = ' ';
 
   // Speeds
   public final int SPD_PLAYER = 1;
-  public final int SPD_ENEMY = 10;
+  public final int SPD_ENEMY = 15;
   public final int SPD_BULLET = 2;
+
+  // Player
+  public final int PLR_SHOOT_DELAY = 5;
 
   // Points
   public final int PT_ENEMY = 5;

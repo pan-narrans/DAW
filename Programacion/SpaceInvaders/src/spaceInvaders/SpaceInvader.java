@@ -12,8 +12,8 @@ public class SpaceInvader implements Constants {
   private Robot robot;
   private Scanner sc = new Scanner(System.in);
 
-  private Menu menu = new Menu();
-  private GameController gameController = new GameController();
+  private static Menu menu = new Menu();
+  private static GameController gameController = new GameController();
 
   private static boolean inSpaceInvaders;
   private static boolean inGame;
@@ -42,6 +42,7 @@ public class SpaceInvader implements Constants {
 
   protected static void startGame() {
     inGame = true;
+    gameController = new GameController();
   }
 
   protected static void endGame() {
@@ -91,4 +92,5 @@ public class SpaceInvader implements Constants {
       e.printStackTrace();
     }
   }
+
 }

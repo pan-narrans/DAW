@@ -17,12 +17,11 @@ public abstract class GameObject implements Constants {
   protected int speedCounter;
 
   protected char sprite;
-
-  GameObject() {
-  }
+  protected boolean hasEnteredBoard;
 
   GameObject(char sprite) {
     isDead = false;
+    hasEnteredBoard = false;
     this.sprite = sprite;
   }
 
@@ -38,8 +37,13 @@ public abstract class GameObject implements Constants {
     return pointValue;
   }
 
+  // Todo: rethink how to handle this
   public void update() {
     updatePos();
+    if (!hasEnteredBoard) {
+      if (!isOutOfBounds())
+        hasEnteredBoard = true;
+    }
   }
 
   public void updatePos() {

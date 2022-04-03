@@ -6,17 +6,24 @@ import java.util.Iterator;
 
 public class GameController {
 
-  private Board board = new Board();
-  private Player playerShip = new Player();
-  private EnemyController enemyController = new EnemyController();
-  public static ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+  private Board board;
+  private Player playerShip;
+  private EnemyController enemyController;
+  public static ArrayList<GameObject> gameObjects;
 
-  private boolean gameOver = false;
-  private int score = 0;
+  private boolean gameOver;
+  private int score;
 
   /** Default constructor */
   public GameController() {
+    board = new Board();
+    playerShip = new Player();
+    enemyController = new EnemyController();
+    gameObjects = new ArrayList<GameObject>();
+
     gameObjects.add(playerShip);
+    gameOver = false;
+    score = 0;
   }
 
   public void update(char key) {
@@ -40,7 +47,6 @@ public class GameController {
 
     // Other elements management
     updateObjects();
-    // generateEnemies();
     enemyController.update();
     checkCollisions();
     objectCleanUp();
@@ -52,15 +58,6 @@ public class GameController {
   public static void addObject(GameObject o) {
     gameObjects.add(o);
   }
-
-  /**
-   * If there's an enemy to generate, it adds it to the array.
-   */
-  // private void generateEnemies() {
-  // if (enemyController.hasEnemyReady()) {
-  // gameObjects.add(enemyController.createEnemy());
-  // }
-  // }
 
   /**
    * Calls the update method of each game object.

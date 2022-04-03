@@ -9,10 +9,6 @@ public class Enemy extends GameObject {
   }
 
   @Override
-  public void update() {
-  }
-
-  @Override
   protected void move() {
   }
 

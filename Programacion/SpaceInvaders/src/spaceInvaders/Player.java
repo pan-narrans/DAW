@@ -2,7 +2,7 @@ package spaceInvaders;
 
 public class Player extends GameObject {
 
-  private static int shootDelay = 10;
+  private static int shootDelay = PLR_SHOOT_DELAY;
   private int shootCounter = 0;
 
   private boolean canShoot;

@@ -4,23 +4,37 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class EnemyController implements Constants {
-  private int speedDelay = SPD_ENEMY;
-  private int speedCounter = 0;
-  private boolean hasEnemyReady = false;
-  private byte[][] enemyBlockTemplate = new byte[][] {
-      { 1, 1, 1, 1, 1 },
-      { 1, 1, 1, 1, 1 },
-      { 0, 1, 1, 1, 0 },
-  };
   private ArrayList<Enemy> enemies = new ArrayList<>();
+  // * tener en cuenta el tamaño del tablero a la hora de generar los enemigos
+  private byte[][][] swampTemplates = new byte[][][] {
+      {
+          { 1, 1, 1, 1, 1 },
+          { 1, 1, 1, 1, 1 },
+          { 0, 1, 1, 1, 0 },
+      },
+      {
+          { 1, 1, 1, 1, 1 },
+          { 1, 1, 1, 1, 1 },
+          { 1, 1, 1, 1, 1 },
+          { 0, 1, 1, 1, 0 },
+      },
+      {
+          { 0, 1, 1, 1, 1, 0 },
+          { 1, 1, 0, 0, 1, 1 },
+          { 1, 1, 0, 0, 1, 1 },
+          { 0, 1, 1, 1, 1, 0 },
+      },
+  };
 
+  private int speedDelay = SPD_ENEMY;
   private int counter = speedDelay;
   private byte direction = 1;
 
   public void update() {
     if (enemies.isEmpty()) {
-      createSwarm(enemyBlockTemplate);
+      createSwarm(getRandomTemplate());
     }
+
     if (canMove())
       moveSwarm();
 
@@ -60,16 +74,19 @@ public class EnemyController implements Constants {
     }
   }
 
+  // TODO: solve bug
+  // ! BUG when shooting the swarm goes down one position
   private boolean swarmIsOutOfBounds() {
     for (Enemy enemy : enemies) {
-      if (enemy.isOutOfBounds())
+      if (enemy.isOutOfBounds() && enemy.hasEnteredBoard)
         return true;
     }
     return false;
   }
 
+  // TODO: clean up
   public void createSwarm(byte[][] template) {
-    int startX = 0, startY = template[0].length;
+    int startX = 0, startY = template.length - 1;
 
     for (int i = template.length - 1; i > -1; i--) {
       for (int j = template[0].length - 1; j > -1; j--) {
@@ -85,6 +102,10 @@ public class EnemyController implements Constants {
     for (GameObject enemy : enemies) {
       GameController.addObject(enemy);
     }
+  }
+
+  private byte[][] getRandomTemplate() {
+    return swampTemplates[(int) (Math.random() * swampTemplates.length)];
   }
 
 }

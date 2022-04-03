@@ -1,7 +1,5 @@
 package spaceInvaders;
 
-import java.util.Arrays;
-
 public class Board implements Constants {
 
   /*
@@ -30,9 +28,8 @@ public class Board implements Constants {
    */
   protected void print(int score) {
     printHead();
-    printScore(score);
     printBoard();
-    // printPlayerInfo();
+    printScore(score);
   }
 
   /**
@@ -43,31 +40,65 @@ public class Board implements Constants {
     System.out.println("");
     for (char[] charArray : playBoard) {
       if (i > BOARD_SIZE_Y - 2)
-        printPlayerLine();
-      System.out.println(i++ + " " + Arrays.toString(charArray));
+        printDeathLine();
+      System.out.print(i++ + " ");
+      printLine(charArray);
     }
     System.out.println("");
 
   }
 
-  private void printPlayerLine() {
+  /*
+   * prints a single line char array with custom styling
+   */
+  private void printLine(char[] line) {
+    System.out.print("|");
+
+    for (int i = 0; i < line.length; i++) {
+      if (line[i] == SPR_ENEMY)
+        changeStyle("green");
+      System.out.print(line[i]);
+      changeStyle("default");
+
+      if (i != line.length - 1)
+        System.out.print(" ");
+    }
+
+    System.out.print("|\n");
+  }
+
+  private void printDeathLine() {
+    changeStyle("red");
     System.out.print("  ");
     for (int i = 0; i < BOARD_SIZE_X; i++) {
-      System.out.print("---");
+      System.out.print("--");
     }
-    System.out.println("");
+    System.out.print("--\n");
+    changeStyle("default");
   }
 
   protected void updateBoard(GameObject[] objects) {
     resetBoard();
     for (GameObject o : objects) {
-      updateObjet(o);
+      if (!o.isOutOfBounds())
+        playBoard[o.getPositionY()][o.getPositionX()] = o.sprite;
     }
   }
 
-  private void updateObjet(GameObject o) {
-    if (!o.isOutOfBounds())
-      playBoard[o.getPositionY()][o.getPositionX()] = o.sprite;
+  private void changeStyle(String color) {
+    String ANSI = "\033[0m";
+    switch (color) {
+      case "red":
+        ANSI = "\033[1;31m";
+        break;
+      case "green":
+        ANSI = "\033[1;32m";
+        break;
+      case "default":
+      default:
+        break;
+    }
+    System.out.print(ANSI);
   }
 
   /**
@@ -82,17 +113,23 @@ public class Board implements Constants {
   }
 
   protected void printHead() {
-    System.out.println("");
-    System.out.println("");
-    System.out.println("=== SPACE INVADERS ===");
+    int num = BOARD_SIZE_X * 2 + 1 - 16;
+    num /= 2;
+    System.out.print("  ");
+
+    for (int i = 0; i < num; i++) {
+      System.out.print("=");
+    }
+
+    System.out.print(" SPACE INVADERS ");
+
+    for (int i = 0; i < num; i++) {
+      System.out.print("=");
+    }
   }
 
   protected void printScore(int score) {
     System.out.println("Score = " + score);
-  }
-
-  private void printPlayerInfo() {
-    System.out.println("Player = ");
   }
 
   protected void printGameOver() {
