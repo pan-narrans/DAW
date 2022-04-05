@@ -37,13 +37,11 @@ public abstract class GameObject implements Constants {
     return pointValue;
   }
 
-  // Todo: rethink how to handle this
+  // TODO: rethink how to handle this
   public void update() {
     updatePos();
-    if (!hasEnteredBoard) {
-      if (!isOutOfBounds())
-        hasEnteredBoard = true;
-    }
+    if (!hasEnteredBoard && !isOutOfBounds())
+      hasEnteredBoard = true;
   }
 
   public void updatePos() {

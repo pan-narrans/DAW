@@ -12,11 +12,14 @@ public class SpaceInvader implements Constants {
   private Robot robot;
   private Scanner sc = new Scanner(System.in);
 
-  private static Menu menu = new Menu();
-  private static GameController gameController = new GameController();
+  private static Menu menu;
+  private static GameController gameController;
 
   private static boolean inSpaceInvaders;
   private static boolean inGame;
+
+  // TODO: change head for gameover on gameover @class Board()
+  // TODO: adjust value of constants
 
   public SpaceInvader() {
     try {
@@ -25,6 +28,8 @@ public class SpaceInvader implements Constants {
       System.out.println("El robot no se ha podido instanciar.");
       e.printStackTrace();
     }
+
+    menu = new Menu(this);
   }
 
   public void start() {
@@ -40,23 +45,24 @@ public class SpaceInvader implements Constants {
     } while (inSpaceInvaders);
   }
 
-  protected static void startGame() {
+  void startGame() {
     inGame = true;
-    gameController = new GameController();
+    gameController = new GameController(this);
   }
 
-  protected static void endGame() {
+  void endGame() {
     inGame = false;
   }
 
-  protected static void exitApp() {
+  void exitApp() {
     inSpaceInvaders = false;
   }
 
   /**
-   * Fakes a keyboard input.
+   * Fakes a keyboard input at each time a frame is called.
    * <p>
-   * Returns the first character of the keyboard input for the current frame.
+   * Returns the first character (transformed to lowercase) of the keyboard input
+   * for the current frame.
    *
    * @return key pressed
    *         <li>'.' if no key is pressed
@@ -65,7 +71,7 @@ public class SpaceInvader implements Constants {
     robot.keyPress(KeyEvent.VK_PERIOD);
     robot.keyPress(KeyEvent.VK_ENTER);
     robot.keyRelease(KeyEvent.VK_ENTER);
-    return sc.next().charAt(0);
+    return Character.toLowerCase(sc.next().charAt(0));
   }
 
   /**
@@ -84,7 +90,7 @@ public class SpaceInvader implements Constants {
   /**
    * "Clears" the screen, allowing for the new frame to be printed.
    */
-  protected static void clearScreen() {
+  private void clearScreen() {
     try {
       new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     } catch (Exception e) {

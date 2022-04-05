@@ -3,14 +3,15 @@ package spaceInvaders;
 import java.util.HashMap;
 
 public class Menu {
+  private SpaceInvader spaceInvader;
+  private final HashMap<Integer, String> KEYS = new HashMap<>();
 
-  protected final HashMap<Integer, String> KEYS = new HashMap<>();
-
-  protected final String HEAD = "=== SPACE INVADERS ===";
-  protected final String BLANK = "=                    =";
-  protected final String INFO = "press 'd' to select";
-  protected final String END = "======================";
-  protected final String[][] ITEMS = {
+  // Strings
+  private final String HEAD = "=== SPACE INVADERS ===";
+  private final String BLANK = "=                    =";
+  private final String INFO = "press 'd' to select";
+  private final String END = "======================";
+  private final String[][] ITEMS = {
       {
           "=      > PLAY        =",
           "=        PLAY        ="
@@ -23,9 +24,10 @@ public class Menu {
 
   private int itemSelected = 0;
 
-  Menu() {
+  Menu(SpaceInvader spaceInvader) {
     KEYS.put(0, "play");
     KEYS.put(1, "exit");
+    this.spaceInvader = spaceInvader;
   }
 
   /**
@@ -96,10 +98,10 @@ public class Menu {
   private void takeAction() {
     switch (itemSelected) {
       case 0:
-        SpaceInvader.startGame();
+        spaceInvader.startGame();
         break;
       case 1:
-        SpaceInvader.exitApp();
+        spaceInvader.exitApp();
         break;
       default:
         break;

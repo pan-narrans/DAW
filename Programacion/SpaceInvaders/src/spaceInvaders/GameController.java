@@ -4,25 +4,28 @@ package spaceInvaders;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GameController {
-
+public class GameController implements Constants {
+  private SpaceInvader spaceInvader;
   private Board board;
   private Player playerShip;
   private EnemyController enemyController;
-  public static ArrayList<GameObject> gameObjects;
+  private ArrayList<GameObject> gameObjects;
 
   private boolean gameOver;
+  private int difficulty;
   private int score;
 
   /** Default constructor */
-  public GameController() {
-    board = new Board();
+  public GameController(SpaceInvader spaceInvader) {
+    this.spaceInvader = spaceInvader;
+    board = new Board(this);
     playerShip = new Player();
-    enemyController = new EnemyController();
+    enemyController = new EnemyController(this);
     gameObjects = new ArrayList<GameObject>();
 
     gameObjects.add(playerShip);
     gameOver = false;
+    difficulty = 0;
     score = 0;
   }
 
@@ -37,7 +40,7 @@ public class GameController {
     if (gameOver) {
       board.printGameOver();
       if (key == 'd')
-        SpaceInvader.endGame();
+        spaceInvader.endGame();
     }
   }
 
@@ -55,7 +58,7 @@ public class GameController {
     board.updateBoard(gameObjects.toArray(new GameObject[0]));
   }
 
-  public static void addObject(GameObject o) {
+  void addObject(GameObject o) {
     gameObjects.add(o);
   }
 
@@ -141,8 +144,21 @@ public class GameController {
     return false;
   }
 
-  private void addScore(int pointValue) {
+  void addScore(int pointValue) {
     score += pointValue;
+  }
+
+  int getScore() {
+    return score;
+  }
+
+  void increaseDifficulty() {
+    if (difficulty < MAX_DIFFICULTY)
+      difficulty++;
+  }
+
+  int getDifficulty() {
+    return difficulty;
   }
 
 }

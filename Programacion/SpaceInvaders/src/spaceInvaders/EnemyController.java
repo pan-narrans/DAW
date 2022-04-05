@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class EnemyController implements Constants {
+  private GameController gc;
   private ArrayList<Enemy> enemies = new ArrayList<>();
-  // * tener en cuenta el tamaño del tablero a la hora de generar los enemigos
   private byte[][][] swampTemplates = new byte[][][] {
+      {
+          { 1, 1, 1 },
+          { 1, 1, 1 },
+          { 0, 1, 0 },
+      },
       {
           { 1, 1, 1, 1, 1 },
           { 1, 1, 1, 1, 1 },
@@ -28,10 +33,17 @@ public class EnemyController implements Constants {
 
   private int speedDelay = SPD_ENEMY;
   private int counter = speedDelay;
-  private byte direction = 1;
+  private byte direction;
+
+  EnemyController(GameController gc) {
+    this.gc = gc;
+  }
 
   public void update() {
     if (enemies.isEmpty()) {
+      gc.increaseDifficulty();
+      increaseSpeed();
+      direction = 1;
       createSwarm(getRandomTemplate());
     }
 
@@ -39,6 +51,10 @@ public class EnemyController implements Constants {
       moveSwarm();
 
     objectCleanUp();
+  }
+
+  private void increaseSpeed() {
+    speedDelay = (speedDelay == SPD_ENEMY_MIN) ? speedDelay : speedDelay - gc.getDifficulty();
   }
 
   private void objectCleanUp() {
@@ -58,6 +74,9 @@ public class EnemyController implements Constants {
     return false;
   }
 
+  /**
+   * Moves the swarm in the correct direction.
+   */
   private void moveSwarm() {
     for (Enemy enemy : enemies) {
       enemy.move(direction);
@@ -74,8 +93,6 @@ public class EnemyController implements Constants {
     }
   }
 
-  // TODO: solve bug
-  // ! BUG when shooting the swarm goes down one position
   private boolean swarmIsOutOfBounds() {
     for (Enemy enemy : enemies) {
       if (enemy.isOutOfBounds() && enemy.hasEnteredBoard)
@@ -84,28 +101,48 @@ public class EnemyController implements Constants {
     return false;
   }
 
-  // TODO: clean up
+  /**
+   * Instantiates a swarm of enemies based on a template.
+   * 
+   * @param template Swarm template.
+   */
   public void createSwarm(byte[][] template) {
-    int startX = 0, startY = template.length - 1;
+    // [x, y]
+    int[] coordinates = new int[] { 0, template.length - 1 };
 
     for (int i = template.length - 1; i > -1; i--) {
       for (int j = template[0].length - 1; j > -1; j--) {
         if (template[i][j] == 1)
-          enemies.add(new Enemy(new int[] { startX, startY }, speedDelay, PT_ENEMY));
-        startX--;
+          enemies.add(new Enemy(coordinates, PT_ENEMY * gc.getDifficulty()));
+        coordinates[0]--;
       }
-      startX = 0;
-      startY--;
+      coordinates[0] = 0;
+      coordinates[1]--;
     }
 
-    // Add enemies to the gameObject array.
+    addEnemiesToGameController();
+  }
+
+  /**
+   * Adds all enemies to the GameController() gameObjects array.
+   */
+  private void addEnemiesToGameController() {
     for (GameObject enemy : enemies) {
-      GameController.addObject(enemy);
+      gc.addObject(enemy);
     }
   }
 
+  /**
+   * @return Random valid enemy swarm template.
+   */
   private byte[][] getRandomTemplate() {
-    return swampTemplates[(int) (Math.random() * swampTemplates.length)];
+    byte[][] template;
+
+    do {
+      template = swampTemplates[(int) (Math.random() * swampTemplates.length)];
+    } while (template[0].length > BOARD_SIZE_X);
+
+    return template;
   }
 
 }

@@ -14,26 +14,58 @@ public class Board implements Constants {
    * 03 13 23
    * 04 14 24
    */
-  public char[][] playBoard = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
+  private char[][] playBoard = new char[BOARD_SIZE_Y][BOARD_SIZE_X];
+  private GameController gc;
 
-  protected Board() {
+  private enum COLOR {
+    RED, GREEN, DEFAULT
+  }
+
+  Board(GameController gc) {
+    this.gc = gc;
     resetBoard();
   }
 
   /**
-   * Calls {@link #clearScreen()} then prints all the interface goodies, including
-   * (but not restricted to) the board, the score, the TITLE.
+   * Prints all the interface goodies, including (but not restricted to) the
+   * board, the score, the TITLE.
    *
-   * @param score
+   * @param score Player score.
    */
   protected void print(int score) {
     printHead();
     printBoard();
-    printScore(score);
+    printScore();
+    printDifficulty();
   }
 
   /**
-   * Prints the board...
+   * Prints the "SPACE INVADERS" header, adjusted to the board width.
+   */
+  protected void printHead() {
+    int num = BOARD_SIZE_X * 2 + 1 - 16;
+    num /= 2;
+
+    // Print ' '
+    for (int i = 0; i < (int) (Math.log10(BOARD_SIZE_Y) + 1); i++) {
+      System.out.print("  ");
+    }
+
+    // Print '='
+    for (int i = 0; i < num; i++) {
+      System.out.print("=");
+    }
+
+    System.out.print(" SPACE INVADERS ");
+
+    // Print '='
+    for (int i = 0; i < num; i++) {
+      System.out.print("=");
+    }
+  }
+
+  /**
+   * Prints the board.
    */
   private void printBoard() {
     int i = 0;
@@ -41,24 +73,27 @@ public class Board implements Constants {
     for (char[] charArray : playBoard) {
       if (i > BOARD_SIZE_Y - 2)
         printDeathLine();
-      System.out.print(i++ + " ");
-      printLine(charArray);
+      if (i < 10)
+        System.out.print(" " + i++ + " ");
+      else
+        System.out.print(i++ + " ");
+      printBoardLine(charArray);
     }
     System.out.println("");
 
   }
 
-  /*
-   * prints a single line char array with custom styling
+  /**
+   * Prints a single line char array with custom styling
    */
-  private void printLine(char[] line) {
+  private void printBoardLine(char[] line) {
     System.out.print("|");
 
     for (int i = 0; i < line.length; i++) {
       if (line[i] == SPR_ENEMY)
-        changeStyle("green");
+        changeStyle(COLOR.GREEN);
       System.out.print(line[i]);
-      changeStyle("default");
+      changeStyle(COLOR.DEFAULT);
 
       if (i != line.length - 1)
         System.out.print(" ");
@@ -67,14 +102,19 @@ public class Board implements Constants {
     System.out.print("|\n");
   }
 
+  /**
+   * Prints a red dotted line marking the player's space boundary.
+   */
   private void printDeathLine() {
-    changeStyle("red");
+    changeStyle(COLOR.RED);
+
     System.out.print("  ");
     for (int i = 0; i < BOARD_SIZE_X; i++) {
       System.out.print("--");
     }
     System.out.print("--\n");
-    changeStyle("default");
+
+    changeStyle(COLOR.DEFAULT);
   }
 
   protected void updateBoard(GameObject[] objects) {
@@ -85,16 +125,22 @@ public class Board implements Constants {
     }
   }
 
-  private void changeStyle(String color) {
+  /**
+   * Changes the console color to the one specified. It need to be reset to the
+   * default value once we're done with the color.
+   * 
+   * @param color color to change to.
+   */
+  private void changeStyle(COLOR color) {
     String ANSI = "\033[0m";
     switch (color) {
-      case "red":
+      case RED:
         ANSI = "\033[1;31m";
         break;
-      case "green":
+      case GREEN:
         ANSI = "\033[1;32m";
         break;
-      case "default":
+      case DEFAULT:
       default:
         break;
     }
@@ -112,24 +158,15 @@ public class Board implements Constants {
     }
   }
 
-  protected void printHead() {
-    int num = BOARD_SIZE_X * 2 + 1 - 16;
-    num /= 2;
-    System.out.print("  ");
-
-    for (int i = 0; i < num; i++) {
-      System.out.print("=");
-    }
-
-    System.out.print(" SPACE INVADERS ");
-
-    for (int i = 0; i < num; i++) {
-      System.out.print("=");
-    }
+  protected void printScore() {
+    System.out.println("Score = " + gc.getScore());
   }
 
-  protected void printScore(int score) {
-    System.out.println("Score = " + score);
+  private void printDifficulty() {
+    if (gc.getDifficulty() == MAX_DIFFICULTY)
+      System.out.println("Difficulty = MAX");
+    else
+      System.out.println("Difficulty = " + gc.getDifficulty());
   }
 
   protected void printGameOver() {
