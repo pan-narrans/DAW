@@ -24,7 +24,7 @@ class TestPersona {
 	    int argTeléfono,
 	    String argEMail) {
 
-// El test usa un m�todo que le da como argumentos de entrada un nombre y tarifa aleatorios
+// El test usa un método que le da como argumentos de entrada un nombre y tarifa aleatorios
 //0. Excepciones
 	
 		Persona personaVacia = new Persona();
@@ -58,7 +58,7 @@ class TestPersona {
 	    int argTeléfono,
 	    String argEMail) {
 
-// El m�todo da argumentos válidos. Hay que probar:		
+// El método da argumentos válidos. Hay que probar:		
 //1. Constructor	
 	Persona personaTest = new Persona(argNIF,argNombre,argTeléfono,argEMail); 
 	

@@ -39,7 +39,7 @@ public class Aleatorio {
 		double redondeo = Math.pow(10, precision);
 
 	  return Stream
-	  	.generate(() -> random.nextDouble(min, max)) // Genero un vector de n�meros aleatorios entre el min y max
+	  	.generate(() -> random.nextDouble(min, max)) // Genero un vector de números aleatorios entre el min y max
 			.limit(nValores) // Stream limitado a nValores
 			.map(numero -> numero*redondeo) // Precisión			
 			.map(numero -> numero >= 0 ? Math.ceil(numero) : Math.floor(numero)) // Empuja fuera del cero. Truco para lograr min,max inclusivos
@@ -76,7 +76,7 @@ public static List<Integer> getIntList (int min, int max, int nValores) throws I
 	if (max <= min) throw new IllegalArgumentException("Exception: Max <= Min");
 	
 		return Stream
-			.generate(() -> random.nextInt(min, max+1)) // Vector de n�meros aleatorios. El max+1 es para hacer el max inclusivo
+			.generate(() -> random.nextInt(min, max+1)) // Vector de números aleatorios. El max+1 es para hacer el max inclusivo
 			.limit(nValores) // Limitado a nValores
 			.collect(Collectors.toList());} // Lo convierte a lista
 

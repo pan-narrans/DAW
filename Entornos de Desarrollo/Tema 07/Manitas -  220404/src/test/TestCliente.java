@@ -17,7 +17,7 @@ class TestCliente {
   @DisplayName("Cliente: Excepciones")
   @MethodSource("test.TestSourcesAleatorios#argClienteAleatorios")
 
-  // El test usa un m�todo que le da como argumentos de entrada valores aleatorios
+  // El test usa un método que le da como argumentos de entrada valores aleatorios
 
   void testClienteExcepciones(
       int argId,
@@ -76,7 +76,7 @@ class TestCliente {
   @DisplayName("Cliente: Clase")
   @MethodSource("test.TestSourcesValidos#argClienteValidos")
 
-  // El test usa un m�todo que le da como argumentos de entrada válidos
+  // El test usa un método que le da como argumentos de entrada válidos
 
   void testClienteBasico(
       int argId,

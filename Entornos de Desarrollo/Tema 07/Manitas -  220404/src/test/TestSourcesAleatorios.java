@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TestSourcesAleatorios {
 	
-	private static int nValores = 100; // N�mero de valores que se pasan en los vectores
+	private static int nValores = 100; // Número de valores que se pasan en los vectores
 	
 //ARGPERSONA: Argumentos para crear una persona	
 	public static List<Arguments> argPersonaAleatorios (){	
@@ -26,11 +26,11 @@ public class TestSourcesAleatorios {
   
 //Bucle: genera nValores valores de prueba aleatorios
   for (int i = 0; i < nValores; i++) {
-  	argNIF = Aleatorio.getString(Aleatorio.getInt(0, 10));  	// String aleatorio de 0 a 10 carácteres
-    argNombre = Aleatorio.getString(Aleatorio.getInt(0, 10));	// String aleatorio de 0 a 10 carácteres
+  	argNIF = Aleatorio.getString(Aleatorio.getInt(0, 10));  	// String aleatorio de 0 a 10 caracteres
+    argNombre = Aleatorio.getString(Aleatorio.getInt(0, 10));	// String aleatorio de 0 a 10 caracteres
   	argTeléfono = Aleatorio.getInt(500000000,1100000000); 		// Tel�fono entre 500 000 000 y 1 100 000 000
-    argEMail = Aleatorio.getString(Aleatorio.getInt(0, 10));	// String aleatorio de 0 a 10 carácteres
-    argPersona.add(Arguments.of(argNIF,argNombre,argTeléfono,argEMail));} //A�ade los argumentos al Array
+    argEMail = Aleatorio.getString(Aleatorio.getInt(0, 10));	// String aleatorio de 0 a 10 caracteres
+    argPersona.add(Arguments.of(argNIF,argNombre,argTeléfono,argEMail));} //Añade los argumentos al Array
 
   return argPersona;}
 
@@ -40,7 +40,7 @@ public class TestSourcesAleatorios {
 // Hay que sacar los argumentos del paquete (Arguments), a�adir uno nuevo ( y volvera empaquetar	
 	
 	public static List<Arguments> argClienteAleatorios (){	
-	// Soluci�n semi-funcional: iteraci�n por los argumentos de persona
+	// Solución semi-funcional: iteración por los argumentos de persona
 		
 		List<Arguments> argPersona = argPersonaAleatorios(); // reuso de persona
 		List<Arguments> argCliente = new ArrayList<Arguments>(); // resultado
@@ -48,13 +48,13 @@ public class TestSourcesAleatorios {
 		
 		for (Arguments arg : argPersona) { // itera por el stream de Arguments.
 			argItemNew = new ArrayList<>(Arrays.asList(arg.get())); // Saca el elemento de la ristra, lo convierte en lista, y sobre ella crea una nueva
-			argItemNew.add(0,Aleatorio.getInt(-100,100)); // A�ade el n�mero aleatorio al principio de la lista
+			argItemNew.add(0,Aleatorio.getInt(-100,100)); // Añade el número aleatorio al principio de la lista
 			argCliente.add(Arguments.of(argItemNew.toArray()));}
 		
 		return argCliente;}	
 	
 /*  
-// En java la soluci�n funcional es compleja por dos motivos
+// En java la solución funcional es compleja por dos motivos
 
 		return argPersona
 		.map(Arguments::get) // Saco los argumentos. Cada elemento del stream es un array de objetos (4 en este caso: NIF, nombre, tel�fono, eMail)
@@ -73,7 +73,7 @@ public class TestSourcesAleatorios {
 		
 		for (Arguments arg : argPersona) { // itera por el stream de Arguments.
 			argItemNew = new ArrayList<>(Arrays.asList(arg.get())); // Saca el elemento de la ristra, lo convierte en lista, y sobre ella crea una nueva
-			argItemNew.add(0,Aleatorio.getInt(-100,100)); // A�ade el n�mero aleatorio al principio de la lista
+			argItemNew.add(0,Aleatorio.getInt(-100,100)); // Añade el número aleatorio al principio de la lista
 			argItemNew.add(1,ServicioTipos.getRandomTipoServicio()); // Tipo de Servicio
 			argItemNew.add(2,Scoring.getRandomTipoScoring()); // Scoring
 			argItemNew.add(3,Aleatorio.getDouble(-100.0,100.0,1)); // Tarifa
@@ -91,23 +91,23 @@ public class TestSourcesAleatorios {
    String argFecha = "";
    String argCIFEmisor = "";
    String argCIFReceptor = "";
-   String argDescripcion = "";
+   String argDescripción = "";
    double argBase = 0.0;
    double argIvaTipo = 0.0;
-   double argRetencionTipo = 0.0;
+   double argRetenciónTipo = 0.0;
     
 //Bucle: genera nValores valores de prueba aleatorios
    for (int i = 0; i < nValores; i++) {
      argId = Aleatorio.getInt(-100,100);	// Id entre -100 y 100 														
-     argFecha = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 carácteres
-     argCIFEmisor = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 carácteres
-     argCIFReceptor = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 carácteres
-     argDescripcion = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 carácteres
+     argFecha = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 caracteres
+     argCIFEmisor = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 caracteres
+     argCIFReceptor = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 caracteres
+     argDescripción = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String aleatorio de 0 a 10 caracteres
      argBase = Aleatorio.getDouble(-1000.0, 1000.0, 1);	// base entre 0 y 1000
      argIvaTipo = Aleatorio.getDouble(-10.0, 10.0, 1);	// iva entre -10 y 10
-     argRetencionTipo = Aleatorio.getDouble(-10.0, 10.0, 1);	// retencion entre -10 y 10
+     argRetenciónTipo = Aleatorio.getDouble(-10.0, 10.0, 1);	// retención entre -10 y 10
        
-     argFactura.add(Arguments.of(argId,argFecha,argCIFEmisor,argCIFReceptor,argDescripcion,argBase,argIvaTipo,argRetencionTipo));} // A�ade los argumentos al Array
+     argFactura.add(Arguments.of(argId,argFecha,argCIFEmisor,argCIFReceptor,argDescripción,argBase,argIvaTipo,argRetenciónTipo));} // Añade los argumentos al Array
  
    return argFactura;}
 	
@@ -124,10 +124,10 @@ public class TestSourcesAleatorios {
 	// Bucle: genera nValores valores de prueba aleatorios
 	    for (int i = 0; i < nValores; i++) {
 	      argId = Aleatorio.getInt(-100, 100); // id entre -100 y 100
-	      argFecha = Aleatorio.getString(Aleatorio.getInt(0, 10)); // Mejorable: una fecha verosimil pero inv�lida
+	      argFecha = Aleatorio.getString(Aleatorio.getInt(0, 10)); // Mejorable: una fecha verosimil pero inválida
 	    	argNombre = Aleatorio.getString(Aleatorio.getInt(0, 10)); // String de 0 a 10
 	      argHoras = Aleatorio.getDouble(-100, 100, 2);			// Tarifa entre -100 y 100 a 2 decimales
-	      argServicio.add(Arguments.of(argId, argFecha,argNombre,argHoras));} 	// A�ade los argumentos al Array
+	      argServicio.add(Arguments.of(argId, argFecha,argNombre,argHoras));} 	// Añade los argumentos al Array
 	  
 	    return argServicio;}
 	

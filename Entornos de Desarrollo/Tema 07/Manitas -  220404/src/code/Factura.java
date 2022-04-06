@@ -6,119 +6,172 @@ import auxiliar.Valido;
 
 public class Factura {
 
-// ATRIBUTOS
-	private int id = 0;
-	private String fecha = "";
-	private String CIFEmisor = "";
+  // ATRIBUTOS
+  private int id = 0;
+  private String fecha = "";
+  private String CIFEmisor = "";
   private String CIFReceptor = "";
-	private String descripcion = "";
-	private double base = 0.0;
-	private double ivaTipo = 0.0;
-	private double retencionTipo = 0.0;
-	private EnumMap<FacturaImportes,Double> importes = new EnumMap<>(FacturaImportes.class);
+  private String descripci贸n = "";
+  private double base = 0.0;
+  private double ivaTipo = 0.0;
+  private double retenci贸nTipo = 0.0;
+  private EnumMap<FacturaImportes, Double> importes = new EnumMap<>(FacturaImportes.class);
 
-// CONSTRUCTOR
-	public Factura () {}
+  // CONSTRUCTOR
+  public Factura() {
+  }
 
-	public Factura (
-		int id,
-		String fecha,
-		String CIFEmisor,
-		String CIFReceptor,
-		String descripcion,
-		double base,
-		double ivaTipo,
-		double retencionTipo) throws IllegalArgumentException {
+  public Factura(
+      int id,
+      String fecha,
+      String CIFEmisor,
+      String CIFReceptor,
+      String descripci贸n,
+      double base,
+      double ivaTipo,
+      double retenci贸nTipo) throws IllegalArgumentException {
 
-		this.setId(id);
-		this.setFecha(fecha);
-		this.setCIFEmisor(CIFEmisor);
-		this.setCIFReceptor(CIFReceptor);
-		this.setDescripcion(descripcion);
-		this.setBase(base);
-		this.setIvaTipo(ivaTipo);
-		this.setRetencionTipo(retencionTipo);
-		this.calcularFactura();}
-		
-// GETTERS
-	public int getId() {return this.id;}
-	public String getFecha() {return this.fecha;}
-	public String getCIFEmisor() {return this.CIFEmisor;}
-	public String getCIFReceptor() {return this.CIFReceptor;}
-	public String getDescripcion() {return this.descripcion;}	
-	public double getBase() {return this.base;}
-	public double getIvaTipo() {return this.ivaTipo;}
-	public double getRetencionTipo() {return this.retencionTipo;}
-	public EnumMap<FacturaImportes, Double> getImportes() {return importes;}
+    this.setId(id);
+    this.setFecha(fecha);
+    this.setCIFEmisor(CIFEmisor);
+    this.setCIFReceptor(CIFReceptor);
+    this.setDescripci贸n(descripci贸n);
+    this.setBase(base);
+    this.setIvaTipo(ivaTipo);
+    this.setRetenci贸nTipo(retenci贸nTipo);
+    this.calcularFactura();
+  }
 
-// SETTERS	
-	public void setId(int id) throws IllegalArgumentException {
-		if (id <= 0) throw new IllegalArgumentException("Exception: Id <= 0"); // Mejorable: las facturas tienen que ser consecutivas
-		this.id = id;}
-	
-	public void setFecha(String fecha) throws IllegalArgumentException{
-		if (!Valido.validarFecha(fecha))  throw new IllegalArgumentException("Exception: Fecha incorrecta");
-		this.fecha = fecha;}
+  // GETTERS
+  public int getId() {
+    return this.id;
+  }
 
-	public void setCIFEmisor(String CIFEmisor)  throws IllegalArgumentException {
-		if (!Valido.validarNIF(CIFEmisor)) throw new IllegalArgumentException("Exception: CIF Emisor incorrecto");
-		this.CIFEmisor = CIFEmisor;}	
-	
-	public void setCIFReceptor(String CIFReceptor)  throws IllegalArgumentException {
-		if (!Valido.validarNIF(CIFReceptor)) throw new IllegalArgumentException("Exception: CIF Receptor incorrecto");
-		this.CIFReceptor = CIFReceptor;}
-	
-	public void setDescripcion (String descripcion)  throws IllegalArgumentException {
-		if (descripcion == "")  throw new IllegalArgumentException("Exception: Descripci髇 vac韆");
-		this.descripcion = descripcion;}	
-	
-	public void setBase(double base)   throws IllegalArgumentException {
-		if (base <= 0) throw new IllegalArgumentException("Exception: Base <= 0");
-		this.base = base;
-		this.calcularFactura();}
-	
-	public void setIvaTipo(double ivaTipo) throws IllegalArgumentException {
-		if (ivaTipo < 0.0 || ivaTipo > 1.0) throw new IllegalArgumentException("Exception: IVA incorrecto");
-		this.ivaTipo = ivaTipo;
-		this.calcularFactura();}
-	
-	public void setRetencionTipo(double retencionTipo) throws IllegalArgumentException {
-		if (retencionTipo < 0.0 || retencionTipo > 1.0) throw new IllegalArgumentException("Exception: Retenci髇 incorrecta");
-		this.retencionTipo = retencionTipo;
-		this.calcularFactura();}
+  public String getFecha() {
+    return this.fecha;
+  }
 
-// TOSTRING
-	@Override
-	public String toString () {return Clase.imprimeClase(this);}
-	
-// EQUAL
-	@Override
-	public boolean equals(Object copia) {return Clase.comparaObjetos(this, copia);}
+  public String getCIFEmisor() {
+    return this.CIFEmisor;
+  }
 
-//M蒚ODOS	
-//calculaFactura
-	
-	private void calcularFactura () {		
-	 	double iva = this.base* this.ivaTipo; // El iva es la base por el tipo de iva
-	 	double total = this.base + iva; // El total es la suma de iva y base
-	 	double retencion = this.base * this.retencionTipo;	// El total es la suma de iva y base
-	 	double facturable = total - retencion;// Lo facturable es el total menos la retenci髇
+  public String getCIFReceptor() {
+    return this.CIFReceptor;
+  }
 
- 	// Mete los valores en el EnumMap
-	 	this.importes.put(FacturaImportes.BASE, base);
-	 	this.importes.put(FacturaImportes.IVA, iva);
-	 	this.importes.put(FacturaImportes.TOTAL, total);
-	 	this.importes.put(FacturaImportes.RETENCION, retencion);
-	 	this.importes.put(FacturaImportes.FACTURABLE, facturable);}
-	
-// MAIN	
-/*
-	public static void main(String[] args) {
+  public String getDescripci贸n() {
+    return this.descripci贸n;
+  }
 
-		Factura factura = new Factura(1,"19/03/2022","12755355S","06023717V","Rotura de Tuberia",1000,0.21,0.20);
-		Factura copia = new Factura(1,"19/03/2022","12755355S","06023717V","Rotura de tuberia",1000,0.21,0.20);
-		System.out.println(factura);		
-		System.out.println(factura.equals(copia));		
-	}
-*/
+  public double getBase() {
+    return this.base;
+  }
+
+  public double getIvaTipo() {
+    return this.ivaTipo;
+  }
+
+  public double getRetenci贸nTipo() {
+    return this.retenci贸nTipo;
+  }
+
+  public EnumMap<FacturaImportes, Double> getImportes() {
+    return importes;
+  }
+
+  // SETTERS
+  public void setId(int id) throws IllegalArgumentException {
+    if (id <= 0)
+      throw new IllegalArgumentException("Exception: Id <= 0"); // Mejorable: las facturas tienen que ser consecutivas
+    this.id = id;
+  }
+
+  public void setFecha(String fecha) throws IllegalArgumentException {
+    if (!Valido.validarFecha(fecha))
+      throw new IllegalArgumentException("Exception: Fecha incorrecta");
+    this.fecha = fecha;
+  }
+
+  public void setCIFEmisor(String CIFEmisor) throws IllegalArgumentException {
+    if (!Valido.validarNIF(CIFEmisor))
+      throw new IllegalArgumentException("Exception: CIF Emisor incorrecto");
+    this.CIFEmisor = CIFEmisor;
+  }
+
+  public void setCIFReceptor(String CIFReceptor) throws IllegalArgumentException {
+    if (!Valido.validarNIF(CIFReceptor))
+      throw new IllegalArgumentException("Exception: CIF Receptor incorrecto");
+    this.CIFReceptor = CIFReceptor;
+  }
+
+  public void setDescripci贸n(String descripci贸n) throws IllegalArgumentException {
+    if (descripci贸n == "")
+      throw new IllegalArgumentException("Exception: Descripci贸n vac铆a");
+    this.descripci贸n = descripci贸n;
+  }
+
+  public void setBase(double base) throws IllegalArgumentException {
+    if (base <= 0)
+      throw new IllegalArgumentException("Exception: Base <= 0");
+    this.base = base;
+    this.calcularFactura();
+  }
+
+  public void setIvaTipo(double ivaTipo) throws IllegalArgumentException {
+    if (ivaTipo < 0.0 || ivaTipo > 1.0)
+      throw new IllegalArgumentException("Exception: IVA incorrecto");
+    this.ivaTipo = ivaTipo;
+    this.calcularFactura();
+  }
+
+  public void setRetenci贸nTipo(double retenci贸nTipo) throws IllegalArgumentException {
+    if (retenci贸nTipo < 0.0 || retenci贸nTipo > 1.0)
+      throw new IllegalArgumentException("Exception: Retenci贸n incorrecta");
+    this.retenci贸nTipo = retenci贸nTipo;
+    this.calcularFactura();
+  }
+
+  // TOSTRING
+  @Override
+  public String toString() {
+    return Clase.imprimeClase(this);
+  }
+
+  // EQUAL
+  @Override
+  public boolean equals(Object copia) {
+    return Clase.comparaObjetos(this, copia);
+  }
+
+  // M锟絋ODOS
+  // calculaFactura
+
+  private void calcularFactura() {
+    double iva = this.base * this.ivaTipo; // El iva es la base por el tipo de iva
+    double total = this.base + iva; // El total es la suma de iva y base
+    double retenci贸n = this.base * this.retenci贸nTipo; // El total es la suma de iva y base
+    double facturable = total - retenci贸n;// Lo facturable es el total menos la retenci锟絥
+
+    // Mete los valores en el EnumMap
+    this.importes.put(FacturaImportes.BASE, base);
+    this.importes.put(FacturaImportes.IVA, iva);
+    this.importes.put(FacturaImportes.TOTAL, total);
+    this.importes.put(FacturaImportes.RETENCI脫N, retenci贸n);
+    this.importes.put(FacturaImportes.FACTURABLE, facturable);
+  }
+
+  // MAIN
+  /*
+   * public static void main(String[] args) {
+   * 
+   * Factura factura = new
+   * Factura(1,"19/03/2022","12755355S","06023717V","Rotura de Tuberia",1000,0.21,
+   * 0.20);
+   * Factura copia = new
+   * Factura(1,"19/03/2022","12755355S","06023717V","Rotura de tuberia",1000,0.21,
+   * 0.20);
+   * System.out.println(factura);
+   * System.out.println(factura.equals(copia));
+   * }
+   */
 }

@@ -22,7 +22,7 @@ public class Servicio {
   public Servicio(int id, String fecha, String descripcion, double horas, Colaborador colaborador, Cliente cliente) throws IllegalArgumentException{
   	this.setId(id);
   	this.setFecha(fecha);
-  	this.setDescripcion(descripcion);
+  	this.setDescripciÃ³n(descripcion);
   	this.setHoras(horas);
   	this.setColaborador(colaborador);
   	this.setCliente(cliente);
@@ -47,8 +47,8 @@ public class Servicio {
 			if (!Valido.validarFecha(fecha))  throw new IllegalArgumentException("Exception: Fecha incorrecta");
 			this.fecha = fecha;}
 		
-	public void setDescripcion(String descripcion) {
-		if (descripcion == "") throw new IllegalArgumentException("Exception: Descripción vacía");
+	public void setDescripciÃ³n(String descripcion) {
+		if (descripcion == "") throw new IllegalArgumentException("Exception: DescripciÃ³n vacï¿½a");
 		this.descripcion = descripcion;}	
 	
 	public void setHoras(double horas) throws IllegalArgumentException {
@@ -59,7 +59,7 @@ public class Servicio {
   
 	public void setColaborador(Colaborador colaborador)  throws IllegalArgumentException {;
 		if (colaborador == null) throw new IllegalArgumentException("Exception: Colaborador nulo");
-		if (!colaborador.esActivo()) throw new IllegalArgumentException("Exception: El colaborador no está activo");
+		if (!colaborador.esActivo()) throw new IllegalArgumentException("Exception: El colaborador no estï¿½ activo");
 		try {this.colaborador = colaborador;}
 		catch (IllegalArgumentException e) {throw e;}}
   
@@ -76,9 +76,9 @@ public class Servicio {
 	@Override
 	public boolean equals(Object copia) {return Clase.comparaObjetos(this, copia);}	
 	
-// MÉTODOS	
+// Mï¿½TODOS	
 // tarifaMinima
-// El servicio sólo es viable si su tarifa es superior, con un margen, a la tarifa del colaborador	
+// El servicio sï¿½lo es viable si su tarifa es superior, con un margen, a la tarifa del colaborador	
   public double tarifaMin () {return this.colaborador.getTarifa() *(1.0 + Constantes.MARGEN);}
 
 // darMargen
@@ -92,7 +92,7 @@ public class Servicio {
 // facturaColaborador
   public Factura facturaColaborador (int id)  throws IllegalArgumentException {
   	if (id <= 0) throw new IllegalArgumentException("Exception: Id <= 0");  	
-  	return new Factura(id, this.fecha, this.colaborador.getNIF(), Constantes.CIF, this.descripcion + " para " + this.cliente.getNombre(), this.horas*this.colaborador.getTarifa(), Constantes.IVA, Constantes.RETENCION);}    
+  	return new Factura(id, this.fecha, this.colaborador.getNIF(), Constantes.CIF, this.descripcion + " para " + this.cliente.getNombre(), this.horas*this.colaborador.getTarifa(), Constantes.IVA, Constantes.RETENCIÃ“N);}    
 
 // MAIN    
 /*
