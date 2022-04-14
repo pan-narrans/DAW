@@ -2,7 +2,7 @@
 # Comandos de Linux
 
 ``` cmd
-    @author: Alejandro Pérez
+@author: Alejandro Pérez
 ```
 
 - [Comandos de Linux](#comandos-de-linux)

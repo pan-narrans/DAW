@@ -1,7 +1,7 @@
 # Montar un form y conectarlo a una BBDD
 
 ``` cmd
-    @author: Alejandro Pérez
+@author: Alejandro Pérez
 ```
 
 - [Montar un form y conectarlo a una BBDD](#montar-un-form-y-conectarlo-a-una-bbdd)
