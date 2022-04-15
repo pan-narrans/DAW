@@ -175,7 +175,7 @@ Tenemos dos tipos de redes, las dedicadas o privadas y las compartidas:
 > Hay que notar que la que en la imagen es llamada de *"malla"* en los apuntes es llamada *"irregular"*. De la misma forma, la llamada *"totalmente conexa"* es la que llaman *"malla"*.
 > > He buscado varias imágenes para ilustrar este concepto pero todas tienen la misma terminología, por lo que imagino que los apuntes estarán raros.
 
-Cada una de las topologías tienes sus ventajas e inconvenientes en cuanto a coste y velocidad de transmisión de los mensajes. A la hora de la verdad casi todas las redes son mixtas.
+Cada una de las topologías tienes sus ventajas e inconvenientes en cuanto a coste y velocidad de transmisión de los mensajes. A la hora de la verdad casi todas las redes son mixtas o de estrella.
 
 ### Transferencia de la información
 
