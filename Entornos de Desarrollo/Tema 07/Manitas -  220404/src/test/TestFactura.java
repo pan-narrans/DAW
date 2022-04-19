@@ -128,4 +128,31 @@ public class TestFactura {
     assertEquals(factura.getIvaTipo(), argIvaTipo);
     assertEquals(factura.getRetenciónTipo(), argRetenciónTipo);
   }
+
+  @ParameterizedTest
+  @DisplayName("Colaborador: Clase")
+  @MethodSource("test.TestSourcesValidos#argFacturaValidos")
+  void testFacturaOtros(
+      int argId,
+      String argFecha,
+      String argCIFEmisor,
+      String argCIFReceptor,
+      String argDescripción,
+      double argBase,
+      double argIvaTipo,
+      double argRetenciónTipo) {
+
+    Factura factura = new Factura(
+        argId, argFecha, argCIFEmisor, argCIFReceptor, argDescripción, argBase, argIvaTipo,
+        argRetenciónTipo);
+
+    // to string
+    assertEquals(Clase.imprimeClase(factura), factura.toString());
+
+    // equals
+    Factura factura2 = new Factura(
+        argId, argFecha, argCIFEmisor, argCIFReceptor, argDescripción, argBase, argIvaTipo,
+        argRetenciónTipo);
+    assertTrue(factura.equals(factura2));
+  }
 }
