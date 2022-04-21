@@ -1,0 +1,85 @@
+# Programming statements
+
+```cmd
+@autor: Alejandro Pérez
+```
+
+- [Programming statements](#programming-statements)
+  - [Variables](#variables)
+  - [Parameters](#parameters)
+  - [if](#if)
+  - [case (switch)](#case-switch)
+  - [loop](#loop)
+
+## Variables
+
+Local and thus, only used inside the script. They only have power between the `BEGIN` and `END` keywords.
+
+> There might another, more complex type of variable called *global variables*. But as of today they are not standardized and have not a set vay of declaring them.
+
+Declaration of a local variable and assignment of value:
+
+```SQL
+DECLARE foo BOOLEAN;
+SET foo = TRUE;
+```
+
+Assignment of value based on result of a query:
+
+```SQL
+DECLARE foo INTEGER DEFAULT 0;
+SELECT COUNT(*) INTO foo;
+```
+
+## Parameters
+
+## if
+
+```SQL
+IF <condition> THEN
+  <command>;
+ELSEIF <condition> THEN
+  <command>;
+...
+ELSE
+  <command>;
+END IF;
+```
+
+La condición es un booleano.
+
+```SQL
+DECLARE canLend BOOLEAN;
+SET canLend = TRUE;
+
+IF getNumPrestamos(socio) > 3 THEN
+  SET canLend = FALSE;
+END IF;
+```
+
+## case (switch)
+
+```SQL
+CASE <case expression>
+WHEN <expression1> THEN <command1>
+WHEN <expression2> THEN <command2>
+...
+ELSE <commandN>
+END CASE;
+```
+
+La expresión es el valor tomado por el case.
+
+```SQL
+CASE empDept
+WHEN 1 THEN
+  SET bonus = 10000;
+WHEN 4 THEN
+  SET bonus = 5000;
+ELSE
+  SET bonus = 0;
+END CASE;
+```
+
+
+## loop
