@@ -1,11 +1,56 @@
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
-import Baloncesto.*;
+import Baloncesto.Selector;
+import Compare.Movie;
+import Compare.MovieDB;
 
 public class App {
   public static void main(String[] args) throws Exception {
-    baloncesto();
+    // baloncesto();
+    // compare();
+
+    //comparator
+
+  
   }
+
+  // #region Compare
+
+  public static void compare() {
+    MovieDB db = new MovieDB();
+
+    try {
+      db.addMovie(new Movie("The Shawshank Redemption", 9.3f, "1994/10/14", "Frank Darabont"));
+      db.addMovie(new Movie("The Godfather", 9.2f, "1972/3/24", "Francis Ford Coppola"));
+      db.addMovie(new Movie("The Godfather: Part II", 9.0f, "1974/12/20", "Francis Ford Coppola"));
+      db.addMovie(new Movie("The Dark Knight", 8.7f, "2008/7/18", "Christopher Nolan"));
+      db.addMovie(new Movie("12 Angry Men", 9.0f, "1999/10/20", "Spike Lee"));
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+
+    db.showMovies();
+    System.out.println("===========");
+
+    Comparator<Movie> byRating = (Movie m1, Movie m2) -> m1.getRating() < m2.getRating() ? 1 : -1;
+    Comparator<Movie> byName = (Movie m1, Movie m2) -> m1.getTitle().compareTo(m2.getTitle());
+    Collections.sort(db.getMovies(), byRating);
+
+    db.showMovies();
+    System.out.println("===========");
+
+    Collections.sort(db.getMovies(), byName);
+
+    db.showMovies();
+  }
+
+  // #endregion
+
+  // #region Baloncesto
 
   public static void baloncesto() {
     Selector agencia = new Selector();
@@ -46,4 +91,8 @@ public class App {
     agencia.addJugador("Pedro", 19, "Los Lakers", 10, "Madrid");
     agencia.addJugador("Pedro", 19, "Los Lakers", 10, "Madrid");
   }
+
+  // #endregion
 }
+
+// delete duplicate
