@@ -10,22 +10,31 @@
     - [Init](#init)
     - [Add](#add)
     - [Commit](#commit)
+    - [Reset](#reset)
   - [Advanced stuff](#advanced-stuff)
 
 ## Introduction
+
+- Limbo
+- Staging Area
+- Repository
 
 ## Basic Commands
 
 ### Init
 
-Crea un nuevo repositorio 
+Crea un nuevo repositorio.
 
 ### Add
 
-```bash
-git add
-```
+Añade archivos a la staging area.
 
 ### Commit
+
+Pasa los archivos de la staging area al repositorio.
+
+### Reset
+
+Nos devuelve a un commit anterior.
 
 ## Advanced stuff
