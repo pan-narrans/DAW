@@ -230,3 +230,7 @@ Las normas se dividen en dos categorías:
   <br> *Ej: el sistema operativo UNIX.*
 - **De jure** (de ley):
   - estándares formales y legales acordados por algún organismo de estandarización autorizado.
+
+---
+
+> Go back to the [index](.index.md#index).

@@ -13,7 +13,7 @@
     - [Según clase](#según-clase)
   - [Máscara de red y nombre de dominio](#máscara-de-red-y-nombre-de-dominio)
     - [Máscara de red](#máscara-de-red)
-    - [Nombre de dominio](#nombre-de-dominio)
+    - [Nombre de dominio (DNS)](#nombre-de-dominio-dns)
   - [Planificaciones de direcciones IP](#planificaciones-de-direcciones-ip)
   - [Cómo se comunican dos host](#cómo-se-comunican-dos-host)
     - [Dentro de una misma red](#dentro-de-una-misma-red)
@@ -21,9 +21,9 @@
 
 ## Introducción
 
-El papel de la capa IP es averiguar cómo encaminar paquetes a su destino final. Cada interfaz en la red necesita una dirección IP, que identifica tanto un ordenador concreto como la red a la que éste pertenece. Se trata de una dirección única a nivel mundial.
+El papel de la capa IP es averiguar cómo encaminar paquetes a su destino final. Cada interfaz en la red necesita una dirección IP, que **identifica tanto un ordenador concreto como la red a la que éste pertenece**. Se trata de una dirección única a nivel mundial.
 
-> las IPv4 se acabaron y ahora usamos IPv6 para poder acomodar el nº tan grande de equipos conectados a la red
+> ℹ Las IPv4 se acabaron *(literalmente)* y ahora usamos [IPv6](subnetting-ipv6.md) para poder acomodar el nº tan grande de equipos conectados a la red.
 
 ## Direcciones IPv4
 
@@ -38,21 +38,21 @@ Dentro de una misma red no puede haber direcciones duplicadas, pero nada impide 
 ### Accesibilidad
 
 - **Publicas**
-  - visibles por todos los host conectados a internet, no puede haber dos host con la misma dirección pública
+  - Visibles por todos los host conectados a internet, no puede haber dos host con la misma dirección pública.
 - **Privadas**
-  - visibles únicamente por los host de la propia red u otra red privada interconectada
-  - no pueden salir a internet, por lo que para acceder a la web necesitan pasar por un router o proxy que si que tenga asignada una dirección pública
+  - Visibles únicamente por los host de la propia red u otra red privada interconectada.
+  - No pueden salir a internet, por lo que para acceder a la web necesitan pasar por un router o proxy que si que tenga asignada una dirección pública.
 
 ### Perdurabilidad
 
 - **Estáticas**
-  - asignadas de forma fija a un host concreto, cuando una máquina con este tipo de IP se conecte a la red lo hará siempre con la misma dirección.
+  - Asignadas de forma fija a un host concreto, cuando una máquina con este tipo de IP se conecte a la red lo hará siempre con la misma dirección.
 - **Dinámicas**
-  - se asignan sobre la marcha cada vez que el equipo se conecta a la red
+  - Se asignan sobre la marcha cada vez que el equipo se conecta a la red.
 
 ### Según clase
 
-A la hora de crear una dirección para una red se tiene que tener en cuenta el tamaño de esta (el nº de host que va a albergar). Distinguimos principalmente entre 3 tipos de redes, pero hay más.
+A la hora de crear una dirección para una red se tiene que tener en cuenta el tamaño de esta (el nº de host que va a albergar). Distinguimos principalmente entre 3 tipos de redes:
 
 | Clase | ID  | Bits red | Bits host | 1er octeto |
 | :---: | --- | :------: | :-------: | ---------- |
@@ -60,11 +60,13 @@ A la hora de crear una dirección para una red se tiene que tener en cuenta el t
 | **B** | 10  |    14    |    12     | 128 a 191  |
 | **C** | 110 |    21    |     8     | 192 a 223  |
 
+> 🙊 Es una tontería pero hay que acordarse, para sacar el nº de bits de red tenemos que restar los bits reservados para definir la clase.
+
 Hay valores red reservados para usos concretos:
 
 - del 223 al 255 *(1er octeto)* corresponden a las clases especiales D y E
 - los valores 0 y 255 *(4to octeto)* no se le pueden asignar a ningún host de la red ya que están reservados para la máscara de red y para el broadcast respectivamente.
-- 127.0.0.1 es la dirección de loopback y hace referencia a nuestro propio host, también se puede acceder a él con la palabra reservada *localhost*.
+- `127.0.0.1` es la dirección de loopback y hace referencia a nuestro propio host, también se puede acceder a él con la palabra reservada *localhost*.
 
 ## Máscara de red y nombre de dominio
 
@@ -72,7 +74,9 @@ Hay valores red reservados para usos concretos:
 
 Para poder enrutar los paquetes necesitamos saber el nombre de la red de destino, para ello usamos la máscara de red.
 
-Consiste en poner todos los bits de red de la IP a 1 y los de host a 0. De esta forma:
+> Consiste en poner todos los bits de red de la IP a 1 y los de host a 0. 
+
+De esta forma:
 
 |         |                                               |
 | ------- | --------------------------------------------- |
@@ -86,9 +90,11 @@ Consiste en poner todos los bits de red de la IP a 1 y los de host a 0. De esta 
 | Máscara | 255.255.192.0                                 |
 |         | 1111 1111 - 1111 1111 - 1100 0000 - 0000 0000 |
 
+> 👍 Cuando tenemos direcciones de red que se salen de sus octetos, para sacar la máscara sin cagadas ayuda pasarlo todo a binario.
+
 Al combinar con un AND la máscara de red y la dirección IP obtenemos la dirección de la red.
 
-### Nombre de dominio
+### Nombre de dominio (DNS)
 
 Para no tener que recordar la retalía de números que es una dirección IP se optó por poder asignarles un nombre a las direcciones. Los nombres están registrados en el **DNS** (Domain Name System), tablas que relacionan las direcciones con su nombre de dominio.
 
@@ -128,7 +134,7 @@ Este sería el resultado final para una red que necesite 14 subredes con máximo
 
 ## Cómo se comunican dos host
 
-> Se ha visto en más detalle [aquí](intro-arquitectura-redes.md). 
+> Se ha visto de [forma teórica](intro-arquitectura-redes.md) y de [forma "práctica"](packet-transfer.md) en estos otros archivos.
 
 Un paquete es enviado a través de las capas de la arquitectura implementada, pasa por el medio físico y llega finalmente hasta la máquina de destino.
 
@@ -147,3 +153,7 @@ Cuando nadie conteste a A, este le enviará la query al router que usará la má
 C recibirá el mensaje y responderá a A con su dirección MAC. Al igual que si estuvieran en la misma red, esto solo hace falta hacerlo una vez.
 
 El router actuará como intermediario siempre para para conectar equipos enredes distintas.
+
+---
+
+> Go back to the [index](.index.md#index).
