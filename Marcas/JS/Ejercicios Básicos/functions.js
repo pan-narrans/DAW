@@ -104,9 +104,9 @@ function impares() {
 }
 
 /* Programa que muestre la tabla de multiplicar del numero X, hasta el valor Y.
- Ambos los leerá de la entrada estándar y estarán en una sola línea separados por un espacio
- La tabla la mostrará con una entrada por línea.
- Entre cada elemento habrá un único espacio de separación */
+Ambos los leerá de la entrada estándar y estarán en una sola línea separados por un espacio
+La tabla la mostrará con una entrada por línea.
+Entre cada elemento habrá un único espacio de separación */
 function tablaDeMultiplicar() {
   const numbers = prompt("Introduce el número a multiplicar y el número de veces que lo quieres multiplicar").split(" ");
   let i = 1;
@@ -115,4 +115,69 @@ function tablaDeMultiplicar() {
     console.log(numbers[0] + " x " + i + " = " + numbers[0] * i);
     i++;
   } while (i <= numbers[1]);
+}
+
+/*
+Realiza un programa que lea una secuencia de notas (con valores que van de 0 a 10, sin decimales).
+Se leerá una nota por línea. La entrada acabará con el valor -1. El programa debe mostrar por salida estándar "SI" si hay algún 10, "NO" en caso contrario.
+ */
+function notas() {
+  const notas = [];
+  let nota = prompt("Introduce nota");
+
+  while (nota != -1) {
+    notas.push(nota);
+    nota = prompt("Introduce nota");
+  }
+
+  notas.includes("10")
+    ? console.log("SI")
+    : console.log("NO");
+}
+
+/* Realiza un programa que lea una cantidad de dinero (múltiplo de 5) y tras ello desglose el cambio en billetes de 500,200,100,50,20,10,5 intentado dar el mínimo número de billetes.
+El programa mostrará por la salida estándar el número mínimo de billetes. */
+function cambio() {
+  let cambio = prompt("Introduce la cantidad de dinero");
+  let billetes = [
+    500,
+    200,
+    100,
+    50,
+    20,
+    10,
+    5
+  ];
+  let i = 0;
+  let numBilletes = 0;
+
+  if (cambio % 5 != 0) {
+    window.alert("No es múltiplo de 5");
+    return;
+  }
+
+  while (cambio > 0) {
+    if (cambio >= billetes[i]) {
+      numBilletes += Math.floor(cambio / billetes[i]);
+      cambio = cambio % billetes[i];
+    }
+    i++;
+  }
+
+  console.log(numBilletes);
+}
+
+/* Escribe una función que reciba dos enteros y devuelva su suma. La función no debe leer nada de la entrada estándar ni mandar ningún dato por la salida estándar. La función debe definirse con este estilo: function suma(a, b) */
+function suma(a, b) {
+  return a + b;
+}
+
+/* Realiza una función que me devuelva si un número es o no bisiesto. */
+function bisiesto(a) {
+  return (a % 4 == 0 && a % 100 != 0) || a % 400 == 0;
+}
+
+/* Escribe una función que reciba dos decimales con la base y altura de un rectángulo y devuelva su  perímetro. */
+function perimetroRectangulo(base, altura) {
+  return (2 * (base + altura)).toFixed(2);
 }
