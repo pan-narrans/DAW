@@ -45,22 +45,27 @@ When accessing a table row from a pointer you can use the keywords `OLD` and `NE
 
 - For a **DELETE** trigger, `OLD` contains the old values, and `NEW` contains no values.
 
+|            |  OLD  |  NEW  |
+| ---------- | :---: | :---: |
+| **INSERT** |   -   |   X   |
+| **UPDATE** |   X   |   X   |
+| **DELETE** |   X   |   -   |
+
 ## Example
 
 ```sql
+DROP TRIGGER IF EXISTS insertPrestamo;
+
 DELIMITER //
 
-CREATE TRIGGER chargeHours BEFORE INSERT
-ON worked_hours FOR EACH ROW
+CREATE TRIGGER insertPrestamo AFTER INSERT
+ON prestamo FOR EACH ROW
 BEGIN
 
-IF NEW.charged = 0 THEN
-  UPDATE works_on SET hours = hours + NEW.hours
-  WHERE essn = NEW.essn AND pno = NEW.pno;
-  SET NEW.charged = 1;
-END IF;
+UPDATE ejemplares SET disponible = disponible - 1
+WHERE libro = NEW.libro;
 
-END; //
+END //
 
 DELIMITER ;
 ```

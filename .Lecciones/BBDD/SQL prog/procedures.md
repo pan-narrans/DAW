@@ -18,6 +18,12 @@ While a function can call another function and a procedure can call a function, 
 
 ## Calling a procedure
 
+Unlike [functions](functions.md), procedures can be called directly from the SQL console but can't be called from another function or procedure.
+
+```sql
+CALL <procedureName>([parameter1[,...]])
+```
+
 ## Creating a procedure
 
 ```sql
