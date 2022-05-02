@@ -4,7 +4,7 @@
 ```cmd
 ==============================
 Tema 3. El contrato de trabajo
-============================= 
+============================== 
 
 @autor: Cristina Pascua
 @autor: Alejandro Pérez
