@@ -45,7 +45,10 @@ El **subsidio** (dinero percibido) se calcula así:
 
 ![contingencias-comunes](img/contingencias-comunes.jpg)
 
-El número de días cotizados depende del grupo de cotización, ya que del 1 al 7 siempre son 30 días.
+El número de días cotizados depende del grupo de cotización:
+
+- 1 al 7 siempre son 30 días.
+- resto de grupos los días que tenga el mes.
 
 Tu grupo de cotización determina el máximo y el mínimo que puedes percibir como subsidio:
 
@@ -63,9 +66,11 @@ Tu grupo de cotización determina el máximo y el mínimo que puedes percibir co
 
 ## 3 Desempleo
 
-La persona en situación legal de desempleo que, pudiendo y queriendo trabajar, pierda su empleo o reduzca su jornada laboral en, al menos, una tercera parte, puede recibir la prestación o el subsidio de desempleo.
+La persona en situación legal de desempleo que, **pudiendo y queriendo trabajar**, pierda su empleo o reduzca su jornada laboral en, al menos, una tercera parte, puede recibir la prestación o el subsidio de desempleo.
 
 ### 3-1 Prestación contributiva por desempleo
+
+> Lo que conocemos comúnmente como *paro*.
 
 La prestación por desempleo la recibe quien esté en situación legal de desempleo, esté buscando activamente empleo, suscriba un compromiso de actividad y tenga al menos **360 días cotizados en los 6 años anteriores**.
 
@@ -73,17 +78,15 @@ Las bases de la SS están basadas en el estado de bienestar, así, el estado pro
 
 ![prestación por desempleo](img/prestacion-por-desempleo.jpeg)
 
-> Sumatorio de las bases de cotización por contingencias comúnes de los últimos 180 días / 180.
-
 Si en el trabajo anterior no te despiden (te vas tú) y en el nuevo no pasas el periodo de prueba tienes que esperar 3 meses para cobrar el paro.
 
-Si se tiene derecho a 4 meses de paro, pero a los 3 se encuentra trabajo y se trabaja un año, se tiene derecho a otros 4 meses de paro. Aquí se puede elegir entre reabrir el periodo anterior (si es más interesante) o el nuevo periodo (perdiendo el anterior).
+> ℹ Si se tiene derecho a 4 meses de paro, pero a los 3 se encuentra trabajo y se trabaja un año, se tiene derecho a otros 4 meses de paro. Aquí se puede elegir entre reabrir el periodo anterior (si es más interesante) o el nuevo periodo (perdiendo el anterior).
 
 ### 3-1 Subsidio por desempleo
 
 > Si no tenemos derecho a paro *(prestación contributiva)* podemos optar al subsidio.
 
-El subsidio por desempleo es una prestación para desempleados demandantes de empleo que no rechacen una oferta de empleo ni acciones formativas adecuadas ni tengan rentas mensuales superiores al 75% del SMI.
+El subsidio por desempleo es una prestación para desempleados demandantes de empleo que no rechacen una oferta de empleo ni acciones formativas adecuadas ni tengan rentas mensuales superiores al **75% del SMI**.
 
 La cuantía es del 80% del IPREM (indicador público de renta de efectos múltiples) mensual.
 

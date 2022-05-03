@@ -14,7 +14,7 @@ $$ \boxed {
 
 BR _\text{ accidente de trabajo}=
 \frac {\text{BCCC} _{\text{ del mes anterior sin HE}}}
-      {\text{días cotizados}}
+      {\text{días del mes anterior o 30}}
 +
 \frac {\text{Horas Extra} _{\text{ año anterior}}}
       {360}
@@ -35,11 +35,13 @@ Dinero percibido:
 Cálculo de la base reguladora:
 $$ \boxed {
 
-BR _\text{ enfermedad común} = \frac
-  {\text{BCCC}_{\text{del mes anterior}}}
-  {\text{días del mes}}
+BR _\text{ enfermedad común} =
+\frac {\text{BCCC}_{\text{del mes anterior}}}
+      {\text{días del mes anterior o 30}}
 
 }$$
+
+Lo ganado el més anterior dividido por los días que tuviera el mes o por 30 dependiendo del grupo profesional.
 
 Dinero percibido:
 
