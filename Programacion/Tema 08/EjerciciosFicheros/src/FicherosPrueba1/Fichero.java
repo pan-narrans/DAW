@@ -1,4 +1,4 @@
-package Ficheros;
+package FicherosPrueba1;
 
 public interface Fichero {
   public Object read(String fileName);
