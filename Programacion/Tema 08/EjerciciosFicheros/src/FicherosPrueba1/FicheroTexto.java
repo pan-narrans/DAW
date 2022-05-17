@@ -1,4 +1,4 @@
-package Ficheros;
+package FicherosPrueba1;
 
 import java.io.FileReader;
 import java.io.FileWriter;
