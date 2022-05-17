@@ -11,8 +11,8 @@
   - [Polimorfismo](#polimorfismo)
   - [Interfaz](#interfaz)
   - [Sobrecarga](#sobrecarga)
-  - [Encapsulación WIP](#encapsulación-wip)
-  - [Abstracción WIP](#abstracción-wip)
+  - [Encapsulación](#encapsulación)
+  - [Abstracción](#abstracción)
 - [Modificadores](#modificadores)
   - [Visibilidad](#visibilidad)
   - [`static`](#static)
@@ -130,9 +130,13 @@ int plusMethod(int x, int y) { return x + y; }
 double plusMethod(double x, double y) { return x + y; }
 ```
 
-## Encapsulación WIP
+## Encapsulación
 
-## Abstracción WIP
+Dividir en distintas clases y métodos la funcionalidad de la aplicación para que el debugging sea más sencillo.
+
+## Abstracción
+
+Simplificar modelos reales para poder traducirlos a código de forma más sencilla. Quitamos las partes que no nos interesan y nos quedamos con las que necesitamos.
 
 # Modificadores
 
