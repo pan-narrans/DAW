@@ -45,20 +45,20 @@ Main:
 
 ```java
  public static void main(String[] args) throws Exception { 
-    List<Person> list = new ArrayList<Person>();
+  List<Person> list = new ArrayList<Person>();
 
-    // Populate the list
-    for (int i = 0; i < 5; i++) {
-      int age = (int) (Math.random() * 100);
-      int height = (int) (Math.random() * 1000) + 1000;
-      Person person = new Person(age, height);
+  // Populate the list
+  for (int i = 0; i < 5; i++) {
+    int age = (int) (Math.random() * 100);
+    int height = (int) (Math.random() * 1000) + 1000;
+    Person person = new Person(age, height);
 
-      list.add(person);
-    }
-
-    Collections.sort(list);
-    list.forEach(System.out::println);
+    list.add(person);
   }
+
+  Collections.sort(list);
+  list.forEach(System.out::println);
+}
 ```
 
 Output:
