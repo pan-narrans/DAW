@@ -1,41 +1,63 @@
 # Ficheros
 
 - [Ficheros](#ficheros)
-  - [Creación de ficheros](#creación-de-ficheros)
+  - [Manejo de ficheros](#manejo-de-ficheros)
+    - [Crear un ficheros](#crear-un-ficheros)
+    - [Comprobar que un fichero existe](#comprobar-que-un-fichero-existe)
+    - [Comprobar el tamaño de un fichero](#comprobar-el-tamaño-de-un-fichero)
   - [Lectura y escritura en Binario](#lectura-y-escritura-en-binario)
-    - [Write binary file - code example](#write-binary-file---code-example)
-    - [Read binary File - code example](#read-binary-file---code-example)
-  - [Texto](#texto)
+    - [Escribir en Binario](#escribir-en-binario)
+      - [Meter un objeto a capón](#meter-un-objeto-a-capón)
+      - [Guardar varios datos](#guardar-varios-datos)
+    - [Leer en Binario](#leer-en-binario)
+      - [Leer el objeto a capón](#leer-el-objeto-a-capón)
+      - [Leer poco a poco](#leer-poco-a-poco)
+  - [Lectura y escritura en Texto](#lectura-y-escritura-en-texto)
+    - [Escribir en texto](#escribir-en-texto)
+    - [Leer en texto](#leer-en-texto)
 
-## Creación de ficheros
+💬 Todos los ejemplos de código que vienen a continuación tienen que estar rodeados por un `try/catch` para el control de [excepciones](/Java/excepciones.md).
 
-Para trabajar con ficheros usaremos las clases `Files` y `Path`.
+## Manejo de ficheros
+
+Para trabajar con ficheros usamos las clases `Files` y `Path`.
+
+### Crear un ficheros
 
 ```java
 Files.createFile(Path.of("C:\\Users\\user\\Desktop\\ficheros.md"));
 ```
 
+### Comprobar que un fichero existe
+
 ```java
-public void createFile(String path) {
-  try {
+boolean exists = Files.exists(Path.of("C:\\Users\\user\\Desktop\\ficheros.md"));
+```
 
-    Files.createFile(Path.of(path));
-    System.out.println("File created.");
+### Comprobar el tamaño de un fichero
 
-  } catch (FileAlreadyExistsException e) {
-
-    System.out.println("File already exists.");
-
-  } catch (Exception e) {
-
-    System.out.println("An error occurred.");
-  }
-}
+```java
+int size = Files.size(Path.of("C:\\Users\\user\\Desktop\\ficheros.md"));
 ```
 
 ## Lectura y escritura en Binario
 
-For writing:
+💀 Los objetos que queramos guardar en un fichero binario tienen que heredar de la clase `Serializable`
+> Por defecto las clases que vienen con java ya son serializables.
+
+Al trabajar con binario tenemos dos opciones:
+
+- Meter y leer **un único objeto** a capón:
+  - elegante
+  - sencillo
+  - sin complicaciones
+- Meter y leer **varios datos** uno detrás de otro:
+  - complicado
+  - el orden importa en lectura y escritura
+
+### Escribir en Binario
+
+#### Meter un objeto a capón
 
 - `ObjectOutputStream()`
 - `FileOutputStream()`
@@ -47,7 +69,26 @@ out = new ObjectOutputStream(new FileOutputStream(path));
 out.writeObject(o);
 ```
 
-For reading:
+> ObjectOutputStream únicamente puede usarse **una vez por llamada** para guardar **un objecto**. Si queremos guardar dos objetos tendríamos que meterlos dentro de una colección y guardar la colección.
+
+#### Guardar varios datos
+
+- `BufferedOutputStream()`
+- `FileOutputStream()`
+
+```java
+BufferedOutputStream writer = null;
+
+writer = new BufferedOutputStream(new FileOutputStream(path));
+writer.write("Hey, there!\n".getBytes());
+writer.write("How are you doing?".getBytes());
+
+writer.close();
+```
+
+### Leer en Binario
+
+#### Leer el objeto a capón
 
 - `ObjectInputStream()`
 - `FileInputStream()`
@@ -60,69 +101,56 @@ in = new ObjectInputStream(new FileInputStream(path));
 result = in.readObject();
 ```
 
-We need to surround everything in a try/catch to prevent fatal errors.
+#### Leer poco a poco
 
-### Write binary file - code example
-
-A la hora de escribir en un archivo binario le pasamos a lo bruto el objeto que queremos escribir y listo.
-
-> ❔ Me queda ver si se sobre-escribe o no
+- `BufferedInputStream()`
+- `FileInputStream()`
 
 ```java
-public void writeFile(String path, Object o) {
-  ObjectOutputStream out = null;
+int ch;
+BufferedInputStream reader = null;
 
-  try {
-
-    out = new ObjectOutputStream(new FileOutputStream(path));
-    out.writeObject(o);
-
-  } catch (Exception e) {
-
-    System.out.println("An error occurred.");
-
-  } finally {
-
-    try {
-      out.close();
-    } catch (IOException e) {
-      System.out.println("An error occurred whilst closing the output stream.");
-    }
-
-  }
+reader = new BufferedInputStream(new FileInputStream(path));
+while ((ch = reader.read()) != -1) {
+    System.out.print((char) ch);
 }
+
+reader.close();
 ```
 
-### Read binary File - code example
+## Lectura y escritura en Texto
 
-Le pedimos que nos devuelva lo guardado dentro del archivo y ya nos preocupamos fuera de castearlo al tipo de dato correcto.
+Al trabajar con ficheros de texto tenemos que tener mucho cuidado con cómo guardamos los datos para luego poder reconstruirlos mientras los leemos.
+
+### Escribir en texto
+
+- `BufferedWriter()`
+- `FileWriter()`
 
 ```java
-public Object readFile(String path) {
-  Object result = null;
-  ObjectInputStream in = null;
+Person p1 = new Person(10, 100);
+BufferedWriter writer = null;
 
-  try {
-
-    in = new ObjectInputStream(new FileInputStream(path));
-    result = in.readObject();
-
-  } catch (Exception e) {
-
-    System.out.println("An error occurred whilst reading the file.");
-
-  } finally {
-
-    try {
-      in.close();
-    } catch (IOException e) {
-      System.out.println("An error occurred whilst closing the input stream.");
-    }
-
-  }
-
-  return result;
-}
+writer = new BufferedWriter(new FileWriter("text.txt"));
+writer.write(p1.getAge() + "," + p1.getHeight());
 ```
 
-## Texto
+### Leer en texto
+
+- `BufferedReader()`
+- `FileReader()`
+
+```java
+BufferedReader reader = null;
+String line = null;
+Person readPerson = null;
+
+reader = new BufferedReader(new FileReader("text.txt"));
+line = reader.readLine();
+readPerson = new Person(Integer.parseInt(string.split(",")[0]),
+                        Integer.parseInt(string.split(",")[1]));
+```
+
+Como yo sé (🐵 <- yo) que he guardado una única persona, que la persona tiene dos campos y que los campos los he separado con ',' pues puedo reconstruir el objeto leyendo la línea y separando la string en la ','.
+
+Cuanto más complejo sea lo que hemos guardado dentro más se enmierda esto. Proceder con cuidado.
