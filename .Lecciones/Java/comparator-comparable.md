@@ -91,6 +91,14 @@ Tenemos principalmente tres opciones de implementación:
   - Ocupa nada y menos.
   - No se puede reutilizar.
 
+Podemos usar dos `Comparator`s a la vez así:
+
+```java
+Collections.sort(list, byAge.thenComparing(byHeight));
+```
+
+De esta forma, si el primer comparador encuentra dos items iguales, estos se ordenarán en base al segundo.
+
 ### Clase Externa
 
 ```java
@@ -127,9 +135,8 @@ Comparator<Person> byHeight = new Comparator<Person>() {
   }
 };
 
-// Using the comparators
-Collections.sort(list, byAge);
-Collections.sort(list, byHeight);
+// Using both comparators
+Collections.sort(list, byAge.thenComparing(byHeight));
 ```
 
 ### Lambda
