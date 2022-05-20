@@ -7,8 +7,6 @@
 - [Subnetting IPV6](#subnetting-ipv6)
   - [Tipos de direcciones IPv6](#tipos-de-direcciones-ipv6)
   - [Direcciones Unicast](#direcciones-unicast)
-    - [Dirección de loopback](#dirección-de-loopback)
-    - [Dirección sin especificar](#dirección-sin-especificar)
   - [IPv4 a IPv6](#ipv4-a-ipv6)
   - [Subnetting](#subnetting)
 
@@ -56,14 +54,6 @@ Se estructuran de la siguiente manera:
   - Últimos 64 bit o **4 hextetos**.
 
 > ℹ Un hexteto está compuesto por 4 nibble!
-
-### Dirección de loopback
-
-`::1`
-
-### Dirección sin especificar
-
-`::`
 
 ## IPv4 a IPv6
 

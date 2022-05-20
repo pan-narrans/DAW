@@ -74,7 +74,7 @@ Hay valores red reservados para usos concretos:
 
 Para poder enrutar los paquetes necesitamos saber el nombre de la red de destino, para ello usamos la máscara de red.
 
-> Consiste en poner todos los bits de red de la IP a 1 y los de host a 0. 
+> Consiste en poner todos los bits de red de la IP a 1 y los de host a 0.
 
 De esta forma:
 
