@@ -17,6 +17,7 @@ public class FicheroBinario implements Fichero {
       result = new StringBuilder();
       result.append(in.readUTF());
     } catch (Exception e) {
+      ;
     } finally {
       try {
         in.close();
