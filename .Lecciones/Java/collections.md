@@ -1,0 +1,3 @@
+# Collections
+
+- [Collections](#collections)
