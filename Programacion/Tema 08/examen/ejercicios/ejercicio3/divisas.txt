@@ -1,0 +1,27 @@
+euro;1,05
+Argentina;Pesos Argentinos;0,0085 
+Brasil;Real Brasileño;5,2434
+Chile;Pesos Chilenos;895,53
+Colombia;Pesos Colombianos;4270
+Mexico;Pesos Mexicanos;21,0381
+Peru;Sol peruano;3,9723
+Uruguay;Pesos Uruguayos;43,611
+Suecia;Coronas Suecas;10,4424
+Noruega;Coronas Noruegas;10,1594
+Dinamarca;Coronas Danesas;7,4407
+Turquia;Liras turcas;16,6215
+Rusia;Rublos Rusos;66,1096
+Polacos;Zlotys polacos;4,6462
+Hungria;Forints húngaros;386,14
+Chequia;Coronas checas;24,688
+Canada;Dólares Canadienses;1,3526
+Australia;Dólares Australianos;1,4998
+Sudafrica;Rands sudafricanos;16,8034
+Hong Kong;Dólares de Hong Kong;8,2798
+India;Rupias indias;81,676
+Corea;Wons coreanos;1334,49
+Israel;Shekels israelíes;3,5321
+Nueva Zelanda;Dólares neozelandés;1,6564
+Singapur;Dólares de Singapur;1,4594
+Indonesia;Rupias indonesias;15447,55
+Malasia;Ringgits malayos;4,6285
