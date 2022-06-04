@@ -217,7 +217,34 @@ function reloj() {
 }
 
 // 15. Solicite un número al usuario y muestre todos sus múltiplos del 0 al 100
+function multiples() {
+  const num = parseInt(prompt("Introduce un número"));
+  let array = [];
+
+  for (let i = 0; i <= 100; i++) {
+    if (i % num === 0) {
+      array.push(i);
+    }
+  }
+
+  array.forEach(element => console.log(element));
+}
+
 // 16. Solicite un número y muestre el número de dígitos que lo forman
+function mostrarDigitos() {
+  const num = parseInt(prompt("Introduce un número"));
+  let aux = num;
+  let digits = [];
+
+  while (aux !== 0) {
+    digits.push(aux % 10);
+    aux = Math.floor(aux / 10);
+  }
+
+  console.log("El número " + num + " está compuesto por: " + digits.length + " dígitos");
+  digits.reverse().forEach(element => console.log(element));
+}
+
 // 17. Solicite un número y muestre sus dígitos invertidos
 // 18. Solicite un importe e indique el importe con IVA
 // 19. Solicite un importe con IVA y lo indique sin IVA
@@ -283,12 +310,9 @@ function diasSemana() {
     "Domingo"
   ];
 
-  days.forEach(element => {
-    {
-      console.log(element + "\n");
-    }
-  });
+  days.forEach(element => console.log(element + "\n"));
 }
+
 // 3. Solicite un carácter e indique si se trata de una letra, de un número o de otro tipo de carácter
 function tipoCaracter() {
   let char = prompt("Introduce un carácter");
@@ -346,7 +370,35 @@ function palindromo() {
 }
 
 // 7. Solicite una cadena de caracteres y elimine los espacios innecesarios,es decir, elimine todos los espacios al comienzo y al final de la cadena y mantenga un único espacio entre dos palabras
+function trimSpaces() {
+  let cadena = prompt("Introduce una cadena de caracteres");
+  cadena.trim();
+  // cadena = cadena.replace(/[" "]+/g, " ");
+  cadena = cadena.replace(/\s+/g, " ");
+  console.log(cadena);
+}
+
 // 8. Solicite al usuario un número y muestre una pirámide de asteriscos cuya base contenga un número de asteriscos igual al número introducido por el usuario
+
+function piramide(num) {
+  let asteriscos = "";
+  let pirámide = [""];
+
+  for (let i = 0; i < num; i++) {
+    asteriscos += "*";
+    pirámide.push(asteriscos);
+  }
+
+  return pirámide;
+}
+
+function piramideN1() {
+  const num = parseInt(prompt("Introduce el tamaño de la base de la pirámide."));
+  let pirámide = piramide(num);
+
+  pirámide.forEach(element => console.log(element));
+}
+
 /* 9. Solicite un número al usuario y muestre una plantilla similar a la siguiente (para el
 número 7)
 *
@@ -355,8 +407,15 @@ número 7)
 ****
 *****
 ******
-*******
-10. Solicite un número al usuario y muestre una plantilla similar a la siguiente (para el
+******* */
+function piramideN2() {
+  const num = parseInt(prompt("Introduce el tamaño de la base de la pirámide."));
+  let pirámide = piramide(num);
+
+  pirámide.reverse().forEach(element => console.log(element));
+}
+
+/* 10. Solicite un número al usuario y muestre una plantilla similar a la siguiente (para el
 número 7). Tener en cuenta los espacios de la izquierda
 1******
 12*****
@@ -364,8 +423,20 @@ número 7). Tener en cuenta los espacios de la izquierda
 1234***
 12345**
 123456*
-1234567
-11. Solicite un número impar usuario y muestre una plantilla similar a la siguiente (para
+1234567 */
+function piramideN3() {
+  const num = parseInt(prompt("Introduce el tamaño de la base de la pirámide."));
+  let pirámide = piramide(num - 1);
+  let cifra = "1";
+  let i = 2;
+
+  pirámide.reverse().forEach(element => {
+    console.log(cifra + element);
+    cifra += i++;
+  });
+}
+
+/* 11. Solicite un número impar usuario y muestre una plantilla similar a la siguiente (para
 el número 9)
 *
 ***
@@ -376,7 +447,16 @@ el número 9)
 *******
 *****
 ***
-*
+* */
+function piramideN4() {
+  const num = parseInt(prompt("Introduce el tamaño de la base de la pirámide."));
+  let pirámide = piramide(num);
+
+  pirámide.forEach(element => console.log(element));
+  pirámide.reverse().forEach(element => console.log(element));
+}
+
+/*
 12. Solicite un número al usuario y dibuje un hexágono del lado indicado, por ejemplo
 para el número 4:
 ****
@@ -386,7 +466,22 @@ para el número 4:
 ********
 ******
 ****
-13. Solicite una cadena de caracteres e indique si contiene únicamente mayúsculas,
+
+      ********
+    ************
+  ****************
+********************
+  ****************
+    ************
+      ********
+*/
+function hexagon() {
+  const lado = parseInt(prompt("Introduce el tamaño del lado del hexágono."));
+  const niveles = lado * 2 - 1;
+  let hexagon = "";
+}
+
+/* 13. Solicite una cadena de caracteres e indique si contiene únicamente mayúsculas,
 únicamente minúsculas, únicamente números o únicamente otros caracteres
 distintos a los mencionados
 14. Solicite al usuario una cadena de caracteres. Si el último carácter de ésta es una

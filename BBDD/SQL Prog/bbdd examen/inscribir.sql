@@ -6,7 +6,7 @@ DELIMITER //
   Recibe como parámetro de entrada el id de la competición e inserta en la tabla CompeticionParticipante todos los participantes de esa competición.
 
   Por ejemplo:
-  CALL inscribir(9) dará como resultado la insercción en la tabla de CompeticionParticipante de todos los participanes de categoria Adulto, porque la competicion 9 es de la categoria adultos.
+  CALL inscribir(9) dará como resultado la inserción en la tabla de CompeticionParticipante de todos los participantes de categoría Adulto, porque la competición 9 es de la categoria adultos.
 */
 
 CREATE PROCEDURE inscribir (competicion_id INT)
