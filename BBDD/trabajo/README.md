@@ -1,6 +1,7 @@
 # Generador de menus y lista de la compra
 
-> Este documento está escrito en markdown, se puede visualizar cómodamente [aquí](https://markdownlivepreview.com/) copiando y pegando su contenido.
+> Este documento está escrito en markdown, se puede visualizar cómodamente [aquí](https://markdownlivepreview.com/) copiando y pegando su contenido. <br>
+> Puede ser visualizado sin necesidad de copiar y pegar en mi [repositorio en github](https://github.com/pan-narrans/DAW/tree/main/BBDD/trabajo).
 
 - [Generador de menus y lista de la compra](#generador-de-menus-y-lista-de-la-compra)
   - [Idea](#idea)
@@ -30,7 +31,7 @@ A raíz de esto va a haber tablas en la base de datos que no van a tener utilida
 
 > Todos los scripts tienen comentarios dentro explicando su lógica.
 
-Al llamar al procedimiento `create_menu()` automáticamente se rellenan las tablas de recetas para la semana `menu_recipes` y la lista de la compra `menu_shopping_list`.
+Al llamar al procedimiento `create_menu()` se crea un nuevo registro en la tabla `menus` y se llama a un disparador que automáticamente la tabla de recetas para la semana `menu_recipes`. Esta a su vez llamará a un disparador que se encargará de rellenar la lista de la compra `menu_shopping_list`.
 
 ### Generación del menú
 
