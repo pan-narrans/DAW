@@ -41,15 +41,15 @@ CREATE TABLE types (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE ingredient_type (
+CREATE TABLE ingredient_types (
   ingredient_id INT NOT NULL,
   type_id INT NOT NULL,
 
   PRIMARY KEY (ingredient_id, type_id),
-  CONSTRAINT FK_ingredient_type_ingredient_id
+  CONSTRAINT FK_ingredient_types_ingredient_id
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)
     ON DELETE CASCADE,
-  CONSTRAINT FK_ingredient_type_type_id
+  CONSTRAINT FK_ingredient_types_type_id
     FOREIGN KEY (type_id) REFERENCES types(id)
 );
 
@@ -102,7 +102,7 @@ CREATE TABLE recipe_tags (
 CREATE TABLE recipe_ingredients (
   recipe_id INT NOT NULL,
   ingredient_id INT NOT NULL,
-  quantity INT NOT NULL,
+  quantity DECIMAL(10,2) NOT NULL,
   unit VARCHAR(255) NOT NULL,
 
   PRIMARY KEY (recipe_id, ingredient_id),
@@ -194,7 +194,7 @@ CREATE TABLE menu_shopping_list (
   menu_id INT NOT NULL,
   ingredient_id INT NOT NULL,
   ingredient_name VARCHAR(255) NOT NULL,
-  quantity INT NOT NULL,
+  quantity DECIMAL(10,2) NOT NULL,
   unit VARCHAR(255) NOT NULL,
   bought BOOLEAN DEFAULT FALSE,
 
@@ -250,8 +250,8 @@ INSERT INTO `types` (`id`, `name`, `description`) VALUES
 (NULL, 'saturated fat', 'Saturated fats are fats that are saturated'),
 (NULL, 'unsaturated fat', 'Unsaturated fats are fats that are not saturated');
 
--- ingredient_type
-INSERT INTO `ingredient_type` (`ingredient_id`, `type_id`) VALUES
+-- ingredient_types
+INSERT INTO `ingredient_types` (`ingredient_id`, `type_id`) VALUES
 (1, 4),
 (1, 5),
 (2, 9),
@@ -298,11 +298,11 @@ INSERT INTO `recipe_tags` (`recipe_id`, `tag`) VALUES
 INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`, `unit`) VALUES
 (1, 1, 100, 'g'),
 (1, 2, 150, 'g'),
-(1, 6, 1, 'unit'),
-(2, 1, 1, 'piece'),
+(1, 6, 1, 'slice'),
+(2, 1, 100, 'g'),
 (2, 3, 1, 'garlic head'),
 (2, 4, 10, 'mL'),
-(2, 5, 2, 'slices');
+(2, 5, 1, 'slice');
 
 
 -- ===============
@@ -626,7 +626,7 @@ BEGIN
  
   -- variables
   DECLARE var_ingredient_id INT;
-  DECLARE var_quantity INT;
+  DECLARE var_quantity DECIMAL(10,2);
   DECLARE var_unit VARCHAR(255);
 	DECLARE finished INTEGER DEFAULT 0;
 
@@ -656,3 +656,6 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+call create_menu("normal");

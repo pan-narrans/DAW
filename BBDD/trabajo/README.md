@@ -17,11 +17,15 @@ Escoger que hacer de comer es muy pesado, y hacer que la dieta sea equilibrada m
 La app tiene que:
 
 - guardar las preferencias del usuario
-- generar un menú
+- generar un menú:
   - equilibrado
   - en base a los parámetros de una dieta
   - para un número indicado de días
-- generar una lista de la compra
+- generar una lista de la compra para cada menú
+- permitir introducir:
+  - nuevos ingredientes
+  - nuevas recetas
+  - nuevas dietas
 
 Dado que esto es un primer acercamiento a la base de datos del proyecto, no todas las funcionalidades van a estar presentes. Esto se debe a que programar en java es más cómodo que programar en SQL.
 
